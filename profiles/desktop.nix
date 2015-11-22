@@ -1,0 +1,36 @@
+{ config, pkgs, ... }:
+
+{
+  environment.systemPackages = with pkgs; [
+    networkmanagerapplet
+#    e19.terminology
+    taskwarrior
+    fortune
+    firefox
+    libreoffice
+    chromium
+    python34Packages.ipython
+  ];
+
+  services.xserver = {
+    enable = true;
+    layout = "us";
+    xkbOptions = "compose:caps";
+    displayManager.slim = {
+      defaultUser = "ardaxi";
+      autoLogin = true;
+    };
+    desktopManager.xterm.enable = false;
+    windowManager = {
+      default = "awesome";
+      awesome.enable = true;
+    };
+  };
+
+  services.physlock = {
+    enable = true;
+    user = "ardaxi";
+  };
+
+  security.setuidPrograms = [ "physlock" ];
+}
