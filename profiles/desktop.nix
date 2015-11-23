@@ -14,6 +14,7 @@
     chromium
     python34Packages.ipython
     arandr
+    adobe-reader
   ];
 
   services.xserver = {

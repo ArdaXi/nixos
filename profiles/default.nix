@@ -12,6 +12,7 @@
   networking.networkmanager.enable = true;
 
   environment.systemPackages = with pkgs; [
+    file
     vim
     nix-repl
     (git.override { svnSupport = true; })
