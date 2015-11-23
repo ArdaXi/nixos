@@ -3,7 +3,7 @@
 {
   environment.systemPackages = with pkgs; [
     (texlive.combine {
-      inherit (texlive) scheme-basic;
+      inherit (texlive) scheme-basic babel-dutch hyphen-dutch;
     })
     networkmanagerapplet
     e19.terminology
