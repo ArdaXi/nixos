@@ -2,14 +2,18 @@
 
 {
   environment.systemPackages = with pkgs; [
+    (texlive.combine {
+      inherit (texlive) scheme-basic;
+    })
     networkmanagerapplet
-#    e19.terminology
+    e19.terminology
     taskwarrior
     fortune
     firefox
     libreoffice
     chromium
     python34Packages.ipython
+    arandr
   ];
 
   services.xserver = {
