@@ -15,6 +15,8 @@
     python34Packages.ipython
     arandr
     adobe-reader
+    lyx
+    ledger
   ];
 
   services.xserver = {
