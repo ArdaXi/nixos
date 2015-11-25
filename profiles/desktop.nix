@@ -17,6 +17,7 @@
     adobe-reader
     lyx
     ledger
+    (mpv.override { vaapiSupport = true; })
   ];
 
   services.xserver = {
