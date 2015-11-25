@@ -15,6 +15,8 @@
     file
     vim
     nix-repl
+    silver-searcher
+    mosh
     (git.override { svnSupport = true; })
   ];
 }
