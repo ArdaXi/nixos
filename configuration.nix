@@ -13,14 +13,6 @@ rec {
       (./machines + "/${hostName}.nix")
     ];
 
-  # Use the GRUB 2 boot loader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.version = 2;
-  # Define on which hard drive you want to install Grub.
-  boot.loader.grub.device = "/dev/sdb";
-
-  boot.supportedFilesystems = [ "zfs" ];
-
   networking.hostName = hostName;
 
   # List packages installed in system profile. To search by name, run:
