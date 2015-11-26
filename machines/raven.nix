@@ -6,6 +6,10 @@
     ../profiles/project.nix
   ];
 
+  environment.systemPackages = with pkgs; [
+    cryptsetup
+  ];
+
   networking.hostId = "85703e9c";
 
   boot.loader.grub.enable = true;
