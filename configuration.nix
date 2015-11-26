@@ -21,8 +21,7 @@ rec {
 
   boot.supportedFilesystems = [ "zfs" ];
 
-  networking.hostName = "raven"; # Define your hostname.
-  networking.hostId = "85703e9c";
+  networking.hostName = hostName;
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
