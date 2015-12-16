@@ -7,7 +7,14 @@
     ../profiles/project.nix
   ];
 
-  boot.initrd.availableKernelModules = [ "ahci" ];
+  boot.initrd = {
+    availableKernelModules = [ "ahci" ];
+    luks.devices = [{
+      name = "cypher";
+      device = "/dev/disk/by-uuid/460c7199-0d25-47df-834a-c69b34b6f0c0";
+    }];
+  };
+
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
