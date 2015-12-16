@@ -8,7 +8,6 @@ let hostName = "${builtins.readFile ./hostname}";
 in
 rec {
   imports = [ 
-      ./hardware-configuration.nix
       ./configuration-common.nix
       (./machines + "/${hostName}.nix")
     ];
@@ -30,7 +29,5 @@ rec {
 
   # The NixOS release to be compatible with for stateful data such as databases.
   system.stateVersion = "16.03";
-
-  services.vmwareGuest.enable = true;
 
 }
