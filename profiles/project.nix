@@ -3,11 +3,6 @@
 
 {
   environment.systemPackages = with pkgs; [
-    (myEnvFun {
-      name = "project";
-      buildInputs = [
-        remmina
-      ];
-    })
+    remmina
   ];
 }
