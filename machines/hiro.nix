@@ -9,6 +9,7 @@
 
   boot.initrd = {
     availableKernelModules = [ "ahci" ];
+    kernelModules = [ "fbcon" ];
     luks.devices = [{
       name = "cypher";
       device = "/dev/disk/by-uuid/460c7199-0d25-47df-834a-c69b34b6f0c0";
