@@ -24,12 +24,12 @@
     fsType = "zfs";
   };
 
-  fileSystems."/home" {
+  fileSystems."/home" = {
     device = "tank/home";
     fsType = "zfs";
   };
 
-  fileSystems."/boot" {
+  fileSystems."/boot" = {
     device = "/dev/disk/by-partuuid/a9669530-a697-4656-98e6-326b5099639b";
     fsType = "vfat";
   };
