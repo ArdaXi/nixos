@@ -9,6 +9,8 @@
     defaultLocale = "en_US.UTF-8";
   };
 
+  services.openssh.enable = true;
+
   networking.networkmanager.enable = true;
 
   environment.systemPackages = with pkgs; [

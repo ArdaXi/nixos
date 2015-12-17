@@ -45,6 +45,7 @@
   ];
 
   networking.hostId = "85703e9c";
+  networking.hostName = "hiro";
 
   boot.loader.gummiboot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;

@@ -7,27 +7,15 @@
 let hostName = "${builtins.readFile ./hostname}";
 in
 rec {
-  imports = [ 
-      ./configuration-common.nix
-      (./machines + "/${hostName}.nix")
-    ];
-
-  networking.hostName = hostName;
+  imports = 
+  [ 
+    ./configuration-common.nix
+    (./machines + "/${hostName}.nix")
+  ];
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
 
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
-  # Enable the X11 windowing system.
-
   # The NixOS release to be compatible with for stateful data such as databases.
   system.stateVersion = "16.03";
-
 }

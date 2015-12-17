@@ -10,6 +10,7 @@
     cryptsetup
   ];
 
+  networking.hostName = "raven";
   networking.hostId = "85703e9c";
 
   boot.loader.grub.enable = true;

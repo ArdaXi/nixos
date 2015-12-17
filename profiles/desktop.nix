@@ -41,5 +41,7 @@
     user = "ardaxi";
   };
 
+  services.printing.enable = true;
+
   security.setuidPrograms = [ "physlock" ];
 }
