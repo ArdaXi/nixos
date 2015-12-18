@@ -39,6 +39,7 @@
       enable = true;
       tapButtons = true;
       twoFingerScroll = true;
+      accelFactor = "0.02";
     };
   };
 
