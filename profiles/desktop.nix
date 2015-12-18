@@ -37,7 +37,7 @@
     };
     synaptics = {
       enable = true;
-      tapButtons = true;
+      tapButtons = false;
       twoFingerScroll = true;
       accelFactor = "0.02";
     };
