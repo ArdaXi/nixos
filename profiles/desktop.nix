@@ -19,6 +19,7 @@
     ledger
     source-code-pro
     (mpv.override { vaapiSupport = true; })
+    xorg.xf86inputsynaptics
   ];
 
   services.xserver = {
@@ -34,6 +35,11 @@
       default = "awesome";
       awesome.enable = true;
     };
+    synaptics = {
+      enable = true;
+      tapButtons = true;
+      twoFingerScroll = true;
+    };
   };
 
   services.physlock = {
@@ -42,11 +48,6 @@
   };
 
   services.printing.enable = true;
-
-  hardware.trackpoint = {
-    enable = true;
-    fakeButtons = true;
-  };
 
   fonts = {
     enableFontDir = true;
