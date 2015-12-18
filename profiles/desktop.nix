@@ -43,5 +43,18 @@
 
   services.printing.enable = true;
 
+  hardware.trackpoint = {
+    enable = true;
+    fakeButtons = true;
+  };
+
+  fonts = {
+    enableFontDir = true;
+    enableGhostscriptFonts = true;
+    fonts = with pkgs; [
+      source-code-pro
+    ];
+  };
+
   security.setuidPrograms = [ "physlock" ];
 }
