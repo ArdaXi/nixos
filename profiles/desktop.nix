@@ -58,5 +58,7 @@
     ];
   };
 
+  hardware.pulseaudio.enable = true;
+
   security.setuidPrograms = [ "physlock" ];
 }
