@@ -42,6 +42,7 @@
     nix-repl
     silver-searcher
     mosh
+    psmisc
     (git.override { svnSupport = true; })
   ];
 }
