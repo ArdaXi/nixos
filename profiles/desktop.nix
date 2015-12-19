@@ -50,6 +50,10 @@
 
   services.printing.enable = true;
 
+  services.udev.extraRules = ''
+    DRIVER=="snd_hda_intel", ATTR{power/control}="on"
+  '';
+
   fonts = {
     enableFontDir = true;
     enableGhostscriptFonts = true;
