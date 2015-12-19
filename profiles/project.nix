@@ -5,4 +5,6 @@
   environment.systemPackages = with pkgs; [
     remmina
   ];
+
+  services.mongodb.enable = true;
 }
