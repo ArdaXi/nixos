@@ -9,7 +9,7 @@
     e19.terminology
     taskwarrior
     fortune
-    firefox
+    firefox-wrapper
     libreoffice
     chromium
     python34Packages.ipython
