@@ -43,6 +43,7 @@
     silver-searcher
     mosh
     psmisc
+    binutils
     (git.override { svnSupport = true; })
   ];
 }
