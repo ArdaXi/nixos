@@ -20,7 +20,18 @@
     source-code-pro
     (mpv.override { vaapiSupport = true; })
     xorg.xf86inputsynaptics
+    vmware-workstation
   ];
+
+  nixpkgs.config.packageOverrides = pkgs: rec {
+    vmware-workstation = pkgs.callPackage ../pkgs/vmware/vmware-workstation/default.nix { };
+    vmware-modules = pkgs.callPackage ../pkgs/vmware/vmware-modules/default.nix { kernel = config.boot.kernelPackages.kernel; };
+  };
+
+  boot = {
+    kernelModules = [ "vmblock" "vmmod" "vmnet" ];
+    extraModulePackages = [ pkgs.vmware-modules ];
+  };
 
   services.xserver = {
     enable = true;
