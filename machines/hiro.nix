@@ -3,6 +3,7 @@
 {
   imports = [
     <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
+    ../profiles/default.nix
     ../profiles/desktop.nix
     ../profiles/project.nix
   ];

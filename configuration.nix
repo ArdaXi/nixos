@@ -9,7 +9,6 @@ in
 rec {
   imports = 
   [ 
-    ./configuration-common.nix
     (./machines + "/${hostName}.nix")
   ];
 
