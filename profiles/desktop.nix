@@ -18,6 +18,7 @@
     lyx
     ledger
     source-code-pro
+    lighttable
     (mpv.override { vaapiSupport = true; })
     xorg.xf86inputsynaptics
   ];
