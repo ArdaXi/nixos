@@ -23,6 +23,12 @@
     xorg.xf86inputsynaptics
   ];
 
+  services.redshift = {
+    enable = true;
+    latitude = "52.37";
+    longitude = "4.9";
+  };
+
   services.xserver = {
     enable = true;
     layout = "us";
