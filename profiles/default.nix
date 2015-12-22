@@ -45,5 +45,6 @@
     psmisc
     binutils
     (git.override { svnSupport = true; })
+    gitAndTools.gitflow
   ];
 }
