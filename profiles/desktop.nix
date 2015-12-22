@@ -19,6 +19,8 @@
     ledger
     source-code-pro
     lighttable
+    usbutils
+    pciutils
     (mpv.override { vaapiSupport = true; })
     xorg.xf86inputsynaptics
   ];
