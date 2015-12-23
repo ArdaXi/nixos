@@ -37,6 +37,8 @@
   networking.networkmanager.enable = true;
 
   environment.systemPackages = with pkgs; [
+    wget
+    unzip
     file
     vim
     nix-repl
