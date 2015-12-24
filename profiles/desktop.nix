@@ -1,5 +1,12 @@
 { config, pkgs, ... }:
 
+let
+  tahoelafs = pkgs.callPackage ../pkgs/tahoe-lafs.nix {
+    inherit (pkgs.pythonPackages) twisted foolscap simplejson nevow zfec
+      pycryptopp sqlite3 darcsver setuptoolsTrial setuptoolsDarcs
+      numpy pyasn1 mock zope_interface;
+  };
+in
 {
   environment.systemPackages = with pkgs; [
     (texlive.combine {
@@ -21,6 +28,7 @@
     lighttable
     usbutils
     pciutils
+    tahoelafs
     (mpv.override { vaapiSupport = true; })
     xorg.xf86inputsynaptics
   ];
