@@ -10,7 +10,7 @@ in
 {
   environment.systemPackages = with pkgs; [
     (texlive.combine {
-      inherit (texlive) scheme-basic babel-dutch hyphen-dutch;
+      inherit (texlive) scheme-basic babel-dutch hyphen-dutch invoice fp;
     })
     networkmanagerapplet
     e19.terminology
