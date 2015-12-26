@@ -29,6 +29,7 @@ in
     usbutils
     pciutils
     tahoelafs
+    gnupg
     (mpv.override { vaapiSupport = true; })
     xorg.xf86inputsynaptics
   ];
