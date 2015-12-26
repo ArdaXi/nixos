@@ -30,6 +30,7 @@ in
     pciutils
     tahoelafs
     gnupg
+    acpi
     (mpv.override { vaapiSupport = true; })
     xorg.xf86inputsynaptics
   ];
