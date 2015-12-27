@@ -1,5 +1,12 @@
 { config, pkgs, ... }:
 
+let
+  tahoelafs = pkgs.callPackage ../pkgs/tahoe-lafs.nix {
+    inherit (pkgs.pythonPackages) twisted foolscap simplejson nevow zfec
+      pycryptopp sqlite3 darcsver setuptoolsTrial setuptoolsDarcs
+      numpy pyasn1 mock zope_interface;
+  };
+in
 {
   nixpkgs.config.allowUnfree = true;
 
@@ -48,5 +55,6 @@
     binutils
     (git.override { svnSupport = true; })
     gitAndTools.gitflow
+    tahoelafs
   ];
 }

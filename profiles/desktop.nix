@@ -1,12 +1,5 @@
 { config, pkgs, ... }:
 
-let
-  tahoelafs = pkgs.callPackage ../pkgs/tahoe-lafs.nix {
-    inherit (pkgs.pythonPackages) twisted foolscap simplejson nevow zfec
-      pycryptopp sqlite3 darcsver setuptoolsTrial setuptoolsDarcs
-      numpy pyasn1 mock zope_interface;
-  };
-in
 {
   environment.systemPackages = with pkgs; [
     (texlive.combine {
@@ -28,7 +21,6 @@ in
     lighttable
     usbutils
     pciutils
-    tahoelafs
     gnupg
     acpi
     (mpv.override { vaapiSupport = true; })
