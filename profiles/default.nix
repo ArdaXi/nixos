@@ -43,6 +43,8 @@ in
 
   networking.networkmanager.enable = true;
 
+  system.copySystemConfiguration = true;
+
   environment.systemPackages = with pkgs; [
     wget
     unzip

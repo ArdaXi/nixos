@@ -83,4 +83,9 @@
   };
 
   security.setuidPrograms = [ "physlock" ];
+
+  networking.firewall = {
+    allowedTCPPorts = [ 10999 ];
+    allowedUDPPorts = [ 10999 ];
+  };
 }
