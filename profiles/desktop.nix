@@ -23,6 +23,7 @@
     pciutils
     gnupg
     acpi
+    steam
     (mpv.override { vaapiSupport = true; })
     xorg.xf86inputsynaptics
   ];
@@ -73,7 +74,13 @@
     ];
   };
 
-  hardware.pulseaudio.enable = true;
+  hardware = {
+    pulseaudio = { 
+      enable = true;
+      support32Bit = true;
+    };
+    opengl.driSupport32Bit = true;
+  };
 
   security.setuidPrograms = [ "physlock" ];
 }
