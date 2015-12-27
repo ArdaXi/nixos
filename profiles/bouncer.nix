@@ -1,6 +1,11 @@
 { config, pkgs, ... }:
 
 {
+  services.bitlbee = {
+    enable = true;
+    authMode = "Closed";
+  };
+
   systemd.user.services.irc-session = {
     enable = true;
     description = "Persistent tmux session running irssi";
