@@ -16,4 +16,8 @@
       ExecStop = "${pkgs.tmux}/bin/tmux kill-session -t main";
     };
   };
+
+  environment.systemPackages = with pkgs; [
+    (writeScriptBin "irc" "${tmux}/bin/tmux attach-session -t main")
+  ];
 }
