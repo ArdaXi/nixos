@@ -2,55 +2,57 @@
 
 {
   imports = [
-    <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
+    <nixpkgs/nixos/modules/profiles/qemu-guest.nix>
     ../profiles/default.nix
-    ../profiles/desktop.nix
-    ../profiles/project.nix
+    ../profiles/bouncer.nix
   ];
 
-  boot.initrd = {
-    availableKernelModules = [ "ahci" ];
-    kernelModules = [ "fbcon" ];
-    luks.devices = [{
-      name = "cypher";
-      device = "/dev/disk/by-uuid/460c7199-0d25-47df-834a-c69b34b6f0c0";
-    }];
+  boot = {
+    initrd = {
+      availableKernelModules = [ "ata_piix" "uhci_hcd" "virtio_pci" "virtio_blk" ];
+      supportedFilesystems = [ "ext4" ];
+      postDeviceCommands = ''
+        mkdir -p /mnt-root/old-root ;
+        mount -t ext4 /dev/vda1 /mnt-root/old-root ;
+      '';
+    };
+    kernelModules = [ "kvm-intel" ];
+    kernelParams = [ "boot.shell_on_fail" ];
+    loader.grub = {
+      enable = true;
+      version = 2;
+      device = "/dev/vda";
+      storePath = "/nixos/nix/store";
+    };
   };
 
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+  fileSystems = {
+    "/" = {
+      device = "/old-root/nixos";
+      fsType = "none";
+      "options" = "bind";
+    };
 
-  fileSystems."/" = {
-    device = "tank/nixos";
-    fsType = "zfs";
+    "/old-root" = {
+      device = "/dev/vda1";
+      fsType = "ext4";
+    };
   };
 
-  fileSystems."/home" = {
-    device = "tank/home";
-    fsType = "zfs";
+  networking = {
+    hostId = "3eb2a8ec";
+    hostName = "librarian";
+    interfaces.eth0.useDHCP = false;
+    interfaces.eth1.useDHCP = false;
   };
 
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-partuuid/a9669530-a697-4656-98e6-326b5099639b";
-    fsType = "vfat";
+  systemd.services.setup-network = {
+    wantedBy = [ "multi-user.target" ];
+    after = [ "network.target" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.bash}/bin/bash -i /etc/nixos-in-place/setup-network";
+    };
   };
 
-  swapDevices = [
-    { device = "/dev/disk/by-uuid/15988b90-6ece-4625-97e1-1b5bffd26734"; }
-  ];
-
-  nix.maxJobs = 4;
-
-  environment.systemPackages = with pkgs; [
-    cryptsetup
-  ];
-
-  networking.hostId = "85703e9c";
-  networking.hostName = "hiro";
-
-  boot.loader.grub.enable = false;
-  boot.loader.gummiboot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  boot.supportedFilesystems = [ "zfs" ];
+  nix.maxJobs = 1;
 }
