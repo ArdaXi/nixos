@@ -13,7 +13,7 @@
     serviceConfig = {
       Type = "forking";
       ExecStart = "${pkgs.tmux}/bin/tmux new-session -d -s main -n irssi ${pkgs.irssi}/bin/irssi";
-      ExecStop = "${pkgs.tmux}/bin/tmux kill-session -t main"
+      ExecStop = "${pkgs.tmux}/bin/tmux kill-session -t main";
     };
   };
 }
