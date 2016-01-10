@@ -29,10 +29,6 @@
   ];
 
   networking.networkmanager.enable = true;
-  networking.extraHosts = ''
-    5.101.104.129 old-do
-    178.62.236.168 do.ardaxi.com
-  '';
 
   services.redshift = {
     enable = true;
