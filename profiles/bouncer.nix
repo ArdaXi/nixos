@@ -8,6 +8,8 @@
 
   services.taskserver.enable = true;
 
+  networking.firewall.allowedTCPPorts = [ 53589 ];
+
   systemd.user.services.irc-session = {
     enable = true;
     description = "Persistent tmux session running irssi";
