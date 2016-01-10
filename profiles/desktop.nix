@@ -28,6 +28,8 @@
     xorg.xf86inputsynaptics
   ];
 
+  networking.networkmanager.enable = true;
+
   services.redshift = {
     enable = true;
     latitude = "52.37";

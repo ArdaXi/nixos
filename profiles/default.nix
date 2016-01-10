@@ -37,8 +37,6 @@ in
 
   programs.zsh.enable = true;
 
-  networking.networkmanager.enable = true;
-
   system.copySystemConfiguration = true;
 
   environment.systemPackages = with mypkgs; [
