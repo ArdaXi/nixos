@@ -6,6 +6,8 @@
     authMode = "Closed";
   };
 
+  services.taskserver.enable = true;
+
   systemd.user.services.irc-session = {
     enable = true;
     description = "Persistent tmux session running irssi";
