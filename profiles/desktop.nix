@@ -26,6 +26,9 @@
     steam
     (mpv.override { vaapiSupport = true; })
     xorg.xf86inputsynaptics
+    dmenu
+    haskellPackages.xmobar
+    xdotool
   ];
 
   networking.networkmanager.enable = true;
@@ -46,8 +49,12 @@
     };
     desktopManager.xterm.enable = false;
     windowManager = {
-      default = "awesome";
+      default = "xmonad";
       awesome.enable = true;
+      xmonad = {
+        enable = true;
+        enableContribAndExtras = true;
+      };
     };
     synaptics = {
       enable = true;
