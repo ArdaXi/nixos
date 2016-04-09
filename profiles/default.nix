@@ -44,6 +44,7 @@ in
     unzip
     file
     vim
+    neovim
     nix-repl
     silver-searcher
     mosh
@@ -51,6 +52,5 @@ in
     binutils
     (git.override { svnSupport = true; })
     gitAndTools.gitflow
-    tahoelafs
   ];
 }

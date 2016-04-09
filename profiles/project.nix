@@ -3,8 +3,28 @@
 
 {
   environment.systemPackages = with pkgs; [
-    remmina
+    consul
   ];
 
-  services.mongodb.enable = true;
+  services.consul = {
+    enable = true;
+    webUi = true;
+    extraConfig = { 
+      server = true;
+      bootstrap = true;
+    };
+  };
+
+  services.elasticsearch = {
+    enable = true;
+    plugins = [
+#      pkgs.elasticsearchPlugins.elasticsearch_kopf
+    ];
+    extraConf = ''
+      http.cors.enabled: true
+      http.cors.allow-origin: "*"
+      index.number_of_shards: 1
+      index.number_of_replicas: 0
+    '';
+  };
 }

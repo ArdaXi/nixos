@@ -6,12 +6,12 @@
       inherit (texlive) scheme-basic babel-dutch hyphen-dutch invoice fp;
     })
     networkmanagerapplet
-    e19.terminology
+    enlightenment.terminology
     taskwarrior
     fortune
     firefox-wrapper
     libreoffice
-    chromium
+#    chromium
     python34Packages.ipython
     arandr
     adobe-reader
@@ -29,6 +29,7 @@
     dmenu
     haskellPackages.xmobar
     xdotool
+    ledger
   ];
 
   networking.networkmanager.enable = true;
@@ -89,12 +90,25 @@
       support32Bit = true;
     };
     opengl.driSupport32Bit = true;
+    bluetooth.enable = true;
+  };
+
+  nixpkgs.config = {
+    packageOverrides = pkgs: {
+      bluez = pkgs.bluez5;
+    };
   };
 
   security.setuidPrograms = [ "physlock" ];
 
   networking.firewall = {
-    allowedTCPPorts = [ 10999 ];
+    allowedTCPPorts = [ 10999 8000 ];
     allowedUDPPorts = [ 10999 ];
+  };
+
+  fileSystems."/mnt/media" = {
+    device = "192.168.0.3:zones/media";
+    fsType = "nfs";
+    options = "x-systemd.automount,noauto";
   };
 }
