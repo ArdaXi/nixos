@@ -10,7 +10,6 @@ rec {
   imports = 
   [ 
     (./machines + "/${hostName}.nix")
-    ./modules/taskserver.nix
   ];
 
   # List packages installed in system profile. To search by name, run:

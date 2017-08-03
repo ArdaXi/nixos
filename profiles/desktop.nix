@@ -1,18 +1,21 @@
 { config, pkgs, ... }:
 
+let
+  mypkgs = pkgs // import ../pkgs;
+in
 {
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = with mypkgs; [
     (texlive.combine {
-      inherit (texlive) scheme-basic babel-dutch hyphen-dutch invoice fp;
+      inherit (texlive) scheme-basic babel-dutch hyphen-dutch invoice fp collection-latexrecommended xetex relsize collection-fontsrecommended xetex-def collection-htmlxml draftwatermark everypage;
     })
+    gyre-fonts
     networkmanagerapplet
     enlightenment.terminology
     taskwarrior
     fortune
-    firefox-wrapper
+    firefox
     libreoffice
-#    chromium
-    python34Packages.ipython
+    google-chrome
     arandr
     adobe-reader
     lyx
@@ -30,9 +33,19 @@
     haskellPackages.xmobar
     xdotool
     ledger
+    slock
+    (dwarf-fortress.override { theme = "phoebus"; enableDFHack = true; })
+    rustracer
+#    rustChannels.stable.rust
+    gcc
+    rustfmt
+    tahoelafs
   ];
 
-  networking.networkmanager.enable = true;
+  networking.networkmanager = {
+    enable = true;
+    packages = [ mypkgs.networkmanager_strongswan ];
+  };
 
   services.redshift = {
     enable = true;
@@ -44,9 +57,16 @@
     enable = true;
     layout = "us";
     xkbOptions = "compose:caps";
-    displayManager.slim = {
-      defaultUser = "ardaxi";
-      autoLogin = true;
+    displayManager = {
+      slim.enable = false;
+      lightdm = {
+        enable = true;
+        autoLogin = {
+          enable = true;
+	  user = "ardaxi";
+        };
+	greeter.enable = false;
+      };
     };
     desktopManager.xterm.enable = false;
     windowManager = {
@@ -65,12 +85,14 @@
     };
   };
 
-  services.physlock = {
+  services.physlock.enable = true;
+
+  services.printing = {
     enable = true;
-    user = "ardaxi";
+    drivers = [ pkgs.hplip ];
   };
 
-  services.printing.enable = true;
+  services.pcscd.enable = true;
 
   services.udev.extraRules = ''
     DRIVER=="snd_hda_intel", ATTR{power/control}="on"
@@ -99,16 +121,10 @@
     };
   };
 
-  security.setuidPrograms = [ "physlock" ];
+  security.wrappers.physlock.source = "${pkgs.physlock}/bin/physlock";
 
   networking.firewall = {
-    allowedTCPPorts = [ 10999 8000 ];
+    allowedTCPPorts = [ 10999 8000 80 ];
     allowedUDPPorts = [ 10999 ];
-  };
-
-  fileSystems."/mnt/media" = {
-    device = "192.168.0.3:zones/media";
-    fsType = "nfs";
-    options = "x-systemd.automount,noauto";
   };
 }

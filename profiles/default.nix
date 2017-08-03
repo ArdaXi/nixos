@@ -1,10 +1,15 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 let
   mypkgs = pkgs // import ../pkgs;
 in
 {
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs = {
+    config.allowUnfree = true;
+    overlays = [ (import ../overlays/nixpkgs-mozilla/rust-overlay.nix) ];
+  };
+
+  #nix.buildCores = lib.mkDefault 0;
 
   time.timeZone = "Europe/Amsterdam";
 
@@ -52,5 +57,7 @@ in
     binutils
     (git.override { svnSupport = true; })
     gitAndTools.gitflow
+    screen
+    python27Packages.magic-wormhole
   ];
 }
