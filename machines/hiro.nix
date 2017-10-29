@@ -36,6 +36,11 @@
     fsType = "zfs";
   };
 
+  fileSystems."/nix" = {
+    device = "tank/nix";
+    fsType = "zfs";
+  };
+
   fileSystems."/home" = {
     device = "tank/home";
     fsType = "zfs";
