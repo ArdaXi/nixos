@@ -6,9 +6,11 @@ let
 in
 {
   environment.systemPackages = with pkgs; [
+    kubernetes
+    awscli
+    packer
+    terraform
   ];
-
-  services.postgresql.enable = true;
 
   virtualisation.docker = {
     enable = true;
@@ -16,4 +18,6 @@ in
   };
 
   users.extraUsers.ardaxi.extraGroups = [ "docker" ];
+
+  virtualisation.virtualbox.host.enable = true;
 }
