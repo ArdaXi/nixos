@@ -95,14 +95,6 @@ $TTL 1h
 
   services.unifi.enable = true;
   services.sabnzbd.enable = true;
-  services.hydra = {
-    enable = true;
-    hydraURL = "http://local.ardaxi.com:3000/";
-    notificationSender = "nobody@localhost";
-    buildMachinesFiles = lib.mkIf (config.nix.buildMachines == []) [];
-    useSubstitutes = true;
-    extraConfig = "max_output_size = 4294967296";
-  };
 
   networking.extraHosts = "127.0.0.1 ns.street.ardaxi.com";
 }
