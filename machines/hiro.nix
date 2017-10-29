@@ -8,6 +8,8 @@
     ../profiles/project.nix
   ];
 
+  system.stateVersion = "16.03";
+
   boot = {
     initrd = {
       availableKernelModules = [ "ahci" ];

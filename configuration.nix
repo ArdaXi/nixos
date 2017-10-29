@@ -15,6 +15,4 @@ rec {
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
 
-  # The NixOS release to be compatible with for stateful data such as databases.
-  system.stateVersion = "16.03";
 }
