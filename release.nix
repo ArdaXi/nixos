@@ -1,9 +1,15 @@
+with import <nixpkgs/lib>;
 let
-  release = import <nixpkgs/nixos/release.nix>;
-in {
-  iso_graphical = release.forAllSystems (system: release.makeIso {
-    module = ./machines/livecd.nix;
-    type = "graphical";
-    inherit system;
-  });
-}
+  configForMachine = machine: import <nixpkgs/nixos/lib/eval-config.nix> {
+    system = "x86_64-linux";
+    modules = [
+      (./machines + "/${machine}.nix")
+    ];
+  };
+  nixosForMachine = machine: (configForMachine machine).config.system.build.toplevel;
+  machines = genAttrs [
+    "hiro"
+    "cic"
+  ] nixosForMachine;
+in
+  machines
