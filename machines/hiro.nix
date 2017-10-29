@@ -8,17 +8,28 @@
     ../profiles/project.nix
   ];
 
-  boot.initrd = {
-    availableKernelModules = [ "ahci" ];
-    kernelModules = [ "fbcon" ];
-    luks.devices = [{
-      name = "cypher";
-      device = "/dev/disk/by-uuid/460c7199-0d25-47df-834a-c69b34b6f0c0";
-    }];
-  };
+  boot = {
+    initrd = {
+      availableKernelModules = [ "ahci" ];
+      kernelModules = [ "fbcon" ];
+      luks.devices = [{
+        name = "cypher";
+        device = "/dev/disk/by-uuid/460c7199-0d25-47df-834a-c69b34b6f0c0";
+      }];
+    };
 
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+    kernelModules = [ "kvm-intel" "fbcon" ];
+
+    loader = {
+      grub.enable = false;
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+
+    supportedFilesystems = [ "zfs" ];
+
+    tmpOnTmpfs = true;
+  };
 
   fileSystems."/" = {
     device = "tank/nixos";
@@ -47,10 +58,4 @@
 
   networking.hostId = "85703e9c";
   networking.hostName = "hiro";
-
-  boot.loader.grub.enable = false;
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  boot.supportedFilesystems = [ "zfs" ];
 }
