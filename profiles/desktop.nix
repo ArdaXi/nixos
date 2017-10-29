@@ -47,7 +47,6 @@ in
     #(wineFull.override { wineBuild = "wineWow"; })
     wineStaging
     winetricks
-    stalonetray
     taffybar
     glib_networking
     openconnect
@@ -73,6 +72,9 @@ in
     layout = "us";
     xkbOptions = "compose:caps";
     displayManager = {
+      sessionCommands = ''
+        taffybar &
+      '';
       slim.enable = false;
       lightdm = {
         enable = true;
@@ -90,6 +92,10 @@ in
       xmonad = {
         enable = true;
         enableContribAndExtras = true;
+	extraPackages = hPkgs: [
+	  hPkgs.taffybar
+	  hPkgs.DBus.override { buildDepends = [ "pkgconfig" "dbus" ]; }
+	];
       };
     };
     synaptics = {
