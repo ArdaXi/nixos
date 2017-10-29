@@ -1,8 +1,5 @@
 { config, pkgs, lib, ... }:
 
-let
-  mypkgs = pkgs // import ../pkgs;
-in
 {
   nixpkgs = {
     config.allowUnfree = true;
@@ -44,7 +41,7 @@ in
 
   system.copySystemConfiguration = true;
 
-  environment.systemPackages = with mypkgs; [
+  environment.systemPackages = with pkgs; [
     wget
     unzip
     file
