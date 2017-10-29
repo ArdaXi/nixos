@@ -2,11 +2,11 @@
 
 {
   nixpkgs = {
-    config.allowUnfree = true;
-    overlays = [ (import ../overlays/nixpkgs-mozilla/rust-overlay.nix) ];
+    config = {
+      allowUnfree = true;
+    };
+    overlays = (import ../overlays);
   };
-
-  #nix.buildCores = lib.mkDefault 0;
 
   time.timeZone = "Europe/Amsterdam";
 
