@@ -144,10 +144,23 @@ in
     };
   };
 
+  services.upower.enable = true;
+
+  services.avahi = {
+    enable = true;
+    nssmdns = true;
+  };
+
+  services.geoclue2.enable = true;
+
   security.wrappers.physlock.source = "${pkgs.physlock}/bin/physlock";
 
   networking.firewall = {
     allowedTCPPorts = [ 10999 8000 80 ];
     allowedUDPPorts = [ 10999 ];
   };
+
+  networking.extraHosts = ''
+    62.251.59.192  tahoe.ardaxi.com
+  '';
 }
