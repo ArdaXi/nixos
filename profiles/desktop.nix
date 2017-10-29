@@ -13,7 +13,7 @@ in
     enlightenment.terminology
     taskwarrior
     fortune
-#    firefox
+    firefox-beta-bin
     libreoffice
     google-chrome
     arandr
@@ -43,7 +43,7 @@ in
     scrot
 #    latest.firefox-nightly-bin
 #    firefox-devedition-bin
-    latest.firefox-beta-bin
+#    latest.firefox-beta-bin
     #(wineFull.override { wineBuild = "wineWow"; })
     wineStaging
     winetricks
