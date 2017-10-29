@@ -100,6 +100,7 @@ $TTL 1h
     hydraURL = "http://local.ardaxi.com:3000/";
     notificationSender = "nobody@localhost";
     buildMachinesFiles = lib.mkIf (config.nix.buildMachines == []) [];
+    useSubstitutes = true;
   };
 
   networking.extraHosts = "127.0.0.1 ns.street.ardaxi.com";
