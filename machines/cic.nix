@@ -41,7 +41,8 @@
     [ { device = "/dev/disk/by-uuid/aa8b39de-2005-4668-bdb2-507fbe3391ce"; }
     ];
 
-  nix.maxJobs = lib.mkDefault 2;
+  nix.maxJobs = 1;
+  nix.daemonNiceLevel = 1;
   powerManagement.cpuFreqGovernor = "ondemand";
 
   networking.hostId = "567f8775";
