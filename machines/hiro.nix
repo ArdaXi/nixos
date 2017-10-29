@@ -55,7 +55,10 @@
     { device = "/dev/disk/by-uuid/15988b90-6ece-4625-97e1-1b5bffd26734"; }
   ];
 
-  nix.maxJobs = 4;
+  nix = {
+    maxJobs = 4;
+    buildCores = 4;
+  };
 
   environment.systemPackages = with pkgs; [
     cryptsetup
