@@ -58,7 +58,8 @@ in
 
   networking.networkmanager = {
     enable = true;
-    packages = [ mypkgs.networkmanager_strongswan ];
+    packages = [ pkgs.networkmanager_openconnect ];
+    useDnsmasq = false;
   };
 
   services.redshift = {
