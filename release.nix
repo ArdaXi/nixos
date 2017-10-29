@@ -9,6 +9,7 @@ let
   nixosForMachine = machine: (configForMachine machine).config.system.build.toplevel;
   machines = genAttrs [
     "cic"
+    "hiro"
   ] nixosForMachine;
 in
   machines
