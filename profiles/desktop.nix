@@ -13,7 +13,7 @@ in
     enlightenment.terminology
     taskwarrior
     fortune
-    firefox
+#    firefox
     libreoffice
     google-chrome
     arandr
@@ -40,6 +40,20 @@ in
     gcc
     rustfmt
     tahoelafs
+    scrot
+#    latest.firefox-nightly-bin
+#    firefox-devedition-bin
+    latest.firefox-beta-bin
+    #(wineFull.override { wineBuild = "wineWow"; })
+    wineStaging
+    winetricks
+    stalonetray
+    taffybar
+    glib_networking
+    openconnect
+    pass
+    browserpass
+    nfsUtils
   ];
 
   networking.networkmanager = {
