@@ -35,7 +35,11 @@
   };
   users.extraGroups.ardaxi.gid = 1000;
 
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    passwordAuthentication = false;
+    permitRootLogin = "no";
+  };
 
   programs.zsh.enable = true;
 
