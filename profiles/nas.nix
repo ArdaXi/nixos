@@ -1,6 +1,8 @@
 { config, pkgs, lib, ... }:
 
 {
+  imports = [ ../modules/sickbeard.nix ];
+
   networking.firewall.enable = false;
 
   services.nfs.server = {
@@ -95,6 +97,7 @@ $TTL 1h
 
   services.unifi.enable = true;
   services.sabnzbd.enable = true;
+  services.sickbeard.enable = true;
 
   networking.extraHosts = "127.0.0.1 ns.street.ardaxi.com";
 }
