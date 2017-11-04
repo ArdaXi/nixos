@@ -15,7 +15,7 @@ in stdenv.mkDerivation rec {
     sha256 = "0frrm8yz961l198ymmb9w7k6c7rzh3b2x8ih7la61m7rj5k3lw6b";
   };
 
-  buildInputs = [ pythonEnv ];
+  buildInputs = [ pythonEnv makeWrapper ];
 
   installPhase = ''
     mkdir -p $out
