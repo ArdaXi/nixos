@@ -90,6 +90,9 @@ $TTL 1h
 	  "/sabnzbd/" = {
 	    proxyPass = "http://localhost:8081/";
 	  };
+    "/sickrage" = {
+      proxyPass = "http://localhost:8082/";
+    };
 	};
       };
     };
