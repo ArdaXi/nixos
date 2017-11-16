@@ -30,7 +30,7 @@
     "/" = {
       device = "/old-root/nixos";
       fsType = "none";
-      "options" = "bind";
+      "options" = [ "bind" ];
     };
 
     "/old-root" = {
@@ -55,4 +55,6 @@
   };
 
   nix.maxJobs = 1;
+
+  networking.extraHosts = "127.0.0.1 matrix.ardaxi.com";
 }
