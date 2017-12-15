@@ -3,4 +3,5 @@ self: super: {
   networkmanager_openconnect = self.callPackage ./networkmanager_openconnect.nix {};
   sickbeard = self.callPackage ./sickbeard.nix {};
   sickrage = self.callPackage ./sickrage.nix {};
+  matrix-synapse = self.callPackage ./matrix-synapse.nix {};
 }

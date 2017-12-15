@@ -53,12 +53,14 @@ in
     pass
     browserpass
     nfsUtils
+    keybase
+    vault
   ];
 
   networking.networkmanager = {
     enable = true;
     packages = [ pkgs.networkmanager_openconnect ];
-    useDnsmasq = false;
+    useDnsmasq = true;
   };
 
   services.redshift = {
@@ -163,4 +165,7 @@ in
   networking.extraHosts = ''
     62.251.59.192  tahoe.ardaxi.com
   '';
+
+  services.keybase.enable = true;
+  services.kbfs.enable = true;
 }
