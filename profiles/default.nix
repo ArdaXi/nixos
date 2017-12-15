@@ -54,7 +54,7 @@
     mosh
     psmisc
     binutils
-    (git.override { svnSupport = true; })
+    git
     gitAndTools.gitflow
     screen
     python27Packages.magic-wormhole

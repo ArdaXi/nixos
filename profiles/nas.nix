@@ -90,8 +90,8 @@ $TTL 1h
 	  "/sabnzbd/" = {
 	    proxyPass = "http://localhost:8081/";
 	  };
-    "/sickrage/" = {
-      proxyPass = "http://localhost:8082/";
+    "/sickrage" = {
+      proxyPass = "http://localhost:8082";
     };
 	};
       };
@@ -103,4 +103,11 @@ $TTL 1h
   services.sickrage.enable = true;
 
   networking.extraHosts = "127.0.0.1 ns.street.ardaxi.com";
+
+  services.openssh.ports = [ 22 2222 ];
+
+  services.gitolite = {
+    enable = true;
+    adminPubkey = builtins.head config.users.extraUsers.ardaxi.openssh.authorizedKeys.keys;
+  };
 }
