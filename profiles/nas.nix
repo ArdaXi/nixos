@@ -112,8 +112,8 @@ $TTL 1h
   services.vault = {
     enable = true;
     address = "0.0.0.0:8200";
-    tlsCertFile = /var/lib/acme/vault.street.ardaxi.com/fullchain.pem;
-    tlsKeyFile = /var/lib/acme/vault.street.ardaxi.com/key.pem;
+    tlsCertFile = "/var/lib/acme/vault.street.ardaxi.com/fullchain.pem";
+    tlsKeyFile = "/var/lib/acme/vault.street.ardaxi.com/key.pem";
     storageBackend = "file";
   };
 
