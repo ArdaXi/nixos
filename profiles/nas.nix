@@ -96,7 +96,7 @@ $TTL 1h
             proxyPass = "http://localhost:8081/";
           };
           "/sickrage/" = {
-            proxyPass = "http://localhost:8082/";
+            proxyPass = "http://localhost:8082";
           };
         };
       };
@@ -115,5 +115,12 @@ $TTL 1h
     tlsCertFile = /var/lib/acme/vault.street.ardaxi.com/fullchain.pem;
     tlsKeyFile = /var/lib/acme/vault.street.ardaxi.com/key.pem;
     storageBackend = "file";
+  };
+
+  services.openssh.ports = [ 22 2222 ];
+
+  services.gitolite = {
+    enable = true;
+    adminPubkey = builtins.head config.users.extraUsers.ardaxi.openssh.authorizedKeys.keys;
   };
 }
