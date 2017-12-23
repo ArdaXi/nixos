@@ -55,45 +55,50 @@ $TTL 1h
         { addr = "0.0.0.0"; port =  80; ssl = false; }
         { addr = "0.0.0.0"; port =  81; ssl = false; }
         { addr = "0.0.0.0"; port =  443; ssl = true; }
-	{ addr = "0.0.0.0"; port = 6443; ssl = true; }
+        { addr = "0.0.0.0"; port = 6443; ssl = true; }
       ];
     in {
       "unifi.street.ardaxi.com" = {
         enableACME = true;
-	forceSSL = true;
-	listen = outsideSSL;
-	locations = {
-	  "/" = {
-	    proxyPass = "https://localhost:8443";
-	    extraConfig = ''
-	      proxy_ssl_verify off;
-	      proxy_set_header Host $host;
-	      proxy_set_header X-Real-IP $remote_addr;
-	      proxy_set_header X-Forward-For $proxy_add_x_forwarded_for;
-	      proxy_http_version 1.1;
-	      proxy_set_header Upgrade $http_upgrade;
-	      proxy_set_header Connection "upgrade";
-	    '';
-	  };
-	};
+        forceSSL = true;
+        listen = outsideSSL;
+        locations = {
+          "/" = {
+            proxyPass = "https://localhost:8443";
+            extraConfig = ''
+              proxy_ssl_verify off;
+              proxy_set_header Host $host;
+              proxy_set_header X-Real-IP $remote_addr;
+              proxy_set_header X-Forward-For $proxy_add_x_forwarded_for;
+              proxy_http_version 1.1;
+              proxy_set_header Upgrade $http_upgrade;
+              proxy_set_header Connection "upgrade";
+            '';
+          };
+        };
+      };
+      "vault.street.ardaxi.com" = {
+        enableACME = true;
+        forceSSL = true;
+        listen = outsideSSL;
       };
       "local.ardaxi.com" = {
         locations = {
-	  "/" = {
-	    alias = "/var/lib/nginx/index/";
-	    index = "index.html";
-	  };
-	  "/media" = {
-	    alias = "/media";
-	    extraConfig = "autoindex on;";
-	  };
-	  "/sabnzbd/" = {
-	    proxyPass = "http://localhost:8081/";
-	  };
-    "/sickrage/" = {
-      proxyPass = "http://localhost:8082/";
-    };
-	};
+          "/" = {
+            alias = "/var/lib/nginx/index/";
+            index = "index.html";
+          };
+          "/media" = {
+            alias = "/media";
+            extraConfig = "autoindex on;";
+          };
+          "/sabnzbd/" = {
+            proxyPass = "http://localhost:8081/";
+          };
+          "/sickrage/" = {
+            proxyPass = "http://localhost:8082/";
+          };
+        };
       };
     };
   };
@@ -103,4 +108,12 @@ $TTL 1h
   services.sickrage.enable = true;
 
   networking.extraHosts = "127.0.0.1 ns.street.ardaxi.com";
+
+  services.vault = {
+    enable = true;
+    address = "0.0.0.0:8200";
+    tlsCertFile = /var/lib/acme/vault.street.ardaxi.com/fullchain.pem;
+    tlsKeyFile = /var/lib/acme/vault.street.ardaxi.com/key.pem;
+    storageBackend = "file";
+  };
 }
