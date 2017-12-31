@@ -124,17 +124,19 @@ $TTL 1h
     adminPubkey = builtins.head config.users.extraUsers.ardaxi.openssh.authorizedKeys.keys;
   };
 
-  systemd.services.tahoe = {
+ systemd.services.tahoe = let
+    tahoelafs = (import ../pkgs).tahoelafs;
+ in {
     description = "Tahoe-LAFS";
     after = [ "network.target" ];
     wantedBy = [ "multi-user.target" ];
-    path = [ pkgs.tahoelafs ];
+    path = [ tahoelafs ];
 
     serviceConfig = {
       Type = "simple";
       PIDFile = "/run/tahoe.pid";
       ExecStart = ''
-        ${pkgs.tahoelafs}/bin/tahoe start /tahoe/tahoe -n -l- --pidfile=/run/tahoe
+        ${tahoelafs}/bin/tahoe start /tahoe/tahoe -n -l- --pidfile=/run/tahoe
       '';
     };
   };
