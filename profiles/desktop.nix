@@ -6,7 +6,8 @@ in
 {
   environment.systemPackages = with mypkgs; [
     (texlive.combine {
-      inherit (texlive) scheme-basic babel-dutch hyphen-dutch invoice fp collection-latexrecommended xetex relsize collection-fontsrecommended xetex-def collection-htmlxml draftwatermark everypage;
+      inherit (texlive) scheme-basic babel-dutch hyphen-dutch invoice fp collection-latexrecommended xetex relsize collection-fontsrecommended draftwatermark everypage;
+# collectionhtmlxml xetex-def
     })
     gyre-fonts
     networkmanagerapplet
@@ -55,6 +56,8 @@ in
     nfsUtils
     keybase
     vault
+    pinentry_qt4
+    python3Packages.neovim
   ];
 
   networking.networkmanager = {
@@ -168,4 +171,16 @@ in
 
   services.keybase.enable = true;
   services.kbfs.enable = true;
+
+  services.chrony = {
+    enable = true;
+    servers = [];
+    initstepslew.enabled = false;
+    extraConfig = ''
+      pool nl.pool.ntp.org iburst
+      initstepslew 1000 0.nl.pool.ntp.org 1.nl.pool.ntp.org 2.nl.pool.ntp.org 3.nl.pool.ntp.org
+      rtcfile /var/lib/chrony/chrony.rtc
+    '';
+  };
+
 }

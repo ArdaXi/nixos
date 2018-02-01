@@ -138,4 +138,13 @@ $TTL 1h
       '';
     };
   };
+
+  services.chrony = {
+    enable = true;
+    servers = [ "ntp0.nl.uu.net" "ntp1.nl.uu.net" "time1.esa.int" ];
+    extraConfig = ''
+      rtcfile /var/lib/chrony/chrony.rtc
+      allow 192.168.178
+    '';
+  };
 }
