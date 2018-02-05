@@ -8,6 +8,8 @@
     overlays = (import ../overlays);
   };
 
+  hardware.enableAllFirmware = true;
+
   time.timeZone = "Europe/Amsterdam";
 
   i18n = {
