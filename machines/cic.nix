@@ -50,10 +50,14 @@
   nix.daemonNiceLevel = 1;
   powerManagement.cpuFreqGovernor = "ondemand";
 
-  networking.hostId = "567f8775";
-  networking.hostName = "cic";
+  networking = {
+    hostId = "567f8775"
+    hostName = "cic";
+    defaultGateway = "192.168.178.1";
+    nameservers = [ "192.168.178.1" ];
 
-  networking.interfaces.enp3s0.ip4 = [ { address = "192.168.178.2"; prefixLength = 24; } ];
-  networking.defaultGateway = "192.168.178.1";
-  networking.nameservers = [ "192.168.178.1" ];
+    bridges.br0.interfaces = [ "enp2s0" "enp3s0" ];
+
+    interfaces.br0.ip4 = [ { address = "192.168.178.2"; prefixLength = 24; } ];
+  };
 }
