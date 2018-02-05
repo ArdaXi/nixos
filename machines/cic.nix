@@ -51,7 +51,7 @@
   powerManagement.cpuFreqGovernor = "ondemand";
 
   networking = {
-    hostId = "567f8775"
+    hostId = "567f8775";
     hostName = "cic";
     defaultGateway = "192.168.178.1";
     nameservers = [ "192.168.178.1" ];
