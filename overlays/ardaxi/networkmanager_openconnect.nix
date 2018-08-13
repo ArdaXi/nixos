@@ -10,8 +10,8 @@ stdenv.mkDerivation rec {
   src = fetchFromGitHub {
     owner = "dlenski";
     repo = "network-manager-openconnect";
-    rev = "e86c9b3641befe50e6b021864e327c5abe368131";
-    sha256 = "0jgny6908ny37sq1x9cywi233yk0s5a1y9pxws6jkdb106mwrppk";
+    rev = "ab8ddf086a6a9d9d9f051fcdefe9919b9b902414";
+    sha256 = "1df21ddhia2c22gwa0xgxjvb7ib2nalyrhx1w80s41l6sipsxwd7";
   };
 
   buildInputs = [ openconnect networkmanager libsecret ]

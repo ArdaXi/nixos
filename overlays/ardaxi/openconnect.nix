@@ -8,8 +8,8 @@ stdenv.mkDerivation rec {
   src = fetchFromGitHub {
     owner = "dlenski";
     repo = "openconnect";
-    rev = "7b86b5f8024953ef006b653e126e2d6f568e2b75";
-    sha256 = "09lid2mbysh5zlyypkqn19d5rwja8d7iviiq27xhm4gfn0s6jk9p";
+    rev = "14dc2c18935e4ce71d34a1868ea7d95e145cd013";
+    sha256 = "1qmw3wf799ddbks8w1521wjdxrphc1qxracmbwid1cqslhfkg9rf";
   };
 
   outputs = [ "out" "dev" ];

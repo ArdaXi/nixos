@@ -1,6 +1,11 @@
 { config, pkgs, lib, ... }:
 
 {
+  imports = [
+    ../programs/tmux.nix
+  ];
+
+  nix.package = pkgs.nixUnstable;
   nixpkgs = {
     config = {
       allowUnfree = true;
@@ -26,6 +31,7 @@
       "wheel"
       "networkmanager"
       "audio"
+      "adbusers"
     ];
     uid = 1000;
     home = "/home/ardaxi";
@@ -51,7 +57,6 @@
     file
     vim
     neovim
-    nix-repl
     silver-searcher
     mosh
     psmisc

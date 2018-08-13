@@ -8,19 +8,58 @@
     ../profiles/project.nix
   ];
 
-  system.stateVersion = "16.03";
+  hardware.bumblebee = {
+    driver = "nvidia";
+    enable = true;
+  };
+
+  services.xserver.dpi = 192;
+
+# DPI stuff
+
+  environment.variables.QT_AUTO_SCREEN_SCALE_FACTOR = "2";
+  environment.variables.MOZ_USE_XINPUT2 = "1";
+  services.xserver.displayManager.sessionCommands = ''
+    ${pkgs.xorg.xrdb}/bin/xrdb -merge <<EOF
+    Xft.dpi: 192
+    Xcursor.size: 32
+    Xcursor.theme: Vanilla-DMZ-AA
+    EOF
+    ${pkgs.networkmanagerapplet}/bin/nm-applet &
+    ${pkgs.xsettingsd}/bin/xsettingsd &
+  '';
+  environment.systemPackages = [ (pkgs.writeTextFile {
+    name = "xsettings";
+    destination = "/etc/xdg/xsettingsd/xsettingsd.conf";
+    text = ''
+      Xft/Antialias 1
+      Xft/HintStyle "hintslight"
+      Xft/Hinting 1
+      Xft/RGBA "rgb"
+      Xft/lcdfilter "lcddefault"
+      Xft/DPI ${builtins.toString (96 * 2 * 1024)}
+
+      Gdk/WindowScalingFactor 2
+      Gdk/UnscaledDPI ${builtins.toString (96 * 1024)}
+    '';
+  }) pkgs.cryptsetup ];
+
+# /DPI stuff
 
   boot = {
     initrd = {
-      availableKernelModules = [ "ahci" ];
-      kernelModules = [ "fbcon" ];
+      availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "sd_mod" ];
+#      kernelModules = [ "fbcon" ];
       luks.devices = [{
         name = "cypher";
-        device = "/dev/disk/by-uuid/460c7199-0d25-47df-834a-c69b34b6f0c0";
+        device = "/dev/disk/by-uuid/9c91fb6e-5dc5-4492-982e-adf996479106";
       }];
     };
 
-    kernelModules = [ "kvm-intel" "fbcon" ];
+    kernelModules = [
+      "kvm-intel"
+     # "fbcon"
+    ];
 
     loader = {
       grub.enable = false;
@@ -34,7 +73,7 @@
   };
 
   fileSystems."/" = {
-    device = "tank/nixos";
+    device = "tank/root";
     fsType = "zfs";
   };
 
@@ -49,23 +88,23 @@
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-partuuid/a9669530-a697-4656-98e6-326b5099639b";
+    device = "/dev/disk/by-partuuid/ee0faca1-b3ef-4c44-8f27-3ee347032695";
     fsType = "vfat";
   };
 
   swapDevices = [
-    { device = "/dev/disk/by-uuid/15988b90-6ece-4625-97e1-1b5bffd26734"; }
+    { device = "/dev/disk/by-partuuid/676cab28-d472-4c8e-8a05-518dd2dc19c2"; }
   ];
 
   nix = {
-    maxJobs = 4;
-    buildCores = 4;
+    maxJobs = 8;
+    buildCores = 8;
   };
-
-  environment.systemPackages = with pkgs; [
-    cryptsetup
-  ];
 
   networking.hostId = "85703e9c";
   networking.hostName = "hiro";
+
+  services.fprintd.enable = true;
+
+  system.nixos.stateVersion = "18.03";
 }
