@@ -9,6 +9,7 @@
   nixpkgs = {
     config = {
       allowUnfree = true;
+      android_sdk.accept_license = true;
     };
     overlays = (import ../overlays);
   };
@@ -64,6 +65,9 @@
     git
     gitAndTools.gitflow
     screen
-    python27Packages.magic-wormhole
+    fzf
+    lsof
   ];
+
+  environment.extraInit = "export XDG_CONFIG_DIRS=/etc/xdg:$XDG_CONFIG_DIRS";
 }

@@ -92,9 +92,14 @@
     fsType = "vfat";
   };
 
-  swapDevices = [
-    { device = "/dev/disk/by-partuuid/676cab28-d472-4c8e-8a05-518dd2dc19c2"; }
-  ];
+  swapDevices = [ {
+    device = "/dev/disk/by-partuuid/676cab28-d472-4c8e-8a05-518dd2dc19c2";
+    randomEncryption = {
+      enable = true;
+      cipher = "aes-xts-plain64";
+      source = "/dev/urandom";
+    };
+  }];
 
   nix = {
     maxJobs = 8;
@@ -106,5 +111,5 @@
 
   services.fprintd.enable = true;
 
-  system.nixos.stateVersion = "18.03";
+  system.stateVersion = "18.03";
 }

@@ -1,15 +1,27 @@
 with import <nixpkgs/lib>;
 let
-  configForMachine = machine: import <nixpkgs/nixos/lib/eval-config.nix> {
+  configFor = modules: (import <nixpkgs/nixos/lib/eval-config.nix> {
     system = "x86_64-linux";
-    modules = [
-      (./machines + "/${machine}.nix")
-    ];
+    modules = modules;
+  }).config.system.build;
+  configForMachine = machineName:
+    configFor [(./machines + "/${machineName}.nix")];
+  targetForMachine = machineName: (configForMachine machineName).toplevel;
+  targetsForProfile = profileName: {
+    ova = (configFor [
+      (./profiles + "/${profileName}-ova.nix")
+    ]).virtualBoxOVA;
+    vm = (configFor [
+      (./profiles + "/${profileName}-vm.nix")
+    ]).vm;
   };
-  nixosForMachine = machine: (configForMachine machine).config.system.build.toplevel;
-  machines = genAttrs [
-    "cic"
-    "hiro"
-  ] nixosForMachine;
 in
-  machines
+  {
+    machines = genAttrs [
+      "cic"
+      "hiro"
+    ] targetForMachine;
+    profiles = genAttrs [
+      "desktop"
+    ] targetsForProfile;
+  }
