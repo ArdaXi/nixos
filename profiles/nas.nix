@@ -1,7 +1,9 @@
 { config, pkgs, lib, ... }:
 
 {
-  imports = [ ../modules/sickrage.nix ];
+  imports = [
+    ../modules/sickrage.nix
+  ];
 
   networking.firewall.enable = false;
 
@@ -19,32 +21,32 @@
 
   services.bind = {
     enable = true;
-    cacheNetworks = [ "192.168.178.0/24" "127.0.0.0/24" "fe80::/64" "::1/128" ];
+    cacheNetworks = [ "192.168.178.0/24" "127.0.0.0/24" "fe80::/64" "::1/128" "10.69.0.0/16" "fd69::/8" ];
     forwarders = [ "192.168.178.1" ];
     zones = [{
-      name = "street.ardaxi.com";
-      master = true;
-      file = builtins.toFile "street.ardaxi.com"
-      ''
-$ORIGIN street.ardaxi.com.
-$TTL 1h
-@ IN SOA @ root (1 1h 1h 4w 1h)
-@ IN NS  ns
-@ IN A   192.168.178.2
-* IN A   192.168.178.2
-      '';
-    } {
-      name = "local.ardaxi.com";
-      master = true;
-      file = builtins.toFile "local.ardaxi.com"
-      ''
-$ORIGIN local.ardaxi.com.
-$TTL 1h
-@ IN SOA @ root (1 1h 1h 4w 1h)
-@ IN NS  ns
-@ IN A   192.168.178.2
-* IN A   192.168.178.2
-      '';
+        name = "street.ardaxi.com";
+        master = true;
+        file = builtins.toFile "street.ardaxi.com"
+        ''
+          $ORIGIN street.ardaxi.com.
+          $TTL 1h
+          @ IN SOA @ root (1 1h 1h 4w 1h)
+          @ IN NS  ns
+          @ IN A   192.168.178.2
+          * IN A   192.168.178.2
+        '';
+      } {
+          name = "local.ardaxi.com";
+          master = true;
+          file = builtins.toFile "local.ardaxi.com"
+          ''
+            $ORIGIN local.ardaxi.com.
+            $TTL 1h
+            @ IN SOA @ root (1 1h 1h 4w 1h)
+            @ IN NS  ns
+            @ IN A   192.168.178.2
+            * IN A   192.168.178.2
+          '';
     }];
   };
 
@@ -147,4 +149,20 @@ $TTL 1h
       allow 192.168.178
     '';
   };
+
+  virtualisation.docker = {
+    enable = true;
+    enableOnBoot = true;
+  };
+
+  users.extraUsers.ardaxi.extraGroups = [ "docker" ];
+
+  services.hydra = {
+    enable = true;
+    hydraURL = "http://192.168.178.2:3000";
+    notificationSender = "hydra@localhost";
+    buildMachinesFiles = [];
+    useSubstitutes = true;
+  };
+
 }
