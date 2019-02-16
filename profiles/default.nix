@@ -8,7 +8,7 @@
   nix = {
     package = pkgs.nixUnstable;
     binaryCachePublicKeys = [ "street.ardaxi.com-1:A1P6oGDAlLPtBbscHNTzBM6DpMHGpqLNwXUgmOtNegg=" ];
-    binaryCaches = [ https://cache.nixos.org/ https://nix-cache.street.ardaxi.com/ ];
+    binaryCaches = [ https://cache.nixos.org/ http://nix-cache.street.ardaxi.com/ ];
   };
   nixpkgs = {
     config = {
