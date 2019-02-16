@@ -100,6 +100,11 @@
           };
         };
       };
+      "street.ardaxi.com" = {
+        enableACME = true;
+        forceSSL = true;
+        listen = outsideSSL;
+      };
       "local.ardaxi.com" = {
         locations = {
           "/" = {
