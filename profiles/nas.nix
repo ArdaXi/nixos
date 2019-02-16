@@ -178,4 +178,6 @@
     secretKeyFile = "/etc/nix/signing-key.pub";
   };
 
+  system.autoUpgrade.enable = true;
+
 }
