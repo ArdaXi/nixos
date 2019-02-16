@@ -79,6 +79,16 @@
           };
         };
       };
+      "nix-cache.street.ardaxi.com" = {
+        enableACME = true;
+        listen = outsideSSL;
+        locations = {
+          "/" = {
+            proxyPass = "http://localhost:3001";
+            extraConfig = proxyConf;
+          };
+        };
+      };
       "unifi.street.ardaxi.com" = {
         enableACME = true;
         forceSSL = true;
@@ -173,6 +183,12 @@
     hydraURL = "https://hydra.street.ardaxi.com";
     notificationSender = "hydra@localhost";
     useSubstitutes = true;
+  };
+
+  services.nix-serve = {
+    enable = true;
+    port = 3001;
+    secretKeyFile = "/etc/nix/signing-key.pub";
   };
 
 }
