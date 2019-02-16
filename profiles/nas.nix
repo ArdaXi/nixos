@@ -59,7 +59,25 @@
         { addr = "0.0.0.0"; port =  443; ssl = true; }
         { addr = "0.0.0.0"; port = 6443; ssl = true; }
       ];
+      proxyConf = ''
+        proxy_ssl_verify off;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forward-For $proxy_add_x_forwarded_for;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+      '';
     in {
+      "hydra.street.ardaxi.com" = {
+        enableACME = true;
+        forceSSL = true;
+        listen = outsideSSL;
+        locations = {
+          proxyPass = "http://localhost:3000";
+          extraConfig = proxyConf;
+        };
+      };
       "unifi.street.ardaxi.com" = {
         enableACME = true;
         forceSSL = true;
@@ -67,15 +85,7 @@
         locations = {
           "/" = {
             proxyPass = "https://localhost:8443";
-            extraConfig = ''
-              proxy_ssl_verify off;
-              proxy_set_header Host $host;
-              proxy_set_header X-Real-IP $remote_addr;
-              proxy_set_header X-Forward-For $proxy_add_x_forwarded_for;
-              proxy_http_version 1.1;
-              proxy_set_header Upgrade $http_upgrade;
-              proxy_set_header Connection "upgrade";
-            '';
+            extraConfig = proxyConf;
           };
         };
       };
@@ -159,7 +169,7 @@
 
   services.hydra = {
     enable = true;
-    hydraURL = "http://192.168.178.2:3000";
+    hydraURL = "https://hydra.street.ardaxi.com";
     notificationSender = "hydra@localhost";
     useSubstitutes = true;
   };
