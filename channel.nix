@@ -7,7 +7,7 @@ in
   {
     channel = pkgs.releaseTools.channel {
       constituents = [ jobs.machines.cic jobs.machines.hiro ];
-      name = "ardaxi";
+      name = "nixpkgs";
       src = <nixpkgs>;
     };
   }
