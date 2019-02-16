@@ -54,4 +54,14 @@
     hostName = "cic";
     nameservers = [ "8.8.4.4" "8.8.8.8" ];
   };
+
+  {
+  nix.buildMachines = [
+    { hostName = "localhost";
+      system = "x86_64-linux";
+      supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
+      maxJobs = 6;
+    }
+  ];
+}
 }

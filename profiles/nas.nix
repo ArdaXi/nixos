@@ -161,7 +161,6 @@
     enable = true;
     hydraURL = "http://192.168.178.2:3000";
     notificationSender = "hydra@localhost";
-    buildMachinesFiles = [];
     useSubstitutes = true;
   };
 
