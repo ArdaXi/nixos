@@ -100,11 +100,6 @@
           };
         };
       };
-      "vault.street.ardaxi.com" = {
-        enableACME = true;
-        forceSSL = true;
-        listen = outsideSSL;
-      };
       "local.ardaxi.com" = {
         locations = {
           "/" = {
@@ -131,14 +126,6 @@
   services.sickrage.enable = true;
 
   networking.extraHosts = "127.0.0.1 ns.street.ardaxi.com";
-
-  services.vault = {
-    enable = true;
-    address = "0.0.0.0:8200";
-    tlsCertFile = "/var/lib/acme/vault.street.ardaxi.com/fullchain.pem";
-    tlsKeyFile = "/var/lib/acme/vault.street.ardaxi.com/key.pem";
-    storageBackend = "file";
-  };
 
   services.openssh.ports = [ 22 2222 ];
 
