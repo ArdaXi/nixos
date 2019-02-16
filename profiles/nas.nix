@@ -74,8 +74,10 @@
         forceSSL = true;
         listen = outsideSSL;
         locations = {
-          proxyPass = "http://localhost:3000";
-          extraConfig = proxyConf;
+          "/" = {
+            proxyPass = "http://localhost:3000";
+            extraConfig = proxyConf;
+          };
         };
       };
       "unifi.street.ardaxi.com" = {
