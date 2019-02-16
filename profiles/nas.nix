@@ -175,9 +175,23 @@
   services.nix-serve = {
     enable = true;
     port = 3001;
-    secretKeyFile = "/etc/nix/signing-key.pub";
+    secretKeyFile = "/etc/nix/signing-key.sec";
   };
 
   system.autoUpgrade.enable = true;
 
+  environment.systemPackages = with pkgs; [
+    tmux
+    (writeShellScriptBin "irc" ''
+      T3=$(pidof weechat)
+
+      if [ -z "$T3" ]; then
+          ${tmux}/bin/tmux new-session -d -s main;
+          ${tmux}/bin/tmux new-window -t main -n weechat ${weechat}/bin/weechat;
+      fi
+          ${tmux}/bin/tmux attach-session -t main;
+      exit 0
+
+    '')
+  ];
 }
