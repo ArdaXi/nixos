@@ -42,6 +42,11 @@
     fsType = "zfs";
   };
 
+  fileSystems."/tahoe" =
+  { device = "zones/e025500d-71d1-caa0-d9ec-ecf39f3acc6f";
+    fsType = "zfs";
+  };
+
   swapDevices =
     [ { device = "/dev/disk/by-partuuid/d6c13608-1d4f-4b6b-a64b-e709ba7208d8"; }
     ];
