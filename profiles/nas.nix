@@ -21,8 +21,8 @@
 
   services.bind = {
     enable = true;
-    cacheNetworks = [ "192.168.178.0/24" "127.0.0.0/24" "fe80::/64" "::1/128" "10.69.0.0/16" "fd69::/8" ];
-    forwarders = [ "192.168.178.1" ];
+    cacheNetworks = [ "192.168.178.0/24" "127.0.0.0/24" "fe80::/64" "::1/128" ];
+    forwarders = [ "8.8.4.4" "8.8.8.8" ];
     zones = [{
         name = "street.ardaxi.com";
         master = true;
