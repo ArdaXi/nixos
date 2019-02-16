@@ -71,6 +71,8 @@
     screen
     fzf
     lsof
+    aspellDicts.en
+    aspellDicts.nl
   ];
 
   environment.extraInit = "export XDG_CONFIG_DIRS=/etc/xdg:$XDG_CONFIG_DIRS";
