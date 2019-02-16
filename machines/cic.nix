@@ -52,5 +52,6 @@
   networking = {
     hostId = "567f8775";
     hostName = "cic";
+    nameservers = [ "8.8.4.4" "8.8.8.8" ];
   };
 }
