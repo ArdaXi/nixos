@@ -71,7 +71,6 @@
     in {
       "hydra.street.ardaxi.com" = {
         enableACME = true;
-        forceSSL = true;
         listen = outsideSSL;
         locations = {
           "/" = {
