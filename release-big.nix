@@ -7,16 +7,14 @@ let
   }).config.system.build;
   configForMachine = machineName:
     configFor [(./machines + "/${machineName}.nix")];
-  targetForMachine = machineName: (configForMachine machineName).toplevel;
+  targetsForProfile = profileName: {
+    iso = (configFor [
+      (./profiles + "/${profileName}-iso.nix")
+    ]).isoImage;
+  };
 in rec
   {
-    machines = genAttrs [
-      "cic"
-      "hiro"
-    ] targetForMachine;
-    channel = pkgs.releaseTools.channel {
-      constituents = [ machines.cic machines.hiro ];
-      name = "nixpkgs";
-      src = <nixpkgs>;
-    };
+    profiles = genAttrs [
+      "desktop"
+    ] targetsForProfile;
   }
