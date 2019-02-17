@@ -9,12 +9,9 @@ let
     configFor [(./machines + "/${machineName}.nix")];
   targetForMachine = machineName: (configForMachine machineName).toplevel;
   targetsForProfile = profileName: {
-#    ova = (configFor [
-#      (./profiles + "/${profileName}-ova.nix")
-#    ]).virtualBoxOVA;
-    vm = (configFor [
-      (./profiles + "/${profileName}-vm.nix")
-    ]).vm;
+    iso = (configFor [
+      (./profiles + "/${profileName}-iso.nix")
+    ]).isoImage;
   };
 in rec
   {
@@ -22,9 +19,9 @@ in rec
       "cic"
       "hiro"
     ] targetForMachine;
-#    profiles = genAttrs [
-#      "desktop"
-#    ] targetsForProfile;
+    profiles = genAttrs [
+      "desktop"
+    ] targetsForProfile;
     channel = pkgs.releaseTools.channel {
       constituents = [ machines.cic machines.hiro ];
       name = "nixpkgs";
