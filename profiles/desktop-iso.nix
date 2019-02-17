@@ -7,5 +7,5 @@
     <nixpkgs/nixos/modules/installer/cd-dvd/installation-cd-base.nix>
   ];
 
-  isoImage.baseImage = "nixos-ardaxi";
+  isoImage.baseName = "nixos-ardaxi";
 }
