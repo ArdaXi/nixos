@@ -22,9 +22,9 @@ in rec
       "cic"
       "hiro"
     ] targetForMachine;
-    profiles = genAttrs [
-      "desktop"
-    ] targetsForProfile;
+#    profiles = genAttrs [
+#      "desktop"
+#    ] targetsForProfile;
     channel = pkgs.releaseTools.channel {
       constituents = [ machines.cic machines.hiro ];
       name = "nixpkgs";
