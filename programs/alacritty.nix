@@ -97,12 +97,5 @@ in
     cursor.style = "Block";
 
     live_config_reload = true;
-
-    key_bindings = [
-      {
-        key = "Up"; chars = ''
-        ''\x1b[A
-        ''; }
-    ];
   };
 }
