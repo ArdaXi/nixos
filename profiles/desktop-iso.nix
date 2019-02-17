@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, lib, ... }:
 
 {
   imports = [
@@ -8,4 +8,8 @@
   ];
 
   isoImage.isoBaseName = "nixos-ardaxi";
+
+  networking.wireless.enable = lib.mkForce false;
+
+  services.openssh.permitRootLogin = lib.mkForce "no";
 }
