@@ -24,7 +24,7 @@ in
     alacritty taskwarrior fortune arandr adobe-reader lyx ledger
     source-code-pro lighttable usbutils pciutils gnupg acpi steam dmenu
     xorg.xf86inputsynaptics xdotool slock gcc scrot
-    wineStaging winetricks taffybar glib_networking pass
+    wineStaging winetricks glib_networking pass
     browserpass nfsUtils keybase pinentry_qt4 
 #python3Packages.neovim
     alsaUtils keybase-gui riot-desktop firefox-beta-bin
