@@ -8,7 +8,7 @@ in
 #    ./xserver-xmonad.nix
 #    ./sway.nix
     ../programs/i3
-    ../programs/wikibase.nix
+#    ../programs/wikibase.nix
 #    ../programs/st
     ../programs/mopidy.nix
     ../programs/alacritty.nix
