@@ -27,11 +27,9 @@ in
     glib_networking pass
     browserpass nfsUtils keybase pinentry_qt4 
 #python3Packages.neovim
-    alsaUtils keybase-gui riot-desktop firefox-beta-bin
+    alsaUtils keybase-gui firefox-beta-bin
     isync notmuch msmtp astroid afew libnotify
-    tahoelafs google-chrome rustracer
-    libreoffice gist signal-desktop
-    rustup tomb exercism
+    tahoelafs google-chrome gist rustup tomb exercism
     (texlive.combine {
       inherit (texlive) scheme-basic babel-dutch hyphen-dutch invoice fp collection-latexrecommended xetex relsize collection-fontsrecommended draftwatermark everypage qrcode geometry;
 # collectionhtmlxml xetex-def

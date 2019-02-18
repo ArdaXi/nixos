@@ -5,9 +5,7 @@
   imports = [ ./desktop.nix ];
 
   environment.systemPackages = with pkgs; [
-    steam
-    libreoffice
-    wine
-    winetricks
+    steam libreoffice wine winetricks
+    riot-desktop signal-desktop rustracer
   ];
 }
