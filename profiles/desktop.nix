@@ -22,9 +22,9 @@ in
 #    (networkmanagerapplet.override { withGnome = false; })
     (mpv.override { vaapiSupport = true; })
     alacritty taskwarrior fortune arandr adobe-reader lyx ledger
-    source-code-pro lighttable usbutils pciutils gnupg acpi steam dmenu
+    source-code-pro lighttable usbutils pciutils gnupg acpi dmenu
     xorg.xf86inputsynaptics xdotool slock gcc scrot
-    wineStaging winetricks glib_networking pass
+    glib_networking pass
     browserpass nfsUtils keybase pinentry_qt4 
 #python3Packages.neovim
     alsaUtils keybase-gui riot-desktop firefox-beta-bin
