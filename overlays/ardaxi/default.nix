@@ -25,5 +25,6 @@ in
   haskellPackages = pinned.haskellPackages;
   taffybar = pinned.taffybar;
 
+  tahoelafs = self.callPackage ./tahoelafs.nix {};
   rustNightly = self.callPackage ./rust-nightly.nix {};
 }
