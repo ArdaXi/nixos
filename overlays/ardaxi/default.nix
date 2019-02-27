@@ -27,4 +27,6 @@ in
 
   tahoelafs = self.callPackage ./tahoelafs.nix {};
   rustNightly = self.callPackage ./rust-nightly.nix {};
+
+  hplip = self.callPackage ./hplip.nix {};
 }
