@@ -100,6 +100,17 @@
           };
         };
       };
+      "grafana.street.ardaxi.com" = {
+        enableACME = true;
+        forceSSL = true;
+        listen = outsideSSL;
+        locations = {
+          "/" = {
+            proxyPass = "http://localhost:4000";
+            extraConfig = proxyConf;
+          };
+        };
+      };
       "street.ardaxi.com" = {
         enableACME = true;
         forceSSL = true;
@@ -214,5 +225,10 @@
         }];
       }
     ];
+  };
+
+  services.grafana = {
+    enable = true;
+    port = 4000;
   };
 }
