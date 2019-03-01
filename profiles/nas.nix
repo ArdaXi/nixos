@@ -210,7 +210,7 @@
         job_name = "inverter";
         scrape_interval = "5m";
         static_configs = [{
-          targets = "192.168.178.1:8080";
+          targets = ["192.168.178.1:8080"];
         }];
       }
     ];
