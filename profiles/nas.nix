@@ -205,7 +205,7 @@
 
   services.prometheus = {
     enable = true;
-    scrape_configs = [
+    scrapeConfigs = [
       {
         job_name = "inverter";
         scrape_interval = "5m";
