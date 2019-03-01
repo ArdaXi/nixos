@@ -202,4 +202,17 @@
   ];
 
   services.logind.extraConfig = "HandlePowerKey=ignore";
+
+  services.prometheus = {
+    enable = true;
+    scrape_configs = [
+      {
+        job_name = "inverter";
+        scrape_interval = "5m";
+        static_configs = [{
+          targets = "192.168.178.1:8080";
+        }];
+      }
+    ];
+  };
 }
