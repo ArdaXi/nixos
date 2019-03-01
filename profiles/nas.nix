@@ -52,6 +52,7 @@
 
   services.nginx = {
     enable = true;
+    statusPage = true;
     virtualHosts = let
       outsideSSL = [
         { addr = "0.0.0.0"; port =  80; ssl = false; }
@@ -216,12 +217,37 @@
 
   services.prometheus = {
     enable = true;
+    exporters = {
+      node = {
+        enable = true;
+        enabledCollectors = [ "systemd" ];
+        listenAddress = "127.0.0.1";
+        port = 9100;
+      };
+      nginx = {
+        enable = true;
+        listenAddress = "127.0.0.1";
+        port = 9113;
+      };
+    };
     scrapeConfigs = [
       {
         job_name = "inverter";
         scrape_interval = "5m";
         static_configs = [{
           targets = ["192.168.178.1:8080"];
+        }];
+      }
+      {
+        job_name = "node";
+        static_configs = [{
+          targets = ["127.0.0.1:9100"];
+        }];
+      }
+      {
+        job_name = "nginx";
+        static_configs = [{
+          targets = ["127.0.0.1:9113"];
         }];
       }
     ];
