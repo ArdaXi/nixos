@@ -217,7 +217,7 @@
 
   services.prometheus = {
     enable = true;
-#    extraFlags = ["-storage.tsdb.retention.time 10y"];
+    extraFlags = ["-storage.local.retention 87600h0m0s"];
     exporters = {
       node = {
         enable = true;
