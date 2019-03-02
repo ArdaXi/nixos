@@ -224,7 +224,8 @@
 
   services.prometheus2 = {
     enable = true;
-    extraFlags = ["--storage.local.retention.time 365d"];
+    listenAddress = ":9090";
+    extraFlags = ["--storage.tsdb.retention.time 365d"];
     exporters = {
       node = {
         enable = true;
