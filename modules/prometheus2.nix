@@ -42,7 +42,7 @@ let
     in promtoolCheck "check config" "prometheus.yml" yml;
 
   cmdlineArgs = cfg.extraFlags ++ [
-    "--storage.local.path=${cfg.dataDir}/metrics"
+    "--storage.tsdb.path=${cfg.dataDir}/metrics"
     "--config.file=${prometheusYml}"
     "--web.listen-address=${cfg.listenAddress}"
     "--alertmanager.notification-queue-capacity=${toString cfg.alertmanagerNotificationQueueCapacity}"
@@ -419,7 +419,7 @@ in {
 
       dataDir = mkOption {
         type = types.path;
-        default = "/var/lib/prometheus";
+        default = "/var/lib/prometheus2";
         description = ''
           Directory to store Prometheus metrics data.
         '';
