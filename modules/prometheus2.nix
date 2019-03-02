@@ -26,7 +26,7 @@ let
   # This becomes the main config file
   promConfig = {
     global = cfg.globalConfig;
-    rule_files = map (promtoolCheck "check-rules" "rules") (cfg.ruleFiles ++ [
+    rule_files = map (promtoolCheck "check rules" "rules") (cfg.ruleFiles ++ [
       (pkgs.writeText "prometheus.rules" (concatStringsSep "\n" cfg.rules))
     ]);
     scrape_configs = cfg.scrapeConfigs;
