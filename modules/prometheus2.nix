@@ -11,7 +11,7 @@ let
   _filter = x: filterAttrs (k: v: k != "_module") x;
 
   # a wrapper that verifies that the configuration is valid
-  promtoolCheck = what: name: file: pkgs.runCommand "${name}-${what}-checked"
+  promtoolCheck = what: name: file: pkgs.runCommand "${name}-checked"
     { buildInputs = [ cfg.package ]; } ''
     ln -s ${file} $out
     promtool ${what} $out
@@ -39,7 +39,7 @@ let
     yml =  if cfg.configText != null then
       pkgs.writeText "prometheus.yml" cfg.configText
       else generatedPrometheusYml;
-    in promtoolCheck "check-config" "prometheus.yml" yml;
+    in promtoolCheck "check config" "prometheus.yml" yml;
 
   cmdlineArgs = cfg.extraFlags ++ [
     "--storage.local.path=${cfg.dataDir}/metrics"
