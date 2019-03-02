@@ -3,6 +3,7 @@
 {
   imports = [
     ../modules/sickrage.nix
+    ../modules/prometheus2.nix
   ];
 
   networking.firewall.enable = false;
@@ -217,7 +218,13 @@
 
   services.prometheus = {
     enable = true;
-    extraFlags = ["-storage.local.retention 87600h0m0s"];
+    configText = "";
+    listenAddress = ":9094";
+  };
+
+  services.prometheus2 = {
+    enable = true;
+    extraFlags = ["--storage.local.retention.time 365d"];
     exporters = {
       node = {
         enable = true;
@@ -231,6 +238,9 @@
         port = 9113;
       };
     };
+    remoteRead = [{
+      url = "http://localhost:9094/api/v1/read";
+    }];
     scrapeConfigs = [
       {
         job_name = "inverter";
