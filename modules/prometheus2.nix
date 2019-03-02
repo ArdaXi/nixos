@@ -419,7 +419,7 @@ in {
 
       dataDir = mkOption {
         type = types.path;
-        default = "/var/lib/prometheus2";
+        default = "/var/lib/prometheus";
         description = ''
           Directory to store Prometheus metrics data.
         '';
