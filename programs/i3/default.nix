@@ -42,5 +42,5 @@ rec {
     };
   };
 
-  fonts.fonts = [ pkgs.font-awesome_4 pkgs.powerline-fonts ];
+  fonts.fonts = [ pkgs.font-awesome_5 pkgs.powerline-fonts ];
 }
