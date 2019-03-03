@@ -29,4 +29,12 @@ in
   rustNightly = self.callPackage ./rust-nightly.nix {};
 
   hplip = self.callPackage ./hplip.nix {};
+
+  python = super.python.override {
+    packageOverrides = python-self: python-super: {
+      nevow = python-super.nevow.overrideAttrs (_: {
+        checkPhase = "";
+      });
+    };
+  };
 }
