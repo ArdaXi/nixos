@@ -74,9 +74,7 @@ pythonPackages.buildPythonApplication rec {
     )
   '';
 
-  checkPhase = ''
-    trial --rterrors allmydata
-  '';
+  checkPhase = "";
 
   meta = {
     description = "Tahoe-LAFS, a decentralized, fault-tolerant, distributed storage system";
