@@ -32,11 +32,9 @@ rec {
 
   python = super.python.override {
     packageOverrides = python-self: python-super: {
-      nevow = python-super.nevow.overrideAttrs (_: {
+      nevow = python-super.nevow.overridePythonAttrs (_: {
         checkPhase = "";
       });
     };
   };
-
-  python27 = python;
 }
