@@ -7,7 +7,7 @@ let
     sha256 = "0y18n2y00ljsnxkmas66d179i43nl0b4qhjzj6wd5389j6rhs356";
   }) {});
 in
-{
+rec {
 #  openconnect = self.callPackage ./openconnect.nix {};
 #  networkmanagerapplet = self.callPackage ./network-manager-applet.nix {};
 #  networkmanager_openconnect = self.callPackage ./networkmanager_openconnect.nix {};
@@ -37,4 +37,6 @@ in
       });
     };
   };
+
+  python27 = python;
 }
