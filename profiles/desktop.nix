@@ -10,7 +10,7 @@ in
     ../programs/i3
 #    ../programs/wikibase.nix
 #    ../programs/st
-    ../programs/mopidy.nix
+#    ../programs/mopidy.nix
     ../programs/alacritty.nix
     ../programs/yubikey.nix
 #    ../programs/vpn.nix
