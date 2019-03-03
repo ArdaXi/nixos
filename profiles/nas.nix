@@ -76,7 +76,7 @@
         listen = outsideSSL;
         locations = {
           "/" = {
-            proxyPass = "http://localhost:3000";
+            proxyPass = "http://127.0.0.1:3000";
             extraConfig = proxyConf;
           };
         };
@@ -86,7 +86,7 @@
         listen = outsideSSL;
         locations = {
           "/" = {
-            proxyPass = "http://localhost:3001";
+            proxyPass = "http://127.0.0.1:3001";
             extraConfig = proxyConf;
           };
         };
@@ -97,7 +97,7 @@
         listen = outsideSSL;
         locations = {
           "/" = {
-            proxyPass = "https://localhost:8443";
+            proxyPass = "https://127.0.0.1:8443";
             extraConfig = proxyConf;
           };
         };
@@ -108,7 +108,7 @@
         listen = outsideSSL;
         locations = {
           "/" = {
-            proxyPass = "http://localhost:4000";
+            proxyPass = "http://127.0.0.1:4000";
             extraConfig = proxyConf;
           };
         };
@@ -129,10 +129,10 @@
             extraConfig = "autoindex on;";
           };
           "/sabnzbd/" = {
-            proxyPass = "http://localhost:8081/";
+            proxyPass = "http://127.0.0.1:8081/";
           };
           "/sickrage/" = {
-            proxyPass = "http://localhost:8082";
+            proxyPass = "http://127.0.0.1:8082";
           };
         };
       };
