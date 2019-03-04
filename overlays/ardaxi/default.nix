@@ -37,4 +37,6 @@ rec {
       });
     };
   };
+
+  inverter-exporter = self.callPackage ./inverter {};
 }

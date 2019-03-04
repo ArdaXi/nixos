@@ -200,6 +200,7 @@
   system.autoUpgrade.enable = true;
 
   environment.systemPackages = with pkgs; [
+    inverter-exporter
     tmux
     (writeShellScriptBin "irc" ''
       T3=$(pidof weechat)
