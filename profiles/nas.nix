@@ -48,6 +48,18 @@
             @ IN A   192.168.178.2
             * IN A   192.168.178.2
           '';
+    } {
+      name = "mqtt001.solaxcloud.com";
+      master = true;
+      file = builtins.toFile "mqtt001.solaxcloud.com"
+      ''
+        $ORIGIN mqtt001.solaxcloud.com.
+        $TTL 1h
+        @ IN SOA @ root (1 1h 1h 4w 1h)
+        @ IN NS  ns
+        @ IN A   192.168.178.2
+        * IN A   192.168.178.2
+      '';
     }];
   };
 
