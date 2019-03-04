@@ -276,4 +276,17 @@
     enable = true;
     port = 4000;
   };
+
+  systemd.services.inverter-exporter = {
+    wantedBy = [ "multi-user.target" ];
+    after = [ "network.target" ];
+    script = ''
+      #!/bin/sh
+      exec ${pkgs.inverter-exporter}/bin/inverter
+    '';
+    serviceConfig = {
+      User = "prometheus";
+      Restart = "always";
+    };
+  };
 }
