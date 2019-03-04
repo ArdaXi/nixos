@@ -4,14 +4,14 @@
 buildGoPackage rec {
   name = "inverter-unstable-${version}";
   version = "2019-03-04";
-  rev = "2f697aa4399b813834c8dd3159e2d5d2a1f8ece9";
+  rev = "a8c2d8d4a3cc9f7f34c851a105c0a3de0c913561";
 
   goPackagePath = "github.com/ardaxi/inverter";
 
   src = fetchgit {
     inherit rev;
     url = "https://github.com/ArdaXi/inverter.git";
-    sha256 = "12xwa0nfjaf4rx59gw9azimll7k9nckq62x2v6h65lzij8di5ggp";
+    sha256 = "0iknp75kr92apxkf4lp66jx60m3izmy9vz5gvjfh100ymvijwbjw";
   };
 
   goDeps = ./deps.nix;
