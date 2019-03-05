@@ -120,6 +120,7 @@
       "local.ardaxi.com" = {
         extraConfig = ''
           allow 192.168.178.0/24;
+          allow 82.94.130.160/29;
           deny all;
         '';
         locations = {
