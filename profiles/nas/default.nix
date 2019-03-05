@@ -2,11 +2,10 @@
 
 {
   imports = [
-    ../modules/sickrage.nix
-    ../modules/prometheus2.nix
+    ../../modules/sickrage.nix
+    ../../modules/prometheus2.nix
+    ./firewall.nix
   ];
-
-  networking.firewall.enable = false;
 
   services.nfs.server = {
     enable = true;

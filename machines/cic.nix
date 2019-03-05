@@ -4,7 +4,7 @@
   imports = [
     <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
     ../profiles/default.nix
-    ../profiles/nas.nix
+    ../profiles/nas/default.nix
   ];
 
   system.stateVersion = "18.03";
