@@ -60,7 +60,7 @@
     nameservers = [ "8.8.4.4" "8.8.8.8" ];
     interfaces.eno1.ipv4 = {
       addresses = [
-        { address = "192.168.178.1"; prefixLength = 24; }
+        { address = "192.168.178.2"; prefixLength = 24; }
         { address = "82.94.130.160"; prefixLength = 32; }
       ];
     };
