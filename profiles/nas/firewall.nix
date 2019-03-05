@@ -13,7 +13,7 @@
       53
     ];
     extraCommands = ''
-      ip46tables -A nixos-fw -s 192.168.178.0/24 -j nixos-fw-accept
+      iptables -A nixos-fw -s 192.168.178.0/24 -j nixos-fw-accept
     '';
   };
 
