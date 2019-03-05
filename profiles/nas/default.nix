@@ -118,6 +118,10 @@
         listen = outsideSSL;
       };
       "local.ardaxi.com" = {
+        extraConfig = ''
+          allow 192.168.178.0/24;
+          deny all;
+        '';
         locations = {
           "/" = {
             alias = "/var/lib/nginx/index/";
