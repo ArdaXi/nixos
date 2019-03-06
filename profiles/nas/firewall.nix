@@ -5,9 +5,10 @@
     enable = true;
     allowedTCPPorts = [
       22 53 80 443
+      9001 # Weechat
     ];
     allowedUDPPortRanges = [
-      { from = 60000; to = 61000; }
+      { from = 60000; to = 61000; } # mosh
     ];
     allowedUDPPorts = [
       53
