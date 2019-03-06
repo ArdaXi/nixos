@@ -7,12 +7,13 @@
 
   nix = {
     package = pkgs.nixUnstable;
-    binaryCachePublicKeys = [ "street.ardaxi.com-1:A1P6oGDAlLPtBbscHNTzBM6DpMHGpqLNwXUgmOtNegg=" ];
-    binaryCaches = [ https://cache.nixos.org/ http://nix-cache.street.ardaxi.com/ ];
+    binaryCachePublicKeys = [ "street.ardaxi.com-1:A1P6oGDAlLPtBbscHNTzBM6DpMHGpqLNwXUgmOtNegg=" "arm.cachix.org-1:fGqEJIhp5zM7hxe/Dzt9l9Ene9SY27PUyx3hT9Vvei0=" ];
+    binaryCaches = [ https://cache.nixos.org/ http://nix-cache.street.ardaxi.com/ https://arm.cachix.org/ ];
   };
   nixpkgs = {
     config = {
       allowUnfree = true;
+      allowBroken = true;
       android_sdk.accept_license = true;
     };
     overlays = (import ../overlays);
@@ -52,7 +53,7 @@
   services.openssh = {
     enable = true;
     passwordAuthentication = false;
-    permitRootLogin = "no";
+    permitRootLogin = lib.mkForce "no";
   };
 
   programs.zsh.enable = true;
