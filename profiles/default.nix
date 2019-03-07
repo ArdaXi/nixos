@@ -75,6 +75,7 @@
     lsof
     aspellDicts.en
     aspellDicts.nl
+    kakoune
   ];
 
   environment.extraInit = "export XDG_CONFIG_DIRS=/etc/xdg:$XDG_CONFIG_DIRS";
