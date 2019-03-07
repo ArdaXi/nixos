@@ -39,4 +39,8 @@ rec {
   };
 
   inverter-exporter = self.callPackage ./inverter {};
+
+  pg_prometheus = self.callPackage ./pg-prometheus.nix {};
+
+  prometheus-postgresql = self.callPackage ./prometheus-postgresql-adapter/default.nix {};
 }

@@ -293,4 +293,13 @@
       Restart = "always";
     };
   };
+
+  services.postgresql = {
+    enable = true;
+    extraPlugins = with pkgs; [ timescaledb pg_prometheus ];
+    extraConfig = ''
+      shared_preload_libraries = 'timescaledb'
+      shared_preload_libraries = 'pg_prometheus'
+    '';
+  };
 }
