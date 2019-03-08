@@ -15,6 +15,7 @@ in
     ../programs/yubikey.nix
 #    ../programs/vpn.nix
 #    ../programs/wireguard.nix
+    ../programs/qemu.nix
   ];
 
   environment.systemPackages = with mypkgs; [
