@@ -304,4 +304,20 @@
 
     authentication = "host all all 127.0.0.1/32 trust";
   };
+
+  systemd.services.prometheus-postgresql-adapter = {
+    wantedBy = [ "multi-user.target" ];
+    after = [ "network.target" ];
+    script = ''
+      #!/bin/sh
+      exec ${pkgs.prometheus-postgresql}/bin/prometheus-postgresql-adapter \
+        -pg.database prometheus -pg.user prometheus
+    '';
+    serviceConfig = {
+      User = "prometheus";
+      Restart = "always";
+      PrivateTmp = true;
+      WorkingDirectory = "/tmp";
+    };
+  };
 }
