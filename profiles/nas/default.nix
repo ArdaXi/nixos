@@ -311,7 +311,7 @@
     script = ''
       #!/bin/sh
       exec ${pkgs.prometheus-postgresql}/bin/prometheus-postgresql-adapter \
-        -pg.database prometheus -pg.user prometheus
+        -pg.database prometheus -pg.user prometheus -pg.host 127.0.0.1
     '';
     serviceConfig = {
       User = "prometheus";
