@@ -301,5 +301,7 @@
       shared_preload_libraries = 'timescaledb'
       shared_preload_libraries = 'pg_prometheus'
     '';
+
+    authentication = "host all all 127.0.0.1/32 trust";
   };
 }

@@ -1,4 +1,4 @@
 *.swp
 hardware-configuration.nix
 hostname
-/result
+result*
