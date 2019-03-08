@@ -31,6 +31,7 @@ let
     ]);
     scrape_configs = cfg.scrapeConfigs;
     remote_read = cfg.remoteRead;
+    remote_write = cfg.remoteWrite;
   };
 
   generatedPrometheusYml = writePrettyJSON "prometheus.yml" promConfig;
@@ -95,6 +96,17 @@ let
         type = types.str;
         description = ''
           The URL to read from.
+        '';
+      };
+    };
+  };
+
+  promTypes.remote_write = types.submodule {
+    options = {
+      url = mkOption {
+        type = types.str;
+        description = ''
+          The URL to write to.
         '';
       };
     };
@@ -475,6 +487,15 @@ in {
         apply = x: map _filter x;
         description = ''
           A list of remote reads.
+        '';
+      };
+
+      remoteWrite = mkOption {
+        type = types.listOf promTypes.remote_write;
+        default = [];
+        apply = x: map _filter x;
+        description = ''
+          A list of remote writes.
         '';
       };
 

@@ -244,9 +244,13 @@
         port = 9113;
       };
     };
-    remoteRead = [{
-      url = "http://localhost:9094/api/v1/read";
-    }];
+    remoteRead = [
+      { url = "http://localhost:9094/api/v1/read"; }
+      { url = "http://localhost:9201/read"; }
+    ];
+    remoteWrite = [
+      { url = "http://localhost:9201/write"; }
+    ];
     scrapeConfigs = [
       {
         job_name = "inverter";
