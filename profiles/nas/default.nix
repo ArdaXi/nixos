@@ -298,8 +298,7 @@
     enable = true;
     extraPlugins = with pkgs; [ timescaledb pg_prometheus ];
     extraConfig = ''
-      shared_preload_libraries = 'timescaledb'
-      shared_preload_libraries = 'pg_prometheus'
+      shared_preload_libraries = 'timescaledb, pg_prometheus'
     '';
 
     authentication = "host all all 127.0.0.1/32 trust";
