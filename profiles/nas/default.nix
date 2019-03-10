@@ -260,6 +260,13 @@
         }];
       }
       {
+        job_name = "meter";
+        scrape_interval = "10s";
+        static_configs = [{
+          targets = ["192.168.179.16:8080"];
+        }];
+      }
+      {
         job_name = "node";
         static_configs = [{
           targets = ["127.0.0.1:9100"];
