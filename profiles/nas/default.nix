@@ -24,18 +24,6 @@
     cacheNetworks = [ "192.168.178.0/24" "127.0.0.0/24" "fe80::/64" "::1/128" ];
     forwarders = [ "8.8.4.4" "8.8.8.8" ];
     zones = [{
-        name = "street.ardaxi.com";
-        master = true;
-        file = builtins.toFile "street.ardaxi.com"
-        ''
-          $ORIGIN street.ardaxi.com.
-          $TTL 1h
-          @ IN SOA @ root (1 1h 1h 4w 1h)
-          @ IN NS  ns
-          @ IN A   192.168.178.2
-          * IN A   192.168.178.2
-        '';
-      } {
           name = "local.ardaxi.com";
           master = true;
           file = builtins.toFile "local.ardaxi.com"
@@ -69,8 +57,8 @@
       '';
     in {
       "hydra.street.ardaxi.com" = {
+        addSSL = true;
         enableACME = true;
-        listen = outsideSSL;
         locations = {
           "/" = {
             proxyPass = "http://127.0.0.1:3000";
@@ -80,7 +68,6 @@
       };
       "nix-cache.street.ardaxi.com" = {
         enableACME = true;
-        listen = outsideSSL;
         locations = {
           "/" = {
             proxyPass = "http://127.0.0.1:3001";
@@ -91,7 +78,6 @@
       "unifi.street.ardaxi.com" = {
         enableACME = true;
         forceSSL = true;
-        listen = outsideSSL;
         locations = {
           "/" = {
             proxyPass = "https://127.0.0.1:8443";
@@ -102,7 +88,6 @@
       "grafana.street.ardaxi.com" = {
         enableACME = true;
         forceSSL = true;
-        listen = outsideSSL;
         locations = {
           "/" = {
             proxyPass = "http://127.0.0.1:4000";
@@ -111,9 +96,9 @@
         };
       };
       "street.ardaxi.com" = {
+        default = true;
         enableACME = true;
         forceSSL = true;
-        listen = outsideSSL;
       };
       "local.ardaxi.com" = {
         extraConfig = ''
@@ -147,8 +132,6 @@
   services.unifi.enable = true;
   services.sabnzbd.enable = true;
   services.sickrage.enable = true;
-
-  networking.extraHosts = "127.0.0.1 ns.street.ardaxi.com";
 
   services.openssh.ports = [ 22 2222 ];
 
