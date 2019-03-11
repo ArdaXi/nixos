@@ -56,9 +56,7 @@
     virtualHosts = let
       outsideSSL = [
         { addr = "0.0.0.0"; port =  80; ssl = false; }
-        { addr = "0.0.0.0"; port =  81; ssl = false; }
         { addr = "0.0.0.0"; port =  443; ssl = true; }
-        { addr = "0.0.0.0"; port = 6443; ssl = true; }
       ];
       proxyConf = ''
         proxy_ssl_verify off;
