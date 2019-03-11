@@ -42,10 +42,6 @@
     enable = true;
     statusPage = true;
     virtualHosts = let
-      outsideSSL = [
-        { addr = "0.0.0.0"; port =  80; ssl = false; }
-        { addr = "0.0.0.0"; port =  443; ssl = true; }
-      ];
       proxyConf = ''
         proxy_ssl_verify off;
         proxy_set_header Host $host;
@@ -57,6 +53,7 @@
       '';
     in {
       "hydra.street.ardaxi.com" = {
+        http2 = false;
         addSSL = true;
         enableACME = true;
         locations = {
@@ -66,6 +63,7 @@
         };
       };
       "nix-cache.street.ardaxi.com" = {
+        http2 = false;
         enableACME = true;
         locations = {
           "/" = {
