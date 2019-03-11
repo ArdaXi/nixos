@@ -72,6 +72,7 @@
         };
       };
       "unifi.street.ardaxi.com" = {
+        http2 = false;
         enableACME = true;
         forceSSL = true;
         locations = {
@@ -82,6 +83,7 @@
         };
       };
       "grafana.street.ardaxi.com" = {
+        http2 = false;
         enableACME = true;
         forceSSL = true;
         locations = {
@@ -91,11 +93,13 @@
         };
       };
       "street.ardaxi.com" = {
+        http2 = false;
         default = true;
         enableACME = true;
         forceSSL = true;
       };
       "local.ardaxi.com" = {
+        http2 = false;
         extraConfig = ''
           allow 192.168.178.0/24;
           allow 82.94.130.160/29;
