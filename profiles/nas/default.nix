@@ -136,6 +136,9 @@
           "/sickrage/" = {
             proxyPass = "http://127.0.0.1:8082";
           };
+          "/hydra/" = {
+            proxyPass = "http://127.0.0.1:3000/";
+          };
         };
       };
     };
