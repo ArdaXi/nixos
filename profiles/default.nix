@@ -10,6 +10,7 @@
     binaryCachePublicKeys = [ "street.ardaxi.com-1:A1P6oGDAlLPtBbscHNTzBM6DpMHGpqLNwXUgmOtNegg=" ];
     binaryCaches = [ https://cache.nixos.org/ http://nix-cache.street.ardaxi.com/ ];
     extraOptions = "fallback = true";
+    nixPath = [ "/nix/var/nix/profiles/per-user/root/channels" ];
   };
   nixpkgs = {
     config = {
