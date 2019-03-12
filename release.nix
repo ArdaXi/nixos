@@ -14,9 +14,14 @@ in rec
       "cic"
       "hiro"
     ] targetForMachine;
-    channel = pkgs.releaseTools.channel {
+    nixpkgs = pkgs.releaseTools.channel {
       constituents = [ machines.cic machines.hiro ];
       name = "nixpkgs";
       src = <nixpkgs>;
+    };
+    nixos-config = pkgs.releaseTools.channel {
+      contituents = [machines.cic machines.hiro ];
+      name = "nixos-config";
+      src = ./.;
     };
   }
