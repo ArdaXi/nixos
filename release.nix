@@ -20,7 +20,7 @@ in rec
       src = <nixpkgs>;
     };
     nixos-config = pkgs.releaseTools.channel {
-      contituents = [machines.cic machines.hiro ];
+      constituents = [machines.cic machines.hiro ];
       name = "nixos-config";
       src = ./.;
     };
