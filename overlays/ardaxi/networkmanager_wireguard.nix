@@ -14,6 +14,11 @@ stdenv.mkDerivation rec {
 
   buildInputs = [ networkmanager networkmanagerapplet libsecret gnome3.gtk gnome3.libgnome_keyring gnome3.gcr ];
 
+  patchPhase = ''
+    substituteInPlace "nm-wireguard-service.name.in" \
+      --replace "@PLUGINDIR@" "$out/lib/NetworkManager"
+  '';
+
   autoreconfPhase = "./autogen.sh";
 
   nativeBuildInputs = [ autoreconfHook intltool pkgconfig ];
