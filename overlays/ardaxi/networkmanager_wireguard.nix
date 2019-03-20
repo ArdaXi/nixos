@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub, pkgconfig, networkmanager, libsecret, autoreconfHook, intltool, gnome3, networkmanagerapplet }:
+{ stdenv, fetchFromGitHub, pkgconfig, networkmanager, libsecret, autoreconfHook, intltool, gnome3, networkmanagerapplet, wireguard-tools, kmod }:
 
 stdenv.mkDerivation rec {
   name    = "${pname}-${version}";
@@ -19,6 +19,12 @@ stdenv.mkDerivation rec {
   nativeBuildInputs = [ autoreconfHook intltool pkgconfig ];
 
   configureFlags = [];
+
+  preConfigure = ''
+    substituteInPlace "src/nm-wireguard-service.c" \
+      --replace "/sbin/modprobe" "${kmod}/bin/modprobe"
+      --replace "/usr/sbin/wg-quick" "${wireguard-tools}/bin/wg-quick"
+  '';
 
   meta = {
     description = "NetworkManager's wireguard plugin";
