@@ -59,6 +59,12 @@ in
     };
   };
 
+  environment.etc = with pkgs; [
+    { source = "${networkmanager_wireguard}/lib/NetworkManager/VPN/nm-wireguard-service.name";
+      target = "NetworkManager/VPN/nm-wireguard-service.name";
+    }
+  ];
+
   services = {
     dnsmasq = {
       enable = true;
