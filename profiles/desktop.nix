@@ -55,6 +55,7 @@ in
       enable = true;
       insertNameservers = [ "127.0.0.1" ];
 #      dns = "dnsmasq";
+      packages = [ pkgs.networkmanager_wireguard ];
     };
   };
 

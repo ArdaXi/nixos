@@ -11,6 +11,7 @@ rec {
 #  openconnect = self.callPackage ./openconnect.nix {};
 #  networkmanagerapplet = self.callPackage ./network-manager-applet.nix {};
 #  networkmanager_openconnect = self.callPackage ./networkmanager_openconnect.nix {};
+  networkmanager_wireguard = self.callPackage ./networkmanager_wireguard.nix {};
   sickbeard = self.callPackage ./sickbeard.nix {};
   sickrage = self.callPackage ./sickrage.nix {};
   matrix-synapse = self.callPackage ./matrix-synapse.nix {};
