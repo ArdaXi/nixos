@@ -22,7 +22,7 @@ stdenv.mkDerivation rec {
 
   preConfigure = ''
     substituteInPlace "src/nm-wireguard-service.c" \
-      --replace "/sbin/modprobe" "${kmod}/bin/modprobe"
+      --replace "/sbin/modprobe" "${kmod}/bin/modprobe" \
       --replace "/usr/sbin/wg-quick" "${wireguard-tools}/bin/wg-quick"
   '';
 
