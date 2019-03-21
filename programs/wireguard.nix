@@ -19,18 +19,18 @@ in
         publicKey = peer;
       }];
       preSetup = [
-        "ip rule add not fwmark 0xca6c table 51820"
-        "ip rule add table main suppress_prefixlength 0"
-        "ip rule add table main to 82.161.251.166" 
-        "ip route add default wg0 table 51820"
+        "ip rule add not fwmark 0xca6c table 51820 || true"
+        "ip rule add table main suppress_prefixlength 0 || true"
+        "ip rule add table main to 82.161.251.166 || true"
+        "ip route add default wg0 table 51820 || true"
       ];
       postSetup = [
         "wg set wg0 fwmark 0xca6c"
       ];
       postShutdown = [
-        "ip rule del not fwmark 0xca6c table 51820"
-        "ip rule del table main suppress_prefixlength 0"
-        "ip rule del table main to 82.161.251.166" 
+        "ip rule del not fwmark 0xca6c table 51820 || true"
+        "ip rule del table main suppress_prefixlength 0 || true"
+        "ip rule del table main to 82.161.251.166 || true"
       ];
       privateKeyFile = "/var/wg/privatekey";
     };
