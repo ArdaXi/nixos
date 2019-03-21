@@ -3,6 +3,9 @@
 let
   peer = "gOOVDekwhhQDUwMaiy8seqPkatztyTfA9laiSRLxEGc=";
   endpoint = "router.street.ardaxi.com:53";
+  wgReset = pkgs.writeScriptBin "wg-reset" ''
+    ${pkgs.wireguard-tools}/bin/wg set wg0 ${peer} endpoint ${endpoint}
+  '';
 in
 {
   networking = {
@@ -34,11 +37,9 @@ in
 
     firewall.allowedUDPPorts = [ 51820 ];
   
-    networkmanager.dispatcherScripts = [{
-      source = pkgs.writeScriptBin "wg-reset" ''
-        ${pkgs.wireguard-tools}/bin/wg set wg0 ${peer} endpoint ${endpoint}
-      '';
-      type = "pre-up";
-    }];
+    networkmanager.dispatcherScripts = [
+      { source = wgReset; type = "pre-up"; }
+      { source = wgReset; type = "basic"; }
+    ];
   };
 }
