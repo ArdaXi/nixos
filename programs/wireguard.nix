@@ -2,7 +2,7 @@
 
 let
   peer = "gOOVDekwhhQDUwMaiy8seqPkatztyTfA9laiSRLxEGc=";
-  endpoint = "router.street.ardaxi.com:53";
+  endpoint = "router.street.ardaxi.com:51820";
   wgReset = pkgs.writeText "wg-reset" ''
     ${pkgs.wireguard-tools}/bin/wg set wg0 peer ${peer} endpoint ${endpoint}
   '';
