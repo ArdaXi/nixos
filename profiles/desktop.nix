@@ -19,7 +19,7 @@ in
   ];
 
   environment.systemPackages = with mypkgs; [
-    networkmanagerapplet
+    networkmanagerapplet wireguard-tools
 #    (networkmanagerapplet.override { withGnome = false; })
     (mpv.override { vaapiSupport = true; })
     alacritty taskwarrior fortune arandr adobe-reader lyx ledger

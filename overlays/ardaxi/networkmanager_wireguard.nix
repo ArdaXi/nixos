@@ -17,6 +17,9 @@ stdenv.mkDerivation rec {
   patchPhase = ''
     substituteInPlace "nm-wireguard-service.name.in" \
       --replace "@PLUGINDIR@" "$out/lib/NetworkManager"
+    substituteInPlace "src/nm-wireguard-service.c" \
+      --replace "/sbin/modprobe" "${kmod}/bin/modprobe" \
+      --replace "/usr/sbin/wg-quick" "${wireguard-tools}/bin/wg-quick"
   '';
 
   autoreconfPhase = "./autogen.sh";
@@ -24,12 +27,6 @@ stdenv.mkDerivation rec {
   nativeBuildInputs = [ autoreconfHook intltool pkgconfig ];
 
   configureFlags = [];
-
-  preConfigure = ''
-    substituteInPlace "src/nm-wireguard-service.c" \
-      --replace "/sbin/modprobe" "${kmod}/bin/modprobe" \
-      --replace "/usr/sbin/wg-quick" "${wireguard-tools}/bin/wg-quick"
-  '';
 
   meta = {
     description = "NetworkManager's wireguard plugin";
