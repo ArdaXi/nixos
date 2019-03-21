@@ -18,6 +18,8 @@ in
     ../programs/qemu.nix
   ];
 
+  boot.extraModulePackages = [ kernel.wireguard ];
+
   environment.systemPackages = with mypkgs; [
     networkmanagerapplet wireguard-tools
 #    (networkmanagerapplet.override { withGnome = false; })
