@@ -14,7 +14,7 @@ in
     ../programs/alacritty.nix
     ../programs/yubikey.nix
 #    ../programs/vpn.nix
-#    ../programs/wireguard.nix
+    ../programs/wireguard.nix
     ../programs/qemu.nix
   ];
 
@@ -43,10 +43,7 @@ in
   networking = {
     firewall = {
       allowedTCPPorts = [ 10999 8000 80 ];
-      allowedUDPPorts = [ 10999 51820 ];
-      extraCommands = ''
-        iptables -t nat -A INPUT -p udp --dport 51820 -s 192.168.178.1 -j SNAT --to-source 82.161.251.166
-      '';
+      allowedUDPPorts = [ 10999 ];
     };
 
     extraHosts = ''
@@ -60,21 +57,6 @@ in
       enable = true;
       insertNameservers = [ "127.0.0.1" ];
 #      dns = "dnsmasq";
-    };
-
-    wireguard.interfaces.wg0 = {
-      allowedIPsAsRoutes = false;
-      ips = [ "82.94.130.163/31" ];
-      listenPort = 51820;
-      peers = [{
-        allowedIPs = [ "0.0.0.0/0" ];
-        endpoint = "router.street.ardaxi.com:53";
-        persistentKeepalive = 25;
-        publicKey = "gOOVDekwhhQDUwMaiy8seqPkatztyTfA9laiSRLxEGc=";
-      }];
-      postSetup = ["wg set wg0 fwmark 0xca6c"];
-      table = "51820";
-      privateKeyFile = "/var/wg/privatekey";
     };
   };
 
