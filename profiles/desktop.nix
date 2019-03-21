@@ -66,12 +66,12 @@ in
         allowedIPs = [ "0.0.0.0/0" ];
         endpoint = "router.street.ardaxi.com:53";
         persistentKeepalive = 25;
-        publicKey = "gOOVDekwhhQDUwMaiy8seqPkatztyTfA9laiSRLxEGc="
+        publicKey = "gOOVDekwhhQDUwMaiy8seqPkatztyTfA9laiSRLxEGc=";
       }];
       postSetup = ["wg set wg0 fwmark 0xca6c"];
       table = "51820";
       privateKeyFile = "/var/wg/privatekey";
-    }
+    };
   };
 
   services = {
