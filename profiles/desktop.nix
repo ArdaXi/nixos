@@ -19,6 +19,7 @@ in
   ];
 
   boot.extraModulePackages = [ config.boot.kernelPackages.wireguard ];
+  boot.kernelPackages = pkgs.linuxPackages_5_0;
 
   environment.systemPackages = with mypkgs; [
     networkmanagerapplet wireguard-tools
