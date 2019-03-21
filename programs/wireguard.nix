@@ -3,7 +3,7 @@
 let
   peer = "gOOVDekwhhQDUwMaiy8seqPkatztyTfA9laiSRLxEGc=";
   endpoint = "router.street.ardaxi.com:53";
-  wgReset = pkgs.writeScriptBin "wg-reset" ''
+  wgReset = pkgs.writeText "wg-reset" ''
     ${pkgs.wireguard-tools}/bin/wg set wg0 ${peer} endpoint ${endpoint}
   '';
 in
