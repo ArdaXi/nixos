@@ -43,7 +43,7 @@ in
   networking = {
     firewall = {
       allowedTCPPorts = [ 10999 8000 80 ];
-      allowedUDPPorts = [ 10999 ];
+      allowedUDPPorts = [ 10999 51820 ];
     };
 
     extraHosts = ''
@@ -62,6 +62,7 @@ in
     wireguard.interfaces.wg0 = {
       allowedIPsAsRoutes = false;
       ips = [ "82.94.130.163/31" ];
+      listenPort = 51820;
       peers = [{
         allowedIPs = [ "0.0.0.0/0" ];
         endpoint = "router.street.ardaxi.com:53";
