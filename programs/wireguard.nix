@@ -22,10 +22,10 @@ in
         "ip rule add not fwmark 0xca6c table 51820 || true"
         "ip rule add table main suppress_prefixlength 0 || true"
         "ip rule add table main to 82.161.251.166 || true"
-        "ip route add default wg0 table 51820 || true"
       ];
       postSetup = [
         "wg set wg0 fwmark 0xca6c"
+        "ip route add default wg0 table 51820"
       ];
       postShutdown = [
         "ip rule del not fwmark 0xca6c table 51820 || true"
