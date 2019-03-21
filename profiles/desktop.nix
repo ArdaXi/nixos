@@ -18,7 +18,7 @@ in
     ../programs/qemu.nix
   ];
 
-  boot.extraModulePackages = [ kernel.wireguard ];
+  boot.extraModulePackages = [ config.boot.kernelPackages.wireguard ];
 
   environment.systemPackages = with mypkgs; [
     networkmanagerapplet wireguard-tools
