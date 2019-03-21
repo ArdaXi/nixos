@@ -44,6 +44,9 @@ in
     firewall = {
       allowedTCPPorts = [ 10999 8000 80 ];
       allowedUDPPorts = [ 10999 51820 ];
+      extraCommands = ''
+        iptables -t nat -A INPUT -p udp --dport 51820 -s 192.168.178.1 -j SNAT --to-source 82.161.251.166
+      '';
     };
 
     extraHosts = ''
