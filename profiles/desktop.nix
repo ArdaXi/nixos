@@ -18,11 +18,10 @@ in
     ../programs/qemu.nix
   ];
 
-  boot.extraModulePackages = [ config.boot.kernelPackages.wireguard ];
   boot.kernelPackages = pkgs.linuxPackages_5_0;
 
   environment.systemPackages = with mypkgs; [
-    networkmanagerapplet wireguard-tools
+    networkmanagerapplet
 #    (networkmanagerapplet.override { withGnome = false; })
     (mpv.override { vaapiSupport = true; })
     alacritty taskwarrior fortune arandr adobe-reader lyx ledger
@@ -58,15 +57,22 @@ in
       enable = true;
       insertNameservers = [ "127.0.0.1" ];
 #      dns = "dnsmasq";
-      packages = [ pkgs.networkmanager_wireguard ];
     };
-  };
 
-  environment.etc = with pkgs; [
-    { source = "${networkmanager_wireguard}/lib/NetworkManager/VPN/nm-wireguard-service.name";
-      target = "NetworkManager/VPN/nm-wireguard-service.name";
+    wireguard.interfaces.wg0 = {
+      allowedIPsAsRoutes = false;
+      ips = [ "82.94.130.163/31" ];
+      peers = [{
+        allowedIPs = [ "0.0.0.0/0" ];
+        endpoint = "router.street.ardaxi.com:53";
+        persistentKeepalive = 25;
+        publicKey = "gOOVDekwhhQDUwMaiy8seqPkatztyTfA9laiSRLxEGc="
+      }];
+      postSetup = ["wg set wg0 fwmark 0xca6c"];
+      table = "51820";
+      privateKeyFile = "/var/wg/privatekey";
     }
-  ];
+  };
 
   services = {
     dnsmasq = {
