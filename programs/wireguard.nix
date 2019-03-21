@@ -3,9 +3,15 @@
 let
   peer = "gOOVDekwhhQDUwMaiy8seqPkatztyTfA9laiSRLxEGc=";
   endpoint = "82.161.251.166:51820";
-  wgReset = pkgs.writeText "wg-reset" ''
+  wgResetPreUp = pkgs.writeText "wg-reset" ''
     ${pkgs.wireguard-tools}/bin/wg set wg0 peer ${peer} endpoint ${endpoint}
   '';
+  wgReset = pkgs.writeText "wg-reset" ''
+    ${pkgs.wireguard-tools}/bin/wg set wg0 peer ${peer} endpoint ${endpoint}
+    sleep 5
+    ${pkgs.wireguard-tools}/bin/wg set wg0 peer ${peer} endpoint ${endpoint}
+  '';
+
 in
 {
   networking = {
@@ -39,7 +45,7 @@ in
     firewall.allowedUDPPorts = [ 51820 ];
   
     networkmanager.dispatcherScripts = [
-      { source = wgReset; type = "pre-up"; }
+      { source = wgResetPreUp; type = "pre-up"; }
       { source = wgReset; type = "basic"; }
     ];
   };
