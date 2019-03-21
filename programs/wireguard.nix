@@ -10,6 +10,7 @@ in
 {
   networking = {
     wireguard.interfaces.wg0 = {
+      allowedIPsAsRoutes = false;
       ips = [ "82.94.130.163/31" ];
       listenPort = 51820;
       peers = [{
