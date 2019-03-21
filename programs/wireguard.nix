@@ -26,7 +26,7 @@ in
       ];
       postSetup = [
         "wg set wg0 fwmark 0xca6c"
-        "ip route add default wg0 table 51820"
+        "ip route add default dev wg0 table 51820"
       ];
       postShutdown = [
         "ip rule del not fwmark 0xca6c table 51820 || true"
