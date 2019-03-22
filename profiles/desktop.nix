@@ -127,6 +127,15 @@ in
 
   security.wrappers.physlock.source = "${pkgs.physlock}/bin/physlock";
 
-  programs.adb.enable = true;
+  programs = {
+    adb.enable = true;
+
+    gnupg.agent = {
+      enable = true;
+      enableBrowserSocket = true;
+      enableExtraSocket = true;
+      enableSSHSupport = true;
+    };
+  };
 
 }
