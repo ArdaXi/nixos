@@ -51,7 +51,8 @@ in
         # private LAN directly, this route will be bypassed by the
         # suppress_prefixlength rule.
 
-        "ip -6 route add default dev wg0" # Only one address, so no src needed
+        "ip -6 route add default dev wg0 table 51820" # Only one address,
+        # no source address needed here.
       ];
       postShutdown = [
         # No need to remove the route here because that disappears when the wg0
