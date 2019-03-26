@@ -58,14 +58,23 @@
     hostId = "567f8775";
     hostName = "cic";
     nameservers = [ "8.8.4.4" "8.8.8.8" ];
-    interfaces.eno1.ipv4 = {
-      addresses = [
-        { address = "192.168.178.2"; prefixLength = 24; }
-        { address = "82.94.130.160"; prefixLength = 32; }
+    interfaces.eno1 = {
+      ipv4 = {
+        addresses = [
+          { address = "192.168.178.2"; prefixLength = 24; }
+          { address = "82.94.130.160"; prefixLength = 32; }
+        ];
+      };
+      ipv6.addresses = [
+        { address = "2001:984:3f27:3::2"; prefixLength = 64; }
       ];
     };
     defaultGateway = {
       address = "192.168.178.1";
+      interface = "eno1";
+    };
+    defaultGateway6 = {
+      address = "2001:984:3f27:3::1";
       interface = "eno1";
     };
   };
