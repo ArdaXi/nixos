@@ -112,10 +112,10 @@
 
     wlanInterfaces = {
       "wlan-client0" = { device = "wlp4s0"; };
-      "wlan-ap0" = { device = "wlp4s0"; mac = "00:24:d6:f9:8a:ad"; };
+      "wlan-ap0" = { device = "wlp4s0"; };
     };
 
-#    networkmanager.unmanaged = [ "interface-name:wlp4s0" "interface-name:wlan-ap0" ];
+    networkmanager.unmanaged = [ "interface-name:wlp4s0" "interface-name:wlan-ap0" ];
   };
 
   services.fprintd.enable = true;
