@@ -43,7 +43,7 @@ in
   networking = {
     firewall = {
       allowedTCPPorts = [ 10999 8000 80 ];
-      allowedUDPPorts = [ 10999 ];
+      allowedUDPPorts = [ 10999 67 ];
     };
 
     extraHosts = ''
@@ -58,12 +58,37 @@ in
       insertNameservers = [ "127.0.0.1" ];
 #      dns = "dnsmasq";
     };
+
+    interfaces."wlan-ap0" = {
+      ipv4.addresses = [ { address = "192.168.177.128"; prefixLength = 25; } ];
+    };
   };
 
   services = {
     dnsmasq = {
       enable = true;
       servers = [ "8.8.4.4" "8.8.8.8" "2001:4860:4860::8844" "2001:4860:4860::8844" ]; # Google
+      extraConfig = ''
+        interface = "wlan-ap0";
+        bind-interfaces
+        dhcp-option=3,192.168.177.128
+        dhcp-option=6,8.8.4.4,8.8.8.8
+        dhcp-range=192.168.177.129,192.168.177.254,5m
+      '';
+    };
+
+    hostapd = {
+      enable = true;
+      interface = "wlan-ap0";
+      hwMode = "g";
+      channel = 0;
+      ssid = "hiro";
+      wpa = false; # Workaround for weirdly written hostapd module
+      extraConfig = ''
+        wpa=2
+        wpa_psk_file=/var/wpa_psk
+        hwmode=any
+      '';
     };
 
     redshift = {
@@ -137,5 +162,4 @@ in
       enableSSHSupport = true;
     };
   };
-
 }
