@@ -205,12 +205,6 @@
 
   services.logind.extraConfig = "HandlePowerKey=ignore";
 
-  services.prometheus = {
-    enable = true;
-    configText = "";
-    listenAddress = ":9094";
-  };
-
   services.prometheus2 = {
     enable = true;
     listenAddress = ":9090";
