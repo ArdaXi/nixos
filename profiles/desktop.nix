@@ -70,17 +70,17 @@ in
     dnsmasq = {
       enable = true;
       servers = [ "8.8.4.4" "8.8.8.8" "2001:4860:4860::8844" "2001:4860:4860::8844" ]; # Google
-#      extraConfig = ''
-#        interface=wlan-zap0
-#        bind-interfaces
-#        dhcp-option=3,192.168.177.128
-#        dhcp-option=6,8.8.4.4,8.8.8.8
-#        dhcp-range=192.168.177.129,192.168.177.254,5m
-#      '';
+      extraConfig = ''
+        interface=wlan-zap0
+        bind-interfaces
+        dhcp-option=3,192.168.177.128
+        dhcp-option=6,8.8.4.4,8.8.8.8
+        dhcp-range=192.168.177.129,192.168.177.254,5m
+      '';
     };
 
     hostapd = {
-      enable = false;
+      enable = true;
       interface = "wlan-zap0";
       hwMode = "g";
       channel = 0;
