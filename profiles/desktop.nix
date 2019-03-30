@@ -7,7 +7,6 @@ let
 in
 {
   imports = [
-    ../modules/wlanfixes.nix
 #    ./xserver-xmonad.nix
 #    ./sway.nix
     ../programs/i3
@@ -62,7 +61,7 @@ in
 #      dns = "dnsmasq";
     };
 
-    interfaces."wlan-ap0" = {
+    interfaces."wlan-zap0" = {
       ipv4.addresses = [ { address = "192.168.177.128"; prefixLength = 25; } ];
     };
   };
@@ -72,7 +71,7 @@ in
       enable = true;
       servers = [ "8.8.4.4" "8.8.8.8" "2001:4860:4860::8844" "2001:4860:4860::8844" ]; # Google
 #      extraConfig = ''
-#        interface=wlan-ap0
+#        interface=wlan-zap0
 #        bind-interfaces
 #        dhcp-option=3,192.168.177.128
 #        dhcp-option=6,8.8.4.4,8.8.8.8
@@ -82,7 +81,7 @@ in
 
     hostapd = {
       enable = false;
-      interface = "wlan-ap0";
+      interface = "wlan-zap0";
       hwMode = "g";
       channel = 0;
       ssid = "hiro";
