@@ -112,7 +112,7 @@
 
     wlanInterfaces = {
       "wlan-client0" = { device = "wlp4s0"; };
-      "wlan-ap0" = { device = "wlp4s0"; };
+      "wlan-ap0" = { device = "wlp4s0"; mac = "f2:a5:33:1b:23:c5"; };
     };
 
     networkmanager.unmanaged = [ "interface-name:wlp4s0" "interface-name:wlan-ap0" ];
