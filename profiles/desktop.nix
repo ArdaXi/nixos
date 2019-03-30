@@ -61,7 +61,7 @@ in
 #      dns = "dnsmasq";
     };
 
-    interfaces."wlan-zap0" = {
+    interfaces."wlanzap0" = {
       ipv4.addresses = [ { address = "192.168.177.128"; prefixLength = 25; } ];
     };
   };
@@ -71,7 +71,7 @@ in
       enable = true;
       servers = [ "8.8.4.4" "8.8.8.8" "2001:4860:4860::8844" "2001:4860:4860::8844" ]; # Google
       extraConfig = ''
-        interface=wlan-zap0
+        interface=wlanzap0
         bind-interfaces
         dhcp-option=3,192.168.177.128
         dhcp-option=6,8.8.4.4,8.8.8.8
@@ -81,7 +81,7 @@ in
 
     hostapd = {
       enable = true;
-      interface = "wlan-zap0";
+      interface = "wlanzap0";
       hwMode = "g";
       channel = 0;
       ssid = "hiro";
