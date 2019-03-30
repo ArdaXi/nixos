@@ -144,6 +144,8 @@ in releaseTools.nixBuild rec {
 
   dontStrip = true;
 
+  doCheck = false;
+
   passthru.perlDeps = perlDeps;
 
   meta = with stdenv.lib; {
