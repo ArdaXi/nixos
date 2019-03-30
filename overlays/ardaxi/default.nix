@@ -39,15 +39,7 @@ rec {
     };
   };
 
-  hydra = super.hydra.overrideAttrs (oldAttrs: rec {
-    version = "2019-02-01";
-    src = super.fetchFromGitHub {
-      owner = "NixOS";
-      repo = "hydra";
-      rev = "8b5948f4cf12424c04df67a6eb136c9846fb2cfd";
-      sha256 = "0ldk3li394vykl9c4v9bs8pir05pmad24s0rx9bzqgz569zfj2iv";
-    };
-  });
+  hydra = self.callPackage ./hydra.nix {};
 
   inverter-exporter = self.callPackage ./inverter {};
 
