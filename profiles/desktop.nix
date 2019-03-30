@@ -89,7 +89,7 @@ in
       extraConfig = ''
         wpa=2
         wpa_psk_file=/var/wpa_psk
-        hwmode=any
+        hw_mode=any
       '';
     };
 
