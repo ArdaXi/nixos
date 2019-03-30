@@ -110,12 +110,12 @@
     hostId = "85703e9c";
     hostName = "hiro";
 
-    wlanInterfaces = {
-      "wlan-client0" = { device = "wlp4s0"; };
-      "wlan-ap0" = { device = "wlp4s0"; mac = "f2:a5:33:1b:23:c5"; };
-    };
-
     networkmanager.unmanaged = [ "interface-name:wlp4s0" "interface-name:wlan-ap0" ];
+  };
+
+  ardaxi.wlanInterfaces = {
+    "wlan-client0" = { device = "wlp4s0"; };
+    "wlan-ap0" = { device = "wlp4s0"; mac = "f2:a5:33:1b:23:c5"; type = "__ap"; };
   };
 
   services.fprintd.enable = true;

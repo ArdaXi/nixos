@@ -1,10 +1,13 @@
-{ config, pkgs, ... }:
+{ config, options, pkgs, lib, ... }:
+
+with lib;
 
 let
   mypkgs = pkgs // import ../pkgs;
 in
 {
   imports = [
+    ../modules/wlanfixes.nix
 #    ./xserver-xmonad.nix
 #    ./sway.nix
     ../programs/i3
@@ -68,17 +71,17 @@ in
     dnsmasq = {
       enable = true;
       servers = [ "8.8.4.4" "8.8.8.8" "2001:4860:4860::8844" "2001:4860:4860::8844" ]; # Google
-      extraConfig = ''
-        interface=wlan-ap0
-        bind-interfaces
-        dhcp-option=3,192.168.177.128
-        dhcp-option=6,8.8.4.4,8.8.8.8
-        dhcp-range=192.168.177.129,192.168.177.254,5m
-      '';
+#      extraConfig = ''
+#        interface=wlan-ap0
+#        bind-interfaces
+#        dhcp-option=3,192.168.177.128
+#        dhcp-option=6,8.8.4.4,8.8.8.8
+#        dhcp-range=192.168.177.129,192.168.177.254,5m
+#      '';
     };
 
     hostapd = {
-      enable = true;
+      enable = false;
       interface = "wlan-ap0";
       hwMode = "g";
       channel = 0;
