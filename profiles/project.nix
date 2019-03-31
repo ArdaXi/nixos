@@ -11,15 +11,4 @@ in
     kubectl
     postman
   ];
-
-  virtualisation.docker = {
-    enable = true;
-    enableOnBoot = true;
-  };
-
-  users.extraUsers.ardaxi.extraGroups = [ "docker" ];
-
-  virtualisation.virtualbox.host.enable = true;
-
-  networking.firewall.trustedInterfaces = [ "docker0" ];
 }

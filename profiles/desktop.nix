@@ -44,6 +44,7 @@ in
     firewall = {
       allowedTCPPorts = [ 10999 8000 80 ];
       allowedUDPPorts = [ 10999 67 ];
+      trustedInterfaces = [ "wlanzap0" ];
     };
 
     extraHosts = ''
