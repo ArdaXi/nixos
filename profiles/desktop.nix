@@ -1,7 +1,5 @@
 { config, options, pkgs, lib, ... }:
 
-with lib;
-
 let
   mypkgs = pkgs // import ../pkgs;
 in
@@ -66,6 +64,8 @@ in
     };
   };
 
+  systemd.services.hostapd.requiredBy = lib.mkForce [];
+
   services = {
     dnsmasq = {
       enable = true;
@@ -82,14 +82,17 @@ in
     hostapd = {
       enable = true;
       interface = "wlanzap0";
-      hwMode = "g";
-      channel = 0;
+      channel = 1;
       ssid = "hiro";
       wpa = false; # Workaround for weirdly written hostapd module
       extraConfig = ''
         wpa=2
         wpa_psk_file=/var/wpa_psk
-        hw_mode=a
+        hw_mode=g
+        ieee80211n=1
+
+        wpa_key_mgmt=WPA-PSK
+        rsn_pairwise=CCMP
       '';
     };
 
