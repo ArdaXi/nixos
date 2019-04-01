@@ -6,6 +6,6 @@
 
   environment.systemPackages = with pkgs; [
     steam libreoffice wine winetricks
-    riot-desktop signal-desktop rustracer
+    signal-desktop rustracer
   ];
 }
