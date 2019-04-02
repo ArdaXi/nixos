@@ -173,7 +173,7 @@ in
         sshKey = "/root/.ssh/id_buildfarm";
       }
     ];
-    distributedBuilds = true;
+    distributedBuilds = false;
     extraOptions = ''
       builders-use-substitutes = true
     '';
