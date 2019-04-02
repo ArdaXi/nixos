@@ -5,15 +5,9 @@ let
 in
 {
   imports = [
-#    ./xserver-xmonad.nix
-#    ./sway.nix
     ../programs/i3
-#    ../programs/wikibase.nix
-#    ../programs/st
-#    ../programs/mopidy.nix
     ../programs/alacritty.nix
     ../programs/yubikey.nix
-#    ../programs/vpn.nix
     ../programs/wireguard.nix
     ../programs/qemu.nix
   ];
@@ -167,5 +161,26 @@ in
       enableExtraSocket = true;
       enableSSHSupport = true;
     };
+  };
+
+  nix = {
+    buildMachines = [
+      { hostName = "localhost";
+        systems = [ "builtin" "x86_64-linux" "i686-linux" ];
+        supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" "local" ];
+        maxJobs = config.nix.maxJobs;
+      }
+      { hostName = "street.ardaxi.com";
+        systems = [ "builtin" "x86_64-linux" "i686-linux" ];
+        supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" "local" ];
+        maxJobs = 6;
+        sshUser = "nixbuild";
+        sshKey = "/root/.ssh/id_buildfarm";
+      }
+    ];
+    distributedBuilds = true;
+    extraOptions = ''
+      builders-use-substitutes = true
+    '';
   };
 }

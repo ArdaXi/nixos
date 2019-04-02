@@ -5,6 +5,7 @@
     ../../modules/sickrage.nix
     ../../modules/prometheus2.nix
     ./firewall.nix
+    ./remote-build.nix
   ];
 
   services.nfs.server = {
