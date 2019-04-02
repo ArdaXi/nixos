@@ -165,11 +165,6 @@ in
 
   nix = {
     buildMachines = [
-      { hostName = "localhost";
-        systems = [ "builtin" "x86_64-linux" "i686-linux" ];
-        supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" "local" ];
-        maxJobs = config.nix.maxJobs;
-      }
       { hostName = "street.ardaxi.com";
         systems = [ "builtin" "x86_64-linux" "i686-linux" ];
         supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" "local" ];
