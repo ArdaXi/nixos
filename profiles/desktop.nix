@@ -55,6 +55,7 @@ in
     };
 
     interfaces."wlanzap0" = {
+      mtu = 1420;
       ipv4.addresses = [ { address = "192.168.177.129"; prefixLength = 25; } ];
     };
   };
@@ -70,6 +71,7 @@ in
         bind-interfaces
         dhcp-option=3,192.168.177.129
         dhcp-option=6,8.8.4.4,8.8.8.8
+        dhcp-option=26,1420
         dhcp-range=192.168.177.130,192.168.177.254,5m
       '';
     };
