@@ -62,6 +62,8 @@ in
 
   systemd.services.hostapd.requiredBy = lib.mkForce [];
 
+  boot.kernel.sysctl = { "net.ipv4.ip_forward" = 1; };
+
   services = {
     dnsmasq = {
       enable = true;
