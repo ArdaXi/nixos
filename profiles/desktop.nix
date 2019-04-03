@@ -55,7 +55,7 @@ in
     };
 
     interfaces."wlanzap0" = {
-      ipv4.addresses = [ { address = "192.168.177.128"; prefixLength = 25; } ];
+      ipv4.addresses = [ { address = "192.168.177.129"; prefixLength = 25; } ];
     };
   };
 
@@ -68,9 +68,9 @@ in
       extraConfig = ''
         interface=wlanzap0
         bind-interfaces
-        dhcp-option=3,192.168.177.128
+        dhcp-option=3,192.168.177.129
         dhcp-option=6,8.8.4.4,8.8.8.8
-        dhcp-range=192.168.177.129,192.168.177.254,5m
+        dhcp-range=192.168.177.130,192.168.177.254,5m
       '';
     };
 
