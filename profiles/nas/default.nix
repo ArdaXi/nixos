@@ -104,28 +104,34 @@
         http2 = false;
         enableACME = true;
         addSSL = true;
-        extraConfig = ''
-          allow 192.168.178.0/24;
-          allow 82.94.130.160/29;
-          deny all;
-        '';
-        locations = {
+        locations = let
+          allow = ''
+            allow 192.168.178.0/24;
+            allow 82.94.130.160/29;
+            deny all;
+          '';
+        in
+        {
           "/" = {
             alias = "/var/lib/nginx/index/";
             index = "index.html";
+            extraConfig = allow;
           };
           "/media" = {
             alias = "/media";
-            extraConfig = "autoindex on;";
+            extraConfig = "autoindex on;" + allow;
           };
           "/sabnzbd/" = {
             proxyPass = "http://127.0.0.1:8081/";
+            extraConfig = allow;
           };
           "/sickrage/" = {
             proxyPass = "http://127.0.0.1:8082";
+            extraConfig = allow;
           };
           "/hydra/" = {
             proxyPass = "http://127.0.0.1:3000/";
+            extraConfig = allow;
           };
         };
       };
