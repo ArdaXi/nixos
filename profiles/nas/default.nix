@@ -97,7 +97,6 @@
       };
       "street.ardaxi.com" = {
         http2 = false;
-        default = true;
         enableACME = true;
         forceSSL = true;
       };
