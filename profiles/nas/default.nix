@@ -134,6 +134,10 @@
             proxyPass = "http://127.0.0.1:3000/";
             extraConfig = allow;
           };
+          "/transmission/" = {
+            proxyPass = "http://127.0.0.1:9091/";
+            extraConfig = allow;
+          };
         };
       };
     };
@@ -142,6 +146,7 @@
   services.unifi.enable = true;
   services.sabnzbd.enable = true;
   services.sickrage.enable = true;
+  services.transmission.enable = true;
 
   services.openssh.ports = [ 22 2222 ];
 
