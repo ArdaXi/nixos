@@ -6,6 +6,7 @@
     ../../modules/prometheus2.nix
     ./firewall.nix
     ./remote-build.nix
+    ./synapse.nix
   ];
 
   services.nfs.server = {
