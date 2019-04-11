@@ -14,7 +14,6 @@ rec {
   networkmanager_wireguard = self.callPackage ./networkmanager_wireguard.nix {};
   sickbeard = self.callPackage ./sickbeard.nix {};
   sickrage = self.callPackage ./sickrage.nix {};
-  matrix-synapse = self.callPackage ./matrix-synapse.nix {};
   riot-desktop = self.callPackage ./riot-desktop.nix {};
 
   pcsclite = self.callPackage ./pcsclite/default.nix {};
