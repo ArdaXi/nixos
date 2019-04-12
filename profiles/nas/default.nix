@@ -118,8 +118,8 @@
             index = "index.html";
             extraConfig = allow;
           };
-          "/media" = {
-            alias = "/media";
+          "/media/" = {
+            alias = "/media/";
             extraConfig = "autoindex on;" + allow;
           };
           "/sabnzbd/" = {
