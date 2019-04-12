@@ -1,7 +1,10 @@
 { config, pkgs, ... }:
 
 {
-  security.acme.certs."matrix.ardaxi.com".group = "matrix-synapse"; 
+  security.acme.certs."matrix.ardaxi.com" = {
+    allowKeysForGroup = true;
+    group = "matrix-synapse"; 
+  };
 
 	services.nginx = {
     virtualHosts = {
