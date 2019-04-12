@@ -36,7 +36,7 @@ in
       bold = defaultFont;
       italic = defaultFont;
 
-      size = 8.0;
+      size = 12.0;
 
       offset = zero;
       glyph_offset = zero;
