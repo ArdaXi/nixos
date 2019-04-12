@@ -1,3 +1,10 @@
+#
+# ERROR: Duplicate keybinding in config file:
+#  state mask 0x40 with keysym s, command "layout stacking"
+#ERROR: Duplicate keybinding in config file:
+#  state mask 0x40 with keysym s, command "layout stacking"
+#ERROR: FYI: You are using i3 version 4.16.1 (2019-01-27)
+#/run/user/1000/i3/errorlog.5133 (END)
 # i3 config file (v4)
 # Default config for sway
 #
@@ -154,9 +161,9 @@ set $screenshot scrot -s
     bindsym $mod+v splitv
 
     # Switch the current container between different layout styles
-    bindsym $mod+s layout stacking
-    bindsym $mod+w layout tabbed
-    bindsym $mod+e layout toggle split
+    #bindsym $mod+s layout stacking
+    #bindsym $mod+w layout tabbed
+    #bindsym $mod+e layout toggle split
 
     # Make the current focus fullscreen
     bindsym $mod+f fullscreen
