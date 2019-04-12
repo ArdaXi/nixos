@@ -6,6 +6,7 @@
     allowedTCPPorts = [
       22 53 80 443
       9001 # Weechat
+      8448 # Matrix
     ];
     allowedUDPPortRanges = [
       { from = 60000; to = 61000; } # mosh
