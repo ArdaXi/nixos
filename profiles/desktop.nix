@@ -24,7 +24,7 @@ in
     glib_networking pass
     browserpass nfsUtils keybase pinentry_qt4 
 #python3Packages.neovim
-    alsaUtils keybase-gui firefox-beta-bin
+    alsaUtils keybase-gui firefox-bin
     isync notmuch msmtp astroid afew libnotify
     tahoelafs google-chrome gist rustup tomb exercism
     direnv gist whois mtr
