@@ -1,10 +1,11 @@
 { config, pkgs, ... }:
 
 {
+  security.acme.certs."matrix.ardaxi.com".group = "matrix-synapse"; 
+
 	services.nginx = {
     virtualHosts = {
       "matrix.ardaxi.com" = {
-        default = true;
         enableACME = true;
         forceSSL = true;
         locations = {
@@ -22,8 +23,8 @@
     public_baseurl = "https://matrix.ardaxi.com/";
     server_name = "ardaxi.com";
     web_client = true;
-#    tls_certificate_path = "/var/lib/acme/matrix.ardaxi.com/fullchain.pem";
-#    tls_private_key_path = "/var/lib/acme/matrix.ardaxi.com/key.pem";
+    tls_certificate_path = "/var/lib/acme/matrix.ardaxi.com/fullchain.pem";
+    tls_private_key_path = "/var/lib/acme/matrix.ardaxi.com/key.pem";
 
     rc_messages_per_second = "2.0";
     rc_message_burst_count = "100.0";
