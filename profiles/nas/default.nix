@@ -55,7 +55,6 @@
       '';
     in {
       "hydra.street.ardaxi.com" = {
-        http2 = false;
         addSSL = true;
         enableACME = true;
         locations = {
@@ -66,7 +65,6 @@
         };
       };
       "nix-cache.street.ardaxi.com" = {
-        http2 = false;
         enableACME = true;
         locations = {
           "/" = {
@@ -75,7 +73,6 @@
         };
       };
       "unifi.street.ardaxi.com" = {
-        http2 = false;
         enableACME = true;
         forceSSL = true;
         locations = {
@@ -86,7 +83,6 @@
         };
       };
       "grafana.street.ardaxi.com" = {
-        http2 = false;
         enableACME = true;
         forceSSL = true;
         locations = {
@@ -96,12 +92,10 @@
         };
       };
       "street.ardaxi.com" = {
-        http2 = false;
         enableACME = true;
         forceSSL = true;
       };
       "local.street.ardaxi.com" = {
-        http2 = false;
         enableACME = true;
         addSSL = true;
         locations = let
