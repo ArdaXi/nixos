@@ -16,6 +16,10 @@ rec {
   sickrage = self.callPackage ./sickrage.nix {};
   riot-desktop = self.callPackage ./riot-desktop.nix {};
 
+  tomb = super.tomb.overrideAttrs (oldAttrs: rec {
+    doInstallCheck = false;
+  });
+
   pcsclite = self.callPackage ./pcsclite/default.nix {};
 
   ccid = pinned.ccid;
