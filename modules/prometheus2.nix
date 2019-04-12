@@ -3,7 +3,7 @@
 with lib;
 
 let
-  cfg = config.services.prometheus2;
+  cfg = config.services.my-prometheus2;
   promUser = "prometheus";
   promGroup = "prometheus";
 
@@ -399,10 +399,10 @@ let
 
 in {
   imports = [
-    (mkRenamedOptionModule [ "services" "prometheus2" "exporters" ] [ "services" "prometheus" "exporters" ])
+    (mkRenamedOptionModule [ "services" "my-prometheus2" "exporters" ] [ "services" "prometheus" "exporters" ])
   ];
   options = {
-    services.prometheus2 = {
+    services.my-prometheus2 = {
 
       enable = mkOption {
         type = types.bool;

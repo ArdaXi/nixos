@@ -220,7 +220,7 @@
 
   services.logind.extraConfig = "HandlePowerKey=ignore";
 
-  services.prometheus2 = {
+  services.my-prometheus2 = {
     enable = true;
     listenAddress = ":9090";
     extraFlags = ["--storage.tsdb.retention 365d"];
