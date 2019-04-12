@@ -6,6 +6,7 @@
 	services.nginx = {
     virtualHosts = {
       "matrix.ardaxi.com" = {
+        http2 = false;
         enableACME = true;
         forceSSL = true;
         locations = {
