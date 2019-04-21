@@ -157,9 +157,8 @@
 
     serviceConfig = {
       Type = "simple";
-      PIDFile = "/run/tahoe.pid";
       ExecStart = ''
-        ${pkgs.tahoelafs}/bin/tahoe start /tahoe/tahoe -n -l- --pidfile=/run/tahoe
+        ${pkgs.tahoelafs}/bin/tahoe run /tahoe/tahoe -l-
       '';
     };
   };

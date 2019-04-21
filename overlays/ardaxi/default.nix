@@ -8,17 +8,9 @@ let
   }) {});
 in
 rec {
-#  openconnect = self.callPackage ./openconnect.nix {};
-#  networkmanagerapplet = self.callPackage ./network-manager-applet.nix {};
-#  networkmanager_openconnect = self.callPackage ./networkmanager_openconnect.nix {};
-  networkmanager_wireguard = self.callPackage ./networkmanager_wireguard.nix {};
   sickbeard = self.callPackage ./sickbeard.nix {};
   sickrage = self.callPackage ./sickrage.nix {};
   riot-desktop = self.callPackage ./riot-desktop.nix {};
-
-  tomb = super.tomb.overrideAttrs (oldAttrs: rec {
-    doInstallCheck = false;
-  });
 
   pcsclite = self.callPackage ./pcsclite/default.nix {};
 
@@ -26,10 +18,7 @@ rec {
 
   yubikey-manager = pinned.yubikey-manager;
 
-  haskellPackages = pinned.haskellPackages;
-  taffybar = pinned.taffybar;
-
-  tahoelafs = self.callPackage ./tahoelafs.nix {};
+#  tahoelafs = self.callPackage ./tahoelafs.nix {};
   rustNightly = self.callPackage ./rust-nightly.nix {};
 
   hplip = self.callPackage ./hplip.nix {};
