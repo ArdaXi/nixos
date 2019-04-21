@@ -1,13 +1,13 @@
 diff --git a/src/allmydata/scripts/tahoe_backup.py b/src/allmydata/scripts/tahoe_backup.py
-index e796061..ff10c05 100644
+index cfb83f0ec..5694b8801 100644
 --- a/src/allmydata/scripts/tahoe_backup.py
 +++ b/src/allmydata/scripts/tahoe_backup.py
-@@ -303,7 +303,7 @@ def collect_backup_targets(root, listdir, filter_children):
-             elif os.path.isfile(childpath):
-                 yield FileTarget(childpath)
-             else:
--                yield SpecialTarget(childpath)
-+                yield SpecialTarget(childpath, False)
-         yield DirectoryTarget(root)
+@@ -365,7 +365,7 @@ class DirectoryTarget(object):
  
  
+ class _ErrorTarget(object):
+-    def __init__(self, path, isdir):
++    def __init__(self, path, isdir=False):
+         self._path = path
+         self._quoted_path = quote_local_unicode_path(path)
+         self._isdir = isdir
