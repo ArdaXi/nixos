@@ -18,7 +18,7 @@ rec {
 
   yubikey-manager = pinned.yubikey-manager;
 
-#  tahoelafs = self.callPackage ./tahoelafs.nix {};
+  tahoelafs = self.callPackage ./tahoelafs/default.nix {};
   rustNightly = self.callPackage ./rust-nightly.nix {};
 
   hplip = self.callPackage ./hplip.nix {};

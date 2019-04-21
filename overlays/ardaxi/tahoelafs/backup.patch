@@ -1,0 +1,13 @@
+diff --git a/src/allmydata/scripts/tahoe_backup.py b/src/allmydata/scripts/tahoe_backup.py
+index e796061..ff10c05 100644
+--- a/src/allmydata/scripts/tahoe_backup.py
++++ b/src/allmydata/scripts/tahoe_backup.py
+@@ -303,7 +303,7 @@ def collect_backup_targets(root, listdir, filter_children):
+             elif os.path.isfile(childpath):
+                 yield FileTarget(childpath)
+             else:
+-                yield SpecialTarget(childpath)
++                yield SpecialTarget(childpath, false)
+         yield DirectoryTarget(root)
+ 
+ 
