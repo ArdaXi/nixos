@@ -7,7 +7,7 @@ index e796061..ff10c05 100644
                  yield FileTarget(childpath)
              else:
 -                yield SpecialTarget(childpath)
-+                yield SpecialTarget(childpath, false)
++                yield SpecialTarget(childpath, False)
          yield DirectoryTarget(root)
  
  
