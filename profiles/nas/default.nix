@@ -137,7 +137,12 @@
     };
   };
 
-  services.unifi.enable = true;
+  services.unifi = {
+    enable = true;
+    initialJavaHeapSize = 4096;
+    maximumJavaHeapSize = 4096;
+  };
+
   services.sabnzbd.enable = true;
   services.sickrage.enable = true;
   services.transmission.enable = true;
