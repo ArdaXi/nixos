@@ -18,18 +18,19 @@ rec {
 
   yubikey-manager = pinned.yubikey-manager;
 
-  tahoelafs = self.callPackage ./tahoelafs/default.nix {};
-  rustNightly = self.callPackage ./rust-nightly.nix {};
+  tahoelafs = self.callPackage ./tahoelafs/default.nix {}; # Fix backup command
+
+#  rustNightly = self.callPackage ./rust-nightly.nix {};
 
   hplip = self.callPackage ./hplip.nix {};
 
-  python = super.python.override {
-    packageOverrides = python-self: python-super: {
-      nevow = python-super.nevow.overridePythonAttrs (_: {
-        checkPhase = "";
-      });
-    };
-  };
+#  python = super.python.override {
+#    packageOverrides = python-self: python-super: {
+#      nevow = python-super.nevow.overridePythonAttrs (_: {
+#        checkPhase = "";
+#      });
+#    };
+#  };
 
   hydra = self.callPackage ./hydra.nix {};
 
