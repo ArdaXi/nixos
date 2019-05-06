@@ -32,6 +32,7 @@ in
       inherit (texlive) scheme-basic babel-dutch hyphen-dutch invoice fp collection-latexrecommended xetex relsize collection-fontsrecommended draftwatermark everypage qrcode geometry;
 # collectionhtmlxml xetex-def
     })
+    slic3r-prusa3d
   ];
 
   networking = {

@@ -2,7 +2,7 @@
 
 let
   peer = "gOOVDekwhhQDUwMaiy8seqPkatztyTfA9laiSRLxEGc=";
-  endpoint = "82.161.251.166:53";
+  endpoint = "82.161.251.166:51820";
   wgResetPreUp = pkgs.writeText "wg-reset" ''
     ${pkgs.wireguard-tools}/bin/wg set wg0 peer ${peer} endpoint ${endpoint}
   '';
