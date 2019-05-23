@@ -26,7 +26,7 @@ in
 #python3Packages.neovim
     alsaUtils keybase-gui firefox-bin
     isync notmuch msmtp astroid afew libnotify
-    tahoelafs google-chrome gist rustup tomb exercism
+    google-chrome gist rustup tomb exercism
     direnv gist whois mtr
     (texlive.combine {
       inherit (texlive) scheme-basic babel-dutch hyphen-dutch invoice fp collection-latexrecommended xetex relsize collection-fontsrecommended draftwatermark everypage qrcode geometry;

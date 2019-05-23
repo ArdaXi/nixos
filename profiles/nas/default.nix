@@ -154,20 +154,6 @@
     adminPubkey = builtins.head config.users.extraUsers.ardaxi.openssh.authorizedKeys.keys;
   };
 
-  systemd.services.tahoe = {
-    description = "Tahoe-LAFS";
-    after = [ "network.target" ];
-    wantedBy = [ "multi-user.target" ];
-    path = [ pkgs.tahoelafs ];
-
-    serviceConfig = {
-      Type = "simple";
-      ExecStart = ''
-        ${pkgs.tahoelafs}/bin/tahoe run /tahoe/tahoe -l-
-      '';
-    };
-  };
-
   services.chrony = {
     enable = true;
     servers = [ "ntp0.nl.uu.net" "ntp1.nl.uu.net" "time1.esa.int" ];
