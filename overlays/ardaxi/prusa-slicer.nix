@@ -1,6 +1,6 @@
 { stdenv, lib, fetchFromGitHub, makeWrapper, cmake, pkgconfig
 , boost, curl, expat, glew, libpng, tbb, wxGTK31
-, gtest, nlopt, xorg, makeDesktopItem
+, gtest, nlopt, xorg, makeDesktopItem, hicolor-icon-theme
 }:
 let
   nloptVersion = if lib.hasAttr "version" nlopt
@@ -30,6 +30,7 @@ stdenv.mkDerivation rec {
     tbb
     wxGTK31
     xorg.libX11
+    hicolor-icon-theme
   ] ++ checkInputs;
 
   checkInputs = [ gtest ];
