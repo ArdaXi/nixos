@@ -119,7 +119,5 @@
     "wlanzap0" = { device = "wlp4s0"; mac = "f2:a5:33:1b:23:c5"; type = "__ap"; };
   };
 
-  services.fprintd.enable = true;
-
   system.stateVersion = "18.03";
 }
