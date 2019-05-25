@@ -33,6 +33,7 @@ in
 # collectionhtmlxml xetex-def
     })
     slic3r-prusa3d solvespace prusa-slicer
+    gitAndTools.pass-git-helper
   ];
 
   networking = {
