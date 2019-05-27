@@ -40,5 +40,17 @@ rec {
 
   prometheus-postgresql = self.callPackage ./prometheus-postgresql-adapter/default.nix {};
 
-  prusa-slicer = self.callPackage ./prusa-slicer.nix {};
+  wxGTK31 = super.wxGTK31.overrideAttrs (oldAttrs : rec {
+    name = "wxwidgets-${version}";
+    version = "3.1.2";
+    src = self.fetchFromGitHub {
+        owner = "wxWidgets";
+        repo = "wxWidgets";
+        rev = "v${version}";
+        sha256 = "0gfdhb7xq5vzasm7s1di39nchv42zsp0dmn4v6knzb7mgsb107wb";
+    };
+    configureFlags = [ "--disable-precomp-headers" "--enable-mediactrl" "--enable-unicode" "--with-opengl" ];
+  });
+
+  prusa-slicer = self.callPackage ./prusa-slicer.nix { wxGTK30 = wxGTK31; };
 }
