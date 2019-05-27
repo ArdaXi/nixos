@@ -1,6 +1,6 @@
 { stdenv, lib, fetchFromGitHub, makeWrapper, cmake, pkgconfig
-, boost, curl, expat, glew, libpng, tbb, wxGTK31
-, gtest, nlopt, xorg, makeDesktopItem, hicolor-icon-theme
+, boost, curl, expat, glew, libpng, tbb, wxGTK30
+, gtest, nlopt, xorg, makeDesktopItem
 }:
 let
   nloptVersion = if lib.hasAttr "version" nlopt
@@ -28,9 +28,8 @@ stdenv.mkDerivation rec {
     glew
     libpng
     tbb
-    wxGTK31
+    wxGTK30
     xorg.libX11
-    hicolor-icon-theme
   ] ++ checkInputs;
 
   checkInputs = [ gtest ];
@@ -59,7 +58,10 @@ stdenv.mkDerivation rec {
     rev = "version_${version}";
   };
 
-  cmakeFlags = [ "-DSLIC3R_FHS=1" ];
+  cmakeFlags = [
+    "-DSLIC3R_FHS=1"
+    "-DSLIC3R_WX_STABLE=1"  # necessary when compiling against wxGTK 3.0
+  ];
 
   postInstall = ''
     mkdir -p "$out/share/pixmaps/"
