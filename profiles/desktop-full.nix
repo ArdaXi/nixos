@@ -6,7 +6,10 @@
 
   environment.systemPackages = with pkgs; [
     steam libreoffice
-    signal-desktop rustracer
+    signal-desktop
+# rustracer
+# Build failure
+#
 # wine winetricks
 # Uncommented due to qt failure
   ];
