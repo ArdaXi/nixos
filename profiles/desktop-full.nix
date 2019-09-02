@@ -7,6 +7,7 @@
   environment.systemPackages = with pkgs; [
     steam libreoffice
     signal-desktop
+    zoom-us
 # rustracer
 # Build failure
 #

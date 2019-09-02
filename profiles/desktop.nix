@@ -34,6 +34,7 @@ in
     })
     slic3r-prusa3d solvespace prusa-slicer
     gitAndTools.pass-git-helper
+    nethack
   ];
 
   networking = {
