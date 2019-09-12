@@ -78,6 +78,7 @@
     aspellDicts.nl
     kakoune
     jq
+    tarsnap
   ];
 
   environment.extraInit = "export XDG_CONFIG_DIRS=/etc/xdg:$XDG_CONFIG_DIRS";
