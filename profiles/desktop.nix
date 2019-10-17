@@ -12,6 +12,11 @@ in
     ../programs/qemu.nix
   ];
 
+  location = {
+    latitude = 52.37;
+    longitude = 4.9;
+  };
+
 #  boot.kernelPackages = pkgs.linuxPackages_5_1;
 
   environment.systemPackages = with mypkgs; [
@@ -98,11 +103,7 @@ in
       '';
     };
 
-    redshift = {
-      enable = true;
-      latitude = "52.37";
-      longitude = "4.9";
-    };
+    redshift.enable = true;
     
     physlock.enable = true;
 
