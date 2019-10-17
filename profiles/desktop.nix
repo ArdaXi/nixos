@@ -12,7 +12,7 @@ in
     ../programs/qemu.nix
   ];
 
-  boot.kernelPackages = pkgs.linuxPackages_5_1;
+#  boot.kernelPackages = pkgs.linuxPackages_5_1;
 
   environment.systemPackages = with mypkgs; [
     networkmanagerapplet
