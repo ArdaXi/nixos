@@ -10,7 +10,7 @@ stdenv.mkDerivation rec {
   name = "pg-prometheus-${version}";
   version = "0.2.1";
 
-  buildInputs = [ postgresql ];
+  buildInputs = [ postgresql_9_6 ];
 
   src = fetchFromGitHub {
     owner  = "timescale";
