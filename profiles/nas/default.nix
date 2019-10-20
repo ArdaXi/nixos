@@ -284,7 +284,8 @@
 
   services.postgresql = {
     enable = true;
-    extraPlugins = with pkgs; [ timescaledb pg_prometheus ];
+    package = pkgs.postgresql_9_6;
+    extraPlugins = with pkgs.postgresql_9_6.pkgs; [ timescaledb pkgs.pg_prometheus ];
     extraConfig = ''
       shared_preload_libraries = 'timescaledb, pg_prometheus'
     '';

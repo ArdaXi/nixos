@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub, cmake, postgresql }:
+{ stdenv, fetchFromGitHub, cmake, postgresql_9_6 }:
 
 # # To enable on NixOS:
 # config.services.postgresql = {
