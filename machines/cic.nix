@@ -51,7 +51,6 @@
     [ { device = "/dev/disk/by-partuuid/d6c13608-1d4f-4b6b-a64b-e709ba7208d8"; }
     ];
 
-  nix.maxJobs = 6;
   powerManagement.cpuFreqGovernor = "ondemand";
 
   networking = {
@@ -79,11 +78,19 @@
     };
   };
 
-  nix.buildMachines = [
-    { hostName = "localhost";
-      systems = [ "builtin" "x86_64-linux" "i686-linux" ];
-      supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark" "local" ];
-      maxJobs = 6;
-    }
-  ];
+  nix = {
+    maxJobs = 6;
+    buildMachines = [
+      { hostName = "localhost";
+        systems = [ "builtin" "x86_64-linux" "i686-linux" ];
+        supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark" "local" ];
+        maxJobs = 6;
+      }
+    ];
+    extraOptions = ''
+      min-free = ${toString ( 25 * 1024 * 1024 * 1024)}
+      max-free = ${toString (500 * 1024 * 1024 * 1024)}
+    '';
+    autoOptimiseStore = true;
+  };
 }
