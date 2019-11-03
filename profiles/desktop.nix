@@ -141,6 +141,7 @@ in
     fonts = with pkgs; [
       source-code-pro
       vistafonts
+      corefonts
     ];
   };
 
