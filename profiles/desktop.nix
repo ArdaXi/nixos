@@ -27,7 +27,7 @@ in
     source-code-pro lighttable usbutils pciutils gnupg acpi dmenu
     xorg.xf86inputsynaptics xdotool slock gcc scrot
     glib_networking pass
-    browserpass nfsUtils keybase pinentry_qt4 
+    browserpass nfsUtils keybase pinentry_qt4
 #python3Packages.neovim
     alsaUtils keybase-gui firefox-bin
     isync notmuch msmtp astroid afew libnotify
