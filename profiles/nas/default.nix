@@ -184,7 +184,7 @@
     secretKeyFile = "/etc/nix/signing-key.sec";
   };
 
-  system.autoUpgrade.enable = true;
+#  system.autoUpgrade.enable = true;
 
   environment.systemPackages = with pkgs; [
     inverter-exporter
