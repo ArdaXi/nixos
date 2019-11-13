@@ -9,10 +9,10 @@
     ../modules/wlanfixes.nix
   ];
 
-  hardware.bumblebee = {
-    driver = "nvidia";
-    enable = true;
-  };
+#  hardware.bumblebee = {
+#    driver = "nvidia";
+#    enable = true;
+#  };
 
   services.xserver.dpi = 192;
 

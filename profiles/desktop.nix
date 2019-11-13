@@ -23,7 +23,7 @@ in
     networkmanagerapplet
 #    (networkmanagerapplet.override { withGnome = false; })
     (mpv.override { vaapiSupport = true; })
-    alacritty taskwarrior fortune arandr adobe-reader lyx ledger
+    alacritty taskwarrior fortune arandr lyx ledger
     source-code-pro lighttable usbutils pciutils gnupg acpi dmenu
     xorg.xf86inputsynaptics xdotool slock gcc scrot
     glib_networking pass
@@ -149,9 +149,9 @@ in
   hardware = {
     pulseaudio = { 
       enable = true;
-      support32Bit = true;
+#      support32Bit = true;
     };
-    opengl.driSupport32Bit = true;
+#    opengl.driSupport32Bit = true;
     bluetooth.enable = true;
   };
 

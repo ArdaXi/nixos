@@ -5,9 +5,12 @@
   imports = [ ./desktop.nix ];
 
   environment.systemPackages = with pkgs; [
-    steam libreoffice
+    libreoffice
     signal-desktop
     zoom-us
+# steam
+# meson cross-compilation?
+
 # rustracer
 # Build failure
 #
