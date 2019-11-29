@@ -11,4 +11,6 @@ in
     kubectl
     postman
   ];
+
+  virtualisation.docker.enable = true;
 }
