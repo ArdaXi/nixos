@@ -110,7 +110,7 @@ in
 
     printing = {
       enable = true;
-      drivers = [ pkgs.hplip ];
+      drivers = [ pkgs.hplip pkgs.epson-escpr ];
     };
 
     upower.enable = true;
