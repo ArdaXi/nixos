@@ -10,7 +10,7 @@ let
   targetForMachine = machineName: (configForMachine machineName).toplevel;
   allTests = (import <nixpkgs/nixos/tests/all-tests.nix> rec {
     system = "x86_64-linux";
-    pkgs = import <nixpkgs> { inherit system; };
+    pkgs = import <nixpkgs> { inherit system; overlays = (import ./overlays); };
     callTest = t: hydraJob t.test;
   });
 in rec
@@ -30,7 +30,9 @@ in rec
       src = ./.;
     };
     tests = {
-      inherit (allTests) acme firefox grafana hydra i3wm matrix-synapse
-        nextcloud postgresql prometheus;
+      inherit (allTests) acme firefox grafana i3wm matrix-synapse nextcloud
+        prometheus;
+      inherit (allTests.hydra) nixUnstable;
+      inherit (allTests.postgresql) postgresql_9_6;
     };
   }
