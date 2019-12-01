@@ -1,7 +1,7 @@
 { stdenv, nix, perlPackages, buildEnv, fetchFromGitHub
 , makeWrapper, autoconf, automake, libtool, unzip, pkgconfig, sqlite, libpqxx
 , gitAndTools, mercurial, darcs, subversion, bazaar, openssl, bzip2, libxslt
-, guile, perl, postgresql, postgresql95, nukeReferences, git, boehmgc, nlohmann_json
+, guile, perl, postgresql, nukeReferences, git, boehmgc, nlohmann_json
 , docbook_xsl, openssh, gnused, coreutils, findutils, gzip, lzma, gnutar
 , rpm, dpkg, cdrkit, pixz, lib, boost, autoreconfHook
 }:
@@ -27,7 +27,7 @@ let
         CatalystPluginSessionStateCookie
         CatalystPluginSessionStoreFastMmap
         CatalystPluginStackTrace
-        CatalystPluginUnicodeEncoding
+        CatalystRuntime
         CatalystTraitForRequestProxyBase
         CatalystViewDownload
         CatalystViewJSON
@@ -51,7 +51,6 @@ let
         LWP
         LWPProtocolHttps
         NetAmazonS3
-        NetPrometheus
         NetStatsd
         PadWalker
         Readonly
@@ -59,8 +58,6 @@ let
         SetScalar
         Starman
         SysHostnameLong
-        TermSizeAny
-        TestMore
         TextDiff
         TextTable
         XMLSimple
@@ -72,25 +69,25 @@ let
   };
 in stdenv.mkDerivation rec {
   pname = "hydra";
-  version = "2019-11-07";
+  version = "2019-08-30";
 
   inherit stdenv;
 
   src = fetchFromGitHub {
     owner = "NixOS";
-    repo = "hydra";
-    rev = "e89ea733d0539f40949cfb0bcb9e51d58e9b1c14";
-    sha256 = "18dn0vkd3n8qh1lrw49k3imlznlv2slqqkq5xjnqgb5j579a2ikl";
+    repo = pname;
+    rev = "242b8b7a314759ed33f69205d26a1b7c337511e0";
+    sha256 = "167ijcf9qdm10kjvqax3hcvs5mpa4mx2y2i9idwwc6xfvn8fhs84";
   };
 
   buildInputs =
-    [ makeWrapper autoconf automake libtool unzip nukeReferences pkgconfig sqlite libpqxx
+    [ makeWrapper autoconf automake libtool unzip nukeReferences sqlite libpqxx
       gitAndTools.topGit mercurial darcs subversion bazaar openssl bzip2 libxslt
       guile # optional, for Guile + Guix support
       perlDeps perl nix
-      postgresql95 # for running the tests
-      boost
+      postgresql # for running the tests
       nlohmann_json
+      boost
     ];
 
   hydraPath = lib.makeBinPath (
