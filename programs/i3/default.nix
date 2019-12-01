@@ -15,7 +15,6 @@ rec {
     layout = "us";
     xkbOptions = "compose:caps";
     displayManager = {
-      slim.enable = false;
       lightdm = {
         enable = true;
         autoLogin = {
