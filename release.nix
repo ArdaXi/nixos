@@ -30,9 +30,10 @@ in rec
       src = ./.;
     };
     tests = {
-      inherit (allTests) acme firefox grafana i3wm matrix-synapse nextcloud
+      inherit (allTests) firefox grafana i3wm matrix-synapse nextcloud
         prometheus;
-      inherit (allTests.hydra) nixUnstable;
       inherit (allTests.postgresql) postgresql_9_6;
+
+      hydra = allTests.hydra.nixUnstable;
     };
   }
