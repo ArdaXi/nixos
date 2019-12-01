@@ -7,6 +7,7 @@
     ./firewall.nix
     ./remote-build.nix
     ./synapse.nix
+    ./nextcloud.nix
   ];
 
   services.nfs.server = {
