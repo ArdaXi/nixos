@@ -21,7 +21,7 @@ rec {
 
   services.nginx.virtualHosts = {
     ${services.nextcloud.hostName} = {
-      addSSL = true;
+      forceSSL = true;
       enableACME = true;
       root = pkgs.nextcloud;
       locations = let
