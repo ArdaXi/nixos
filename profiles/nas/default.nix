@@ -8,6 +8,7 @@
     ./remote-build.nix
     ./synapse.nix
     ./nextcloud.nix
+    ./mediawiki.nix
   ];
 
   services.nfs.server = {
@@ -54,6 +55,12 @@
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection "upgrade";
       '';
+      allow = ''
+        allow 192.168.178.0/24;
+        allow 82.94.130.160/29;
+        allow 2001:984:3f27::/48;
+        deny all;
+      '';
     in {
       "hydra.street.ardaxi.com" = {
         addSSL = true;
@@ -92,6 +99,16 @@
           };
         };
       };
+      "wiki.street.ardaxi.com" = {
+        enableACME = true;
+        forceSSL = true;
+        locations = {
+          "/" = {
+            proxyPass = "http://10.4.4.2";
+            extraConfig = proxyConf + allow;
+          };
+        };
+      };
       "street.ardaxi.com" = {
         enableACME = true;
         forceSSL = true;
@@ -99,15 +116,7 @@
       "local.street.ardaxi.com" = {
         enableACME = true;
         addSSL = true;
-        locations = let
-          allow = ''
-            allow 192.168.178.0/24;
-            allow 82.94.130.160/29;
-            allow 2001:984:3f27::/48;
-            deny all;
-          '';
-        in
-        {
+        locations = {
           "/" = {
             alias = "/var/lib/nginx/index/";
             index = "index.html";

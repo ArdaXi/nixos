@@ -1,25 +1,39 @@
 { config, lib, pkgs, ... }:
 {
-  imports = [
-    ./mediawiki-module.nix
-  ];
+  containers.mediawiki = {
+    autoStart = true;
 
-  services.mediawiki-nginx = {
-    enable = true;
-
-    hostName = "wiki.street.ardaxi.com";
-
-    database = {
-      type = "postgres";
-      host = "127.0.0.1";
-      port = 5432;
-      user = "mediawiki";
-      socket = null;
+    bindMounts = {
+      "/var/lib/mediawiki" = {
+        isReadOnly = false;
+        mountPoint = "/var/lib/mediawiki";
+      };
     };
 
-    name = "Arda Xi";
+    privateNetwork = true;
+    hostAddress = "10.4.4.1";
+    localAddress = "10.4.4.2";
 
-    passwordFile = "/var/lib/passwords/mediawiki";
+    config = { config, pkgs, ... }: {
+      services.mediawiki = {
+        enable = true;
+
+        database.createLocally = true;
+
+        virtualHost = {
+          adminAddr = "admin@ardaxi.com";
+          hostName = "wiki.street.ardaxi.com";
+        };
+
+        name = "Arda Xi";
+
+        passwordFile = "/var/lib/mediawiki/password";
+
+        extraConfig = ''
+          # Needed because of reverse proxy
+          $wgServer = "https://wiki.street.ardaxi.com";
+        '';
+      };
+    };
   };
-
 }
