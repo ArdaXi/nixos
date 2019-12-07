@@ -8,7 +8,6 @@
     ./remote-build.nix
     ./synapse.nix
     ./nextcloud.nix
-    ./mediawiki.nix
   ];
 
   services.nfs.server = {
