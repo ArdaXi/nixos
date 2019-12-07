@@ -134,6 +134,14 @@ in
         rtcfile /var/lib/chrony/chrony.rtc
       '';
     };
+
+    tiddlywiki = {
+      enable = true;
+
+      listenOptions = {
+        port = 8080;
+      };
+    };
   };
 
   fonts = {
