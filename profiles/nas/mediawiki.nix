@@ -16,6 +16,13 @@
     };
 
     name = "Arda Xi";
+
+    virtualHost = {
+      enableSSL = true;
+      adminAddr = "";
+    };
+
+    passwordFile = "/var/lib/passwords/mediawiki";
   };
 
   services.httpd.enable = lib.mkForce false;

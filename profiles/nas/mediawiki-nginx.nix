@@ -1,23 +1,23 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 let
 
   pkg = pkgs.stdenv.mkDerivation rec {
     pname = "mediawiki-full";
     version = src.version;
-    src = cfg.package;
+    src = config.services.mediawiki.package;
 
     installPhase = ''
       mkdir -p $out
       cp -r * $out/
       rm -rf $out/share/mediawiki/skins/*
       rm -rf $out/share/mediawiki/extensions/*
-      ${concatStringsSep "\n" (mapAttrsToList (k: v: ''
+      ${lib.concatStringsSep "\n" (lib.mapAttrsToList (k: v: ''
         ln -s ${v} $out/share/mediawiki/skins/${k}
-      '') cfg.skins)}
-      ${concatStringsSep "\n" (mapAttrsToList (k: v: ''
+      '') config.services.mediawiki.skins)}
+      ${lib.concatStringsSep "\n" (lib.mapAttrsToList (k: v: ''
         ln -s ${v} $out/share/mediawiki/extensions/${k}
-      '') cfg.extensions)}
+      '') config.services.mediawiki.extensions)}
     '';
   };
 
