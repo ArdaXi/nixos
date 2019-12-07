@@ -8,7 +8,6 @@
     ./remote-build.nix
     ./synapse.nix
     ./nextcloud.nix
-    ./mediawiki.nix
   ];
 
   services.nfs.server = {
@@ -96,16 +95,6 @@
         locations = {
           "/" = {
             proxyPass = "http://127.0.0.1:4000";
-          };
-        };
-      };
-      "wiki.street.ardaxi.com" = {
-        enableACME = true;
-        forceSSL = true;
-        locations = {
-          "/" = {
-            proxyPass = "http://10.4.4.2";
-            extraConfig = proxyConf + allow;
           };
         };
       };
