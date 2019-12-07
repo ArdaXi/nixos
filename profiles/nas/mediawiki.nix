@@ -1,11 +1,13 @@
 { config, lib, pkgs, ... }:
 {
   imports = [
-    ./mediawiki-nginx.nix
+    ./mediawiki-module.nix
   ];
 
-  services.mediawiki = {
+  services.mediawiki-nginx = {
     enable = true;
+
+    hostName = "wiki.street.ardaxi.com";
 
     database = {
       type = "postgres";
@@ -17,13 +19,7 @@
 
     name = "Arda Xi";
 
-    virtualHost = {
-      enableSSL = true;
-      adminAddr = "";
-    };
-
     passwordFile = "/var/lib/passwords/mediawiki";
   };
 
-  services.httpd.enable = lib.mkForce false;
 }
