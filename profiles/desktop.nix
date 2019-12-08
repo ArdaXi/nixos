@@ -135,7 +135,7 @@ in
       '';
     };
 
-    tiddlywiki = {
+    tiddlywiki-user = {
       enable = true;
 
       listenOptions = {
