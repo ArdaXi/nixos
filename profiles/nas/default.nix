@@ -307,4 +307,10 @@
       WorkingDirectory = "/tmp";
     };
   };
+
+  services.openldap = {
+    enable = true;
+    urlList = [ "ldap://127.0.0.1:389/" ];
+    configDir = "/var/db/slapd.d";
+  };
 }
