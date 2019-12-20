@@ -24,13 +24,14 @@ rec {
 
   hplip = self.callPackage ./hplip.nix {};
 
-#  python = super.python.override {
-#    packageOverrides = python-self: python-super: {
-#      nevow = python-super.nevow.overridePythonAttrs (_: {
-#        checkPhase = "";
-#      });
-#    };
-#  };
+  python3 = super.python3.override {
+    packageOverrides = python-self: python-super: {
+      bleach = python-super.bleach.overridePythonAttrs (_: {
+        doCheck = false;
+        checkPhase = "";
+      });
+    };
+  };
 
   hydra = self.callPackage ./hydra.nix {};
 
