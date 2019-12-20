@@ -25,8 +25,10 @@ rec {
       };
     };
     desktopManager.xterm.enable = false;
+
+    displayManager.defaultSession = "none+i3";
+
     windowManager = {
-      default = "i3";
       i3 = {
         enable = true;
         package = pkgs.i3-gaps;
