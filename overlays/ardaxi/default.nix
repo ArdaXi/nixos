@@ -33,6 +33,15 @@ rec {
     };
   };
 
+  python38 = super.python38.override {
+    packageOverrides = python-self: python-super: {
+      bleach = python-super.bleach.overridePythonAttrs (_: {
+        doCheck = false;
+        checkPhase = "";
+      });
+    };
+  };
+
   hydra = self.callPackage ./hydra.nix {};
 
   inverter-exporter = self.callPackage ./inverter {};
