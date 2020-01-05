@@ -1,4 +1,3 @@
-# This file contains all packages that are only needed for my current project, and should be reconsidered on switching.
 { config, pkgs, ... }:
 
 {
@@ -8,7 +7,7 @@
     libreoffice
     signal-desktop
     zoom-us
-# steam
+    steam
 # meson cross-compilation?
 
 # rustracer
