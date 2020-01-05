@@ -157,9 +157,9 @@ in
   hardware = {
     pulseaudio = { 
       enable = true;
-#      support32Bit = true;
+      support32Bit = true;
     };
-#    opengl.driSupport32Bit = true;
+    opengl.driSupport32Bit = true;
     bluetooth.enable = true;
   };
 
