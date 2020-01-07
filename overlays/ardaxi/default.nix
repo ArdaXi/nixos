@@ -9,7 +9,7 @@ let
 in
 rec {
   sickbeard = self.callPackage ./sickbeard.nix {};
-  sickrage = self.callPackage ./sickrage.nix {};
+  #sickrage = self.callPackage ./sickrage.nix {};
   riot-desktop = self.callPackage ./riot-desktop.nix {};
 
   pcsclite = self.callPackage ./pcsclite/default.nix {};

@@ -1,7 +1,7 @@
-{stdenv, fetchFromGitHub, python2, unrar, makeWrapper }:
+{stdenv, fetchFromGitHub, python3, unrar, makeWrapper }:
 
 let
-  pythonEnv = python2.withPackages(ps: with ps; [ Babel cheetah Mako ]);
+  pythonEnv = python3.withPackages(ps: with ps; [ ]);
   path = stdenv.lib.makeBinPath [ unrar ];
 in stdenv.mkDerivation rec {
   version = "0.0.1";
@@ -21,7 +21,7 @@ in stdenv.mkDerivation rec {
     mkdir -p $out
     cp -R * $out/
     mkdir $out/bin
-    echo "${pythonEnv}/bin/python $out/SickBeard.py \$*" > $out/bin/sickrage
+    echo "${pythonEnv}/bin/python $out/SiCKRAGE.py \$*" > $out/bin/sickrage
     chmod +x $out/bin/sickrage
     wrapProgram $out/bin/sickrage --set PATH ${path}
   '';
