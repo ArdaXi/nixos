@@ -11,8 +11,8 @@ in stdenv.mkDerivation rec {
   src = fetchFromGitHub {
     owner = "sickrage";
     repo = "sickrage";
-    rev = "d8c2613583ce8b321a5adc9ff70c52e830f224a8";
-    sha256 = "0frrm8yz961l198ymmb9w7k6c7rzh3b2x8ih7la61m7rj5k3lw6b";
+    rev = "726b8dc184aea4e7cf656bbd6eb5338f68cbf72a";
+    sha256 = "1bk8h3s7p78jmkp5bvgpsizg2296h41j2wbzp1f1jvphs1kigawn";
   };
 
   buildInputs = [ pythonEnv makeWrapper ];
