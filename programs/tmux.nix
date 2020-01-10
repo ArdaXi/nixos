@@ -84,7 +84,7 @@ in
       set-hook -g after-select-pane "refresh-client -S"
       set-hook -g alert-activity "refresh-client -S"
 
-      set -g @override_copy_command '${pkgs.xsel}/bin/xsel -i --primary'
+      set -g @override_copy_command '${pkgs.xsel}/bin/xsel -i --clipboard'
 
       run-shell ${tmux-yank}/yank.tmux
     '';
