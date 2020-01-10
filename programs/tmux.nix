@@ -4,13 +4,13 @@ let
   tmux-yank = pkgs.fetchFromGitHub {
     owner = "tmux-plugins";
     repo = "tmux-yank";
-    rev = "e8a03cf41d5322330f5b65411bb2f48b2e4d1733";
-    sha256 = "1v29ribvjwr4gbx7l6gs3x2scd8sky983hg8gj5yp1k34lba4iz1";
+    rev = "648005db64d9bf3c4650eff694ecb6cf3e42b0c8";
+    sha256 = "1zg9k8yk1iw01vl8m44w4sv20lln4l0lq9dafc09lxmgxm9dllj4";
   };
 in
 {
   environment = {
-    systemPackages = [ pkgs.tmux ];
+    systemPackages = [ pkgs.tmux pkgs.xsel ];
 
     etc."tmux.conf".text = ''
       set -gw activity-action none
