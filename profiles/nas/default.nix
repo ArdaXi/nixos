@@ -10,6 +10,11 @@
     ./nextcloud.nix
   ];
 
+  security.acme = {
+    acceptTerms = true;
+    email = "acme@ardaxi.com";
+  };
+
   services.nfs.server = {
     enable = true;
     exports = ''
