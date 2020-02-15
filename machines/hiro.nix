@@ -7,7 +7,6 @@
     ../profiles/desktop-full.nix
     ../profiles/project.nix
     ../modules/wlanfixes.nix
-    ../modules/tiddlywiki.nix
   ];
 
 #  hardware.bumblebee = {

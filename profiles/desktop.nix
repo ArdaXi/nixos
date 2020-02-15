@@ -10,6 +10,7 @@ in
     ../programs/yubikey.nix
     ../programs/wireguard.nix
     ../programs/qemu.nix
+    ../modules/tiddlywiki.nix
   ];
 
   location = {
