@@ -8,6 +8,7 @@ let
   }) {});
   lua-overrides = (lua-self: lua-super: {
     luv = lua-super.luv.override ({
+      version = "1.34.1-1";
       src = self.fetchurl {
         url = https://luarocks.org/luv-1.34.1-1.src.rock;
         sha256 = "044cyp25xn35nj5qp1hx04lfkzrpa6adhqjshq2g7wvbga77p1q0";
