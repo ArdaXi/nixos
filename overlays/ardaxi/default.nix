@@ -51,14 +51,14 @@ rec {
     };
   };
 
-#  lua = super.lua.override { packageOverrides = lua-overrides; };
-#  lua5 = super.lua5.override { packageOverrides = lua-overrides; };
-#  lua5_1 = super.lua5_1.override { packageOverrides = lua-overrides; };
-#  lua5_2 = super.lua5_2.override { packageOverrides = lua-overrides; };
-#  lua5_2_compat = super.lua5_2_compat.override { packageOverrides = lua-overrides; };
-#  lua5_3 = super.lua5_3.override { packageOverrides = lua-overrides; };
-#  luajit = super.luajit.override { packageOverrides = lua-overrides; };
-#  luajit_2_0 = super.luajit_2_0.override { packageOverrides = lua-overrides; };
+  lua = super.lua.override { packageOverrides = lua-overrides; };
+  lua5 = super.lua5.override { packageOverrides = lua-overrides; };
+  lua5_1 = super.lua5_1.override { packageOverrides = lua-overrides; };
+  lua5_2 = super.lua5_2.override { packageOverrides = lua-overrides; };
+  lua5_2_compat = super.lua5_2_compat.override { packageOverrides = lua-overrides; };
+  lua5_3 = super.lua5_3.override { packageOverrides = lua-overrides; };
+  luajit = super.luajit.override { packageOverrides = lua-overrides; };
+  luajit_2_0 = super.luajit_2_0.override { packageOverrides = lua-overrides; };
   luajit_2_1 = super.luajit_2_1.override { packageOverrides = lua-overrides; };
 
   hydra = self.callPackage ./hydra.nix {};
