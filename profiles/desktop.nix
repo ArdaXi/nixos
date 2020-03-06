@@ -109,6 +109,8 @@ in
     
     physlock.enable = true;
 
+    fwupd.enable = true;
+
     printing = {
       enable = true;
       drivers = [ pkgs.hplip pkgs.epson-escpr ];
