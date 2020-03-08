@@ -34,6 +34,6 @@ in rec
         prometheus;
       inherit (allTests.postgresql) postgresql_9_6;
 
-      hydra = allTests.hydra.nixUnstable;
+#      hydra = allTests.hydra.nixUnstable;
     };
   }
