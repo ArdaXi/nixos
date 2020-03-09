@@ -62,7 +62,7 @@ rec {
 #  luajit_2_0 = super.luajit_2_0.override { packageOverrides = lua-overrides; };
 #  luajit_2_1 = super.luajit_2_1.override { packageOverrides = lua-overrides; };
 
-  hydra = self.callPackage ./hydra.nix {};
+  #hydra = self.callPackage ./hydra.nix {};
 
   inverter-exporter = self.callPackage ./inverter {};
 
