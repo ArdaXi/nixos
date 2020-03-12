@@ -51,10 +51,9 @@
     initrd = {
       availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "sd_mod" ];
 #      kernelModules = [ "fbcon" ];
-      luks.devices = [{
-        name = "cypher";
-        device = "/dev/disk/by-uuid/9c91fb6e-5dc5-4492-982e-adf996479106";
-      }];
+      luks.devices = {
+        cypher = { device = "/dev/disk/by-uuid/9c91fb6e-5dc5-4492-982e-adf996479106"; };
+      };
     };
 
     kernelModules = [
