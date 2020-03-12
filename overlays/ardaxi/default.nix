@@ -83,4 +83,6 @@ rec {
   });
 
   prusa-slicer = self.callPackage ./prusa-slicer.nix { wxGTK30 = wxGTK31; };
+
+  darcs = super.darcs.overrideScope (self: super: { Cabal = self.Cabal_2_4_1_0; });
 }
