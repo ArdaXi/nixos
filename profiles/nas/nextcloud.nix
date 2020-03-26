@@ -23,7 +23,7 @@ rec {
     ${services.nextcloud.hostName} = {
       forceSSL = true;
       enableACME = true;
-      root = pkgs.nextcloud;
+      root = pkgs.nextcloud18 or pkgs.nextcloud;
       locations = let
         allow = ''
           allow 192.168.178.0/24;
