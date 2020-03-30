@@ -25,7 +25,7 @@ in
 #    (networkmanagerapplet.override { withGnome = false; })
     (mpv.override { vaapiSupport = true; })
     alacritty taskwarrior fortune arandr lyx ledger
-    source-code-pro lighttable usbutils pciutils gnupg acpi dmenu
+    source-code-pro usbutils pciutils gnupg acpi dmenu
     xorg.xf86inputsynaptics xdotool slock gcc scrot
     glib_networking pass
     browserpass nfsUtils keybase pinentry_qt
