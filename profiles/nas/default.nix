@@ -8,6 +8,7 @@
     ./remote-build.nix
     ./synapse.nix
     ./nextcloud.nix
+    ./jitsi.nix
   ];
 
   security.acme = {
