@@ -10,7 +10,13 @@ rec {
   services.jitsi-meet = {
     enable = true;
     hostName = "meet.ardaxi.com";
-    videobridge.openFirewall = true;
+    videobridge = {
+      openFirewall = true;
+      config = {
+        "org.jitsi.videobridge.rest.private.jetty.port" = "8888";
+        "org.jitsi.videobridge.rest.private.jetty.host" = "localhost";
+      };
+    };
 
 # Later: https://github.com/jitsi/jicofo#secure-domain
 #    config = {
