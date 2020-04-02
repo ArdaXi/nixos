@@ -38,8 +38,7 @@ rec {
       '';
     };
     "${services.jitsi-meet.hostName}".extraConfig = lib.mkForce ''
-      authentication = "anonymous"
-      c2s_require_encryption = false
+      authentication = "internal_plain"
       admins = { "focus@auth.${services.jitsi-meet.hostName}" }
 
       Component "conference.${services.jitsi-meet.hostName}" "muc"
