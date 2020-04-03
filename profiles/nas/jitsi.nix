@@ -56,7 +56,7 @@ in
 
     "guest.${hostName}" = {
       enabled = true;
-      domain = "guests.${hostName}";
+      domain = "guest.${hostName}";
       extraConfig = ''
         authentication = "anonymous"
         c2s_require_encryption = false
