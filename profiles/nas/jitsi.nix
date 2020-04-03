@@ -4,7 +4,7 @@ with lib;
 
 let
   hostName = "meet.ardaxi.com";
-  auth = true;
+  auth = false;
 in
 {
   imports = let
