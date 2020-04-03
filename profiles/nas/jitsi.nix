@@ -18,36 +18,15 @@ rec {
       };
     };
 
-#    config = {
-#      hosts = {
-#        anonymousdomain = "guest.${services.jitsi-meet.hostName}";
-#      };
-#    };
-#    jicofo.config = {
-#      "org.jitsi.jicofo.auth.URL" = "XMPP:${services.jitsi-meet.hostName}";
-#    };
-  };
+    interfaceConfig = rec {
+      SHOW_JITSI_WATERMARK = false;
+      SHOW_WATERMARK_FOR_GUESTS = false;
+      PROVIDER_NAME = "Arda Xi";
+      APP_NAME = "${PROVIDER_NAME} Meet";
+      NATIVE_APP_NAME = APP_NAME;
+    };
 
-#  services.prosody.virtualHosts = {
-#    "guest.${services.jitsi-meet.hostName}" = {
-#      enabled = true;
-#      domain = "guest.${services.jitsi-meet.hostName}";
-#      extraConfig = ''
-#        authentication = "anonymous"
-#        c2s_require_encryption = false
-#      '';
-#    };
-#    "${services.jitsi-meet.hostName}".extraConfig = lib.mkForce ''
-#      authentication = "internal_plain"
-#      admins = { "focus@auth.${services.jitsi-meet.hostName}" }
-#
-#      Component "conference.${services.jitsi-meet.hostName}" "muc"
-#        storage = "memory"
-#
-#      Component "jitsi-videobridge.${services.jitsi-meet.hostName}"
-#        component_secret = os.getenv("VIDEOBRIDGE_COMPONENT_SECRET")
-#    '';
-#  };
+  };
 
   services.nginx.virtualHosts.${services.jitsi-meet.hostName} = {
     forceSSL = true;
