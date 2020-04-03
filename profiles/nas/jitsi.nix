@@ -1,6 +1,12 @@
 { config, pkgs, lib, ... }:
 
-rec {
+with lib;
+
+let
+  hostName = "meet.ardaxi.com";
+  auth = true;
+in
+{
   imports = let
     nur-no-pkgs = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {};
   in [
@@ -18,6 +24,15 @@ rec {
       };
     };
 
+    config = mkIf auth {
+      hosts.anonymous = "guest.${hostName}";
+      enableUserRolesBasedOnToken = true;
+    };
+
+    jicofo.config = mkIf auth {
+      "org.jitsi.jicofo.auth.URL" = "XMPP:${hostName}";
+    };
+
     interfaceConfig = rec {
       SHOW_JITSI_WATERMARK = false;
       SHOW_WATERMARK_FOR_GUESTS = false;
@@ -28,7 +43,28 @@ rec {
 
   };
 
-  services.nginx.virtualHosts.${services.jitsi-meet.hostName} = {
+  services.prosody.virtualHosts = mkIf auth {
+    "${hostName}".extraConfig = ''
+      authentication = "internal_plain"
+      c2s_require_encryption = false
+      admins = { "focus@auth.${hostName}" }
+      Component "conference.${hostName}" "muc"
+        storage = "memory"
+      Component "jitsi-videobridge.${hostName}"
+        component_secret = os.getenv("VIDEOBRIDGE_COMPONENT_SECRET")
+    '';
+
+    "guest.${hostName}" = {
+      enabled = true;
+      domain = "guests.${hostName}";
+      extraConfig = ''
+        authentication = "anonymous"
+        c2s_require_encryption = false
+      '';
+    };
+  };
+
+  services.nginx.virtualHosts.${hostName} = {
     forceSSL = true;
     enableACME = true;
   };
