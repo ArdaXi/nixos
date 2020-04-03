@@ -25,7 +25,7 @@ in
     };
 
     config = mkIf auth {
-      hosts.anonymous = "guest.${hostName}";
+      hosts.anonymousdomain = "guest.${hostName}";
       enableUserRolesBasedOnToken = true;
     };
 
