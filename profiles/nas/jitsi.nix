@@ -67,5 +67,7 @@ in
   services.nginx.virtualHosts.${hostName} = {
     forceSSL = true;
     enableACME = true;
+
+    serverAliases = [ "meet.arien.dev" "meet.xn--arin-npa.eu" ];
   };
 }
