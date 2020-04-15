@@ -64,10 +64,30 @@ in
     };
   };
 
-  services.nginx.virtualHosts.${hostName} = {
+  services.nginx.virtualHosts.${hostName} = let 
+    aliases = [ "meet.arien.dev" "meet.xn--arin-npa.eu" ];
+    regexPart = lib.replaceStrings ["."] ["\\."] (lib.concatStringsSep "|" aliases);
+    aliasRegex = "^https://(${regexPart})$";
+  in {
     forceSSL = true;
     enableACME = true;
 
-    serverAliases = [ "meet.arien.dev" "meet.xn--arin-npa.eu" ];
+    serverAliases = aliases;
+
+    locations."/http-bind".extraConfig = ''
+      if (''$http_origin ~ '${aliasRegex}') {
+        add_header 'Access-Control-Allow-Origin' "''$http_origin" always;
+        add_header 'Access-Control-Allow-Credentials' 'true' always;
+        add_header 'Access-Control-Allow-Methods' 'GET, POST, PUT, DELETE, OPTIONS' always;
+        add_header 'Access-Control-Allow-Headers' 'Accept,Authorization,Cache-Control,Content-Type,DNT,If-Modified-Since,Keep-Alive,Origin,User-Agent,X-Requested-With' always;
+      }
+
+      if (''$request_method = 'OPTIONS') {
+        add_header 'Access-Control-Max-Age' 1728000;
+        add_header 'Content-Type' 'text/plain charset=UTF-8';
+        add_header 'Content-Length' 0;
+        return 204;
+      }
+    '';
   };
 }
