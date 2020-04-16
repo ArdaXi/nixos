@@ -27,10 +27,11 @@ in
     config = {
       bosh = "/http-bind";
       channelLastN = 8;
-    } // mkIf auth {
-      hosts.anonymousdomain = "guest.${hostName}";
-      enableUserRolesBasedOnToken = true;
     };
+#mkIf auth {
+#      hosts.anonymousdomain = "guest.${hostName}";
+#      enableUserRolesBasedOnToken = true;
+#    };
 
     jicofo.config = mkIf auth {
       "org.jitsi.jicofo.auth.URL" = "XMPP:${hostName}";
