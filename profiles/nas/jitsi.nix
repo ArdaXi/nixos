@@ -24,7 +24,10 @@ in
       };
     };
 
-    config = mkIf auth {
+    config = {
+      bosh = "/http-bind";
+      channelLastN = 8;
+    } // mkIf auth {
       hosts.anonymousdomain = "guest.${hostName}";
       enableUserRolesBasedOnToken = true;
     };
