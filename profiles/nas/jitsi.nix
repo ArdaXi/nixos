@@ -7,11 +7,12 @@ let
   auth = false;
 in
 {
-  imports = let
-    nur-no-pkgs = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {};
-  in [
-    nur-no-pkgs.repos.otevrenamesta.modules.jitsi-meet
-  ];
+#  imports = let
+#    nur-no-pkgs = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {};
+#  in [
+#    nur-no-pkgs.repos.otevrenamesta.modules.jitsi-meet
+#  ];
+  imports = [ ../../modules/jitsi-meet.nix ];
 
   services.jitsi-meet = {
     enable = true;

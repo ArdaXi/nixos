@@ -85,4 +85,8 @@ rec {
   prusa-slicer = self.callPackage ./prusa-slicer.nix { wxGTK30 = wxGTK31; };
 
   darcs = super.darcs.overrideScope (self: super: { Cabal = self.Cabal_2_2_0_1; });
+
+  jicofo = super.jicofo or self.callPackage ./jitsi/jicofo.nix {};
+  jitsi-meet = super.jitsi-meet or self.callPackage ./jitsi/jitsi.nix {};
+  jitsi-videobridge = super.jitsi-videobridge or self.callPackage ./jitsi/jvb.nix {};
 }
