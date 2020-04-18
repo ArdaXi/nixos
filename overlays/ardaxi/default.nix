@@ -89,4 +89,10 @@ rec {
   jicofo = super.jicofo or self.callPackage ./jitsi/jicofo.nix {};
   jitsi-meet = super.jitsi-meet or self.callPackage ./jitsi/jitsi.nix {};
   jitsi-videobridge = super.jitsi-videobridge or self.callPackage ./jitsi/jvb.nix {};
+
+  libreoffice-fresh = super.libreoffice-fresh.override {
+    libreoffice = super.libreoffice-fresh.libreoffice.override {
+      poppler = self.callPackage ./poppler.nix {};
+    };
+  };
 }
