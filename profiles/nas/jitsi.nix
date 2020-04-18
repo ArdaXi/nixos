@@ -74,5 +74,7 @@ in
     enableACME = true;
 
     serverAliases = [ "meet.arien.dev" "meet.xn--arin-npa.eu" ];
+
+    locations."~ ^/([^/?&:'\"]+)$".extraConfig = "try_files $uri /";
   };
 }
