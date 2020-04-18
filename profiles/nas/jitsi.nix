@@ -75,6 +75,6 @@ in
 
     serverAliases = [ "meet.arien.dev" "meet.xn--arin-npa.eu" ];
 
-    locations."~ ^/([^/?&:'\"]+)$".extraConfig = "try_files $uri /";
+    locations."~ ^/([^/?&:'\"]+)$".extraConfig = "try_files $uri /;";
   };
 }
