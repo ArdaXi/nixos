@@ -4,9 +4,8 @@
   imports = [ ./desktop.nix ];
 
   environment.systemPackages = with pkgs; [
-    libreoffice
+    libreoffice-fresh
     signal-desktop
-    zoom-us
     steam
 # meson cross-compilation?
 
