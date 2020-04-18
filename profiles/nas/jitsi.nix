@@ -74,12 +74,6 @@ in
     enableACME = true;
 
     serverAliases = [ "meet.arien.dev" "meet.xn--arin-npa.eu" ];
-
-    locations."~ ^/([a-zA-Z0-9=\\?\\-]+)$" = {
-      extraConfig = ''
-        rewrite ^/(.*)$ / break;
-      '';
-    };
   };
 
 }
