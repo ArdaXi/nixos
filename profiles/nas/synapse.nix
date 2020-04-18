@@ -25,7 +25,6 @@
     enable = true;
     public_baseurl = "https://matrix.ardaxi.com/";
     server_name = "ardaxi.com";
-    web_client = true;
     tls_certificate_path = "/var/lib/acme/matrix.ardaxi.com/fullchain.pem";
     tls_private_key_path = "/var/lib/acme/matrix.ardaxi.com/key.pem";
 
