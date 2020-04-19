@@ -346,7 +346,7 @@ in
             ssi on;
           '';
         };
-        locations."/http-bind" = {
+        locations."=/http-bind" = {
           proxyPass = "http://localhost:5280/http-bind";
           extraConfig = ''
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;

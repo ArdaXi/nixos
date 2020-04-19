@@ -75,14 +75,6 @@ in
 
     serverAliases = [ "meet.arien.dev" "meet.xn--arin-npa.eu" ];
 
-    locations."^~/http-bind" = {
-      proxyPass = "http://localhost:5280/http-bind";
-      extraConfig = ''
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header Host $host;
-      '';
-    };
-
     locations."~ ^/(.*)$".extraConfig = "rewrite ^/(.*)$ / break;";
   };
 
