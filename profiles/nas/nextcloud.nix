@@ -17,13 +17,15 @@ rec {
     nginx.enable = false;
     https = true;
     maxUploadSize = "10G";
+
+    package = pkgs.nextcloud18;
   };
 
   services.nginx.virtualHosts = {
     ${services.nextcloud.hostName} = {
       forceSSL = true;
       enableACME = true;
-      root = pkgs.nextcloud18 or pkgs.nextcloud;
+      root = config.services.nextcloud.package;
       locations = let
         allow = ''
           allow 192.168.178.0/24;
