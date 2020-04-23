@@ -10,6 +10,7 @@ in
     ../programs/yubikey.nix
     ../programs/wireguard.nix
     ../programs/qemu.nix
+    ../programs/chromium.nix
     ../modules/tiddlywiki.nix
   ];
 
