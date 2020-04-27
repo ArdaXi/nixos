@@ -50,6 +50,9 @@ in
       allowedTCPPorts = [ 10999 8000 80 ];
       allowedUDPPorts = [ 10999 67 ];
       trustedInterfaces = [ "wlanzap0" ];
+      extraCommands = ''
+        iptables -A nixos-fw -s 192.168.178.0/24 -j nixos-fw-accept -i enp0s20f0u4u1
+      '';
     };
 
     extraHosts = ''
