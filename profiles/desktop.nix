@@ -43,6 +43,7 @@ in
     gitAndTools.pass-git-helper
     nethack
     evince
+    nodejs # for coc.nvim
   ];
 
   networking = {
