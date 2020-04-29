@@ -80,6 +80,8 @@ in
   boot.kernel.sysctl = { "net.ipv4.ip_forward" = 1; };
 
   services = {
+    blueman.enable = true;
+
     dnsmasq = {
       enable = true;
       servers = [ "8.8.4.4" "8.8.8.8" "2001:4860:4860::8844" "2001:4860:4860::8844" ]; # Google
@@ -171,8 +173,10 @@ in
 
   hardware = {
     pulseaudio = { 
+      package = pkgs.pulseaudioFull;
       enable = true;
       support32Bit = true;
+      extraModules = [ pkgs.pulseaudio-modules-bt ];
     };
     opengl.driSupport32Bit = true;
     bluetooth.enable = true;
