@@ -44,6 +44,7 @@ in
     nethack
     evince
     nodejs # for coc.nvim
+    terraform-lsp # also for coc.nvim
     pavucontrol
   ];
 
