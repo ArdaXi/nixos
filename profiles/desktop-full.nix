@@ -7,10 +7,10 @@
     libreoffice-fresh
     signal-desktop
     steam
+    rustracer
+
 # meson cross-compilation?
 
-# rustracer
-# Build failure
 #
 # wine winetricks
 # Uncommented due to qt failure
