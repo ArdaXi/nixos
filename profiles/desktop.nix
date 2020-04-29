@@ -44,6 +44,7 @@ in
     nethack
     evince
     nodejs # for coc.nvim
+    pavucontrol
   ];
 
   networking = {
@@ -177,6 +178,10 @@ in
       enable = true;
       support32Bit = true;
       extraModules = [ pkgs.pulseaudio-modules-bt ];
+      extraConfig = ''
+        load-module module-switch-on-connect
+        load-module module-bluetooth-policy auto_switch=2
+      '';
     };
     opengl.driSupport32Bit = true;
     bluetooth.enable = true;
