@@ -82,6 +82,8 @@ in
   boot.kernel.sysctl = { "net.ipv4.ip_forward" = 1; };
 
   services = {
+    lorri.enable = true;
+
     blueman.enable = true;
 
     dnsmasq = {
