@@ -13,7 +13,17 @@ in
     ../programs/chromium.nix
     ../modules/tiddlywiki.nix
   ];
+} // lib.mkMerge [
+{
+  services.tiddlywiki-user = {
+    enable = true;
 
+    listenOptions = {
+      port = 8080;
+    };
+  };
+}
+{
   location = {
     latitude = 52.37;
     longitude = 4.9;
@@ -226,3 +236,4 @@ in
     '';
   };
 }
+]
