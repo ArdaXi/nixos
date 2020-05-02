@@ -42,8 +42,6 @@ in
       glyph_offset = zero;
     };
 
-    render_timer = false;
-
     colors = {
       primary = {
         background = "0x002b36";

@@ -1,5 +1,10 @@
 { config, pkgs, ... }:
 
+let
+  nvidia_x11 = config.boot.kernelPackages.nvidia_x11;
+  nvidia_gl = nvidia_x11.out;
+  nvidia_gl_32 = nvidia_x11.lib32;
+in
 {
   imports = [
     <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
@@ -12,6 +17,12 @@
   hardware.bumblebee = {
     driver = "nvidia";
     enable = true;
+  };
+
+  hardware.opengl = {
+    enable = true;
+    extraPackages = [ nvidia_gl ];
+    extraPackages32 = [ nvidia_gl_32 ];
   };
 
   services.xserver.dpi = 192;
@@ -43,7 +54,7 @@
       Gdk/WindowScalingFactor 2
       Gdk/UnscaledDPI ${builtins.toString (96 * 1024)}
     '';
-  }) pkgs.cryptsetup ];
+  }) pkgs.cryptsetup nvidia_x11 ];
 
 # /DPI stuff
 
@@ -70,6 +81,9 @@
     supportedFilesystems = [ "zfs" ];
 
     tmpOnTmpfs = true;
+
+    extraModulePackages = [ nvidia_x11 ];
+    blacklistedKernelModules = [ "nouveau" ];
   };
 
   fileSystems."/" = {
