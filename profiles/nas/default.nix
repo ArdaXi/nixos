@@ -16,6 +16,8 @@
     email = "acme@ardaxi.com";
   };
 
+  services.boinc.enable = true;
+
   services.nfs.server = {
     enable = true;
     exports = ''
