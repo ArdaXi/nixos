@@ -16,7 +16,10 @@
     email = "acme@ardaxi.com";
   };
 
-  services.boinc.enable = true;
+  services.boinc = {
+    enable = true;
+    allowRemoteGuiRpc = true;
+  };
 
   services.nfs.server = {
     enable = true;
