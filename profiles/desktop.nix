@@ -13,7 +13,7 @@ in
     ../programs/chromium.nix
     ../modules/tiddlywiki.nix
   ];
-} // lib.mkMerge [
+  config = lib.mkMerge [
 {
   services.tiddlywiki-user = {
     enable = true;
@@ -21,6 +21,12 @@ in
     listenOptions = {
       port = 8080;
     };
+  };
+}
+{
+  services.boinc = {
+    enable = true;
+    allowRemoteGuiRpc = true;
   };
 }
 {
@@ -236,4 +242,5 @@ in
     '';
   };
 }
-]
+];
+}
