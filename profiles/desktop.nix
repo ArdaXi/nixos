@@ -83,14 +83,8 @@ in
 
     networkmanager = {
       enable = true;
-      insertNameservers = [ "127.0.0.1" ];
-#      dns = "dnsmasq";
     };
   };
-
-  systemd.services.hostapd.requiredBy = lib.mkForce [];
-
-  boot.kernel.sysctl = { "net.ipv4.ip_forward" = 1; };
 
   services = {
     lorri.enable = true;
