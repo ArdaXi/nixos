@@ -19,7 +19,6 @@ in
     ../profiles/default.nix
     ../profiles/desktop-full.nix
     ../profiles/project.nix
-    ../modules/wlanfixes.nix
   ];
 
   services.xserver.videoDrivers = [ "modesetting" "nvidia" ];
@@ -133,13 +132,6 @@ in
   networking = {
     hostId = "85703e9c";
     hostName = "hiro";
-
-    networkmanager.unmanaged = [ "interface-name:wlp4s0" "interface-name:wlanzap0" ];
-  };
-
-  ardaxi.wlanInterfaces = {
-    "wlanclient0" = { device = "wlp4s0"; mac = "00:24:d6:f9:8a:ad"; };
-    "wlanzap0" = { device = "wlp4s0"; mac = "f2:a5:33:1b:23:c5"; type = "__ap"; };
   };
 
   system.stateVersion = "18.03";
