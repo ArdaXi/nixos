@@ -19,6 +19,7 @@ let
 in
 rec {
   sickbeard = self.callPackage ./sickbeard.nix {};
+  sabnzbd = self.callPackage ./sabnzbd.nix {};
   #sickrage = self.callPackage ./sickrage.nix {};
   riot-desktop = self.callPackage ./riot-desktop.nix {};
 
