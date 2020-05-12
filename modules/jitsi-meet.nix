@@ -228,6 +228,7 @@ in
     };
 
     services.prosody = mkIf cfg.prosody.enable {
+      xmppComplianceSuite = mkDefault false;
       enable = mkDefault true;
       modules = {
         admin_adhoc = mkDefault false;
