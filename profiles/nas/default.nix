@@ -153,6 +153,9 @@
     maximumJavaHeapSize = 4096;
   };
 
+  nixpkgs.config.permittedInsecurePackages = [
+    "p7zip-16.02" # needed for sabnzbd
+  ];
   services.sabnzbd.enable = true;
   services.sickrage.enable = true;
   services.transmission.enable = true;
