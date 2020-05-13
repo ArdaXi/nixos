@@ -110,6 +110,11 @@ in
     fsType = "zfs";
   };
 
+  fileSystems."${config.services.ipfs.dataDir}" = lib.mkIf config.services.ipfs.enable {
+    device = "tank/ipfs";
+    fsType = "zfs";
+  };
+
   fileSystems."/boot" = {
     device = "/dev/disk/by-partuuid/ee0faca1-b3ef-4c44-8f27-3ee347032695";
     fsType = "vfat";

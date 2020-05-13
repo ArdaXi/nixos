@@ -15,6 +15,12 @@ in
   ];
   config = lib.mkMerge [
 {
+  services.ipfs = {
+    enable = true;
+    autoMount = true;
+  };
+}
+{
   services.tiddlywiki-user = {
     enable = true;
 
