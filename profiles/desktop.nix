@@ -21,15 +21,6 @@ in
   };
 }
 {
-  services.tiddlywiki-user = {
-    enable = true;
-
-    listenOptions = {
-      port = 8081;
-    };
-  };
-}
-{
   services.boinc = {
     enable = true;
     allowRemoteGuiRpc = true;
@@ -134,7 +125,7 @@ in
       enable = true;
 
       listenOptions = {
-        port = 8080;
+        port = 8081;
       };
     };
 
