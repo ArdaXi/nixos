@@ -14,6 +14,9 @@ in
     ../modules/tiddlywiki.nix
   ];
   config = lib.mkMerge [
+{
+  services.openssh.openFirewall = false;
+}
 { # ipfs
   services.ipfs = {
     enable = true;
