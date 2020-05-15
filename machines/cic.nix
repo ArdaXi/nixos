@@ -47,6 +47,11 @@
     fsType = "zfs";
   };
 
+  fileSystems."${config.services.ipfs.dataDir}" = lib.mkIf config.services.ipfs.enable {
+    device = "zones/ipfs";
+    fsType = "zfs";
+  };
+
   swapDevices =
     [ { device = "/dev/disk/by-partuuid/d6c13608-1d4f-4b6b-a64b-e709ba7208d8"; }
     ];

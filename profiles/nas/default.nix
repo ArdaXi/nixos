@@ -9,6 +9,7 @@
     ./synapse.nix
     ./nextcloud.nix
     ./jitsi.nix
+    ./ipfs.nix
   ];
 
   security.acme = {

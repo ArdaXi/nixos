@@ -14,11 +14,13 @@ in
     ../modules/tiddlywiki.nix
   ];
   config = lib.mkMerge [
-{
+{ # ipfs
   services.ipfs = {
     enable = true;
     autoMount = true;
   };
+
+  networking.firewall.allowedTCPPorts = [ 4001 ];
 }
 {
   services.boinc = {
