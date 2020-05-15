@@ -1,18 +1,5 @@
 { config, lib, pkgs, ... }:
 
-let
-  nvidia_x11 = config.boot.kernelPackages.nvidia_x11;
-  nvidia_gl = nvidia_x11.out;
-  nvidia_gl_32 = nvidia_x11.lib32;
-
-  nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
-    export __NV_PRIME_RENDER_OFFLOAD=1
-    export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
-    export __GLX_VENDOR_LIBRARY_NAME=nvidia
-    export __VK_LAYER_NV_optimus=NVIDIA_only
-    exec -a "$0" "$@"
-  '';
-in
 {
   imports = [
     <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
@@ -21,17 +8,8 @@ in
     ../profiles/project.nix
   ];
 
-  services.xserver.videoDrivers = [ "modesetting" "nvidia" ];
-  hardware.nvidia.prime = {
-    offload.enable = true;
-    intelBusId = "PCI:0:2:0";
-    nvidiaBusId = "PCI:2:0:0";
-  };
-
   hardware.opengl = {
     enable = true;
-    extraPackages = [ nvidia_gl ];
-    extraPackages32 = [ nvidia_gl_32 ];
   };
 
   services.xserver.dpi = 192;
@@ -63,7 +41,7 @@ in
       Gdk/WindowScalingFactor 2
       Gdk/UnscaledDPI ${builtins.toString (96 * 1024)}
     '';
-  }) pkgs.cryptsetup nvidia_x11 nvidia-offload ];
+  }) pkgs.cryptsetup ];
 
 # /DPI stuff
 
@@ -90,9 +68,6 @@ in
     supportedFilesystems = [ "zfs" ];
 
     tmpOnTmpfs = true;
-
-    extraModulePackages = [ nvidia_x11 ];
-    blacklistedKernelModules = [ "nouveau" ];
   };
 
   fileSystems."/" = {
