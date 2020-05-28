@@ -42,7 +42,7 @@ in
   environment.systemPackages = with mypkgs; [
     networkmanagerapplet
 #    (networkmanagerapplet.override { withGnome = false; })
-    (mpv.override { vaapiSupport = true; })
+    mpv
     alacritty taskwarrior fortune arandr lyx ledger
     source-code-pro usbutils pciutils gnupg acpi dmenu
     xorg.xf86inputsynaptics xdotool slock gcc scrot
