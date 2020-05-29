@@ -28,12 +28,42 @@ in
 
   networking.firewall.allowedTCPPorts = [ 4001 ];
 }
-{
+{ # location stuff
   location = {
     latitude = 52.37;
     longitude = 4.9;
   };
 
+  services.geoclue2.enable = true;
+}
+{ # physlock
+  security.wrappers.physlock.source = "${pkgs.physlock}/bin/physlock";
+  services.physlock.enable = true;
+}
+{ # keybase
+  services = {
+    keybase.enable = true;
+    kbfs.enable = true;
+  };
+}
+{ # bluetooth
+  services.blueman.enable = true;
+  hardware = {
+    bluetooth.enable = true;
+    pulseaudio = {
+      extraModules = [ pkgs.pulseaudio-modules-bt ];
+      extraConfig = ''
+        load-module module-switch-on-connect
+        load-module module-bluetooth-policy auto_switch=2
+      '';
+    };
+  };
+
+  nixpkgs.config.packageOverides = pkgs : {
+    bluez = pkgs.bluez5;
+  };
+}
+{
   environment.systemPackages = with mypkgs; [
     networkmanagerapplet
 #    (networkmanagerapplet.override { withGnome = false; })
@@ -86,12 +116,8 @@ in
   services = {
     lorri.enable = true;
 
-    blueman.enable = true;
-
     redshift.enable = true;
     
-    physlock.enable = true;
-
     fwupd.enable = true;
 
     printing = {
@@ -104,11 +130,6 @@ in
       enable = true;
       nssmdns = true;
     };
-
-    geoclue2.enable = true;
-
-    keybase.enable = true;
-    kbfs.enable = true;
 
     chrony = {
       enable = true;
@@ -152,23 +173,9 @@ in
       package = pkgs.pulseaudioFull;
       enable = true;
       support32Bit = true;
-      extraModules = [ pkgs.pulseaudio-modules-bt ];
-      extraConfig = ''
-        load-module module-switch-on-connect
-        load-module module-bluetooth-policy auto_switch=2
-      '';
     };
     opengl.driSupport32Bit = true;
-    bluetooth.enable = true;
   };
-
-  nixpkgs.config = {
-    packageOverrides = pkgs: {
-      bluez = pkgs.bluez5;
-    };
-  };
-
-  security.wrappers.physlock.source = "${pkgs.physlock}/bin/physlock";
 
   programs = {
     adb.enable = true;
