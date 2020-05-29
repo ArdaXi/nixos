@@ -15,6 +15,9 @@ in
   ];
   config = lib.mkMerge [
 {
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+}
+{
   services.openssh.openFirewall = false;
 }
 { # ipfs
@@ -26,18 +29,10 @@ in
   networking.firewall.allowedTCPPorts = [ 4001 ];
 }
 {
-  services.boinc = {
-    enable = true;
-    allowRemoteGuiRpc = true;
-  };
-}
-{
   location = {
     latitude = 52.37;
     longitude = 4.9;
   };
-
-#  boot.kernelPackages = pkgs.linuxPackages_5_1;
 
   environment.systemPackages = with mypkgs; [
     networkmanagerapplet
