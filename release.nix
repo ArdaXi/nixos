@@ -30,7 +30,7 @@ in rec
       src = ./.;
     };
     tests = {
-      inherit (allTests) firefox grafana i3wm matrix-synapse nextcloud
+      inherit (allTests) firefox grafana i3wm matrix-synapse
         prometheus;
       inherit (allTests.postgresql) postgresql_9_6;
 
