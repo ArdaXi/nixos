@@ -7,7 +7,6 @@
     libreoffice-fresh
     signal-desktop
     steam
-    rustracer
 
 # meson cross-compilation?
 
