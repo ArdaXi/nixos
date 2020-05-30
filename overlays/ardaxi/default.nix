@@ -37,7 +37,8 @@ rec {
 
   python3 = super.python3.override {
     packageOverrides = python-self: python-super: {
-      bleach = python-super.bleach.overridePythonAttrs (_: {
+      bleach = python-super.bleach.overridePythonAttrs (old: {
+        propagatedBuildInputs = old.propagatedBuildInputs ++ [ python-self.packaging ];
         doCheck = false;
         checkPhase = "";
       });
@@ -46,7 +47,8 @@ rec {
 
   python38 = super.python38.override {
     packageOverrides = python-self: python-super: {
-      bleach = python-super.bleach.overridePythonAttrs (_: {
+      bleach = python-super.bleach.overridePythonAttrs (old: {
+        propagatedBuildInputs = old.propagatedBuildInputs ++ [ python-self.packaging ];
         doCheck = false;
         checkPhase = "";
       });
