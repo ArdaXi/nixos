@@ -68,6 +68,8 @@
     supportedFilesystems = [ "zfs" ];
 
     tmpOnTmpfs = true;
+
+    blacklistedKernelModules = [ "nouveau" ];
   };
 
   fileSystems."/" = {
