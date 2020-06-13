@@ -6,9 +6,6 @@ let
 in
 {
   environment.systemPackages = with pkgs; [
-    google-cloud-sdk
-    kubernetes-helm
     kubectl
-    postman
   ];
 }
