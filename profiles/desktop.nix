@@ -47,6 +47,17 @@ in
     kbfs.enable = true;
   };
 }
+{ # Multimedia
+  hardware.pulseaudio = {
+    package = pkgs.pulseaudioFull;
+    enable = true;
+    support32Bit = true;
+  };
+
+  environment.systemPackages = with pkgs; [
+    mpv alsaUtils pavucontrol
+  ];
+}
 { # bluetooth
   services.blueman.enable = true;
   hardware = {
@@ -70,6 +81,8 @@ in
   ];
 }
 { # Software development
+  services.lorri.enable = true;
+
   environment.systemPackages = with pkgs; [
     direnv gitAndTools.pass-git-helper gist
     rustup gcc exercism
@@ -96,13 +109,15 @@ in
   ];
 }
 { # Encryption (GnuPG etc)
+  programs.gnupg.agent = {
+    enable = true;
+    enableBrowserSocket = true;
+    enableExtraSocket = true;
+    enableSSHSupport = true;
+  };
+
   environment.systemPackages = with pkgs; [
     gnupg pass browserpass pinentry_qt tomb
-  ];
-}
-{ # Multimedia
-  environment.systemPackages = with pkgs; [
-    mpv alsaUtils pavucontrol
   ];
 }
 { # Email
@@ -114,16 +129,21 @@ in
   environment.systemPackages = with pkgs; [
     taskwarrior fortune ledger usbutils pciutils acpi slock scrot nfsUtils xdotool
     xorg.xf86inputsynaptics
+    nethack
+  ];
+}
+{ # Misc graphical
+  services.redshift.enable = true;
+  environment.systemPackages = with pkgs; [
+    alacritty arandr dmenu fahclient
+  ];
+}
+{ # Extra
+  environment.systemPackages = with pkgs; [
+    source-code-pro
   ];
 }
 {
-  environment.systemPackages = with mypkgs; [
-    alacritty arandr
-    source-code-pro dmenu
-    nethack
-    fahclient
-  ];
-
   networking = {
     firewall = {
       allowedTCPPorts = [ 10999 8000 80 ];
@@ -146,10 +166,6 @@ in
   };
 
   services = {
-    lorri.enable = true;
-
-    redshift.enable = true;
-    
     fwupd.enable = true;
 
     printing = {
@@ -200,25 +216,9 @@ in
     ];
   };
 
-  hardware = {
-    pulseaudio = { 
-      package = pkgs.pulseaudioFull;
-      enable = true;
-      support32Bit = true;
-    };
-    opengl.driSupport32Bit = true;
-  };
+  hardware.opengl.driSupport32Bit = true;
 
-  programs = {
-    adb.enable = true;
-
-    gnupg.agent = {
-      enable = true;
-      enableBrowserSocket = true;
-      enableExtraSocket = true;
-      enableSSHSupport = true;
-    };
-  };
+  programs.adb.enable = true;
 
   nix = {
     buildMachines = [
