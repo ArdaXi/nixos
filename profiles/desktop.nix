@@ -41,6 +41,7 @@ in
   services.physlock.enable = true;
 }
 { # keybase
+  environment.systemPackages = with pkgs; [ keybase keybase-gui ];
   services = {
     keybase.enable = true;
     kbfs.enable = true;
@@ -63,32 +64,63 @@ in
     bluez = pkgs.bluez5;
   };
 }
+{ # 3D printing
+  environment.systemPackages = with pkgs; [
+    slic3r-prusa3d solvespace prusa-slicer
+  ];
+}
+{ # Software development
+  environment.systemPackages = with pkgs; [
+    direnv gitAndTools.pass-git-helper gist
+    rustup gcc exercism
+    nodejs terraform-lsp # coc.nvim
+  ];
+}
+{ # Documents (LaTeX etc)
+  environment.systemPackages = with pkgs; [
+    evince lyx
+    (texlive.combine {
+      inherit (texlive) scheme-basic babel-dutch hyphen-dutch invoice fp
+        collection-latexrecommended xetex relsize collection-fontsrecommended draftwatermark
+        everypage qrcode geometry;
+        # collectionhtmlxml xetex-def
+    })
+  ];
+}
+{ # Networking
+  environment.systemPackages = with pkgs; [
+    google-chrome firefox-bin
+    networkmanagerapplet
+    glib_networking # TODO: Still needed?
+    whois mtr
+  ];
+}
+{ # Encryption (GnuPG etc)
+  environment.systemPackages = with pkgs; [
+    gnupg pass browserpass pinentry_qt tomb
+  ];
+}
+{ # Multimedia
+  environment.systemPackages = with pkgs; [
+    mpv alsaUtils pavucontrol
+  ];
+}
+{ # Email
+  environment.systemPackages = with pkgs; [
+    isync notmuch msmtp astroid afew libnotify
+  ];
+}
+{ # Misc cli utils
+  environment.systemPackages = with pkgs; [
+    taskwarrior fortune ledger usbutils pciutils acpi slock scrot nfsUtils xdotool
+    xorg.xf86inputsynaptics
+  ];
+}
 {
   environment.systemPackages = with mypkgs; [
-    networkmanagerapplet
-#    (networkmanagerapplet.override { withGnome = false; })
-    mpv
-    alacritty taskwarrior fortune arandr lyx ledger
-    source-code-pro usbutils pciutils gnupg acpi dmenu
-    xorg.xf86inputsynaptics xdotool slock gcc scrot
-    glib_networking pass
-    browserpass nfsUtils keybase pinentry_qt
-#python3Packages.neovim
-    alsaUtils keybase-gui firefox-bin
-    isync notmuch msmtp astroid afew libnotify
-    google-chrome gist rustup tomb exercism
-    direnv gist whois mtr
-    (texlive.combine {
-      inherit (texlive) scheme-basic babel-dutch hyphen-dutch invoice fp collection-latexrecommended xetex relsize collection-fontsrecommended draftwatermark everypage qrcode geometry;
-# collectionhtmlxml xetex-def
-    })
-    slic3r-prusa3d solvespace prusa-slicer
-    gitAndTools.pass-git-helper
+    alacritty arandr
+    source-code-pro dmenu
     nethack
-    evince
-    nodejs # for coc.nvim
-    terraform-lsp # also for coc.nvim
-    pavucontrol
     fahclient
   ];
 
