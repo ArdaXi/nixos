@@ -179,6 +179,9 @@
   };
 }
 { # Hardware
+  environment.systemPackages = with pkgs; [
+    gnome-firmware-updater
+  ];
   services = {
     fwupd.enable = true;
 

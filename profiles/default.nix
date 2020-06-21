@@ -89,6 +89,10 @@
     tarsnap
     bat
     htop
+    nox
+    dnsutils
+    htop
+    ripgrep
   ];
 
   environment.extraInit = "export XDG_CONFIG_DIRS=/etc/xdg:$XDG_CONFIG_DIRS";
