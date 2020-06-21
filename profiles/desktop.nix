@@ -97,14 +97,6 @@
     })
   ];
 }
-{ # Networking
-  environment.systemPackages = with pkgs; [
-    google-chrome firefox-bin
-    networkmanagerapplet
-    glib_networking # TODO: Still needed?
-    whois mtr
-  ];
-}
 { # Encryption (GnuPG etc)
   programs.gnupg.agent = {
     enable = true;
@@ -140,28 +132,28 @@
     source-code-pro
   ];
 }
-{
+{ # Networking
   networking = {
     firewall = {
-      allowedTCPPorts = [ 10999 8000 80 ];
-      allowedUDPPorts = [ 10999 67 ];
+      allowedTCPPorts = [ 8000 ];
       extraCommands = ''
         iptables -A nixos-fw -s 192.168.178.0/24 -j nixos-fw-accept -i enp0s20f0u4u1
-      '';
+      ''; # Open requests from local (trusted) network
     };
-
-    extraHosts = ''
-      192.168.178.2  tahoe.street.ardaxi.com
-      192.168.178.2  sickrage.local.ardaxi.com
-      192.168.178.2  sabnzbd.local.ardaxi.com
-      192.168.178.2  local.ardaxi.com
-    '';
 
     networkmanager = {
       enable = true;
     };
   };
 
+  environment.systemPackages = with pkgs; [
+    google-chrome firefox-bin
+    networkmanagerapplet
+    glib_networking # TODO: Still needed?
+    whois mtr
+  ];
+}
+{
   services = {
     fwupd.enable = true;
 
