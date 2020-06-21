@@ -1,8 +1,5 @@
 { config, options, pkgs, lib, ... }:
 
-let
-  mypkgs = pkgs // import ../pkgs;
-in
 {
   imports = [
     ../programs/i3
