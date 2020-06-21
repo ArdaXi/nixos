@@ -140,9 +140,9 @@
     ];
   };
 
-  environment.systemPackages = with pkgs; [
-    source-code-pro # TODO: Needed?
-  ];
+#  environment.systemPackages = with pkgs; [
+#    source-code-pro # TODO: Needed?
+#  ];
 }
 { # Networking
   services.avahi = {
@@ -166,7 +166,7 @@
   environment.systemPackages = with pkgs; [
     google-chrome firefox-bin
     networkmanagerapplet
-    glib_networking # TODO: Still needed?
+#    glib_networking # TODO: Still needed?
     whois mtr
   ];
 }
