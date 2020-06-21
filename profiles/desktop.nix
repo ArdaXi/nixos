@@ -115,6 +115,8 @@
   ];
 }
 { # Misc cli utils
+  programs.adb.enable = true;
+
   environment.systemPackages = with pkgs; [
     taskwarrior fortune ledger usbutils pciutils acpi slock scrot nfsUtils xdotool
     xorg.xf86inputsynaptics
@@ -127,12 +129,27 @@
     alacritty arandr dmenu fahclient
   ];
 }
-{ # Extra
+{ # Fonts
+  fonts = {
+    enableFontDir = true;
+    enableGhostscriptFonts = true;
+    fonts = with pkgs; [
+      source-code-pro
+      vistafonts
+      corefonts
+    ];
+  };
+
   environment.systemPackages = with pkgs; [
-    source-code-pro
+    source-code-pro # TODO: Needed?
   ];
 }
 { # Networking
+  services.avahi = {
+    enable = true;
+    nssmdns = true;
+  };
+
   networking = {
     firewall = {
       allowedTCPPorts = [ 8000 ];
@@ -153,7 +170,15 @@
     whois mtr
   ];
 }
-{
+{ # flatpak
+  services.flatpak.enable = true;
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
+  };
+}
+{ # Hardware
   services = {
     fwupd.enable = true;
 
@@ -163,11 +188,12 @@
     };
 
     upower.enable = true;
-    avahi = {
-      enable = true;
-      nssmdns = true;
-    };
+  };
 
+  hardware.opengl.driSupport32Bit = true;
+}
+{
+  services = {
     chrony = {
       enable = true;
       servers = [];
@@ -186,28 +212,7 @@
         port = 8081;
       };
     };
-
-    flatpak.enable = true;
   };
-
-  xdg.portal = {
-    enable = true;
-    extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
-  };
-
-  fonts = {
-    enableFontDir = true;
-    enableGhostscriptFonts = true;
-    fonts = with pkgs; [
-      source-code-pro
-      vistafonts
-      corefonts
-    ];
-  };
-
-  hardware.opengl.driSupport32Bit = true;
-
-  programs.adb.enable = true;
 
   nix = {
     buildMachines = [
