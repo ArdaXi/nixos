@@ -10,6 +10,7 @@
     ./nextcloud.nix
     ./jitsi.nix
     ./ipfs.nix
+    ./grocy.nix
   ];
 
   security.acme = {
