@@ -83,11 +83,20 @@
     };
   };
 
+  boot.binfmt.emulatedSystems = [
+    "armv6l-linux"
+    "armv7l-linux"
+    "aarch64-linux"
+  ];
+
   nix = {
     maxJobs = 6;
     buildMachines = [
       { hostName = "localhost";
-        systems = [ "builtin" "x86_64-linux" "i686-linux" ];
+        systems = [ 
+          "builtin" "x86_64-linux" "i686-linux"
+          "armv6l-linux" "armv7l-linux" "aarch64-linux"
+        ];
         supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark" "local" ];
         maxJobs = 6;
       }

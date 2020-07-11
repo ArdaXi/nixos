@@ -70,6 +70,12 @@
     tmpOnTmpfs = true;
 
     blacklistedKernelModules = [ "nouveau" ];
+
+    binfmt.emulatedSystems = [
+      "armv6l-linux"
+      "armv7l-linux"
+      "aarch64-linux"
+    ];
   };
 
   fileSystems."/" = {
@@ -105,6 +111,7 @@
       source = "/dev/urandom";
     };
   }];
+
 
   nix = {
     maxJobs = 8;
