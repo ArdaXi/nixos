@@ -18,6 +18,4 @@ GROUP="ardaxi"
 
     pcscd.enable = true;
   };
-
-  hardware.u2f.enable = true;
 }
