@@ -99,13 +99,13 @@ rec {
     };
   };
 
-  hydra-unstable = super.hydra-unstable.overrideAttrs (oldAttrs: rec {
-    version = "2020-05-28";
-    src = self.fetchFromGitHub {
-      owner = "NixOS";
-      repo = "hydra";
-      rev = "d5844897da55eb874d561a2a5f10a04b151c64a8";
-      sha256 = "0f11w561k6aj6x3dcn4iharxjm9fkkwlfq7xkncfrx4sq7cvwj9b";
-    };
-  });
+#  hydra-unstable = super.hydra-unstable.overrideAttrs (oldAttrs: rec {
+#    version = "2020-05-28";
+#    src = self.fetchFromGitHub {
+#      owner = "NixOS";
+#      repo = "hydra";
+#      rev = "d5844897da55eb874d561a2a5f10a04b151c64a8";
+#      sha256 = "0f11w561k6aj6x3dcn4iharxjm9fkkwlfq7xkncfrx4sq7cvwj9b";
+#    };
+#  });
 }
