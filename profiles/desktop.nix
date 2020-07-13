@@ -147,7 +147,6 @@
   services.resolved = {
     enable = true;
     dnssec = "true";
-    domains = [ "local.street.ardaxi.com" ];
     fallbackDns = [
       # XS4ALL
       "194.109.6.66"
