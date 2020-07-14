@@ -9,7 +9,7 @@
     ./synapse.nix
     ./nextcloud.nix
     ./jitsi.nix
-    ./ipfs.nix
+#    ./ipfs.nix
     ./grocy.nix
   ];
 

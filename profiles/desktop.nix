@@ -16,14 +16,14 @@
 {
   services.openssh.openFirewall = false;
 }
-{ # ipfs
-  services.ipfs = {
-    enable = true;
-    autoMount = true;
-  };
-
-  networking.firewall.allowedTCPPorts = [ 4001 ];
-}
+#{ # ipfs
+#  services.ipfs = {
+#    enable = true;
+#    autoMount = true;
+#  };
+#
+#  networking.firewall.allowedTCPPorts = [ 4001 ];
+#}
 { # location stuff
   location = {
     latitude = 52.37;
