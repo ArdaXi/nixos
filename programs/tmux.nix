@@ -56,14 +56,18 @@ in
       bind -n   F10 select-window -t :10
       bind -n   F11 select-window -t :11
       bind -n   F12 select-window -t :12
-      bind -n S-F1  select-window -t :13
-      bind -n S-F2  select-window -t :14
-      bind -n S-F3  select-window -t :15
-      bind -n S-F4  select-window -t :16
-      bind -n S-F5  select-window -t :17
-      bind -n S-F6  select-window -t :18
-      bind -n S-F7  select-window -t :19
-      bind -n S-F8  select-window -t :20
+      bind -n S-F1  send-keys F1
+      bind -n S-F2  send-keys F2
+      bind -n S-F3  send-keys F3
+      bind -n S-F4  send-keys F4
+      bind -n S-F5  send-keys F5
+      bind -n S-F6  send-keys F6
+      bind -n S-F7  send-keys F7
+      bind -n S-F8  send-keys F8
+      bind -n S-F9  send-keys F9
+      bind -n S-F10 send-keys F10
+      bind -n S-F11 send-keys F11
+      bind -n S-F12 send-keys F12
 
       bind h select-pane -L
       bind j select-pane -D
