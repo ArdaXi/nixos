@@ -1,6 +1,8 @@
 with import <nixpkgs/lib>;
 let
-  pkgs = import <nixpkgs> {};
+  pkgs = import <nixpkgs> {
+    overlays = (import ./overlays);
+  };
   configFor = modules: (import <nixpkgs/nixos/lib/eval-config.nix> {
     system = "x86_64-linux";
     modules = modules;
