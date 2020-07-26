@@ -3,6 +3,7 @@
 {
   imports = [
     ../profiles/default.nix
+    ../profiles/default-programs.nix
     ../profiles/desktop.nix
     ../profiles/project.nix
   ];

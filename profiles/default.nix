@@ -1,10 +1,6 @@
 { config, pkgs, lib, ... }:
 
 {
-  imports = [
-    ../programs/tmux.nix
-  ];
-
   nix = {
     package = pkgs.nixUnstable;
     binaryCachePublicKeys = [ "street.ardaxi.com-1:A1P6oGDAlLPtBbscHNTzBM6DpMHGpqLNwXUgmOtNegg=" ];
@@ -66,34 +62,6 @@
   };
 
   programs.zsh.enable = true;
-
-  environment.systemPackages = with pkgs; [
-    wget
-    unzip
-    file
-    vim
-    neovim
-    silver-searcher
-    mosh
-    psmisc
-    binutils
-    git
-    gitAndTools.gitflow
-    screen
-    fzf
-    lsof
-    aspellDicts.en
-    aspellDicts.nl
-    kakoune
-    jq
-    tarsnap
-    bat
-    htop
-    nox
-    dnsutils
-    htop
-    ripgrep
-  ];
 
   environment.extraInit = "export XDG_CONFIG_DIRS=/etc/xdg:$XDG_CONFIG_DIRS";
 }

@@ -4,6 +4,7 @@
   imports = [
     <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
     ../profiles/default.nix
+    ../profiles/default-programs.nix
     ../profiles/nas/default.nix
   ];
 

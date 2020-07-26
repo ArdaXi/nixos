@@ -6,6 +6,7 @@
     <nixpkgs/nixos/modules/profiles/all-hardware.nix>
     <nixpkgs/nixos/modules/profiles/clone-config.nix>
     ../profiles/default.nix
+    ../profiles/default-programs.nix
     ../profiles/desktop.nix
   ];
 

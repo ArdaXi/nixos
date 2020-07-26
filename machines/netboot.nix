@@ -6,6 +6,7 @@
     <nixpkgs/nixos/modules/installer/cd-dvd/channel.nix>
 
     ../profiles/default.nix
+    ../profiles/default-programs.nix
   ];
 
   boot.supportedFilesystems = [ "zfs" ];
