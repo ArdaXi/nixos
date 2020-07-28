@@ -2,6 +2,7 @@
 
 {
   imports = [
+    <nixpkgs/nixos/modules/installer/cd-dvd/sd-image-raspberrypi.nix>
     ../profiles/default.nix
   ];
 

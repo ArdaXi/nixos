@@ -7,7 +7,7 @@
     binaryCaches = [ https://cache.nixos.org/ http://nix-cache.street.ardaxi.com/ ];
     extraOptions = ''
       fallback = true
-      experimental-features = nix-command
+      experimental-features = nix-command flakes
     '';
   };
   nixpkgs = {
