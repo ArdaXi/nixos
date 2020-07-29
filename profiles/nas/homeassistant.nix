@@ -17,7 +17,9 @@
           "mqtt"
           "mobile_app"
           "tado"
-          "tahoma"
+          "somfy"
+          "brother"
+          "ipp"
         ];
       };
     };
