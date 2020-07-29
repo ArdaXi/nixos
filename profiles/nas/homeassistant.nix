@@ -12,6 +12,9 @@
           "zeroconf"
           "ssdp"
           "mqtt"
+          "mobile_app"
+          "tado"
+          "tahoma"
         ];
       };
     };
