@@ -19,9 +19,11 @@
     email = "acme@ardaxi.com";
   };
 
-  services.boinc = {
+  services.mosquitto = {
     enable = true;
-    allowRemoteGuiRpc = true;
+    allowAnonymous = true;
+    aclExtraConf = "topic readwrite #";
+    users = {};
   };
 
   services.nfs.server = {
