@@ -23,7 +23,12 @@
     enable = true;
     allowAnonymous = true;
     aclExtraConf = "topic readwrite #";
-    users = {};
+    users = {
+      homeassistant.acl = [
+        "topic readwrite homeassistant/#"
+        "topic read #"
+      ];
+    };
   };
 
   services.nfs.server = {
