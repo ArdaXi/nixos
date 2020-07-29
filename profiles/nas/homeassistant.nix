@@ -6,6 +6,9 @@
     services.home-assistant = {
       enable = true;
       package = pkgs.home-assistant.override {
+        extraPackages = ps: [
+          ps.pytado
+        ];
         extraComponents = [
           "met"
           "updater"
