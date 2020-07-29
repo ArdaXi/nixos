@@ -5,6 +5,15 @@
   {
     services.home-assistant = {
       enable = true;
+      package = pkgs.home-assistant.override {
+        extraComponents = [
+          "met"
+          "updater"
+          "zeroconf"
+          "ssdp"
+          "mqtt"
+        ];
+      };
     };
   }
   {
