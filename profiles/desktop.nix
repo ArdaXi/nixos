@@ -119,7 +119,7 @@
   environment.systemPackages = with pkgs; [
     taskwarrior fortune ledger usbutils pciutils acpi slock scrot nfsUtils xdotool
     xorg.xf86inputsynaptics
-    nethack
+    nethack mosquitto
   ];
 }
 { # Misc graphical
