@@ -15,12 +15,12 @@ rec {
     layout = "us";
     xkbOptions = "compose:caps";
     displayManager = {
+      autoLogin = {
+        enable = true;
+        user = "ardaxi";
+      };
       lightdm = {
         enable = true;
-        autoLogin = {
-          enable = true;
-          user = "ardaxi";
-        };
         greeter.enable = false;
       };
     };
