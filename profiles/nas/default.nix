@@ -133,8 +133,8 @@
             index = "index.html";
             extraConfig = allow;
           };
-          "/espfw" = {
-            alias = "/var/lib/espfw";
+          "/espfw/" = {
+            alias = "/var/lib/espfw/";
             extraConfig = ''
               autoindex on;
               allow 192.168.179.0/24;
