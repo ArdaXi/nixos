@@ -14,7 +14,6 @@ rec {
     };
 
     hostName = "nextcloud.street.ardaxi.com";
-    nginx.enable = false;
     https = true;
     maxUploadSize = "10G";
 
