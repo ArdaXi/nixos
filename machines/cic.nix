@@ -92,6 +92,7 @@
 
   nix = {
     maxJobs = 6;
+    distributedBuilds = true;
     buildMachines = [
       { hostName = "localhost";
         systems = [ 
