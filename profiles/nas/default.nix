@@ -8,7 +8,6 @@
     ./remote-build.nix
     ./synapse.nix
     ./nextcloud.nix
-    ./jitsi.nix
 #    ./ipfs.nix
     ./grocy.nix
     ./homeassistant.nix
