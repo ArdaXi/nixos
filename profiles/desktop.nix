@@ -244,7 +244,7 @@
         sshKey = "/root/.ssh/id_buildfarm";
       }
     ];
-    distributedBuilds = false;
+    distributedBuilds = true;
     extraOptions = ''
       builders-use-substitutes = true
     '';
