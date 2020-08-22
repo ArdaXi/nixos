@@ -125,7 +125,7 @@
 { # Misc graphical
   services.redshift.enable = true;
   environment.systemPackages = with pkgs; [
-    alacritty arandr dmenu fahclient
+    alacritty arandr dmenu fahclient calibre
   ];
 }
 { # Fonts
