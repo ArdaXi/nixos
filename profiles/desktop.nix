@@ -91,7 +91,7 @@
     (texlive.combine {
       inherit (texlive) scheme-basic babel-dutch hyphen-dutch invoice fp
         collection-latexrecommended xetex relsize collection-fontsrecommended draftwatermark
-        everypage qrcode geometry tex4ht ec;
+        everypage qrcode geometry tex4ht ec comment;
         # collectionhtmlxml xetex-def
     })
   ];
