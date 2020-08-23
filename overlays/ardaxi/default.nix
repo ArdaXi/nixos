@@ -119,4 +119,14 @@ rec {
       };
     });
   };
+
+  calibre = super.calibre.overrideAttrs (oldAttrs: rec {
+    inherit (oldAttrs) pname;
+    version = "4.23.0";
+
+    src = self.fetchurl {
+      url = "https://download.calibre-ebook.com/${version}/${pname}-${version}.tar.xz";
+      sha256 = "064mnmz2w4xa2kydh5vzhlgvmyzlwjhm2wm58vwkdqzh7i3m3phn";
+    };
+  });
 }
