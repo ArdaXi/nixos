@@ -317,9 +317,9 @@
     enable = true;
     package = pkgs.postgresql_9_6;
     extraPlugins = with pkgs.postgresql_9_6.pkgs; [ timescaledb pkgs.pg_prometheus ];
-    extraConfig = ''
-      shared_preload_libraries = 'timescaledb, pg_prometheus'
-    '';
+    settings = {
+      shared_preload_libraries = "timescaledb, pg_prometheus";
+    };
 
     authentication = "host all all 127.0.0.1/32 trust";
   };
