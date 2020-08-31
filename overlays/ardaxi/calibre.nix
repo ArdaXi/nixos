@@ -38,9 +38,6 @@ mkDerivation rec {
   };
 
   patches = [
-    # Patches from Debian that:
-    # - disable plugin installation (very insecure)
-    ./disable_plugins.patch
     # - switches the version update from enabled to disabled by default
     ./no_updates_dialog.patch
     # the unrar patch is not from debian
