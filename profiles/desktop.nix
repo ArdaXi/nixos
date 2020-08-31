@@ -235,19 +235,19 @@
   };
 
   nix = {
-    buildMachines = [
-      { hostName = "street.ardaxi.com";
-        systems = [ "builtin" "x86_64-linux" "i686-linux" ];
-        supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" "local" ];
-        maxJobs = 6;
-        sshUser = "nixbuild";
-        sshKey = "/root/.ssh/id_buildfarm";
-      }
-    ];
-    distributedBuilds = true;
-    extraOptions = ''
-      builders-use-substitutes = true
-    '';
+#    buildMachines = [
+#      { hostName = "street.ardaxi.com";
+#        systems = [ "builtin" "x86_64-linux" "i686-linux" ];
+#        supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" "local" ];
+#        maxJobs = 6;
+#        sshUser = "nixbuild";
+#        sshKey = "/root/.ssh/id_buildfarm";
+#      }
+#    ];
+#    distributedBuilds = true;
+#    extraOptions = ''
+#      builders-use-substitutes = true
+#    '';
   };
 }
 ];
