@@ -120,5 +120,5 @@ rec {
     });
   };
 
-  calibre = self.callPackage ./calibre.nix {};
+  calibre = self.libsForQt5.callPackage ./calibre.nix {};
 }
