@@ -108,11 +108,11 @@
     gnupg pass browserpass pinentry_qt tomb
   ];
 }
-{ # Email
-  environment.systemPackages = with pkgs; [
-    isync notmuch msmtp astroid afew libnotify
-  ];
-}
+#{ # Email
+#  environment.systemPackages = with pkgs; [
+#    isync notmuch msmtp astroid afew libnotify
+#  ];
+#}
 { # Misc cli utils
   programs.adb.enable = true;
 
