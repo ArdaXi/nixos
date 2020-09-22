@@ -2,7 +2,6 @@
 
 {
   security.acme.certs."matrix.ardaxi.com" = {
-    allowKeysForGroup = true;
     group = "matrix-synapse"; 
   };
 
