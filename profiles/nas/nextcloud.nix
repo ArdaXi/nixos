@@ -17,6 +17,6 @@ rec {
     https = true;
     maxUploadSize = "10G";
 
-    package = pkgs.nextcloud18;
+    package = pkgs.nextcloud19;
   };
 }
