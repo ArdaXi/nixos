@@ -9,7 +9,7 @@
 
   outputs = inputs@{ self, home, nixos, master }:
     let
-      inherit (builtins) attrNames attrValues readDir;
+      inherit (builtins) attrNames attrValues readDir mapAttrs;
       inherit (nixos) lib;
       inherit (lib) removeSuffix recursiveUpdate genAttrs filterAttrs;
       inherit (utils) pathsToImportedAttrs;
@@ -38,6 +38,10 @@
           inherit lib pkgset system utils;
         }
       );
+
+      hydraJobs = {
+        hosts = mapAttrs (n: v: v.config.system.build.toplevel) self.nixosConfigurations;
+      };
 
       devShell."${system}" = import ./shell.nix {
         inherit pkgs;
