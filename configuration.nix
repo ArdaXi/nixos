@@ -1,18 +1,39 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
+# This file is an impure recreation of the flake profile currently deployed
+# based on the system's hostname. The purpose is so tools which do not yet have
+# flake support (such as `nixos-options`) work as expected.
+{ lib, ... }:
+let
+  inherit (builtins) attrNames readDir pathExists;
 
-{ config, pkgs, ... }:
-
-let hostName = "${builtins.readFile ./hostname}";
+  hostname = lib.fileContents /etc/hostname;
+  host = "/etc/nixos/hosts/${hostname}.nix";
+  config = 
+    if (pathExists host) then
+      [ host ]
+    else
+      [ /etc/nixos/hosts/NixOS.nix ];
 in
-rec {
-  imports = 
-  [ 
-    (./machines + "/${hostName}.nix")
+{
+  imports = (import ./modules/list.nix) ++ [
+    "${
+      builtins.fetchTarball
+        "https://github.com/rycee/home-manager/archive/master.tar.gz"
+    }/nixos"
+    /etc/nixos/profiles/core.nix
+  ] ++ config;
+
+  networking.hostName = hostname;
+  nix.nixPath = [
+    "nixpkgs=${<nixpkgs>}"
+    "nixos-config=/etc/nixos/configuration.nix"
+    "nixpkgs-overlays=/etc/nixos/overlays"
   ];
 
-  # List packages installed in system profile. To search by name, run:
-  # $ nix-env -qaP | grep wget
-
+  nixpkgs.overlays =
+    let
+      overlays = map
+        (name: import (./overlays + "/${name}"))
+        (attrNames (readDir ./overlays));
+    in
+    overlays;
 }
