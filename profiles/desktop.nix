@@ -200,7 +200,7 @@
     gnome-firmware-updater
   ];
   services = {
-    fwupd.enable = true;
+#    fwupd.enable = true;
 
     printing = {
       enable = true;
