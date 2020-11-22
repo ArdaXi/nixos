@@ -3,6 +3,7 @@
 {
   environment.systemPackages = with pkgs; [
     libu2f-host yubikey-manager
+    gnupg pass browserpass pinentry_qt tomb
   ];
 
   services = {
@@ -17,5 +18,12 @@ GROUP="ardaxi"
     '';
 
     pcscd.enable = true;
+  };
+
+  programs.gnupg.agent = {
+    enable = true;
+    enableBrowserSocket = true;
+    enableExtraSocket = true;
+    enableSSHSupport = true;
   };
 }

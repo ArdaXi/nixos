@@ -32,15 +32,24 @@
     };
   };
 
-  services.xserver.displayManager.sessionCommands = ''
-    ${pkgs.xorg.xrdb}/bin/xrdb -merge <<EOF
-    Xft.dpi = 192
-    Xcursor.size: 32
-    Xcursor.theme: Vanilla-DMZ-AA
-    EOF
-    ${pkgs.networkmanagerapplet}/bin/nm-applet &
-    ${pkgs.xsettingsd}/bin/xsettingsd &
-  '';
+  services = {
+    upower.enable = true;
+
+    printing = {
+      enable = true;
+      drivers = [ pkgs.hplip pkgs.epson-escpr ];
+    };
+
+    xserver.displayManager.sessionCommands = ''
+      ${pkgs.xorg.xrdb}/bin/xrdb -merge <<EOF
+      Xft.dpi = 192
+      Xcursor.size: 32
+      Xcursor.theme: Vanilla-DMZ-AA
+      EOF
+      ${pkgs.networkmanagerapplet}/bin/nm-applet &
+      ${pkgs.xsettingsd}/bin/xsettingsd &
+    '';
+  };
 
   boot = {
     initrd = {

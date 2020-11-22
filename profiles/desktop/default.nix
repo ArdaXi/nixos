@@ -4,7 +4,7 @@
   imports = [
     ./i3
     ./alacritty.nix
-    ./yubikey.nix
+    ./encryption.nix
     ./wireguard.nix
     ./chromium.nix
     ./multimedia.nix
@@ -61,6 +61,8 @@
     mosquitto xorg.xf86inputsynaptics
     # Misc graphical
     alacritty arandr dmenu fahclient calibre
+    # Big stuff
+    libreoffice-fresh signal-desktop steam
   ];
 
   fonts = {
