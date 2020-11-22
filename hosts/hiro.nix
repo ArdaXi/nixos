@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ../users/ardaxi
     ../profiles/desktop
   ];
 
