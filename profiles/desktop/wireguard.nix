@@ -68,9 +68,9 @@ in
 
     firewall.allowedUDPPorts = [ 51820 ];
   
-    networkmanager.dispatcherScripts = [
-      { source = wgResetPreUp; type = "pre-up"; }
-      { source = wgReset; type = "basic"; }
-    ];
+#    networkmanager.dispatcherScripts = [
+#      { source = wgResetPreUp; type = "pre-up"; }
+#      { source = wgReset; type = "basic"; }
+#    ];
   };
 }
