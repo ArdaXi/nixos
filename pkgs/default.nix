@@ -23,7 +23,7 @@ rec {
   #sickrage = final.callPackage ./sickrage.nix {};
 #  riot-desktop = final.callPackage ./riot-desktop.nix {};
 
-  pcsclite = final.callPackage ./pcsclite/default.nix {};
+#  pcsclite = final.callPackage ./pcsclite/default.nix {};
 
 #  ccid = pinned.ccid;
 
