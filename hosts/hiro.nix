@@ -40,15 +40,18 @@
       drivers = [ pkgs.hplip pkgs.epson-escpr ];
     };
 
-    xserver.displayManager.sessionCommands = ''
-      ${pkgs.xorg.xrdb}/bin/xrdb -merge <<EOF
-      Xft.dpi = 192
-      Xcursor.size: 32
-      Xcursor.theme: Vanilla-DMZ-AA
-      EOF
-      ${pkgs.networkmanagerapplet}/bin/nm-applet &
-      ${pkgs.xsettingsd}/bin/xsettingsd &
-    '';
+    xserver = {
+      dpi = 192;
+      displayManager.sessionCommands = ''
+        ${pkgs.xorg.xrdb}/bin/xrdb -merge <<EOF
+        Xft.dpi = 192
+        Xcursor.size: 32
+        Xcursor.theme: Vanilla-DMZ-AA
+        EOF
+        ${pkgs.networkmanagerapplet}/bin/nm-applet &
+        ${pkgs.xsettingsd}/bin/xsettingsd &
+      '';
+    };
   };
 
   boot = {
