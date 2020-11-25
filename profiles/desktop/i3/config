@@ -225,7 +225,7 @@ bar {
         active_workspace #202020 #202020 #62b1d0
         inactive_workspace #202020 #202020 #c8c8c8
     }
-    font pango:Source Code Pro 8
+    font pango:Source Code Pro 12
     status_command @i3statusRust@/bin/i3status-rs @i3statusConfig@
 }
 

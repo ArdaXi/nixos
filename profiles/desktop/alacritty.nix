@@ -25,6 +25,7 @@ in
       };
 
       decorations = "none";
+      dynamic_title = true;
     };
 
     draw_bold_text_with_bright_colors = true;
@@ -34,7 +35,7 @@ in
       bold = defaultFont;
       italic = defaultFont;
 
-      size = 12.0;
+      size = 15.5;
 
       offset = zero;
       glyph_offset = zero;
@@ -87,8 +88,6 @@ in
     };
 
     selection.semantic_escape_chars = ",│`|:\"' ()[]{}<>";
-
-    dynamic_title = true;
 
     cursor.style = "Block";
 
