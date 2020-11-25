@@ -3,7 +3,7 @@
 
   inputs = {
     master.url = "nixpkgs/master";
-    nixos.url = "nixpkgs/release-20.09";
+    nixos.url = "nixpkgs/master";
     home.url = "github:rycee/home-manager/bqv-flakes";
   };
 
