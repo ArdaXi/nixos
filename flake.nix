@@ -18,17 +18,19 @@
 
       system = "x86_64-linux";
 
-      pkgImport = pkgs:
+      pkgImport = system: pkgs:
         import pkgs {
           inherit system;
           overlays = attrValues self.overlays;
           config = { allowUnfree = true; };
         };
 
-      pkgset = {
-        osPkgs = pkgImport nixos;
-        pkgs = pkgImport master;
+      pkgsetFor = system: {
+        osPkgs = pkgImport system nixos;
+        pkgs = pkgImport system master;
       };
+
+      pkgset = pkgsetFor system;
 
     in
     with pkgset;
@@ -36,6 +38,12 @@
       nixosConfigurations = import ./hosts (
         recursiveUpdate inputs {
           inherit lib pkgset system utils;
+        }
+      ) // import ./aarch64 (
+        recursiveUpdate inputs {
+          inherit lib utils;
+          system = "aarch64-linux";
+          pkgset = pkgsetFor "aarch64-linux";
         }
       );
 
