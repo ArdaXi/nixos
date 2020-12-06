@@ -25,4 +25,6 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILRmMpqZs45J4+Bl0LrRpjWvM/EOz1CBtWiBWyrEK9iS"
     ];
   };
+
+  nix.allowedUsers = [ "hydra" "nix-serve" ];
 }
