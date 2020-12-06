@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 
 {
   imports = [
@@ -85,7 +85,7 @@
       supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" "local" ];
       maxJobs = 6;
     }];
-    extraOptions = ''
+    extraOptions = lib.mkForce ''
       min-free = ${toString ( 25 * 1024 * 1024 * 1024)}
       max-free = ${toString (500 * 1024 * 1024 * 1024)}
     '';

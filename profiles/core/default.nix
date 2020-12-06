@@ -14,8 +14,9 @@
   nix = {
     package = pkgs.nixFlakes;
     binaryCachePublicKeys = [ "street.ardaxi.com-1:A1P6oGDAlLPtBbscHNTzBM6DpMHGpqLNwXUgmOtNegg=" ];
-    binaryCaches = [ "https://cache.nixos.org/" "http://nix-cache.street.ardaxi.com/" ];
-    extraOptions = ''
+    #binaryCaches = lib.mkIf (config.networking.hostName != "cic")
+    #  [ "https://cache.nixos.org/" "http://nix-cache.street.ardaxi.com/" ];
+    extraOptions = lib.mkForce ''
       fallback = true
       experimental-features = nix-command flakes ca-references
     '';

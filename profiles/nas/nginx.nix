@@ -42,7 +42,7 @@
         forceSSL = true;
         locations."/_matrix" = {
           proxyPass = "http://127.0.0.1:8008";
-          extraConfig = "proxy_set_header X-Forwarded-For $remote_addr";
+          extraConfig = "proxy_set_header X-Forwarded-For $remote_addr;";
         };
       };
       "nix-cache.street.ardaxi.com" = lib.mkIf config.services.nix-serve.enable {

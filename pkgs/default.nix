@@ -15,7 +15,19 @@ let
       };
     });
   });
-
+	pythonOverrides = {
+    packageOverrides = python-final: python-prev: {
+      bleach = python-prev.bleach.overridePythonAttrs (old: {
+        propagatedBuildInputs = old.propagatedBuildInputs ++ [ python-final.packaging ];
+        doCheck = false;
+        checkPhase = "";
+      });
+		websockets = python-prev.websockets.overridePythonAttrs (_: {
+        doCheck = false;
+        checkPhase = "";
+      });
+    };
+  };
 in
 rec {
   sickbeard = final.callPackage ./sickbeard.nix {};
@@ -35,25 +47,8 @@ rec {
 
   hplip = final.callPackage ./hplip.nix {};
 
-  python3 = prev.python3.override {
-    packageOverrides = python-final: python-prev: {
-      bleach = python-prev.bleach.overridePythonAttrs (old: {
-        propagatedBuildInputs = old.propagatedBuildInputs ++ [ python-final.packaging ];
-        doCheck = false;
-        checkPhase = "";
-      });
-    };
-  };
-
-  python38 = prev.python38.override {
-    packageOverrides = python-final: python-prev: {
-      bleach = python-prev.bleach.overridePythonAttrs (old: {
-        propagatedBuildInputs = old.propagatedBuildInputs ++ [ python-final.packaging ];
-        doCheck = false;
-        checkPhase = "";
-      });
-    };
-  };
+  python3 = prev.python3.override pythonOverrides;
+  python38 = prev.python38.override pythonOverrides;
 
 #  lua = prev.lua.override { packageOverrides = lua-overrides; };
 #  lua5 = prev.lua5.override { packageOverrides = lua-overrides; };
@@ -99,26 +94,26 @@ rec {
     };
   };
 
-  hydra-unstable = (prev.hydra-unstable.overrideAttrs (oldAttrs: rec {
-    version = "2020-07-09";
-    src = final.fetchFromGitHub {
-      owner = "NixOS";
-      repo = "hydra";
-      rev = "48678df8b67d562f16a88dbbc2e3878e53635932";
-      sha256 = "sha256-tyozceL84P5nArLVlnHL/6lQooAib/CdfwdLQhrljAM=";
-    };
-  })).override {
-    nix = (final.nixFlakes.override {
-      name = "nix-2.4pre07072020_1ab9da9";
-    }).overrideAttrs (_: rec {
-      src = final.fetchFromGitHub {
-        owner = "NixOS";
-        repo = "nix";
-        rev = "1ab9da915422405452118ebb17b88cdfc90b1e10";
-        sha256 = "sha256-M801IExREv1T9F+K6YcCFERBFZ3+6ShwzAR2K7xvExA=";
-      };
-    });
-  };
+#  hydra-unstable = (prev.hydra-unstable.overrideAttrs (oldAttrs: rec {
+#    version = "2020-07-09";
+#    src = final.fetchFromGitHub {
+#      owner = "NixOS";
+#      repo = "hydra";
+#      rev = "48678df8b67d562f16a88dbbc2e3878e53635932";
+#      sha256 = "sha256-tyozceL84P5nArLVlnHL/6lQooAib/CdfwdLQhrljAM=";
+#    };
+#  })).override {
+#    nix = (final.nixFlakes.override {
+#      name = "nix-2.4pre07072020_1ab9da9";
+#    }).overrideAttrs (_: rec {
+#      src = final.fetchFromGitHub {
+#        owner = "NixOS";
+#        repo = "nix";
+#        rev = "1ab9da915422405452118ebb17b88cdfc90b1e10";
+#        sha256 = "sha256-M801IExREv1T9F+K6YcCFERBFZ3+6ShwzAR2K7xvExA=";
+#      };
+#    });
+#  };
 
   calibre = final.libsForQt5.callPackage ./calibre.nix {};
 }
