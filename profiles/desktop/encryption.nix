@@ -9,6 +9,7 @@
   services = {
     udev.extraRules = ''
       DRIVER=="snd_hda_intel", ATTR{power/control}="on"
+      SUBSYSTEMS=="usb", ATTRS{idVendor}=="1050", ATTRS{idProduct}=="0406", GROUP="wheel", TAG+="uaccess"
     '';
 #      SUBSYSTEM=="usb", ATTR{idVendor}=="1d50", ATTR{idProduct}=="cc15", MODE="0600", OWNER="ardaxi",
 #      GROUP="ardaxi"
