@@ -17,7 +17,7 @@
 #      SUBSYSTEM=="usb", ATTR{idVendor}=="1050", ATTR{idProduct}=="0406", MODE="0600", OWNER="ardaxi",
 #      GROUP="ardaxi"
 
-#    pcscd.enable = true;
+    pcscd.enable = true;
   };
 
   programs.gnupg.agent = {
