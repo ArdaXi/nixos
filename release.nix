@@ -1,39 +1,55 @@
-with import <nixpkgs/lib>;
 let
-  pkgs = import <nixpkgs> {};
-  configFor = modules: (import <nixpkgs/nixos/lib/eval-config.nix> {
-    system = "x86_64-linux";
-    modules = modules;
-  }).config.system.build;
-  configForMachine = machineName:
-    configFor [(./machines + "/${machineName}.nix")];
-  targetForMachine = machineName: (configForMachine machineName).toplevel;
-  allTests = (import <nixpkgs/nixos/tests/all-tests.nix> rec {
-    system = "x86_64-linux";
-    pkgs = import <nixpkgs> { inherit system; overlays = (import ./overlays); };
-    callTest = t: hydraJob t.test;
-  });
-in rec
-  {
-    machines = genAttrs [
-      "cic"
-      "hiro"
-    ] targetForMachine;
-    nixpkgs = pkgs.releaseTools.channel {
-      constituents = [ machines.cic machines.hiro ];
-      name = "nixpkgs";
-      src = <nixpkgs>;
-    };
-    nixos-config = pkgs.releaseTools.channel {
-      constituents = [machines.cic machines.hiro ];
-      name = "nixos-config";
-      src = ./.;
-    };
-    tests = {
-      inherit (allTests) firefox grafana i3wm matrix-synapse
-        prometheus;
-      inherit (allTests.postgresql) postgresql_9_6;
+  nixos = import <nixpkgs> {};
+  master = nixos;
 
-#      hydra = allTests.hydra.nixUnstable;
-    };
-  }
+  inherit (builtins) attrValues removeAttrs;
+  inherit (nixos) lib;
+  inherit (lib) recursiveUpdate;
+
+  utils = import ./lib/utils.nix { inherit lib; };
+
+  inherit (utils) pathsToImportedAttrs recImport;
+
+  system = "x86_64-linux";
+
+  pkgs = import <nixpkgs> {
+    inherit system;
+    overlays = attrValues (pathsToImportedAttrs [ ./overlays/pkgs.nix ]);
+    config = { allowUnfree = true; };
+  };
+
+  config = hostName:
+    (import <nixpkgs/nixos/lib/eval-config.nix> {
+      inherit system;
+
+      modules =
+        let
+          core = import "${toString ./.}/profiles/core";
+          global = {
+            networking.hostName = hostName;
+
+            nixpkgs = { pkgs = pkgs; };
+          };
+          local = import "${toString ./.}/hosts/${hostName}.nix";
+          flakeModules = attrValues (pathsToImportedAttrs (import ./modules/list.nix));
+        in flakeModules ++ [ core global local ];
+    }).config.system.build.toplevel;
+
+in rec {
+  machines = recImport {
+    dir = ./hosts;
+    _import = config;
+  };
+
+  nixpkgs = pkgs.releaseTools.channel {
+    constituents = [ machines.cic machines.hiro ];
+    name = "nixpkgs";
+    src = <nixpkgs>;
+  };
+
+  nixos-config = pkgs.releaseTools.channel {
+    constituents = [machines.cic machines.hiro ];
+    name = "nixos-config";
+    src = ./.;
+  };
+}
