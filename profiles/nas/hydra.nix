@@ -26,5 +26,5 @@
     ];
   };
 
-  nix.allowedUsers = [ "hydra" "nix-serve" ];
+  nix.allowedUsers = [ "hydra" "hydra-www" "@hydra" "nix-serve" ];
 }

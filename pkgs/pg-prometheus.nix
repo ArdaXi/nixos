@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub, cmake, postgresql_9_6 }:
+{ stdenv, fetchFromGitHub, cmake, postgresql_12 }:
 
 # # To enable on NixOS:
 # config.services.postgresql = {
@@ -8,22 +8,22 @@
 
 stdenv.mkDerivation rec {
   name = "pg-prometheus-${version}";
-  version = "0.2.1";
+  version = "0.2.2";
 
-  buildInputs = [ postgresql_9_6 ];
+  buildInputs = [ postgresql_12 ];
 
   src = fetchFromGitHub {
     owner  = "timescale";
     repo   = "pg_prometheus";
     rev    = "refs/tags/${version}";
-    sha256 = "1k2wbx10flgqq2rlp5ccqjbyi2kgkbcr5xyh4qbwpr4zyfbadbqr";
+    sha256 = "sha256-GdhNO/VEJDbLgxm/mAViwkNkxjx24MucwmDud4zXH+A=";
   };
 
   installPhase = ''
-    mkdir -p $out/{lib,share/extension}
+    mkdir -p $out/{lib,share/postgresql/extension}
     cp *.so                              $out/lib
-    cp *.control                         $out/share/extension
-    cp sql/pg_prometheus--${version}.sql $out/share/extension
+    cp *.control                         $out/share/postgresql/extension
+    cp sql/pg_prometheus--${version}.sql $out/share/postgresql/extension
   '';
 
   postInstall = ''

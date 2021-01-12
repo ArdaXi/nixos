@@ -38,7 +38,7 @@
   services = {
     postgresql = {
       enable = true;
-      package = pkgs.postgresql_9_6;
+      package = pkgs.postgresql_12;
       authentication = "host all all 127.0.0.1/32 trust";
     };
 

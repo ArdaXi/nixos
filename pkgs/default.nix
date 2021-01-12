@@ -80,7 +80,7 @@ rec {
     configureFlags = [ "--disable-precomp-headers" "--enable-mediactrl" "--enable-unicode" "--with-opengl" ];
   });
 
-  prusa-slicer = final.callPackage ./prusa-slicer.nix { wxGTK30 = wxGTK31; };
+  #prusa-slicer = final.callPackage ./prusa-slicer.nix { wxGTK30 = wxGTK31; };
 
   darcs = prev.darcs.overrideScope (final: prev: { Cabal = final.Cabal_2_2_0_1; });
 
