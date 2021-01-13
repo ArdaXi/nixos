@@ -1,66 +1,80 @@
-{ stdenv, lib, fetchFromGitHub, makeWrapper, cmake, pkgconfig
-, boost, curl, expat, glew, libpng, tbb, wxGTK30
+{ stdenv, lib, fetchFromGitHub, cmake, pkgconfig
+, boost, cereal, curl, eigen, expat, gtk3, glew, glib, libpng, tbb, wxGTK31-gtk3
 , gtest, nlopt, xorg, makeDesktopItem
+, cgal_5, dbus, gmp, ilmbase, mpfr, qhull, openvdb, systemd
+, wrapGAppsHook, hicolor-icon-theme
 }:
-let
-  nloptVersion = if lib.hasAttr "version" nlopt
-                 then lib.getAttr "version" nlopt
-                 else "2.4";
-in
 stdenv.mkDerivation rec {
-  name = "prusa-slicer-${version}";
-  version = "2.0.0";
+  pname = "prusa-slicer";
+  version = "2.3.0";
 
   enableParallelBuilding = true;
 
   nativeBuildInputs = [
     cmake
-    makeWrapper
     pkgconfig
   ];
 
-  # We could add Eigen, but it doesn't currently compile with the version in
-  # nixpkgs.
   buildInputs = [
     boost
+    cereal
+    cgal_5
     curl
+    dbus
+    eigen
     expat
+    gtk3
     glew
+    glib
+    gmp
+    ilmbase
     libpng
+    mpfr
+    nlopt
+    openvdb
+    systemd
     tbb
-    wxGTK30
+    wxGTK31-gtk3
     xorg.libX11
+    wrapGAppsHook hicolor-icon-theme
   ] ++ checkInputs;
 
   checkInputs = [ gtest ];
 
   # The build system uses custom logic - defined in
-  # xs/src/libnest2d/cmake_modules/FindNLopt.cmake in the package source -
-  # for finding the nlopt library, which doesn't pick up the package in the nix store.
-  # We need to set the path via the NLOPT environment variable instead.
-  NLOPT = "${nlopt}";
+  # cmake/modules/FindNLopt.cmake in the package source - for finding the nlopt
+  # library, which doesn't pick up the package in the nix store.  We
+  # additionally need to set the path via the NLOPT environment variable.
+  NLOPT = nlopt;
+
+  # Disable compiler warnings that clutter the build log.
+  # It seems to be a known issue for Eigen:
+  # http://eigen.tuxfamily.org/bz/show_bug.cgi?id=1221
+  NIX_CFLAGS_COMPILE = "-Wno-ignored-attributes";
+
+  # prusa-slicer uses dlopen on `libudev.so` at runtime
+  NIX_LDFLAGS = "-ludev";
 
   prePatch = ''
     # In nix ioctls.h isn't available from the standard kernel-headers package
-    # on other distributions. As the copy in glibc seems to be identical to the
-    # one in the kernel, we use that one instead.
+    # like in other distributions. The copy in glibc seems to be identical to the
+    # one in the kernel though, so we use that one instead.
     sed -i 's|"/usr/include/asm-generic/ioctls.h"|<asm-generic/ioctls.h>|g' src/libslic3r/GCodeSender.cpp
-  '' + lib.optionalString (lib.versionOlder "2.5" nloptVersion) ''
+
     # Since version 2.5.0 of nlopt we need to link to libnlopt, as libnlopt_cxx
     # now seems to be integrated into the main lib.
-    sed -i 's|nlopt_cxx|nlopt|g' src/libnest2d/cmake_modules/FindNLopt.cmake
+    sed -i 's|nlopt_cxx|nlopt|g' cmake/modules/FindNLopt.cmake
   '';
 
   src = fetchFromGitHub {
     owner = "prusa3d";
     repo = "PrusaSlicer";
-    sha256 = "135wn2sza2f2kvbja1haxil5kx1b74lc1i7dsa35i1y3phabykhz";
+    sha256 = "08zyvik8cyj1n9knbg8saan7j8s60nzkyj4a77818zbi9lpi65i5";
     rev = "version_${version}";
   };
 
   cmakeFlags = [
-    "-DSLIC3R_FHS=1"
-    "-DSLIC3R_WX_STABLE=1"  # necessary when compiling against wxGTK 3.0
+    "-DSLIC3R_FHS=1 -DSLIC3R_GTK=3"
   ];
 
   postInstall = ''
@@ -77,13 +91,13 @@ stdenv.mkDerivation rec {
     comment = "G-code generator for 3D printers";
     desktopName = "PrusaSlicer";
     genericName = "3D printer tool";
-    categories = "Application;Development;";
+    categories = "Development;";
   };
 
   meta = with stdenv.lib; {
     description = "G-code generator for 3D printer";
-    homepage = https://github.com/prusa3d/PrusaSlicer;
+    homepage = "https://github.com/prusa3d/PrusaSlicer";
     license = licenses.agpl3;
-    maintainers = with maintainers; [ tweber ];
+    maintainers = with maintainers; [ moredread tweber ];
   };
 }
