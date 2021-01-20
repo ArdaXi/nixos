@@ -1,5 +1,5 @@
 { ... }:
 
 {
-  virtualisation.libvirtd.enable = true;
+#  virtualisation.libvirtd.enable = false;
 }
