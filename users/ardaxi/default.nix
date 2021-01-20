@@ -3,7 +3,7 @@
     uid = 1000;
     name = "ardaxi";
     group = "ardaxi";
-    extraGroups = [ "users" "wheel" "networkmanager" "audio" "adbusers" ];
+    extraGroups = [ "users" "wheel" "networkmanager" "audio" "adbusers" "libvirtd" ];
     home = "/home/ardaxi";
     createHome = true;
     shell = "/run/current-system/sw/bin/zsh";
