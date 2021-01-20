@@ -30,11 +30,11 @@ in
       partOf   = [ "graphical.target" ];
     };
 
-    mounts = [{
-      what = "tmpfs";
-      where = "/media";
-      type = "tmpfs";
-      mountConfig.Options = [ "mode=1777" "strictatime" "rw" "nosuid" "nodev" "size=1M" ];
-    }];
+#    mounts = [{
+#      what = "tmpfs";
+#      where = "/media";
+#      type = "tmpfs";
+#      mountConfig.Options = [ "mode=1777" "strictatime" "rw" "nosuid" "nodev" "size=1M" ];
+#    }];
   };
 }
