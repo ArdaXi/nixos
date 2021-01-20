@@ -2,7 +2,7 @@
 
 let
   defaultFont = {
-    family = "Source Code Pro";
+    family = "SauceCodePro Nerd Font";
   };
   zero = {
     x = 0;

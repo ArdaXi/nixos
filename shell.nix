@@ -9,7 +9,7 @@ let
     elif [[ $1 == "iso" ]]; then
       nix build ${configs}.niximg.${build}.isoImage
     else
-      sudo -E nix shell -vv ${configs}.$1.${build}.toplevel -c switch-to-configuration $2
+      sudo -E nix shell -v ${configs}.$1.${build}.toplevel -c switch-to-configuration $2
     fi
   '';
 in

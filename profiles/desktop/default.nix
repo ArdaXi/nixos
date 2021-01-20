@@ -10,6 +10,8 @@
     ./multimedia.nix
     ./bluetooth.nix
     ./network.nix
+    ./udisks.nix
+    ./project.nix
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -60,7 +62,7 @@
     taskwarrior fortune ledger usbutils pciutils acpi slock scrot nfsUtils xdotool nethack
     mosquitto xorg.xf86inputsynaptics
     # Misc graphical
-    alacritty arandr dmenu fahclient calibre
+    alacritty arandr dmenu fahclient calibre anki
     # Big stuff
     libreoffice-fresh signal-desktop steam
   ];
@@ -68,6 +70,8 @@
   fonts = {
     fontDir.enable = true;
     enableGhostscriptFonts = true;
-    fonts = with pkgs; [ source-code-pro vistafonts corefonts ];
+    fonts = with pkgs; [ source-code-pro vistafonts corefonts nerdfonts ];
   };
+
+  programs.dconf.enable = true;
 }
