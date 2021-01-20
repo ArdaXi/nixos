@@ -1,5 +1,5 @@
 { ... }:
 
 {
-#  virtualisation.libvirtd.enable = false;
+  virtualisation.virtualbox.host.enable = true;
 }
