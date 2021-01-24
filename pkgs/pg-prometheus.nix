@@ -24,6 +24,7 @@ stdenv.mkDerivation rec {
     cp *.so                              $out/lib
     cp *.control                         $out/share/postgresql/extension
     cp sql/pg_prometheus--${version}.sql $out/share/postgresql/extension
+    touch $out/share/postgresql/extension/pg_prometheus--0.2.1--0.2.2.sql
   '';
 
   postInstall = ''

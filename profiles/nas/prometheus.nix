@@ -30,6 +30,9 @@ in
     remoteWrite = [
       { url = "http://localhost:9201/write"; }
     ];
+    globalConfig = {
+      scrape_interval = "1m";
+    };
     scrapeConfigs = [
       {
         job_name = "prometheus";
@@ -45,7 +48,6 @@ in
       }
       {
         job_name = "meter";
-        scrape_interval = "10s";
         static_configs = [{ targets = ["192.168.179.16:8080"]; }];
       }
     ];
