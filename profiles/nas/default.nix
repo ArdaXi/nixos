@@ -54,7 +54,7 @@
     };
 
     unifi = let
-      heap = 4096;
+      heap = 1024;
     in {
       enable = true;
       initialJavaHeapSize = heap;
