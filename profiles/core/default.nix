@@ -21,7 +21,6 @@
       experimental-features = nix-command flakes ca-references
     '';
     autoOptimiseStore = true;
-    optimise.automatic = true;
     useSandbox = true;
     allowedUsers = [ "@wheel" ];
     trustedUsers = [ "root" "@wheel" ];
