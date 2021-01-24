@@ -4,7 +4,6 @@
   imports = [
     ./firewall.nix
     ./synapse.nix
-    ./homeassistant.nix
     ./mosquitto.nix
     ./nfs.nix
     ./bind.nix
@@ -13,7 +12,7 @@
     ./hydra.nix
     ./downloaders.nix
     ./docker.nix
-    ./homeassistant.nix
+    #./homeassistant.nix
   ];
 
   security.acme = {
