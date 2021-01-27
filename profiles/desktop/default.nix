@@ -5,7 +5,7 @@
     ./i3
     ./alacritty.nix
     ./encryption.nix
-    ./wireguard-systemd.nix
+#    ./wireguard-systemd.nix
     ./chromium.nix
     ./multimedia.nix
     ./bluetooth.nix
