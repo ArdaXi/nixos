@@ -33,6 +33,8 @@
   };
 
   services = {
+    throttled.enable = true;
+
     upower.enable = true;
 
     printing = {
@@ -111,6 +113,10 @@
   nix = {
     maxJobs = 8;
     buildCores = 8;
+    extraOptions = ''
+      min-free = ${toString ( 1 * 1024 * 1024 * 1024)}
+      max-free = ${toString (10 * 1024 * 1024 * 1024)}
+    '';
   };
 
   networking = {
