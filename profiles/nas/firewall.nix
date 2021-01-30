@@ -28,4 +28,6 @@
   };
 
   services.unifi.openPorts = true;
+
+  services.fail2ban.enable = true;
 }
