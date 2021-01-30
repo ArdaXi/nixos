@@ -85,9 +85,9 @@
       supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" "local" ];
       maxJobs = 6;
     }];
-    extraOptions = lib.mkForce ''
-      min-free = ${toString ( 25 * 1024 * 1024 * 1024)}
-      max-free = ${toString (500 * 1024 * 1024 * 1024)}
+    extraOptions = ''
+      min-free = ${toString ( 10 * 1024 * 1024 * 1024)}
+      max-free = ${toString (100 * 1024 * 1024 * 1024)}
     '';
     autoOptimiseStore = true;
   };
