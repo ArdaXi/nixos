@@ -36,5 +36,11 @@
       enable = true;
       overalljails = true;
     };
+
+    jails.sshd = ''
+      enabled = true
+      port    = ${lib.concatMapStringsSep "," (p: toString p) config.services.openssh.ports}
+      mode    = aggressive
+    '';
   };
 }
