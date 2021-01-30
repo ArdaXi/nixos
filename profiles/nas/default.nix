@@ -3,7 +3,7 @@
 {
   imports = [
     ./firewall.nix
-    ./synapse.nix
+#    ./synapse.nix
     ./mosquitto.nix
     ./nfs.nix
     ./bind.nix
