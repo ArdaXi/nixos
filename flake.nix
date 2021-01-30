@@ -3,7 +3,10 @@
 
   inputs = {
     nixos.url = "nixpkgs/master";
-    home.url = "github:rycee/home-manager/bqv-flakes";
+    home = {
+      url = "github:rycee/home-manager/bqv-flakes";
+      inputs.nixpkgs.follows = "nixos";
+    };
   };
 
   outputs = inputs@{ self, home, nixos }:
