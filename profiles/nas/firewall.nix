@@ -29,5 +29,12 @@
 
   services.unifi.openPorts = true;
 
-  services.fail2ban.enable = true;
+  services.fail2ban = {
+    enable = true;
+
+    bantime-increment = {
+      enable = true;
+      overalljails = true;
+    };
+  };
 }
