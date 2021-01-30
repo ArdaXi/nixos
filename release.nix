@@ -4,7 +4,7 @@ let
 
   inherit (builtins) attrValues removeAttrs;
   inherit (nixos) lib;
-  inherit (lib) recursiveUpdate;
+  inherit (lib) recursiveUpdate hydraJob;
 
   utils = import ./lib/utils.nix { inherit lib; };
 
@@ -18,7 +18,7 @@ let
     config = { allowUnfree = true; };
   };
 
-  config = hostName:
+  config = hostName: (hydraJob
     (import <nixpkgs/nixos/lib/eval-config.nix> {
       inherit system;
 
@@ -33,7 +33,7 @@ let
           local = import "${toString ./.}/hosts/${hostName}.nix";
           flakeModules = attrValues (pathsToImportedAttrs (import ./modules/list.nix));
         in flakeModules ++ [ core global local ];
-    }).config.system.build.toplevel;
+    }).config.system.build.toplevel);
 
 in rec {
   machines = recImport {

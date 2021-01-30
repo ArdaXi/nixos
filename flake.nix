@@ -11,7 +11,7 @@
     let
       inherit (builtins) attrNames attrValues readDir mapAttrs;
       inherit (nixos) lib;
-      inherit (lib) removeSuffix recursiveUpdate genAttrs filterAttrs;
+      inherit (lib) removeSuffix recursiveUpdate genAttrs filterAttrs hydraJob;
       inherit (utils) pathsToImportedAttrs;
 
       utils = import ./lib/utils.nix { inherit lib; };
@@ -48,7 +48,7 @@
       );
 
       hydraJobs = {
-        hosts = mapAttrs (n: v: v.config.system.build.toplevel) self.nixosConfigurations;
+        hosts = mapAttrs (n: v: hydraJob v.config.system.build.toplevel) self.nixosConfigurations;
       };
 
       devShell."${system}" = import ./shell.nix {
