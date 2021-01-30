@@ -2,12 +2,11 @@
   description = "A highly structured configuration database.";
 
   inputs = {
-    master.url = "nixpkgs/master";
     nixos.url = "nixpkgs/master";
     home.url = "github:rycee/home-manager/bqv-flakes";
   };
 
-  outputs = inputs@{ self, home, nixos, master }:
+  outputs = inputs@{ self, home, nixos }:
     let
       inherit (builtins) attrNames attrValues readDir mapAttrs;
       inherit (nixos) lib;
@@ -27,7 +26,7 @@
 
       pkgsetFor = system: {
         osPkgs = pkgImport system nixos;
-        pkgs = pkgImport system master;
+        pkgs = pkgImport system nixos;
       };
 
       pkgset = pkgsetFor system;

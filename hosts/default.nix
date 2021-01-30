@@ -1,7 +1,6 @@
 { home
 , lib
 , nixos
-, master
 , pkgset
 , self
 , system
@@ -27,7 +26,7 @@ let
             networking.hostName = hostName;
             nix.nixPath = let path = toString ../.; in
               [
-                "nixpkgs=${master}"
+                "nixpkgs=${nixos}"
                 "nixos=${nixos}"
                 "nixos-config=${path}/configuration.nix"
                 "nixpkgs-overlays=${path}/overlays"
@@ -38,7 +37,7 @@ let
             nix.registry = {
               nixos.flake = nixos;
               nixflk.flake = self;
-              nixpkgs.flake = master;
+              nixpkgs.flake = nixos;
             };
 
             system.configurationRevision = lib.mkIf (self ? rev) self.rev;
