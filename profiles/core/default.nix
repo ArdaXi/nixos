@@ -16,7 +16,7 @@
     binaryCachePublicKeys = [ "street.ardaxi.com-1:A1P6oGDAlLPtBbscHNTzBM6DpMHGpqLNwXUgmOtNegg=" ];
     binaryCaches = lib.mkIf (config.networking.hostName != "cic")
       [ "https://cache.nixos.org/" "http://nix-cache.street.ardaxi.com/" ];
-    extraOptions = lib.mkForce ''
+    extraOptions = ''
       fallback = true
       experimental-features = nix-command flakes ca-references
     '';
