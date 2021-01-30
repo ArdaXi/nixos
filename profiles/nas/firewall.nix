@@ -6,7 +6,7 @@
     logRefusedConnections = false;
     allowedTCPPorts = [
       (lib.mkIf config.services.openssh.enable 22)
-      (lib.mkIf config.services.bind.enable 53)
+#      (lib.mkIf config.services.bind.enable 53)
       (lib.mkIf config.services.nginx.enable 80)
       (lib.mkIf config.services.nginx.enable 443)
       (lib.mkIf config.services.matrix-synapse.enable 8448)
@@ -17,7 +17,7 @@
       (lib.mkIf config.programs.mosh.enable { from = 60000; to = 61000; })
     ];
     allowedUDPPorts = [
-      (lib.mkIf config.services.bind.enable 53)
+#      (lib.mkIf config.services.bind.enable 53)
       (lib.mkIf config.services.transmission.enable 51413)
     ];
     extraCommands = ''
