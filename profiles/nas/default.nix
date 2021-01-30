@@ -42,7 +42,7 @@
     };
 
     openldap = {
-      enable = true;
+      enable = false;
       urlList = [ "ldap://127.0.0.1:389/" ];
       configDir = "/var/db/slapd.d";
     };

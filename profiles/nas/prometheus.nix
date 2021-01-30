@@ -14,6 +14,7 @@ in
       node = {
         enable = true;
         enabledCollectors = ["systemd"];
+        disabledCollectors = ["rapl"];
         listenAddress = "127.0.0.1";
         port = nodePort;
       };
