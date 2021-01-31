@@ -24,7 +24,6 @@ let
   };
 in
 rec {
-  sickbeard = final.callPackage ./sickbeard.nix {};
   hplip = final.callPackage ./hplip.nix {};
 
   python3 = prev.python3.override pythonOverrides;
@@ -36,25 +35,7 @@ rec {
 
   prometheus-postgresql = final.callPackage ./prometheus-postgresql-adapter/default.nix {};
 
-  wxGTK31 = prev.wxGTK31.overrideAttrs (oldAttrs : rec {
-    name = "wxwidgets-${version}";
-    version = "3.1.2";
-    src = final.fetchFromGitHub {
-        owner = "wxWidgets";
-        repo = "wxWidgets";
-        rev = "v${version}";
-        sha256 = "0gfdhb7xq5vzasm7s1di39nchv42zsp0dmn4v6knzb7mgsb107wb";
-    };
-    configureFlags = [ "--disable-precomp-headers" "--enable-mediactrl" "--enable-unicode" "--with-opengl" ];
-  });
-
   darcs = prev.darcs.overrideScope (final: prev: { Cabal = final.Cabal_2_2_0_1; });
-
-#  libreoffice-fresh = prev.libreoffice-fresh.override {
-#    libreoffice = prev.libreoffice-fresh.libreoffice.override {
-#      poppler = final.callPackage ./poppler.nix {};
-#    };
-#  };
 
   calibre = final.libsForQt5.callPackage ./calibre.nix {};
 }
