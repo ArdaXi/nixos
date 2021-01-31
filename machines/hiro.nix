@@ -57,6 +57,7 @@
 
     kernelModules = [
       "kvm-intel"
+      "msr" # for throttled
      # "fbcon"
     ];
 
