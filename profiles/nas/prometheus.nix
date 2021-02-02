@@ -81,12 +81,11 @@ in
     confinement.enable = true;
     wantedBy = [ "multi-user.target" ];
     after = [ "network.target" ];
-    script = ''
-      #!/bin/sh
-      exec ${pkgs.prometheus-postgresql}/bin/prometheus-postgresql-adapter \
-        -pg.database prometheus -pg.user prometheus -pg.host 127.0.0.1 -log.level warn
-    '';
     serviceConfig = {
+      ExecStart = ''
+        ${pkgs.prometheus-postgresql}/bin/prometheus-postgresql-adapter \
+          -pg.database prometheus -pg.user prometheus -pg.host 127.0.0.1 -log.level warn
+      '';
       User = "prometheus";
       Restart = "always";
       WorkingDirectory = "/tmp";
