@@ -78,6 +78,7 @@ in
   };
 
   systemd.services.prometheus-postgresql-adapter = {
+    confinement.enable = true;
     wantedBy = [ "multi-user.target" ];
     after = [ "network.target" ];
     script = ''
@@ -88,7 +89,6 @@ in
     serviceConfig = {
       User = "prometheus";
       Restart = "always";
-      PrivateTmp = true;
       WorkingDirectory = "/tmp";
     };
   };
