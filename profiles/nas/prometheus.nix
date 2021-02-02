@@ -59,6 +59,8 @@ in
     port = 4000;
   };
 
+  systemd.services.grafana.confinement.enable = true;
+
   services.postgresql = {
     extraPlugins = [
       config.services.postgresql.package.pkgs.timescaledb
