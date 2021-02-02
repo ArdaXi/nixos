@@ -60,7 +60,10 @@ in
   };
 
   systemd.services.grafana = {
-    confinement.enable = true;
+    confinement = {
+      enable = true;
+      packages = [ pkgs.coreutils ];
+    };
     serviceConfig = {
       BindPaths = ["/var/lib/grafana"];
     };
