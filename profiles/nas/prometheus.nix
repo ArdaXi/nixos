@@ -78,7 +78,10 @@ in
   };
 
   systemd.services.prometheus-postgresql-adapter = {
-    confinement.enable = true;
+    confinement = {
+      enable = true;
+      binSh = null;
+    };
     wantedBy = [ "multi-user.target" ];
     after = [ "network.target" ];
     serviceConfig = {
