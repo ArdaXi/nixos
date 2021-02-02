@@ -59,6 +59,13 @@ in
     port = 4000;
   };
 
+  systemd.services.grafana = {
+    confinement.enable = true;
+    serviceConfig = {
+      BindPaths = ["/var/lib/grafana"];
+    };
+  };
+
   services.postgresql = {
     extraPlugins = [
       config.services.postgresql.package.pkgs.timescaledb
