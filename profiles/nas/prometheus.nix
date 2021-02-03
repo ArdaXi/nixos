@@ -64,9 +64,7 @@ in
       enable = true;
       packages = [ pkgs.coreutils ];
     };
-    serviceConfig = {
-      BindPaths = ["/var/lib/grafana"];
-    };
+    serviceConfig.StateDirectory = "grafana";
   };
 
   services.postgresql = {
