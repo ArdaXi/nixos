@@ -17,6 +17,9 @@
       enable = true;
       packages = with pkgs; [ unrar p7zip ];
     };
-    serviceConfig.BindPaths = [ "/var/lib/nzbget" ];
+    serviceConfig.BindPaths = [
+      "/media"
+      "/var/lib/nzbget"
+    ];
   };
 }
