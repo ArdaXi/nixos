@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   nixpkgs.config.permittedInsecurePackages = [ "p7zip-16.02" ]; # needed for sabnzbd
 
@@ -9,5 +9,14 @@
       enable = true;
       port = 9091;
     };
+    nzbget.enable = true;
+  };
+
+  systemd.services.nzbget = {
+    confinement = {
+      enable = true;
+      packages = with pkgs; [ unrar p7zip ];
+    };
+    serviceConfig.BindPaths = [ "/var/lib/nzbget" ];
   };
 }
