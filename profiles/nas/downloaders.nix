@@ -18,6 +18,9 @@
         "/var/lib/sabnzbd"
         "/media"
       ];
+      BindReadOnlyPaths = [
+        "/etc/resolv.conf"
+      ];
     };
   };
 }
