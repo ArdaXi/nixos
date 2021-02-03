@@ -10,17 +10,4 @@
       port = 9091;
     };
   };
-
-  systemd.services.sabnzbd = {
-    confinement.enable = true;
-    serviceConfig = {
-      BindPaths = [
-        "/var/lib/sabnzbd"
-        "/media"
-      ];
-      BindReadOnlyPaths = [
-        "/etc/resolv.conf"
-      ];
-    };
-  };
 }
