@@ -5,6 +5,7 @@ let
     IPAddressDeny = ["any"];
     IPAddressAllow = ["localhost"];
   };
+  nginxUser = "nginx-exporter";
 in
 {
   systemd.services = {
@@ -26,8 +27,18 @@ in
       };
 
       serviceConfig = {
+        User = nginxUser;
+        Group = nginxUser;
         DynamicUser = false;
       } // localService;
     };
   };
+
+  users.users."${nginxUser}" = {
+    description = "Prometheus nginx exporter user";
+    isSystemUser = true;
+    group = nginxUser;
+  };
+
+  users.groups."${nginxUser}" = {};
 }
