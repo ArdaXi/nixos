@@ -30,6 +30,7 @@ in
         User = nginxUser;
         Group = nginxUser;
         DynamicUser = false;
+        BindReadOnlyPaths = ["/etc/hosts"];
       } // localService;
     };
   };
