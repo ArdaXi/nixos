@@ -64,7 +64,11 @@ in
       enable = true;
       packages = [ pkgs.coreutils ];
     };
-    serviceConfig.StateDirectory = "grafana";
+    serviceConfig = {
+      StateDirectory = "grafana";
+      IPAddressDeny = ["any"];
+      IPAddressAllow = ["localhost"];
+    };
   };
 
   services.postgresql = {
