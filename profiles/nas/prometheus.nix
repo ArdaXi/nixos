@@ -59,18 +59,6 @@ in
     port = 4000;
   };
 
-  systemd.services.grafana = {
-    confinement = {
-      enable = true;
-      packages = [ pkgs.coreutils ];
-    };
-    serviceConfig = {
-      StateDirectory = "grafana";
-      IPAddressDeny = ["any"];
-      IPAddressAllow = ["localhost"];
-    };
-  };
-
   services.postgresql = {
     extraPlugins = [
       config.services.postgresql.package.pkgs.timescaledb

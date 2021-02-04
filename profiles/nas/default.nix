@@ -12,6 +12,7 @@
     ./hydra.nix
     ./downloaders.nix
     ./docker.nix
+    ./hardening.nix
     #./homeassistant.nix
   ];
 
