@@ -23,6 +23,7 @@ in
         listenAddress = "127.0.0.1";
         port = nginxPort;
         scrapeUri = "http://127.0.0.1/nginx_status";
+        sslVerify = false;
       };
     };
     remoteRead = [
