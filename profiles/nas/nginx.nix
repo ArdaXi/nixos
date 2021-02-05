@@ -21,6 +21,14 @@
         deny  all;
       '';
     in {
+      "anki.street.ardaxi.com" = lib.mkIf config.services.ankisyncd.enable {
+        enableACME = true;
+        forceSSL = true;
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:${toString config.services.ankisyncd.port}/";
+          extraConfig = proxyConfig;
+        };
+      };
       "home.street.ardaxi.com" = lib.mkIf config.services.home-assistant.enable {
         enableACME = true;
         forceSSL = true;

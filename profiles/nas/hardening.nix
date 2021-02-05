@@ -9,6 +9,16 @@ let
 in
 {
   systemd.services = {
+    ankisyncd = {
+      confinement.enable = true;
+
+      serviceConfig = {
+        User = "ankisyncd";
+        Group = "ankisyncd";
+        DynamicUser = lib.mkForce false;
+      } // localService;
+    };
+
     grafana = lib.mkIf config.services.grafana.enable {
       confinement = {
         enable = true;
@@ -35,11 +45,21 @@ in
     };
   };
 
-  users.users."${nginxUser}" = {
-    description = "Prometheus nginx exporter user";
-    isSystemUser = true;
-    group = nginxUser;
+  users.users = {
+    "${nginxUser}" = {
+      description = "Prometheus nginx exporter user";
+      isSystemUser = true;
+      group = nginxUser;
+    };
+    ankisyncd = {
+      description = "ankisyncd user";
+      isSystemUser = true;
+      group = "ankisyncd";
+    };
   };
 
-  users.groups."${nginxUser}" = {};
+  users.groups = {
+    "${nginxUser}" = {};
+    ankisyncd = {};
+  };
 }

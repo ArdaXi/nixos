@@ -36,6 +36,8 @@
   ];
 
   services = {
+    ankisyncd.enable = true;
+
     postgresql = {
       enable = true;
       package = pkgs.postgresql_12;
