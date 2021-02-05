@@ -16,6 +16,7 @@ in
         User = "ankisyncd";
         Group = "ankisyncd";
         DynamicUser = lib.mkForce false;
+        BindReadOnlyPaths = ["/etc/ankisyncd/ankisyncd.conf"];
       } // localService;
     };
 
