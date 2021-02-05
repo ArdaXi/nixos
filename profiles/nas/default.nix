@@ -36,7 +36,10 @@
   ];
 
   services = {
-    ankisyncd.enable = true;
+    ankisyncd = {
+      enable = true;
+      host = "127.0.0.1";
+    };
 
     postgresql = {
       enable = true;
