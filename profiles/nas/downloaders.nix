@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   nixpkgs.config.permittedInsecurePackages = [ "p7zip-16.02" ]; # needed for sabnzbd
 
@@ -17,9 +17,12 @@
       enable = true;
       packages = with pkgs; [ unrar p7zip ];
     };
-    serviceConfig.BindPaths = [
-      "/media"
-      "/var/lib/nzbget"
-    ];
+    serviceConfig = {
+      UMask = lib.mkForce "0000";
+      BindPaths = [
+        "/media"
+        "/var/lib/nzbget"
+      ];
+    };
   };
 }
