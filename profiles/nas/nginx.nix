@@ -21,6 +21,15 @@
         deny  all;
       '';
     in {
+      "_" = {
+        default = true;
+        addSSL = true;
+        useACMEHost = "street.ardaxi.com";
+        extraConfig = ''
+          ssl_reject_handshake on;
+          return 444;
+        '';
+      };
       "anki.street.ardaxi.com" = lib.mkIf config.services.ankisyncd.enable {
         enableACME = true;
         forceSSL = true;
