@@ -33,7 +33,6 @@
         enableACME = true;
         forceSSL = true;
         locations."/" = {
-#          proxyPass = "http://127.0.0.1:${toString config.services.ankisyncd.port}/";
           proxyPass = "http://unix:/run/ankisyncd/ankisyncd.sock:/";
           extraConfig = proxyConfig;
         };
@@ -80,7 +79,8 @@
         enableACME = true;
         forceSSL = true;
         locations."/" = {
-          proxyPass = "http://127.0.0.1:${toString config.services.grafana.port}";
+          proxyPass = "http://unix:${config.services.grafana.extraOptions.SERVER_SOCKET}:/";
+#          proxyPass = "http://127.0.0.1:${toString config.services.grafana.port}";
         };
       };
       "street.ardaxi.com" = {

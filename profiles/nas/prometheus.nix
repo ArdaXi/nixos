@@ -56,8 +56,11 @@ in
 
   services.grafana = {
     enable = true;
-    port = 4000;
+    protocol = "socket";
+    extraOptions.SERVER_SOCKET = "/run/grafana/grafana.sock";
   };
+
+  systemd.services.grafana.serviceConfig.RuntimeDirectory = "grafana";
 
   services.postgresql = {
     extraPlugins = [
