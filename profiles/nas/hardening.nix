@@ -6,6 +6,11 @@ let
     IPAddressAllow = ["localhost"];
   };
   nginxUser = "nginx-exporter";
+  waitCmd = timeout: port: ''
+    ${pkgs.coreutils}/bin/timeout ${toString timeout} ${pkgs.bash}/bin/bash -c \
+      'until printf "" 2>>/dev/null >>/dev/tcp/127.0.0.1/${toString port}; \
+        do ${pkgs.coreutils}/bin/sleep 0.5; done'
+  '';
 in
 {
   systemd.sockets.ankisyncd-proxy = {
@@ -51,7 +56,7 @@ in
         DynamicUser = lib.mkForce false;
         BindReadOnlyPaths = ["/etc/ankisyncd/ankisyncd.conf"];
         PrivateNetwork = true;
-        ExecStartPost = "${pkgs.coreutils}/bin/sleep 2"; # ugly hack, wait for bind 
+        ExecStartPost = waitCmd 10 config.services.ankisyncd.port; # bit of an ugly hack
       } // localService;
 
       unitConfig.StopWhenUnneeded = true;
