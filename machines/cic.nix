@@ -62,7 +62,9 @@
   networking = {
     hostId = "567f8775";
     hostName = "cic";
-    nameservers = [ "8.8.4.4" "8.8.8.8" ];
+    useDHCP = false;
+    nameservers = [ "194.109.6.66" "194.109.9.99" "194.109.104.104"
+                    "2001:888:0:6::66" "2001:888:0:9::99" ];
     interfaces.eno1 = {
       ipv4 = {
         addresses = [
