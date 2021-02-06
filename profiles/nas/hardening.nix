@@ -11,6 +11,11 @@ in
   systemd.sockets.ankisyncd-proxy = {
     wantedBy = [ "sockets.target" ];
     listenStreams = [ "/run/ankisyncd/ankisyncd.sock" ];
+    socketConfig = {
+      SocketUser = "root";
+      SocketGroup = config.services.nginx.group;
+      SocketMode = "0660";
+    };
   };
 
   systemd.services = {
