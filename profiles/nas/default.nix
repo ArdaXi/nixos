@@ -11,7 +11,7 @@
     ./prometheus.nix
     ./hydra.nix
     ./downloaders.nix
-    ./docker.nix
+#    ./docker.nix
     ./hardening.nix
     #./homeassistant.nix
   ];
