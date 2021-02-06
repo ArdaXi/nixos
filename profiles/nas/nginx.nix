@@ -26,7 +26,6 @@
         addSSL = true;
         useACMEHost = "street.ardaxi.com";
         extraConfig = ''
-          ssl_reject_handshake on;
           return 444;
         '';
       };
