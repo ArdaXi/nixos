@@ -34,6 +34,7 @@ in
           ${config.systemd.package}/lib/systemd/systemd-socket-proxyd --exit-idle-time=15m \
             127.0.0.1:${toString config.services.ankisyncd.port}
         '';
+        ExecStartPost = "${pkgs.coreutils}/bin/sleep 5"; # ugly hack, wait for bind 
         PrivateNetwork = true;
         User = "ankisyncd";
         Group = "ankisyncd";
