@@ -34,7 +34,6 @@ in
           ${config.systemd.package}/lib/systemd/systemd-socket-proxyd --exit-idle-time=15m \
             127.0.0.1:${toString config.services.ankisyncd.port}
         '';
-        ExecStartPost = "${pkgs.coreutils}/bin/sleep 5"; # ugly hack, wait for bind 
         PrivateNetwork = true;
         User = "ankisyncd";
         Group = "ankisyncd";
@@ -52,6 +51,7 @@ in
         DynamicUser = lib.mkForce false;
         BindReadOnlyPaths = ["/etc/ankisyncd/ankisyncd.conf"];
         PrivateNetwork = true;
+        ExecStartPost = "${pkgs.coreutils}/bin/sleep 5"; # ugly hack, wait for bind 
       } // localService;
 
       unitConfig.StopWhenUnneeded = true;
