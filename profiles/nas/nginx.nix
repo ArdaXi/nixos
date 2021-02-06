@@ -131,4 +131,9 @@
       };
     };
   };
+
+  users.users."${config.services.nginx.user}".extraGroups = [
+    # I know this will probably never change, but it's still hardcoded
+    config.users.users."${config.systemd.services.grafana.serviceConfig.User}".group
+  ];
 }
