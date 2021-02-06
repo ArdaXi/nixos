@@ -51,7 +51,7 @@ in
         DynamicUser = lib.mkForce false;
         BindReadOnlyPaths = ["/etc/ankisyncd/ankisyncd.conf"];
         PrivateNetwork = true;
-        ExecStartPost = "${pkgs.coreutils}/bin/sleep 5"; # ugly hack, wait for bind 
+        ExecStartPost = "${pkgs.coreutils}/bin/sleep 2"; # ugly hack, wait for bind 
       } // localService;
 
       unitConfig.StopWhenUnneeded = true;
