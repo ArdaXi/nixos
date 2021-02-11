@@ -33,7 +33,7 @@
   };
 
   services = {
-    throttled.enable = true;
+#    throttled.enable = true;
 
     upower.enable = true;
 

@@ -7,6 +7,7 @@
     systemPackages = with pkgs; [
       wget unzip file vim neovim mosh psmisc binutils git screen fzf lsof htop ripgrep
       aspellDicts.en aspellDicts.nl kakoune jq tarsnap bat htop nox dnsutils starship
+      pv
     ];
     extraInit = "export XDG_CONFIG_DIRS=/etc/xdg:$XDG_CONFIG_DIRS";
   };
