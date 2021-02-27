@@ -22,7 +22,7 @@ in
 
   boot.extraModprobeConfig = "options zram num_devices=1";
 
-  boot.kernelModules = [ "zram" "zstd" "zstd_compress" "crypto_zstd" ];
+  boot.kernelModules = [ "zram" "zstd" ];
 
   fileSystems = {
     "/" = {
@@ -73,7 +73,7 @@ in
       echo ${zramLimit} > /sys/block/zram0/mem_limit
       mke2fs -t ext4 /dev/zram0
     '';
-    kernelModules = [ "zram" "zstd" "zstd_compress" "crypto_zstd" ];
+    kernelModules = [ "zram" "zstd" ];
   };
 
   system.build.sdImage = pkgs.callPackage ({ stdenv, dosfstools, e2fsprogs,
@@ -112,7 +112,7 @@ in
 
         numInodes=$(find ./rootImage | wc -l)
         numDataBlocks=$(du -s -c -B 4096 --apparent-size ./rootImage | tail -1 | \
-          awk '{ print int($1 * 1.10) }')
+          awk '{ print int($1 * 1) }')
         bytes=$((2 * 4096 * $numInodes + 4096 * $numDataBlocks))
         echo "Calculated size for ext4 partition: $bytes bytes"
         echo "numInodes: $numInodes | numDataBlocks: $numDataBlocks"
