@@ -26,8 +26,8 @@ in
     user.services.udiskie = {
       serviceConfig.ExecStart = "${pkgs.udiskie}/bin/udiskie -c ${udiskieConfigFile}";
 
-      wantedBy = [ "graphical.target" ];
-      partOf   = [ "graphical.target" ];
+      wantedBy = [ "graphical-session.target" ];
+      partOf   = [ "graphical-session.target" ];
     };
 
 #    mounts = [{

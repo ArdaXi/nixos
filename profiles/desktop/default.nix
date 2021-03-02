@@ -12,6 +12,7 @@
     ./network.nix
     ./udisks.nix
     ./project.nix
+    ./dunst.nix
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
