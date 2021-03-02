@@ -37,5 +37,5 @@ rec {
 
   darcs = prev.darcs.overrideScope (final: prev: { Cabal = final.Cabal_2_2_0_1; });
 
-  calibre = final.libsForQt5.callPackage ./calibre.nix {};
+#  calibre = final.libsForQt5.callPackage ./calibre.nix {};
 }
