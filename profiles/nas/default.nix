@@ -14,6 +14,7 @@
 #    ./docker.nix
     ./hardening.nix
     #./homeassistant.nix
+    ./ipfs.nix
   ];
 
   security.acme = {
