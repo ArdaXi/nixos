@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, config, ... }:
 
 {
   imports = [
@@ -42,6 +42,10 @@
     };
     "/media" = {
       device = "zones/media";
+      fsType = "zfs";
+    };
+    "${config.services.ipfs.dataDir}" = lib.mkIf config.services.ipfs.enable {
+      device = "zones/ipfs";
       fsType = "zfs";
     };
   };
