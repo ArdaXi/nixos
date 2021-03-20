@@ -87,6 +87,14 @@
         enableACME = true;
         forceSSL = true;
       };
+      "ipfs.street.ardaxi.com" = lib.mkIf config.services.ipfs.enable {
+        enableACME = true;
+        addSSL = true;
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:8181";
+          extraConfig = proxyConfig + allow;
+        };
+      };
       "local.street.ardaxi.com" = {
         enableACME = true;
         addSSL = true;
