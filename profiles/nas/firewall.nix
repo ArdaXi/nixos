@@ -9,6 +9,7 @@
 #      (lib.mkIf config.services.bind.enable 53)
       (lib.mkIf config.services.nginx.enable 80)
       (lib.mkIf config.services.nginx.enable 443)
+      (lib.mkIf config.services.ipfs.enable 4001)
       (lib.mkIf config.services.matrix-synapse.enable 8448)
       (lib.mkIf config.services.transmission.enable 51413)
       9001 # Weechat
@@ -18,6 +19,7 @@
     ];
     allowedUDPPorts = [
 #      (lib.mkIf config.services.bind.enable 53)
+      (lib.mkIf config.services.ipfs.enable 4001)
       (lib.mkIf config.services.transmission.enable 51413)
     ];
     extraCommands = ''
