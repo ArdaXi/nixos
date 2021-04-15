@@ -10,6 +10,7 @@
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC9L+dgqEWlz1HCAFvOo2WMcxXUCVZjEENrSCHEHdGKx ardaxi@hiro"
     ];
+    isNormalUser = true;
   };
 
   users.groups.ardaxi.gid = 1000;

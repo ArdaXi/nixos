@@ -47,6 +47,7 @@ in
           description = "sickrage user";
           home = cfg.dataDir;
           createHome = true;
+          isSystemUser = true;
     };
 
     users.extraGroups.sickrage = {
