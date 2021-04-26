@@ -24,7 +24,7 @@ let
   };
 in
 rec {
-  hplip = final.callPackage ./hplip.nix {};
+#  hplip = final.callPackage ./hplip.nix {};
 
   python3 = prev.python3.override pythonOverrides;
   python38 = prev.python38.override pythonOverrides;
