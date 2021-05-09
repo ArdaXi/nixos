@@ -51,6 +51,14 @@ in
         job_name = "meter";
         static_configs = [{ targets = ["192.168.179.16:8080"]; }];
       }
+      {
+        job_name = "meter_esp_gotsmart";
+        metrics_path = "/gotsmart";
+        static_configs = [{
+          targets = ["192.168.179.138:80"];
+          labels = { device = "4530303534303037363139333638373230"; };
+        }];
+      }
     ];
   };
 
