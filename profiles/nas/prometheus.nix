@@ -52,7 +52,7 @@ in
         metrics_path = "/gotsmart";
         static_configs = [{
           targets = ["192.168.179.138:80"];
-          labels = { device = "4530303534303037363139333638373230"; };
+          labels = { device = "4530303534303037363139333638373230"; version = "50"; };
         }];
       }
       {
