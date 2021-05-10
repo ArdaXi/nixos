@@ -63,7 +63,7 @@
     taskwarrior fortune ledger usbutils pciutils acpi slock scrot nfsUtils xdotool nethack
     mosquitto xorg.xf86inputsynaptics
     # Misc graphical
-    alacritty arandr dmenu fahclient calibre anki
+    alacritty arandr dmenu fahclient calibre anki-bin
     # Big stuff
     libreoffice-fresh signal-desktop steam
   ];

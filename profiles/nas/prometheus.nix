@@ -48,10 +48,6 @@ in
         static_configs = [{ targets = ["127.0.0.1:${toString nginxPort}"]; }];
       }
       {
-        job_name = "meter";
-        static_configs = [{ targets = ["192.168.179.16:8080"]; }];
-      }
-      {
         job_name = "meter_esp_gotsmart";
         metrics_path = "/gotsmart";
         static_configs = [{
@@ -59,6 +55,11 @@ in
           labels = { device = "4530303534303037363139333638373230"; };
         }];
       }
+      {
+        job_name = "meter_esp";
+        static_configs = [{ targets = ["192.168.179.138:80"]; }];
+      }
+
     ];
   };
 
