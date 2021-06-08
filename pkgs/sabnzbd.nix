@@ -1,8 +1,8 @@
-{stdenv, fetchFromGitHub, python2, par2cmdline, unzip, unrar, makeWrapper}:
+{stdenv, lib, fetchFromGitHub, python2, par2cmdline, unzip, unrar, makeWrapper}:
 
 let
   pythonEnv = python2.withPackages(ps: with ps; [ cryptography cheetah yenc sabyenc ]);
-  path = stdenv.lib.makeBinPath [ par2cmdline unrar unzip ];
+  path = lib.makeBinPath [ par2cmdline unrar unzip ];
 in stdenv.mkDerivation rec {
   version = "2.3.9";
   pname = "sabnzbd";
@@ -25,11 +25,11 @@ in stdenv.mkDerivation rec {
     wrapProgram $out/bin/sabnzbd --set PATH ${path}
   '';
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "Usenet NZB downloader, par2 repairer and auto extracting server";
     homepage = "https://sabnzbd.org";
     license = licenses.gpl2Plus;
     platforms = platforms.linux;
-    maintainers = with stdenv.lib.maintainers; [ fridh ];
+    maintainers = with lib.maintainers; [ fridh ];
   };
 }

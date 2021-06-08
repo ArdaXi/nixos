@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub, cmake, postgresql_12 }:
+{ stdenv, lib, fetchFromGitHub, cmake, postgresql_12 }:
 
 # # To enable on NixOS:
 # config.services.postgresql = {
@@ -34,7 +34,7 @@ stdenv.mkDerivation rec {
     mkdir -p $out/bin
   '';
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "An extension for PostgreSQL that defines a Prometheus metric samples data type and provides several storage formats for storing Prometheus data";
     homepage    = https://www.timescale.com/;
     maintainers = with maintainers; [  ];

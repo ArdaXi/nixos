@@ -1,4 +1,4 @@
-{ stdenv, fetchurl, substituteAll
+{ stdenv, lib, fetchurl, substituteAll
 , pkgconfig
 , cups, zlib, libjpeg, libusb1, pythonPackages, sane-backends
 , dbus, file, ghostscript, usbutils
@@ -75,7 +75,7 @@ pythonPackages.buildPythonApplication {
     reportlab
     usbutils
     sip
-  ] ++ stdenv.lib.optionals withQt5 [
+  ] ++ lib.optionals withQt5 [
     pyqt5
   ];
 
@@ -107,9 +107,9 @@ pythonPackages.buildPythonApplication {
       --with-systraydir=$out/xdg/autostart
       --with-mimedir=$out/etc/cups
       --enable-policykit
-      ${stdenv.lib.optionalString withStaticPPDInstall "--enable-cups-ppd-install"}
+      ${lib.optionalString withStaticPPDInstall "--enable-cups-ppd-install"}
       --disable-qt4
-      ${stdenv.lib.optionalString withQt5 "--enable-qt5"}
+      ${lib.optionalString withQt5 "--enable-qt5"}
     "
 
     export makeFlags="
@@ -135,7 +135,7 @@ pythonPackages.buildPythonApplication {
   # Running `hp-diagnose_plugin -g` can be used to diagnose
   # issues with plugins.
   #
-  postInstall = stdenv.lib.optionalString withPlugin ''
+  postInstall = lib.optionalString withPlugin ''
     sh ${plugin} --noexec --keep
     cd plugin_tmp
 
@@ -202,7 +202,7 @@ pythonPackages.buildPythonApplication {
 
   postFixup = ''
     substituteInPlace $out/etc/hp/hplip.conf --replace /usr $out
-  '' + stdenv.lib.optionalString (!withPlugin) ''
+  '' + lib.optionalString (!withPlugin) ''
     # A udev rule to notify users that they need the binary plugin.
     # Needs a lot of patching but might save someone a bit of confusion:
     substituteInPlace $out/etc/udev/rules.d/56-hpmud.rules \
@@ -212,7 +212,7 @@ pythonPackages.buildPythonApplication {
       --replace {/usr,$out}/bin
   '';
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "Print, scan and fax HP drivers for Linux";
     homepage = https://developers.hp.com/hp-linux-imaging-and-printing;
     license = if withPlugin
