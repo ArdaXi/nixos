@@ -117,7 +117,10 @@
           };
           "/media/" = {
             alias = "/media/";
-            extraConfig = "autoindex on;" + allow;
+            extraConfig = ''
+              allow 192.168.179.0/24;
+              autoindex on;
+            '' + allow;
           };
           "/sabnzbd/" = lib.mkIf config.services.sabnzbd.enable {
             proxyPass = "http://127.0.0.1:8081/"; # not declarative yet
