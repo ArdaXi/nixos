@@ -13,13 +13,11 @@ max_width = 125
 [[block]]
 block = "battery"
 device = "BAT0"
-upower = true
 format = "{percentage}% {time}"
 
 [[block]]
 block = "battery"
 device = "BAT1"
-upower = true
 format = "{percentage}% {time}"
 
 [[block]]
