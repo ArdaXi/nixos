@@ -2,7 +2,8 @@
 
 {
   imports = [
-    ./i3
+#    ./i3
+    ./sway
     ./alacritty.nix
     ./encryption.nix
 #    ./wireguard-systemd.nix

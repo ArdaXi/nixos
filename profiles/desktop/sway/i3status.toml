@@ -1,0 +1,28 @@
+icons = "awesome"
+
+[theme]
+name = "solarized-dark"
+[theme.overrides]
+idle_bg = "#202020"
+idle_fg = "#c8c8c8"
+
+[[block]]
+block = "focused_window"
+max_width = 125
+
+[[block]]
+block = "battery"
+device = "BAT0"
+upower = true
+format = "{percentage}% {time}"
+
+[[block]]
+block = "battery"
+device = "BAT1"
+upower = true
+format = "{percentage}% {time}"
+
+[[block]]
+block = "time"
+interval = 1
+format = "%a %b %d %Y %H:%M:%S"
