@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   imports = [
@@ -44,7 +44,7 @@
 
     xserver = {
       dpi = 192;
-      displayManager.sessionCommands = ''
+      displayManager.sessionCommands = lib.mkIf (!config.programs.sway.enable) ''
         ${pkgs.xorg.xrdb}/bin/xrdb -merge <<EOF
         Xft.dpi = 192
         Xcursor.size: 32
@@ -67,7 +67,10 @@
 
     loader = {
       grub.enable = false;
-      systemd-boot.enable = true;
+      systemd-boot = {
+        enable = true;
+        consoleMode = "1";
+      };
       efi.canTouchEfiVariables = true;
     };
 

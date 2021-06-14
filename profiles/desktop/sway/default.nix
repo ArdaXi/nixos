@@ -9,6 +9,10 @@ rec {
     i3statusConfig = ./i3status.toml;
   }).outPath;
 
+  environment.systemPackages = [(pkgs.writeScriptBin "chrome" ''
+    ${pkgs.google-chrome}/bin/google-chrome-stable --enable-features=UseOzonePlatform --ozone-platform=wayland
+  '')];
+
   programs.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
@@ -18,6 +22,11 @@ rec {
       export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
       export _JAVA_AWT_WM_NONREPARENTING=1
       export MOZ_ENABLE_WAYLAND=1
+      export XKB_DEFAULT_LAYOUT=us
+      export XKB_DEFAULT_OPTIONS=compose:caps
+
+      ${pkgs.networkmanagerapplet}/bin/nm-applet &
+      ${pkgs.xsettingsd}/bin/xsettingsd &
     '';
   };
 

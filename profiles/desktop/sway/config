@@ -1,10 +1,4 @@
 #
-# ERROR: Duplicate keybinding in config file:
-#  state mask 0x40 with keysym s, command "layout stacking"
-#ERROR: Duplicate keybinding in config file:
-#  state mask 0x40 with keysym s, command "layout stacking"
-#ERROR: FYI: You are using i3 version 4.16.1 (2019-01-27)
-#/run/user/1000/i3/errorlog.5133 (END)
 # i3 config file (v4)
 # Default config for sway
 #
@@ -232,5 +226,7 @@ bar {
 for_window [title="launcher"] floating enable, border none, move down, move down
 
 for_window [class="^.*"] border none
+
+default_border none
 
 font pango:Source Code Pro 8
