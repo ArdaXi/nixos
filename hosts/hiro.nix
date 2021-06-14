@@ -14,7 +14,7 @@
   environment = {
     systemPackages = [ pkgs.cryptsetup ];
     variables = {
-      "QT_AUTO_SCREEN_SCALE_FACTOR" = "2";
+#      "QT_AUTO_SCREEN_SCALE_FACTOR" = "2";
       "MOZ_USE_XINPUT2" = "1";
     };
     etc = {
@@ -24,11 +24,12 @@
         Xft/Hinting 1
         Xft/RGBA "rgb"
         Xft/lcdfilter "lcddefault"
-        Xft/DPI ${builtins.toString (96 * 2 * 1024)}
-
-        Gdk/WindowScalingFactor 2
-        Gdk/UnscaledDPI ${builtins.toString (96 * 1024)}
       '';
+#        Xft/DPI ${builtins.toString (96 * 2 * 1024)}
+#
+#        Gdk/WindowScalingFactor 2
+#        Gdk/UnscaledDPI ${builtins.toString (96 * 1024)}
+#      '';
     };
   };
 
