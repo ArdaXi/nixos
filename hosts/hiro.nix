@@ -43,9 +43,9 @@
       drivers = [ pkgs.hplip pkgs.epson-escpr ];
     };
 
-    xserver = {
+    xserver = lib.mkIf (!config.programs.sway.enable) {
       dpi = 192;
-      displayManager.sessionCommands = lib.mkIf (!config.programs.sway.enable) ''
+      displayManager.sessionCommands = ''
         ${pkgs.xorg.xrdb}/bin/xrdb -merge <<EOF
         Xft.dpi = 192
         Xcursor.size: 32
@@ -70,7 +70,7 @@
       grub.enable = false;
       systemd-boot = {
         enable = true;
-        consoleMode = "1";
+#        consoleMode = "1";
       };
       efi.canTouchEfiVariables = true;
     };
