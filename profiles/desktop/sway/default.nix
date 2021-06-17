@@ -24,6 +24,7 @@ rec {
       export MOZ_ENABLE_WAYLAND=1
       export XKB_DEFAULT_LAYOUT=us
       export XKB_DEFAULT_OPTIONS=compose:caps
+      export GDK_DPI_SCALE=0.75
 
       ${pkgs.networkmanagerapplet}/bin/nm-applet &
       ${pkgs.xsettingsd}/bin/xsettingsd &

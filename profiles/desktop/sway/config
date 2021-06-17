@@ -230,3 +230,5 @@ for_window [class="^.*"] border none
 default_border none
 
 font pango:Source Code Pro 8
+
+exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
