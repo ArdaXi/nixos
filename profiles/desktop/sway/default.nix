@@ -9,9 +9,14 @@ rec {
     i3statusConfig = ./i3status.toml;
   }).outPath;
 
-  environment.systemPackages = [(pkgs.writeScriptBin "chrome" ''
-    ${pkgs.google-chrome}/bin/google-chrome-stable --enable-features=UseOzonePlatform --ozone-platform=wayland
-  '')];
+  environment.systemPackages = [
+    (pkgs.writeShellScriptBin "chrome" ''
+      exec ${pkgs.google-chrome}/bin/google-chrome-stable --enable-features=UseOzonePlatform --ozone-platform=wayland
+    '')
+    (pkgs.writeShellScriptBin "signal" ''
+      exec ${pkgs.signal-desktop}/bin/signal-desktop --enable-features=UseOzonePlatform --ozone-platform=wayland
+    '')
+  ];
 
   programs.sway = {
     enable = true;
