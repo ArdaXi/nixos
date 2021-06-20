@@ -70,7 +70,7 @@
       grub.enable = false;
       systemd-boot = {
         enable = true;
-#        consoleMode = "1";
+        consoleMode = "max";
       };
       efi.canTouchEfiVariables = true;
     };
