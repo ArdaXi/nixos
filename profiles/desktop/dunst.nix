@@ -30,7 +30,9 @@ let
     foreground = q "#222222";
     timeout = "60";
   };
-  configFile = pkgs.writeText "dunstrc" (lib.generators.toINI {} {
+in
+{
+  environment.etc."xdg/dunst/dunstrc".text = (lib.generators.toINI {} {
     global = {
       markup = "full";
       font = "SauceCodePro Nerd Font 16";
@@ -56,15 +58,14 @@ let
     urgency_normal = defaultUrgency;
     urgency_critical = defaultUrgency;
   });
-in
-{
+
   systemd = {
     user.services.dunst = {
       enable = true;
       serviceConfig = {
         ExecStart = [
           ""
-          "${pkgs.dunst}/bin/dunst -config ${configFile}"
+          "${pkgs.dunst}/bin/dunst -config /etc/xdg/dunst/dunstrc"
         ];
       };
     };
