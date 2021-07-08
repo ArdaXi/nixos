@@ -62,12 +62,19 @@
       "2001:888:0:6::66" "2001:888:0:9::99"
     ];
     useDHCP = false;
-    interfaces.eno1 = {
-      ipv4.addresses = [
-        { address = "192.168.178.2"; prefixLength = 24; }
-        { address = "82.94.130.160"; prefixLength = 32; }
-      ];
-      ipv6.addresses = [{ address = "2001:984:3f27:3::2"; prefixLength = 64; }];
+    interfaces = {
+      eno1 = {
+        ipv4.addresses = [
+          { address = "192.168.178.2"; prefixLength = 24; }
+          { address = "82.94.130.160"; prefixLength = 32; }
+        ];
+        ipv6.addresses = [{ address = "2001:984:3f27:3::2"; prefixLength = 64; }];
+      };
+      eno2 = {
+        mtu = 9710;
+        ipv4.addresses = [{ address = "10.145.22.1"; prefixLength = 24; }];
+        ipv6.addresses = [{ address = "fd08:1432:1eb8::1"; prefixLength = 64; }];
+      };
     };
     defaultGateway = {
       address = "192.168.178.1";

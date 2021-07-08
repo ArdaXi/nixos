@@ -15,6 +15,7 @@
     ./hardening.nix
     #./homeassistant.nix
     ./ipfs.nix
+    ./iscsi.nix
   ];
 
   security.acme = {
