@@ -21,7 +21,7 @@ set $term @alacritty@/bin/alacritty -e @zsh@/bin/zsh -c "@tmux@/bin/tmux attach-
 set $menu dmenu_run -fn 'xft:Source Code Pro:size:10:regular:antialias=true'
 #set $menu @alacritty@/bin/alacritty --title launcher -d 20 50 -e @zsh@/bin/zsh -c "@dmenu@/bin/dmenu_path | @fzf@/bin/fzf --layout=reverse | @findutils@/bin/xargs @i3@/bin/i3-msg -q exec || exit > /dev/null 2>&1"
 
-set $lock physlock -d
+set $lock physlock -dms
 
 set $pass passmenu
 
@@ -55,6 +55,11 @@ set $screenshot scrot -s
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
+input "type:keyboard" {
+  xkb_layout us
+  xkb_options compose:caps
+}
+
 ### Key bindings
 #
 # Basics:
@@ -68,13 +73,13 @@ set $screenshot scrot -s
     # start your launcher
     bindsym $mod+r exec $menu
 
-    bindsym $mod+l exec --no-startup-id $lock
+    bindsym --no-repeat $mod+l exec --no-startup-id $lock
 
     bindsym $mod+p exec $pass
 
     bindsym $mod+s exec --no-startup-id $screenshot
 
-    bindsym $mod+k exec --no-startup-id systemctl suspend
+    bindsym --no-repeat $mod+k exec --no-startup-id systemctl suspend
 
     bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master 1%+
     bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master 1%-
