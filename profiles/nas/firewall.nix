@@ -27,6 +27,7 @@
       iptables -A nixos-fw -s 192.168.178.0/24 -j nixos-fw-accept
       iptables -A nixos-fw -s 192.168.179.22/32 -j nixos-fw-accept
       iptables -A nixos-fw -s 192.168.179.0/24 -p tcp --dport 1883 -j nixos-fw-accept
+      iptables -A nixos-fw -s 10.145.22.0/24 -j nixos-fw-accept
     '';
   };
 
