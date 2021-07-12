@@ -16,8 +16,8 @@
     ./dunst.nix
   ];
 
-  # For zfs < 2.1.0
-  boot.kernelPackages = pkgs.linuxPackages_5_11;
+  # For zfs 2.1.0
+  boot.kernelPackages = pkgs.linuxPackages_5_12;
 
   services.physlock = {
     enable = true;
