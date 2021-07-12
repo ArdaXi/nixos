@@ -36,7 +36,10 @@ rustPlatform.buildRustPackage {
   BUILDINFO = ./buildinfo.txt;
   BAZEL = "dummy";
 
-  cargoHash = "sha256-408nc+KYQ8rysw3+6LQlNECwnjwjcrNaeoZxVFx8A6s=";
+  cargoPatches = [ ./lexical_core.patch ];
+
+  cargoHash = "sha256-bUlNpAjqEww3LailKNmY/BSx9coUWOLGwWpe/OCeeKM=";
+#  cargoHash = lib.fakeHash;
 
   buildAndTestSubdir = "pylib/rsbridge";
 
