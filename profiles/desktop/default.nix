@@ -73,7 +73,11 @@
   fonts = {
     fontDir.enable = true;
     enableGhostscriptFonts = true;
-    fonts = with pkgs; [ source-code-pro vistafonts corefonts nerdfonts ];
+    enableDefaultFonts = true;
+    fonts = with pkgs; [
+      source-code-pro vistafonts corefonts nerdfonts
+      cantarell-fonts
+    ];
   };
 
   programs.dconf.enable = true;

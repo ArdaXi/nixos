@@ -16,6 +16,7 @@ rec {
     (pkgs.writeShellScriptBin "signal" ''
       exec ${pkgs.signal-desktop}/bin/signal-desktop --enable-features=UseOzonePlatform --ozone-platform=wayland
     '')
+    pkgs.glib.bin
   ];
 
   programs.sway = {

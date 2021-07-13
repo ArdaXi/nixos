@@ -237,3 +237,4 @@ default_border none
 font pango:Source Code Pro 8
 
 exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
+exec gsettings set org.gnome.desktop.interface font-name "Cantarell 12"
