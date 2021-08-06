@@ -3,15 +3,8 @@
 {
   services.resolved = {
     enable = true;
-    dnssec = "true";
+    dnssec = "allow-downgrade";
     fallbackDns = [
-      # XS4ALL
-      "194.109.6.66"
-      "194.109.9.99"
-      "194.109.104.104"
-      "2001:888:0:6::66"
-      "2001:888:0:9::99"
-
       # Quad9
       "9.9.9.9"
       "149.112.112.112"
