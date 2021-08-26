@@ -6,7 +6,7 @@
     ./sway
     ./alacritty.nix
     ./encryption.nix
-    ./wireguard-systemd.nix
+#    ./wireguard-systemd.nix
     ./chromium.nix
     ./multimedia.nix
     ./bluetooth.nix
@@ -16,8 +16,7 @@
     ./dunst.nix
   ];
 
-  # For zfs 2.1.0
-  boot.kernelPackages = pkgs.linuxPackages_5_12;
+  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages or pkgs.linuxPackages_5_12;
 
   services.physlock = {
     enable = true;
