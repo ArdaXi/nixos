@@ -48,8 +48,10 @@ in rec {
 
   tests = {
     inherit (allTests) acme bat firefox grafana hydra login nginx nzbget
-      openssh prometheus signal-desktop sudo sway wireguard zfs;
+      openssh prometheus signal-desktop sudo sway wireguard;
 
     inherit (allTests.postgresql) postgresql_12;
+
+    zfsStable = allTests.zfs.stable;
   };
 }
