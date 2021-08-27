@@ -4,7 +4,7 @@
   inputs = {
     nixos.url = "nixpkgs/master";
     home = {
-      url = "github:rycee/home-manager/bqv-flakes";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixos";
     };
   };
