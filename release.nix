@@ -18,6 +18,11 @@ let
     config = { allowUnfree = true; };
   };
 
+  allTests = (import <nixpkgs/nixos/tests/all-tests.nix> {
+    inherit system pkgs;
+    callTest = t: hydraJob t.test;
+  });
+
   config = hostName: (hydraJob
     (import <nixpkgs/nixos/lib/eval-config.nix> {
       inherit system;
@@ -39,5 +44,12 @@ in rec {
   machines = recImport {
     dir = ./hosts;
     _import = config;
+  };
+
+  tests = {
+    inherit (allTests) acme bat firefox grafana hydra login nginx nzbget
+      openssh prometheus signal-desktop sudo sway wireguard zfs;
+
+    inherit (allTests.postgresql) postgresql_12;
   };
 }
