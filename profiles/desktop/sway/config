@@ -18,7 +18,11 @@ set $right l
 # Your preferred terminal emulator
 set $term @alacritty@/bin/alacritty -e @zsh@/bin/zsh -c "@tmux@/bin/tmux attach-session -t main || @tmux@/bin/tmux new-session -s main" 
 # Your preferred application launcher
-set $menu dmenu_run -fn 'xft:Source Code Pro:size:10:regular:antialias=true'
+
+for_window [app_id="^launcher$"] floating enable, border pixel 2, sticky enable
+set $menu exec @alacritty@/bin/alacritty --class launcher -e @zsh@/bin/zsh -c "@dmenu@/bin/dmenu_path | @fzf@/bin/fzf | @findutils@/bin/xargs @sway@/bin/swaymsg exec || exit > /dev/null 2>&1"
+
+#set $menu dmenu_run -fn 'xft:Source Code Pro:size:10:regular:antialias=true'
 #set $menu @alacritty@/bin/alacritty --title launcher -d 20 50 -e @zsh@/bin/zsh -c "@dmenu@/bin/dmenu_path | @fzf@/bin/fzf --layout=reverse | @findutils@/bin/xargs @i3@/bin/i3-msg -q exec || exit > /dev/null 2>&1"
 
 set $lock physlock -dms
@@ -227,8 +231,6 @@ bar {
     font pango:Source Code Pro 12
     status_command @i3statusRust@/bin/i3status-rs @i3statusConfig@
 }
-
-for_window [title="launcher"] floating enable, border none, move down, move down
 
 for_window [class="^.*"] border none
 
