@@ -16,7 +16,7 @@
     #./homeassistant.nix
     ./ipfs.nix
     ./iscsi.nix
-#    ./keycloak.nix
+    ./keycloak.nix
   ];
 
   security.acme = {

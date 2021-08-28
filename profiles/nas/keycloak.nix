@@ -10,6 +10,7 @@
 
     database = {
       type = "postgresql";
+      passwordFile = "/run/keys/keycloak_password";
       createLocally = true;
     };
 
