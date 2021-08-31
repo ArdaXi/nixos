@@ -14,7 +14,7 @@
 #    ./docker.nix
     ./hardening.nix
     #./homeassistant.nix
-    ./ipfs.nix
+#    ./ipfs.nix
     ./iscsi.nix
     ./keycloak.nix
   ];
