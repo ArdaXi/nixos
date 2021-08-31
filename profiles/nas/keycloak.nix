@@ -5,13 +5,16 @@
     enable = true;
     httpPort = "8086";
     bindAddress = "127.0.0.1";
-    frontendUrl = "keycloak.ardaxi.com/auth";
+    frontendUrl = "https://keycloak.ardaxi.com/auth";
     forceBackendUrlToFrontendUrl = true;
 
     database = {
       type = "postgresql";
+      username = "keycloak";
+      host = "127.0.0.1";
       passwordFile = "/run/keys/keycloak_password";
-      createLocally = true;
+      createLocally = false;
+      useSSL = false;
     };
 
     extraConfig = {
