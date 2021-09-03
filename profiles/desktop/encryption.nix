@@ -25,6 +25,7 @@
     enable = true;
     enableBrowserSocket = true;
     enableExtraSocket = true;
-    enableSSHSupport = true;
   };
+
+  programs.ssh.startAgent = true;
 }

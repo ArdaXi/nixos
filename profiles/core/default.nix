@@ -1,7 +1,10 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [ ./tmux.nix ];
+  imports = [ 
+    ./tmux.nix
+    ./security.nix
+  ];
 
   environment = {
     systemPackages = with pkgs; [
