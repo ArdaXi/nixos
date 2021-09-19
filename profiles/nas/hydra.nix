@@ -28,12 +28,15 @@
 
     users.users.nixbuild = {
       name = "nixbuild";
+      group = "nixbuild";
       shell = pkgs.bashInteractive;
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILRmMpqZs45J4+Bl0LrRpjWvM/EOz1CBtWiBWyrEK9iS"
       ];
       isSystemUser = true;
     };
+
+    users.groups.nixbuild = {};
 
     nix.allowedUsers = [ "hydra" "hydra-www" "@hydra" "nix-serve" ];
   };

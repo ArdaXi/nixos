@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   promPort = 9090;
@@ -69,7 +69,10 @@ in
     extraOptions.SERVER_SOCKET = "/run/grafana/grafana.sock";
   };
 
-  systemd.services.grafana.serviceConfig.RuntimeDirectory = "grafana";
+  systemd.services.grafana.serviceConfig = {
+    RuntimeDirectory = "grafana";
+    ProtectSystem = lib.mkForce false;
+  };
 
   services.postgresql = {
     extraPlugins = [

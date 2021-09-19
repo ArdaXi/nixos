@@ -78,4 +78,8 @@
       '';
     };
   };
+
+  users.users.unifi.group = "unifi";
+  users.groups.unifi = {};
+
 }
