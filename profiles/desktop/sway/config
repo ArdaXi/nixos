@@ -220,16 +220,19 @@ mode "resize" {
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
+#bar {
+#    position top
+#    colors {
+#        statusline #c8c8c8
+#        background #202020
+#        active_workspace #202020 #202020 #62b1d0
+#        inactive_workspace #202020 #202020 #c8c8c8
+#    }
+#    font pango:Source Code Pro 12
+#    status_command @i3statusRust@/bin/i3status-rs @i3statusConfig@
+#}
 bar {
-    position top
-    colors {
-        statusline #c8c8c8
-        background #202020
-        active_workspace #202020 #202020 #62b1d0
-        inactive_workspace #202020 #202020 #c8c8c8
-    }
-    font pango:Source Code Pro 12
-    status_command @i3statusRust@/bin/i3status-rs @i3statusConfig@
+  swaybar_command @waybar@/bin/waybar
 }
 
 for_window [class="^.*"] border none
