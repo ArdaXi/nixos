@@ -65,6 +65,7 @@
 
     kernel.sysctl."net.ipv6.route.max_size" = "2147483647";
     kernelModules = [ "kvm-intel" "thunderbolt" ];
+    kernelParams = [ "i915.enable_psr=0" ];
 
     loader = {
       grub.enable = false;
