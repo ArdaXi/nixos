@@ -24,13 +24,6 @@ in
         port = nginxPort;
       };
     };
-    remoteRead = [
-      { url = "http://localhost:9094/api/v1/read"; }
-      { url = "http://localhost:9201/read"; }
-    ];
-    remoteWrite = [
-      { url = "http://localhost:9201/write"; }
-    ];
     globalConfig = {
       scrape_interval = "1m";
     };
@@ -72,31 +65,5 @@ in
   systemd.services.grafana.serviceConfig = {
     RuntimeDirectory = "grafana";
     ProtectSystem = lib.mkForce false;
-  };
-
-  services.postgresql = {
-    extraPlugins = [
-      config.services.postgresql.package.pkgs.timescaledb
-      pkgs.pg_prometheus
-    ];
-    settings.shared_preload_libraries = "timescaledb, pg_prometheus";
-  };
-
-  systemd.services.prometheus-postgresql-adapter = {
-    confinement = {
-      enable = true;
-      binSh = null;
-    };
-    wantedBy = [ "multi-user.target" ];
-    after = [ "network.target" ];
-    serviceConfig = {
-      ExecStart = ''
-        ${pkgs.prometheus-postgresql}/bin/prometheus-postgresql-adapter \
-          -pg.database prometheus -pg.user prometheus -pg.host 127.0.0.1 -log.level warn
-      '';
-      User = "prometheus";
-      Restart = "always";
-      WorkingDirectory = "/tmp";
-    };
   };
 }
