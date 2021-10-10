@@ -9,7 +9,7 @@ in
   services.my-prometheus2 = {
     enable = true;
     listenAddress = ":${toString promPort}";
-    extraFlags = ["--storage.tsdb.retention 365d"];
+    extraFlags = ["--storage.tsdb.retention 3650d"];
     exporters = {
       node = {
         enable = true;
