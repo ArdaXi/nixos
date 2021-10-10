@@ -27,6 +27,18 @@
       ];
     };
 
+    security.sudo.extraRules = [
+      # allow wheel to run smartctl -a without password
+      # used for ZFS
+      {
+        groups = [ "wheel" ];
+        commands = [{
+          command = "${pkgs.smartmontools}/bin/smartctl -a /dev/[hsv]d[a-z0-9]*";
+          options = [ "SETENV" "NOPASSWD" ];
+        }];
+      }
+    ];
+
     security.pam.u2f.cue = true;
 
     security.pam.services = {
