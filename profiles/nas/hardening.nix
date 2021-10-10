@@ -84,6 +84,7 @@ in
         Group = nginxUser;
         DynamicUser = false;
         BindReadOnlyPaths = ["/etc/hosts"];
+        ProtectSystem = false;
       } // localService;
     };
   };
