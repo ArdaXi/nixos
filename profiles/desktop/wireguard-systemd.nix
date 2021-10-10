@@ -39,6 +39,8 @@ in {
 
   networking.firewall.allowedUDPPorts = [ magicno ];
 
+  services.openssh.openFirewall = false;
+
   systemd.network = {
     enable = true;
 
@@ -71,6 +73,7 @@ in {
         { routeConfig = {
           # With the public IP as a source
           PreferredSource = publicIP;
+#          PreferredSource = localIP;
           Table = magicno;
           Scope = "link";
         };}
