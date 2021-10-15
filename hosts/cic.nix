@@ -29,11 +29,11 @@
 
   fileSystems = {
     "/" = {
-      device = "zones/nixos";
+      device = "tank/system/nixos";
       fsType = "zfs";
     };
     "/nix" = {
-      device = "zones/nix";
+      device = "tank/local/nix";
       fsType = "zfs";
     };
     "/boot" = {
@@ -41,11 +41,7 @@
       fsType = "vfat";
     };
     "/media" = {
-      device = "zones/media";
-      fsType = "zfs";
-    };
-    "${config.services.ipfs.dataDir}" = lib.mkIf config.services.ipfs.enable {
-      device = "zones/ipfs";
+      device = "tank/data/media";
       fsType = "zfs";
     };
   };
