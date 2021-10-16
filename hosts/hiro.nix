@@ -93,7 +93,7 @@
       fsType = "zfs";
     };
     "/nix" = {
-      device = "tank/nix";
+      device = "tank/local/nix";
       fsType = "zfs";
     };
     "/home" = {
