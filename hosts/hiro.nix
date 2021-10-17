@@ -89,7 +89,7 @@
 
   fileSystems = {
     "/" = {
-      device = "tank/root";
+      device = "tank/system/root";
       fsType = "zfs";
     };
     "/nix" = {
@@ -97,7 +97,7 @@
       fsType = "zfs";
     };
     "/home" = {
-      device = "tank/home";
+      device = "tank/user/home";
       fsType = "zfs";
     };
     "/boot" = {
