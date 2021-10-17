@@ -63,6 +63,7 @@
       luks.devices.cypher = {
         device = "/dev/disk/by-uuid/9c91fb6e-5dc5-4492-982e-adf996479106";
         allowDiscards = true;
+        bypassWorkqueues = true;
       };
     };
 
