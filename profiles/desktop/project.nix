@@ -10,6 +10,7 @@
 
   virtualisation.libvirtd = {
     enable = true;
+    qemuPackage = pkgs.qemu-patched;
     qemuOvmfPackage = pkgs.OVMFFull;
     qemuSwtpm = true;
     qemuRunAsRoot = false;
