@@ -18,6 +18,7 @@
     ./iscsi.nix
 #    ./keycloak.nix
     ./zfs.nix
+    ./upgrade-postgres.nix
   ];
 
   security.acme = {

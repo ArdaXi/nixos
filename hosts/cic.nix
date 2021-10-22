@@ -54,6 +54,14 @@
       device = "tank/data/media/films";
       fsType = "zfs";
     };
+    "/var/lib/postgresql/14" = {
+      device = "tank/system/pg14";
+      fsType = "zfs";
+    };
+    "/var/lib/postgresql/14/pg_wal" = {
+      device = "tank/system/pg14/wal";
+      fsType = "zfs";
+    };
   };
 
   swapDevices = [{ device = "/dev/disk/by-partuuid/d6c13608-1d4f-4b6b-a64b-e709ba7208d8"; }];
