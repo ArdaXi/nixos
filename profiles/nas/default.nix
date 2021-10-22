@@ -79,6 +79,20 @@
     };
   };
 
+  programs.msmtp = {
+    enable = true;
+    setSendmail = true;
+    accounts.default = {
+      auth = true;
+      host = "smtp.freedom.nl";
+      port = 587;
+      tls = true;
+      user = "street@freedom.nl";
+      from = "street@freedom.nl";
+      passwordeval = "cat /var/secrets/freedom.txt";
+    };
+  };
+
   users.users.unifi.group = "unifi";
   users.groups.unifi = {};
 
