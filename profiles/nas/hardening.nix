@@ -61,32 +61,6 @@ in
 
       unitConfig.StopWhenUnneeded = true;
     };
-
-    grafana = lib.mkIf config.services.grafana.enable {
-      confinement = {
-        enable = true;
-        packages = [ pkgs.coreutils ];
-      };
-
-      serviceConfig = {
-        StateDirectory = "grafana";
-      } // localService;
-    };
-
-    "prometheus-nginx-exporter" = {
-      confinement = {
-        enable = true;
-        binSh = null;
-      };
-
-      serviceConfig = {
-        User = nginxUser;
-        Group = nginxUser;
-        DynamicUser = false;
-        BindReadOnlyPaths = ["/etc/hosts"];
-        ProtectSystem = false;
-      } // localService;
-    };
   };
 
   users.users = {

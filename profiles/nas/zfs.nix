@@ -4,19 +4,23 @@
   services = {
     syncoid = {
       enable = true;
+      localSourceAllow = [
+        "bookmark" "hold" "send" "snapshot" "mount" "destroy"
+        "compression" "recordsize"
+      ];
+      localTargetAllow = [
+        "change-key" "compression" "create" "mount" "mountpoint"
+        "receive" "rollback" "destroy" "recordsize"
+      ]; 
       commands = {
         "tank/system/nixos" = {
           target = "scratch/nixos";
           sendOptions = "L";
           recvOptions = "o compression=zstd-4 o recordsize=1M";
-          localSourceAllow = [
-            "bookmark" "hold" "send" "snapshot" "mount" "destroy"
-            "compression" "recordsize"
-          ];
-          localTargetAllow = [
-            "change-key" "compression" "create" "mount" "mountpoint"
-            "receive" "rollback" "destroy" "recordsize"
-          ]; 
+        };
+        "tank/system/pg14" = {
+          target = "scratch/pg14";
+          recursive = true;
         };
       };
     };

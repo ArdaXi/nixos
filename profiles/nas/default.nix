@@ -18,7 +18,7 @@
     ./iscsi.nix
 #    ./keycloak.nix
     ./zfs.nix
-    ./upgrade-postgres.nix
+#    ./upgrade-postgres.nix
   ];
 
   security.acme = {
@@ -48,7 +48,7 @@
 
     postgresql = {
       enable = true;
-      package = pkgs.postgresql_12;
+      package = pkgs.postgresql_14;
       authentication = "host all all 127.0.0.1/32 trust";
     };
 
