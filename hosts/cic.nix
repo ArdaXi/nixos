@@ -25,6 +25,8 @@
     supportedFilesystems = [ "zfs" ];
     tmpOnTmpfs = true;
     binfmt.emulatedSystems = [ "armv6l-linux" "armv7l-linux" "aarch64-linux" ];
+
+    zfs.extraPools = [ "scratch" ];
   };
 
   fileSystems = {
@@ -42,6 +44,14 @@
     };
     "/media" = {
       device = "tank/data/media";
+      fsType = "zfs";
+    };
+    "/media/tv" = {
+      device = "tank/data/media/tv";
+      fsType = "zfs";
+    };
+    "/media/films" = {
+      device = "tank/data/media/films";
       fsType = "zfs";
     };
   };
