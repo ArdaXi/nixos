@@ -25,6 +25,18 @@
       };
     };
 
+    smartd = {
+      enable = true;
+      autodetect = true;
+      defaults.autodetected = "-a -o on -s (S/../.././00|L/../../6/02)";
+      notifications.mail = {
+        enable = true;
+        mailer = "/run/wrappers/bin/sendmail";
+        sender = "street@freedom.nl";
+        recipient = "street@ardaxi.com";
+      };
+    };
+
     zfs = {
       autoScrub = {
         enable = true;
