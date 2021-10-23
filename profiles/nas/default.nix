@@ -4,7 +4,7 @@
   imports = [
     ./firewall.nix
 #    ./synapse.nix
-    ./mosquitto.nix
+#    ./mosquitto.nix
     ./nfs.nix
     ./bind.nix
     ./nginx.nix
