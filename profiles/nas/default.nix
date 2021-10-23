@@ -91,7 +91,7 @@
       tls = true;
       user = "street@freedom.nl";
       from = "street@freedom.nl";
-      passwordeval = "cat /var/secrets/freedom.txt";
+      passwordeval = "${pkgs.coreutils}/bin/cat /var/secrets/freedom.txt";
     };
   };
 
