@@ -119,6 +119,11 @@
     };
   }];
 
+  systemd.services."zfs-sync-tank" = {
+    wantedBy = [ "suspend.target" ];
+    after = [ "physlock.service" ];
+  };
+
   nix = {
     maxJobs = 8;
     buildCores = 8;
