@@ -6,7 +6,7 @@ let
   localIP = "192.168.177.2";
   sixIP = "2001:984:3f27:2::2";
   peer = "gOOVDekwhhQDUwMaiy8seqPkatztyTfA9laiSRLxEGc=";
-  endpointIP = "82.161.251.166";
+  endpointIP = "45.83.235.250";
   endpointPort = "53";
   endpoint = "${endpointIP}:${endpointPort}";
   magicno = 51820; # Port, table, fwmark, etc...
