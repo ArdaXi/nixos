@@ -28,7 +28,8 @@
     smartd = {
       enable = true;
       autodetect = true;
-      defaults.autodetected = "-a -o on -s (S/../.././00|L/../../6/02)";
+      defaults.autodetected = "-a -o on -s (S/../.././00)";
+      extraOptions = [ "--interval=600" ];
       notifications = {
         wall.enable = false;
         mail = {

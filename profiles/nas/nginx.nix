@@ -19,10 +19,10 @@
       '';
       allow = ''
         allow 192.168.178.0/24;
-        allow 82.94.130.160/29;
-        allow 2001:984:3f27::/48;
+        allow 2a10:3781:19df::/48;
         deny  all;
       '';
+      extraAllow = "allow 192.168.179.0/24;" + allow;
     in {
       "_" = {
         default = true;
@@ -75,7 +75,7 @@
         forceSSL = true;
         locations."/" = {
           proxyPass = "https://127.0.0.1:8443"; # seems hardcoded
-          extraConfig = proxyConfig;
+          extraConfig = proxyConfig + allow;
         };
       };
       "grafana.street.ardaxi.com" = lib.mkIf config.services.grafana.enable {
@@ -84,6 +84,14 @@
         locations."/" = {
           proxyPass = "http://unix:${config.services.grafana.extraOptions.SERVER_SOCKET}:/";
 #          proxyPass = "http://127.0.0.1:${toString config.services.grafana.port}";
+        };
+      };
+      "paper.ardaxi.com" = lib.mkIf config.services.paperless-ng.enable {
+        enableACME = true;
+        forceSSL = true;
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:${toString config.services.paperless-ng.port}/";
+          extraConfig = proxyConfig + extraAllow;
         };
       };
       "street.ardaxi.com" = {

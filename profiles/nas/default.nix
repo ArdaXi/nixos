@@ -19,6 +19,7 @@
 #    ./keycloak.nix
     ./zfs.nix
 #    ./upgrade-postgres.nix
+    ./paperless.nix
   ];
 
   security.acme = {
