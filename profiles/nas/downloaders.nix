@@ -10,6 +10,7 @@
       port = 9091;
     };
     nzbget.enable = true;
+    sonarr.enable = true;
   };
 
   systemd.services.nzbget = {
