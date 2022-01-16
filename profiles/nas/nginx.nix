@@ -158,7 +158,7 @@
             extraConfig = allow;
           };
           "/sonarr/" = lib.mkIf config.services.sonarr.enable {
-            proxyPass = "http://127.0.0.1:8089";
+            proxyPass = "http://127.0.0.1:8989";
             extraConfig = allow;
           };
         };
