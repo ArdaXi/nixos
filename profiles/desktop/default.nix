@@ -65,7 +65,11 @@
     taskwarrior fortune ledger usbutils pciutils acpi slock scrot nfsUtils xdotool nethack
     mosquitto xorg.xf86inputsynaptics
     # Misc graphical
-    alacritty arandr dmenu fahclient calibre anki-bin gnome-firmware-updater
+    alacritty arandr dmenu fahclient calibre gnome-firmware-updater mudlet
+    (writeShellScriptBin "anki" ''
+      export ANKI_WAYLAND=1
+      exec ${pkgs.anki-bin}/bin/anki
+    '')
     # Big stuff
     libreoffice-fresh signal-desktop steam
   ];

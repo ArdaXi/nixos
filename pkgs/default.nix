@@ -37,16 +37,18 @@ rec {
 
   darcs = prev.darcs.overrideScope (final: prev: { Cabal = final.Cabal_2_2_0_1; });
 
-#  calibre = final.libsForQt5.callPackage ./calibre.nix {};
-  anki-bin = final.python3Packages.callPackage ./anki/anki.nix {
-    inherit (final.darwin.apple_sdk.frameworks) CoreAudio;
-    protoc = final.protobuf;
-  };
+  mudlet = final.libsForQt5.callPackage ./mudlet.nix { lua = final.lua5_1; };
 
-  qemu-patched = if prev.qemu.version != "6.1.0" then prev.qemu else (prev.qemu.overrideAttrs (oldAttrs: {
-    patches = oldAttrs.patches ++ [ (final.fetchpatch {
-      url = "https://gitlab.com/qemu-project/qemu/-/commit/eb94846280df3f1e2a91b6179fc05f9890b7e384.diff";
-      sha256 = "05cw0n3bgysq0d20c5y5cilqv1i3famqfrvw55vnfnc2nxqsbplx";
-    })];
-  }));
+#  calibre = final.libsForQt5.callPackage ./calibre.nix {};
+#  anki-bin = final.python3Packages.callPackage ./anki/anki.nix {
+#    inherit (final.darwin.apple_sdk.frameworks) CoreAudio;
+#    protoc = final.protobuf;
+#  };
+
+#  qemu-patched = if prev.qemu.version != "6.1.0" then prev.qemu else (prev.qemu.overrideAttrs (oldAttrs: {
+#    patches = oldAttrs.patches ++ [ (final.fetchpatch {
+#      url = "https://gitlab.com/qemu-project/qemu/-/commit/eb94846280df3f1e2a91b6179fc05f9890b7e384.diff";
+#      sha256 = "05cw0n3bgysq0d20c5y5cilqv1i3famqfrvw55vnfnc2nxqsbplx";
+#    })];
+#  }));
 }
