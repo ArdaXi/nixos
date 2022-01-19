@@ -22,7 +22,7 @@
       [ "https://cache.nixos.org/" "http://nix-cache.street.ardaxi.com/" ];
     extraOptions = ''
       fallback = true
-      experimental-features = nix-command flakes ca-references
+      experimental-features = nix-command flakes
     '';
     autoOptimiseStore = true;
     useSandbox = true;
