@@ -150,7 +150,7 @@
             extraConfig = allow;
           };
           "/transmission/" = lib.mkIf config.services.transmission.enable {
-            proxyPass = "http://127.0.0.1:${toString config.services.transmission.port}";
+            proxyPass = "http://127.0.0.1:${toString config.services.transmission.settings.rpc-port}";
             extraConfig = allow;
           };
           "/nzbget/" = lib.mkIf config.services.nzbget.enable {

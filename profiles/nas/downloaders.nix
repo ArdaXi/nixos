@@ -5,7 +5,7 @@
   services = {
     transmission = {
       enable = true;
-      port = 9091;
+      settings.rpc-port = 9091;
     };
     nzbget.enable = true;
     sonarr.enable = true;

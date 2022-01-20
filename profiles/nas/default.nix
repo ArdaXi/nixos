@@ -24,7 +24,7 @@
 
   security.acme = {
     acceptTerms = true;
-    email = "acme@ardaxi.com";
+    defaults.email = "acme@ardaxi.com";
   };
 
   environment.systemPackages = [

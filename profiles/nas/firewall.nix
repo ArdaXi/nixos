@@ -31,7 +31,7 @@
     '';
   };
 
-  services.unifi.openPorts = true;
+  services.unifi.openFirewall = true;
 
   services.fail2ban = {
     enable = true;

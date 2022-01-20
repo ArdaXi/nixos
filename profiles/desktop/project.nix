@@ -11,9 +11,11 @@
   virtualisation.libvirtd = {
     enable = true;
 #    qemuPackage = pkgs.qemu-patched;
-    qemuOvmfPackage = pkgs.OVMFFull;
-    qemuSwtpm = true;
-    qemuRunAsRoot = false;
+    qemu = {
+      swtpm.enable = true;
+      ovmf.package = pkgs.OVMFFull;
+      runAsRoot = false;
+    };
   };
 
   users.users.ardaxi.extraGroups = [ "libvirtd" ];
