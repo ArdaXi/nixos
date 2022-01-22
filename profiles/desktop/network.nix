@@ -27,6 +27,7 @@
 
     networkmanager = {
       enable = true;
+      unmanaged = [ "street" ];
     };
   };
 
