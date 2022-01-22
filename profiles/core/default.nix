@@ -15,6 +15,8 @@
     extraInit = "export XDG_CONFIG_DIRS=/etc/xdg:$XDG_CONFIG_DIRS";
   };
 
+  networking.wireguard.enable = true;
+
   nix = {
     package = pkgs.nixFlakes;
     binaryCachePublicKeys = [ "street.ardaxi.com-1:A1P6oGDAlLPtBbscHNTzBM6DpMHGpqLNwXUgmOtNegg=" ];
