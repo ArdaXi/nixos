@@ -13,6 +13,7 @@
       (lib.mkIf config.services.matrix-synapse.enable 8448)
       (lib.mkIf config.services.transmission.enable 51413)
       9001 # Weechat
+      51444 # Innernet
     ];
     allowedUDPPortRanges = [
       (lib.mkIf config.programs.mosh.enable { from = 60000; to = 61000; })
@@ -21,6 +22,7 @@
 #      (lib.mkIf config.services.bind.enable 53)
       (lib.mkIf config.services.ipfs.enable 4001)
       (lib.mkIf config.services.transmission.enable 51413)
+      51444 # Innernet
     ];
     extraCommands = ''
       iptables -A nixos-fw -s 192.168.177.0/24 -j nixos-fw-accept
