@@ -15,6 +15,7 @@
     ./hardening.nix
     #./homeassistant.nix
 #    ./ipfs.nix
+    ./innernet.nix
     ./iscsi.nix
 #    ./keycloak.nix
     ./zfs.nix
