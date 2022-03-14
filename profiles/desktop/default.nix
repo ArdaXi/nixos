@@ -62,7 +62,7 @@
       relsize collection-fontsrecommended draftwatermark everypage qrcode geometry tex4ht ec
       comment; })
     # Misc CLI
-    taskwarrior fortune ledger usbutils pciutils acpi slock scrot nfsUtils xdotool nethack
+    taskwarrior fortune ledger usbutils pciutils acpi slock scrot xdotool nethack
     mosquitto xorg.xf86inputsynaptics
     # Misc graphical
     alacritty arandr dmenu fahclient calibre gnome-firmware-updater mudlet
