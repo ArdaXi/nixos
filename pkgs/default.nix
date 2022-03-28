@@ -39,6 +39,8 @@ rec {
 
   mudlet = final.libsForQt5.callPackage ./mudlet.nix { lua = final.lua5_1; };
 
+  hydra-unstable = prev.hydra-unstable.override { nix = final.nixVersions.nix_2_6 or final.nix; };
+
 #  calibre = final.libsForQt5.callPackage ./calibre.nix {};
 #  anki-bin = final.python3Packages.callPackage ./anki/anki.nix {
 #    inherit (final.darwin.apple_sdk.frameworks) CoreAudio;
