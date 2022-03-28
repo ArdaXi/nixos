@@ -85,7 +85,7 @@
       eno1 = {
         ipv4.addresses = [
           { address = "192.168.178.2"; prefixLength = 24; }
-#          { address = "82.94.130.160"; prefixLength = 32; }
+          { address = "45.80.170.80"; prefixLength = 32; }
         ];
         ipv6.addresses = [{ address = "2a10:3781:19df:3::2"; prefixLength = 64; }];
       };

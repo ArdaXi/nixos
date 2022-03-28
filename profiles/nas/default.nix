@@ -21,6 +21,7 @@
     ./zfs.nix
 #    ./upgrade-postgres.nix
     ./paperless.nix
+    ./languagetool.nix
   ];
 
   security.acme = {
