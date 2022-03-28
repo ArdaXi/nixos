@@ -18,7 +18,7 @@
   networking.wireguard.enable = true;
 
   nix = {
-    package = pkgs.nixFlakes;
+    package = lib.mkDefault pkgs.nixFlakes;
     binaryCachePublicKeys = [ "street.ardaxi.com-1:A1P6oGDAlLPtBbscHNTzBM6DpMHGpqLNwXUgmOtNegg=" ];
     binaryCaches = lib.mkIf (config.networking.hostName != "cic")
       [ "https://cache.nixos.org/" "http://nix-cache.street.ardaxi.com/" ];
