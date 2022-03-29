@@ -94,6 +94,16 @@
           extraConfig = proxyConfig + extraAllow;
         };
       };
+      "lang.ardaxi.com" = {
+        enableACME = true;
+        forceSSL = true;
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:9111";
+          extraConfig = proxyConfig + extraAllow; #+ ''
+          #  add_header "Access-Control-Allow-Origin" *;
+          #'';
+        };
+      };
       "street.ardaxi.com" = {
         enableACME = true;
         forceSSL = true;
