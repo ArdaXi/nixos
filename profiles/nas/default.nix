@@ -44,11 +44,6 @@
   ];
 
   services = {
-    ankisyncd = {
-      enable = true;
-      host = "127.0.0.1";
-    };
-
     postgresql = {
       enable = true;
       package = pkgs.postgresql_14;
