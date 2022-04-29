@@ -6,7 +6,7 @@
   hardware = {
     bluetooth.enable = true;
     pulseaudio = {
-      extraModules = [ pkgs.pulseaudio-modules-bt ];
+      extraModules = [];
       extraConfig = ''
         load-module module-switch-on-connect
         load-module module-bluetooth-policy auto_switch=2
