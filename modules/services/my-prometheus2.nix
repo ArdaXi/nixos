@@ -203,14 +203,6 @@ let
           Optional http login credentials for metrics scraping.
         '';
       };
-      dns_sd_configs = mkOption {
-        type = types.listOf promTypes.dns_sd_config;
-        default = [];
-        apply = x: map _filter x;
-        description = ''
-          List of DNS service discovery configurations.
-        '';
-      };
       consul_sd_configs = mkOption {
         type = types.listOf promTypes.consul_sd_config;
         default = [];
