@@ -5,13 +5,24 @@
     description = "Languagetool";
     after = [ "network.target" ];
     wantedBy = [ "multi-user.target" ];
+    environment = {
+      "JAVA_TOOL_OPTIONS" = "-Xms2G -Xmx2G";
+    };
     serviceConfig = {
       Type = "simple";
-      ExecStart = "${pkgs.languagetool}/bin/languagetool-http-server --port 9111 --public --allow-origin --premiumAlways";
+      ExecStart = ''
+        ${pkgs.languagetool}/bin/languagetool-http-server \
+        --port 9111 \
+        --public \
+        --allow-origin \
+        --premiumAlways \
+        --languageModel /var/lib/languagetool/ngrams \
+        --word2vecModel /var/lib/languagetool/word2vec
+      '';
       DynamicUser = true;
       LockPersonality = true;
       NoNewPrivileges = true;
-      MemoryDenyWriteExecute = true;
+      #MemoryDenyWriteExecute = true;
       ProtectSystem = "strict";
       ProtectClock = true;
       ProtectKernelTunables = true;
