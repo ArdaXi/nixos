@@ -22,6 +22,7 @@
 #    ./upgrade-postgres.nix
     ./paperless.nix
     ./languagetool.nix
+    ./tt-rss.nix
   ];
 
   security.acme = {

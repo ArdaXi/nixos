@@ -87,6 +87,11 @@
 #          proxyPass = "http://127.0.0.1:${toString config.services.grafana.port}";
         };
       };
+      ${config.services.tt-rss.virtualHost} = lib.mkIf config.services.tt-rss.enable {
+        enableACME = true;
+        forceSSL = true;
+        extraConfig = proxyConfig;
+      };
       "paper.ardaxi.com" = lib.mkIf config.services.paperless-ng.enable {
         enableACME = true;
         forceSSL = true;
