@@ -2,7 +2,6 @@
 
 {
   environment.systemPackages = [
-    pkgs.teams
     pkgs.virt-manager
   ];
 
