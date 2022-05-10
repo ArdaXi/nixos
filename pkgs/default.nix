@@ -26,6 +26,16 @@ in
 rec {
 #  hplip = final.callPackage ./hplip.nix {};
 
+  innernet = prev.innernet.overrideAttrs (_: {
+    doCheck = false;
+    checkPhase = "";
+  });
+
+#  udisks2 = prev.udisks2.overrideAttrs (_: {
+#    doCheck = false;
+#    checkPhase = "";
+#  });
+
   python3 = prev.python3.override pythonOverrides;
   python38 = prev.python38.override pythonOverrides;
 
