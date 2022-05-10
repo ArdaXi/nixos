@@ -4,6 +4,7 @@
   imports = [ 
     ./tmux.nix
     ./security.nix
+    ./syncthing.nix
   ];
 
   environment = {
