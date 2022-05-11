@@ -45,7 +45,7 @@ rec {
 
   prometheus-postgresql = final.callPackage ./prometheus-postgresql-adapter/default.nix {};
 
-  darcs = prev.darcs.overrideScope (final: prev: { Cabal = final.Cabal_2_2_0_1; });
+#  darcs = prev.darcs.overrideScope (final: prev: { Cabal = final.Cabal_2_2_0_1; });
 
   mudlet = final.libsForQt5.callPackage ./mudlet.nix { lua = final.lua5_1; };
 
