@@ -26,10 +26,10 @@ let
 
 in rec {
   tests = {
-    inherit (allTests) acme bat firefox grafana hydra login nginx nzbget
+    inherit (allTests) acme firefox grafana hydra login nginx nzbget
       openssh prometheus signal-desktop sudo sway wireguard;
 
-    inherit (allTests.postgresql) postgresql_12;
+    inherit (allTests.postgresql) postgresql_14;
 
     zfsStable = allTests.zfs.stable;
   };
