@@ -1,6 +1,6 @@
 { nixpkgs ? <nixpkgs> }:
 let
-  nixos = import nixpkgs {};
+  nixos = import nixpkgs { overlays = []; };
   master = nixos;
 
   inherit (builtins) attrValues removeAttrs;
