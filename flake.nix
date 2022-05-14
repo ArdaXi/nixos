@@ -53,7 +53,7 @@
         hosts = mapAttrs (n: v: hydraJob v.config.system.build.toplevel) self.nixosConfigurations;
       };
 
-      devShell."${system}" = import ./shell.nix {
+      devShells."${system}".default = import ./shell.nix {
         inherit pkgs;
       };
 
@@ -106,6 +106,6 @@
       templates.flk.path = ./.;
       templates.flk.description = "flk template";
 
-      defaultTemplate = self.templates.flk;
+      templates.default = self.templates.flk;
     };
 }

@@ -23,6 +23,14 @@
       extraCommands = ''
         iptables -A nixos-fw -s 192.168.178.0/24 -j nixos-fw-accept -i enp0s20f0u4u1
       ''; # Open requests from local (trusted) network
+
+      allowedUDPPorts = [
+        21027 22000 # Syncthing
+      ];
+
+      allowedTCPPorts = [
+        22000 # Syncthing
+      ];
     };
 
     networkmanager = {
