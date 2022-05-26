@@ -50,12 +50,13 @@ rec {
   mudlet = final.libsForQt5.callPackage ./mudlet.nix { lua = final.lua5_1; };
 
 #  nix-hydra = final.nixVersions.nix_2_6 or final.nix;
+  nix-hydra = final.nix;
 #  hydra-unstable = (prev.hydra-unstable.overrideAttrs (oldAttrs: {
 #    patches = oldAttrs.patches or [] ++ [
 #      ./hydra-no-restrict.patch
 #    ];
 #  })).override { nix = nix-hydra; };
-#  hydra-unstable = prev.hydra-unstable.override { nix = nix-hydra; };
+  hydra-unstable = prev.hydra-unstable.override { nix = nix-hydra; };
 
 #  calibre = final.libsForQt5.callPackage ./calibre.nix {};
 #  anki-bin = final.python3Packages.callPackage ./anki/anki.nix {
