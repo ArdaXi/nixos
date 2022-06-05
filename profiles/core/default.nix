@@ -26,6 +26,7 @@
     extraOptions = ''
       fallback = true
       experimental-features = nix-command flakes
+      allow-import-from-derivation = true
     '';
     autoOptimiseStore = true;
     useSandbox = true;

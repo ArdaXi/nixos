@@ -17,4 +17,10 @@
   users.groups.ardaxi.gid = 1000;
 
   programs.zsh.enable = true;
+
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    users.ardaxi = import ./home;
+  };
 }

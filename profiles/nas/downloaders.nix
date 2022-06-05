@@ -9,6 +9,7 @@
     };
     nzbget.enable = true;
     sonarr.enable = true;
+    radarr.enable = true;
   };
 
   systemd.services.nzbget = {

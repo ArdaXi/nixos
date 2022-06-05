@@ -12,6 +12,7 @@
       (lib.mkIf config.services.ipfs.enable 4001)
       (lib.mkIf config.services.matrix-synapse.enable 8448)
       (lib.mkIf config.services.transmission.enable 51413)
+      (lib.mkIf config.services.syncthing.enable 22000)
       9001 # Weechat
       51444 # Innernet
     ];
@@ -22,6 +23,8 @@
 #      (lib.mkIf config.services.bind.enable 53)
       (lib.mkIf config.services.ipfs.enable 4001)
       (lib.mkIf config.services.transmission.enable 51413)
+      (lib.mkIf config.services.syncthing.enable 21027)
+      (lib.mkIf config.services.syncthing.enable 22000)
       51444 # Innernet
     ];
     extraCommands = ''

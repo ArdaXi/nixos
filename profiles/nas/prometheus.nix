@@ -23,6 +23,10 @@ in
         listenAddress = "127.0.0.1";
         port = nginxPort;
       };
+      snmp = {
+        enable = true;
+        configurationPath = "/etc/snmp.yml";
+      };
     };
     globalConfig = {
       scrape_interval = "1m";
@@ -52,7 +56,23 @@ in
         job_name = "meter_esp";
         static_configs = [{ targets = ["192.168.179.138:80"]; }];
       }
-
+      {
+        job_name = "snmp";
+        scrape_interval = "10s";
+        metrics_path = "/snmp";
+        params.module = [ "if_mib" ];
+        relabel_configs = [
+          { source_labels = ["__address__"]; target_label = "__param_target"; }
+          { source_labels = ["__param_target"]; target_label = "instance"; }
+          { target_label = "__address__"; replacement = "127.0.0.1:9116"; }
+        ];
+        static_configs = [{
+          targets = [
+            "192.168.178.1"
+            "192.168.178.60"
+          ];
+        }];
+      }
     ];
   };
 

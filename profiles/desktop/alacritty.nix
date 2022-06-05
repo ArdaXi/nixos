@@ -75,8 +75,6 @@ in
       duration = 0;
     };
 
-    background_opacity = 1.0;
-
     mouse_bindings = [
       { mouse = "Middle"; action = "PasteSelection"; }
     ];

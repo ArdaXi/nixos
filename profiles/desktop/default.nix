@@ -23,6 +23,11 @@
     allowAnyUser = true;
   };
 
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = true;
+  };
+
   location = {
     latitude = 52.37;
     longitude = 4.9;
@@ -43,12 +48,14 @@
     };
     flatpak.enable = true;
     fwupd.enable = true;
+    pipewire.enable = true;
   };
 
   # For flatpak
   xdg.portal = {
     enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
+    gtkUsePortal = true;
   };
 
   environment.systemPackages = with pkgs; [
@@ -74,6 +81,10 @@
     libreoffice-fresh signal-desktop steam
   ];
 
+  environment.sessionVariables = {
+    XDG_CURRENT_DESKTOP = "sway";
+  };
+
   fonts = {
     fontDir.enable = true;
     enableGhostscriptFonts = true;
@@ -85,4 +96,5 @@
   };
 
   programs.dconf.enable = true;
+  programs.nix-ld.enable = true;
 }

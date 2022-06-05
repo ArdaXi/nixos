@@ -19,6 +19,7 @@
       '';
       allow = ''
         allow 192.168.178.0/24;
+        allow 45.80.170.80/29;
         allow 2a10:3781:19df::/48;
         deny  all;
       '';
@@ -175,6 +176,10 @@
           };
           "/sonarr/" = lib.mkIf config.services.sonarr.enable {
             proxyPass = "http://127.0.0.1:8989";
+            extraConfig = allow;
+          };
+          "/radarr/" = lib.mkIf config.services.radarr.enable {
+            proxyPass = "http://127.0.0.1:7878";
             extraConfig = allow;
           };
         };
