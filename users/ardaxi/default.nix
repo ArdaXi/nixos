@@ -18,9 +18,9 @@
 
   programs.zsh.enable = true;
 
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    users.ardaxi = import ./home;
-  };
+#  home-manager = {
+#    useGlobalPkgs = true;
+#    useUserPackages = true;
+#    users.ardaxi = import ./home;
+#  };
 }
