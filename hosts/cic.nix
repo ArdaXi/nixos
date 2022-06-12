@@ -83,6 +83,7 @@
     useDHCP = false;
     interfaces = {
       eno1 = {
+        proxyARP = true;
         ipv4.addresses = [
           { address = "192.168.178.2"; prefixLength = 24; }
           { address = "45.80.170.80"; prefixLength = 32; }
@@ -90,8 +91,13 @@
         ipv6.addresses = [{ address = "2a10:3781:19df:3::2"; prefixLength = 64; }];
       };
       eno2 = {
+        proxyARP = true;
         mtu = 9710;
-        ipv4.addresses = [{ address = "10.145.22.1"; prefixLength = 24; }];
+        ipv4.addresses = [
+          { address = "10.145.22.1"; prefixLength = 24; }
+          { address = "192.168.178.245"; prefixLength = 31; }
+        ];
+        ipv4.routes = [{ address = "192.168.178.244"; prefixLength = 32; }];
         ipv6.addresses = [{ address = "fd08:1432:1eb8::1"; prefixLength = 64; }];
       };
     };

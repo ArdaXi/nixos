@@ -4,6 +4,7 @@
   networking.firewall = {
     enable = true;
     logRefusedConnections = false;
+    checkReversePath = false;
     allowedTCPPorts = [
       (lib.mkIf config.services.openssh.enable 22)
 #      (lib.mkIf config.services.bind.enable 53)
