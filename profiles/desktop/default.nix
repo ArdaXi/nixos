@@ -73,6 +73,7 @@
     mosquitto xorg.xf86inputsynaptics
     # Misc graphical
     alacritty arandr dmenu fahclient calibre gnome-firmware-updater mudlet
+    winbox
     (writeShellScriptBin "anki" ''
       export ANKI_WAYLAND=1
       exec ${pkgs.anki-bin}/bin/anki
