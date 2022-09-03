@@ -4,6 +4,7 @@ let
   promPort = 9090;
   nodePort = 9100;
   nginxPort = 9113;
+  mktkPort = 9436;
 in
 {
   services.my-prometheus2 = {
@@ -26,6 +27,11 @@ in
       snmp = {
         enable = true;
         configurationPath = "/etc/snmp.yml";
+      };
+      mikrotik = {
+        enable = true;
+        configFile = "/etc/prometheus/mikrotik.yml";
+        port = mktkPort;
       };
     };
     globalConfig = {
@@ -55,6 +61,10 @@ in
       {
         job_name = "meter_esp";
         static_configs = [{ targets = ["192.168.179.138:80"]; }];
+      }
+      {
+        job_name = "mikrotik";
+        static_configs = [{ targets = ["127.0.0.1:${toString mktkPort}"]; }];
       }
       {
         job_name = "snmp";

@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 let
   host = "rss.street.ardaxi.com";
@@ -11,4 +11,6 @@ in
     selfUrlPath = "https://${host}";
     extraConfig = "putenv('TTRSS_SESSION_COOKIE_LIFETIME=2147483647');";
   };
+
+  services.phpfpm.phpPackage = pkgs.php80;
 }

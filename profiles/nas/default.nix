@@ -78,6 +78,8 @@
         allow 192.168.178
       '';
     };
+
+    jellyfin.enable = true;
   };
 
   programs.msmtp = {

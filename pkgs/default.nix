@@ -51,6 +51,16 @@ rec {
 
 #  nix-hydra = final.nixVersions.nix_2_6 or final.nix;
   nix-hydra = final.hydra_unstable.nix or final.nixVersions.nix_2_8;
+
+  nix-serve = prev.nix-serve.override { nix = final.nix-hydra; };
+
+  prometheus-mikrotik-exporter = prev.prometheus-mikrotik-exporter.overrideAttrs (_: {
+    patches = [ (final.fetchpatch {
+      url = "https://github.com/ArdaXi/mikrotik-exporter/commit/5caff832b82bd3e1158dc67260c72c75c87d4f26.patch";
+      sha256 = "sha256-/Cc2CbChGKPFdGsQmtLarVBHFUWPb0U8II2467nc4X4=";
+    })];
+  });
+
 #  hydra-unstable = (prev.hydra-unstable.overrideAttrs (oldAttrs: {
 #    patches = oldAttrs.patches or [] ++ [
 #      ./hydra-no-restrict.patch
