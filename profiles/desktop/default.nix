@@ -23,6 +23,8 @@
     allowAnyUser = true;
   };
 
+  services.udev.packages = [ pkgs.qflipper ];
+
   virtualisation.podman = {
     enable = true;
     dockerCompat = true;
@@ -61,6 +63,7 @@
   environment.systemPackages = with pkgs; [
     # Development
     direnv gitAndTools.pass-git-helper gist rustup gcc exercism nodejs terraform-lsp
+    qflipper
     # 3D
     solvespace prusa-slicer
     # LaTeX
@@ -72,7 +75,7 @@
     taskwarrior fortune ledger usbutils pciutils acpi slock scrot xdotool nethack
     mosquitto xorg.xf86inputsynaptics
     # Misc graphical
-    alacritty arandr dmenu fahclient calibre gnome-firmware-updater mudlet
+    alacritty arandr dmenu fahclient calibre gnome-firmware-updater
     winbox
     (writeShellScriptBin "anki" ''
       export ANKI_WAYLAND=1
