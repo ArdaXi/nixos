@@ -93,6 +93,11 @@
         forceSSL = true;
         extraConfig = proxyConfig;
       };
+      ${config.services.zoneminder.hostname} =
+      lib.mkIf config.services.zoneminder.enable {
+        enableACME = true;
+        extraConfig = proxyConfig + extraAllow;
+      };
       "paper.ardaxi.com" = lib.mkIf config.services.paperless-ng.enable {
         enableACME = true;
         forceSSL = true;

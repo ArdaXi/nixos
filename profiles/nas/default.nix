@@ -23,6 +23,7 @@
     ./paperless.nix
     ./languagetool.nix
     ./tt-rss.nix
+    ./zoneminder.nix
   ];
 
   security.acme = {

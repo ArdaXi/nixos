@@ -67,6 +67,10 @@
       device = "tank/system/paperless";
       fsType = "zfs";
     };
+    "/var/lib/zoneminder" = {
+      device = "tank/data/zoneminder";
+      fsType = "zfs";
+    };
   };
 
   swapDevices = [{ device = "/dev/disk/by-partuuid/d6c13608-1d4f-4b6b-a64b-e709ba7208d8"; }];

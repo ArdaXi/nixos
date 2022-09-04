@@ -15,7 +15,6 @@
         --port 9111 \
         --public \
         --allow-origin \
-        --premiumAlways \
         --languageModel /var/lib/languagetool/ngrams \
         --word2vecModel /var/lib/languagetool/word2vec
       '';
