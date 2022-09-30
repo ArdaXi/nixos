@@ -7,5 +7,5 @@
     support32Bit = true;
   };
 
-  environment.systemPackages = with pkgs; [ mpv alsaUtils pavucontrol ];
+  environment.systemPackages = with pkgs; [ mpv alsa-utils pavucontrol ];
 }
