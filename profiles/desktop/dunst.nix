@@ -20,8 +20,8 @@ let
   q = s: ''"${s}"'';
   iconSize = "96";
   iconBasePaths = [
-    "${pkgs.gnome3.adwaita-icon-theme}/share/icons/Adwaita/48x48"
-    "${pkgs.gnome3.adwaita-icon-theme}/share/icons/Adwaita/${iconSize}x${iconSize}"
+    "${pkgs.gnome.adwaita-icon-theme}/share/icons/Adwaita/48x48"
+    "${pkgs.gnome.adwaita-icon-theme}/share/icons/Adwaita/${iconSize}x${iconSize}"
   ];
   iconPath = lib.concatStringsSep ":" (lib.concatMap (basePath:
     map (category: "${basePath}/${category}") categories) iconBasePaths);
