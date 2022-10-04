@@ -6,7 +6,7 @@
     ./sway
     ./alacritty.nix
     ./encryption.nix
-#    ./wireguard-systemd.nix
+    ./wireguard-systemd.nix
     ./chromium.nix
     ./multimedia.nix
     ./bluetooth.nix
@@ -17,6 +17,11 @@
   ];
 
   boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages or pkgs.linuxPackages_5_12;
+
+  services.syncthing = {
+    overrideFolders = false;
+    overrideDevices = false;
+  };
 
   services.physlock = {
     enable = true;
@@ -56,8 +61,8 @@
   # For flatpak
   xdg.portal = {
     enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
-    gtkUsePortal = true;
+    wlr.enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 
   environment.systemPackages = with pkgs; [

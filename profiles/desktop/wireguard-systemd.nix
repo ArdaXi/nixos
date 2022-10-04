@@ -2,12 +2,12 @@
 
 let
   interface = "wg0";
-  publicIP = "82.94.130.163";
+  publicIP = "45.80.170.81";
   localIP = "192.168.177.2";
   sixIP = "2001:984:3f27:2::2";
-  peer = "gOOVDekwhhQDUwMaiy8seqPkatztyTfA9laiSRLxEGc=";
+  peer = "dTx791xOeG/a7bRn7j8Urj0VDmg4rDq4pLrj4igewT8=";
   endpointIP = "45.83.235.250";
-  endpointPort = "53";
+  endpointPort = "13231";
   endpoint = "${endpointIP}:${endpointPort}";
   magicno = 51820; # Port, table, fwmark, etc...
   rule = "not fwmark 0x${lib.toHexString magicno} table ${toString magicno}";
@@ -67,7 +67,7 @@ in {
 
     networks."40-wg" = {
       name = interface;
-      address = [ "${publicIP}/32" "${localIP}/32" "${sixIP}/128" ];
+      address = [ "${publicIP}/32" "${localIP}/24" "${sixIP}/128" ];
       routes = [
       # Set up a routing table that routes all traffic through WG
         { routeConfig = {
