@@ -11,7 +11,7 @@ let
   endpoint = "${endpointIP}:${endpointPort}";
   magicno = 51820; # Port, table, fwmark, etc...
   rule = "not fwmark 0x${lib.toHexString magicno} table ${toString magicno}";
-  ipBin = "${pkgs.iproute}/bin/ip";
+  ipBin = "${pkgs.iproute2}/bin/ip";
 in {
   environment.systemPackages = [
     pkgs.wireguard-tools
