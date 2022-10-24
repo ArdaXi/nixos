@@ -89,7 +89,7 @@ in
   services.grafana = {
     enable = true;
     protocol = "socket";
-    extraOptions.SERVER_SOCKET = "/run/grafana/grafana.sock";
+    socket = "/run/grafana/grafana.sock";
   };
 
   systemd.services.grafana.serviceConfig = {

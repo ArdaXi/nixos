@@ -83,7 +83,7 @@
         enableACME = true;
         forceSSL = true;
         locations."/" = {
-          proxyPass = "http://unix:${config.services.grafana.extraOptions.SERVER_SOCKET}:/";
+          proxyPass = "http://unix:${config.services.grafana.socket}:/";
           extraConfig = proxyConfig;
 #          proxyPass = "http://127.0.0.1:${toString config.services.grafana.port}";
         };
