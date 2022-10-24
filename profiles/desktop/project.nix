@@ -19,5 +19,5 @@
 
   users.users.ardaxi.extraGroups = [ "libvirtd" ];
 
-  programs.adb.enable = true;
+#  programs.adb.enable = true;
 }
