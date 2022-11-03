@@ -43,7 +43,7 @@
   };
 
   services = {
-    redshift.enable = true;
+    #redshift.enable = true;
     lorri.enable = true;
     chrony = {
       enable = true;
