@@ -20,19 +20,24 @@
 
   nix = {
     package = lib.mkDefault pkgs.nixVersions.stable;
-    binaryCachePublicKeys = [ "street.ardaxi.com-1:A1P6oGDAlLPtBbscHNTzBM6DpMHGpqLNwXUgmOtNegg=" ];
-    binaryCaches = lib.mkIf (config.networking.hostName != "cic")
-      [ "https://cache.nixos.org/" "http://nix-cache.street.ardaxi.com/" ];
     extraOptions = ''
       fallback = true
       experimental-features = nix-command flakes
       allow-import-from-derivation = true
     '';
-    autoOptimiseStore = true;
-    useSandbox = true;
-    allowedUsers = [ "@wheel" ];
-    trustedUsers = [ "root" "@wheel" ];
-    systemFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
+    settings = {
+      substituters = lib.mkIf (config.networking.hostName != "cic") [
+        "https://cache.nixos.org/" "http://nix-cache.street.ardaxi.com/"
+      ];
+      trusted-public-keys = [
+        "street.ardaxi.com-1:A1P6oGDAlLPtBbscHNTzBM6DpMHGpqLNwXUgmOtNegg="
+      ];
+      sandbox = true;
+      allowed-users = [ "@wheel" ];
+      trusted-users = [ "root" "@wheel" ];
+      system-features = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
+      auto-optimise-store = true;
+    };
   };
 
   nixpkgs.config = {
