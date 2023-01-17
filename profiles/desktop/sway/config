@@ -29,7 +29,7 @@ set $lock physlock -dms
 
 set $pass passmenu
 
-set $screenshot scrot -s
+#set $screenshot scrot -s
 #set $pass @alacritty@/bin/alacritty --title launcher -d 20 50 -e @zsh@/bin/zsh -c "passfzf"
 
 ### Output configuration
@@ -81,7 +81,7 @@ input "type:keyboard" {
 
     bindsym $mod+p exec $pass
 
-    bindsym $mod+s exec --no-startup-id $screenshot
+#    bindsym $mod+s exec --no-startup-id $screenshot
 
     bindsym --no-repeat $mod+k exec --no-startup-id systemctl suspend
 
@@ -117,16 +117,21 @@ input "type:keyboard" {
     bindsym $mod+Up focus up
     bindsym $mod+Right focus right
 
+    bindsym $mod+Tab focus right
+
     # _move_ the focused window with the same, but add Shift
     bindsym $mod+Shift+$left move left
     bindsym $mod+Shift+$down move down
     bindsym $mod+Shift+$up move up
     bindsym $mod+Shift+$right move right
+
     # ditto, with arrow keys
     bindsym $mod+Shift+Left move left
     bindsym $mod+Shift+Down move down
     bindsym $mod+Shift+Up move up
     bindsym $mod+Shift+Right move right
+
+    bindsym $mod+Shift+Tab move right
 #
 # Workspaces:
 #
@@ -164,9 +169,9 @@ input "type:keyboard" {
     bindsym $mod+v splitv
 
     # Switch the current container between different layout styles
-    #bindsym $mod+s layout stacking
-    #bindsym $mod+w layout tabbed
-    #bindsym $mod+e layout toggle split
+    bindsym $mod+s layout stacking
+    bindsym $mod+w layout tabbed
+    bindsym $mod+e layout toggle split
 
     # Make the current focus fullscreen
     bindsym $mod+f fullscreen
