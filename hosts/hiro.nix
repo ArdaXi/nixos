@@ -35,6 +35,13 @@
 
   services = {
 #    throttled.enable = true;
+    thermald.enable = true;
+    tlp = {
+      enable = true;
+      settings = {
+        CPU_ENERGY_PERF_POLICY_ON_AC = "balance_performance";
+      };
+    };
 
     upower.enable = true;
 
