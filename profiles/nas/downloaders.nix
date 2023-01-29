@@ -23,6 +23,7 @@
         "/media"
         "/var/lib/nzbget"
       ];
+      BindReadOnlyPaths = [ "/etc/resolv.conf" ];
     };
   };
 }

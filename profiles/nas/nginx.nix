@@ -13,7 +13,7 @@
         proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
         proxy_set_header   X-Forwarded-Proto $scheme;
         proxy_set_header   Upgrade           $http_upgrade;
-        proxy_set_header   Connection        "upgrade";
+        proxy_set_header   Connection        $connection_upgrade;
 
         proxy_http_version 1.1;
       '';
@@ -45,7 +45,7 @@
         enableACME = true;
         forceSSL = true;
         locations."/" = {
-          proxyPass = "http://127.0.0.1:${toString config.services.home-assistant.port}/";
+          proxyPass = "http://127.0.0.1:${toString config.services.home-assistant.config.http.server_port}/";
           extraConfig = proxyConfig;
         };
       };
@@ -96,7 +96,13 @@
       ${config.services.zoneminder.hostname} =
       lib.mkIf config.services.zoneminder.enable {
         enableACME = true;
+        forceSSL = true;
         extraConfig = proxyConfig + extraAllow;
+        default = lib.mkForce false;
+        listen = lib.mkForce [
+          { addr = "0.0.0.0"; port = 443; ssl = true; }
+          { addr = "[::0]"; port = 443; ssl = true; }
+        ];
       };
       "paper.ardaxi.com" = lib.mkIf config.services.paperless-ng.enable {
         enableACME = true;

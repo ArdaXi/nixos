@@ -19,17 +19,27 @@ in
         (pymfy ps)
       ];
       extraComponents = [
-        "met"
-        "updater"
-        "zeroconf"
-        "ssdp"
-        "mqtt"
-        "mobile_app"
-        "tado"
-        "somfy"
-        "brother"
-        "ipp"
+        "buienradar" "backup" "met" "zeroconf" "ssdp" "mqtt" "mobile_app"
+        "tado" "brother" "ipp" "overkiz" "tasmota" "nest" "homekit_controller"
+        "shelly" "tibber"
       ];
+    };
+
+    config = {
+      default_config = {};
+      homeassistant = {
+        unit_system = "metric";
+        temperature_unit = "C";
+        time_zone = "Europe/Amsterdam";
+      };
+
+      automation = "!include automations.yaml";
+
+      http = {
+        server_host = [ "127.0.0.1" ];
+        use_x_forwarded_for = true;
+        trusted_proxies = [ "127.0.0.1" ];
+      };
     };
   };
 }

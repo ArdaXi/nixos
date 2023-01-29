@@ -4,7 +4,8 @@
   imports = [
     ./firewall.nix
 #    ./synapse.nix
-#    ./mosquitto.nix
+    ./mosquitto.nix
+    ./nextcloud.nix
     ./nfs.nix
     ./bind.nix
     ./nginx.nix
@@ -13,7 +14,7 @@
     ./downloaders.nix
 #    ./docker.nix
     ./hardening.nix
-    #./homeassistant.nix
+    ./homeassistant.nix
 #    ./ipfs.nix
     ./innernet.nix
     ./iscsi.nix
@@ -24,7 +25,7 @@
 #    ./paperless.nix
     ./languagetool.nix
     ./tt-rss.nix
-    ./zoneminder.nix
+#    ./zoneminder.nix
   ];
 
   security.acme = {

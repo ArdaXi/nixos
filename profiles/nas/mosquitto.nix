@@ -3,14 +3,16 @@
 {
   services.mosquitto = {
     enable = true;
-    host = "0.0.0.0";
-    allowAnonymous = true;
-    aclExtraConf = "topic readwrite #";
-    users = {
-      homeassistant.acl = [
-        "topic readwrite homeassistant/#"
-        "topic read #"
-      ];
-    };
+    listeners = [{
+      users = {
+        homeassistant = {
+          acl = [
+            "readwrite homeassistant/#"
+            "read #"
+          ];
+          hashedPasswordFile = "/var/lib/mosquitto/passwords/homeassistant";
+        };
+      };
+    }];
   };
 }

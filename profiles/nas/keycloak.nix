@@ -5,8 +5,6 @@
     enable = true;
     httpPort = "8086";
     bindAddress = "127.0.0.1";
-    frontendUrl = "https://keycloak.ardaxi.com/auth";
-    forceBackendUrlToFrontendUrl = true;
 
     database = {
       type = "postgresql";
@@ -17,8 +15,11 @@
       useSSL = false;
     };
 
-    extraConfig = {
-      "subsystem=undertow"."server=default-server"."http-listener=default".proxy-address-forwarding="true";
+    settings = {
+      hostname = "keycloak.ardaxi.com";
+      http-relative-path = "/auth";
+      hostname-strict-backchannel = true;
+      proxy = "edge";
     };
   };
 }

@@ -85,6 +85,12 @@
       # TODO: IPv6
     ];
     useDHCP = false;
+    vlans = {
+      "eno1.10" = {
+        id = 10;
+        interface = "eno1";
+      };
+    };
     interfaces = {
       eno1 = {
         proxyARP = true;
@@ -92,7 +98,14 @@
           { address = "192.168.178.2"; prefixLength = 24; }
           { address = "45.80.170.80"; prefixLength = 32; }
         ];
-        ipv6.addresses = [{ address = "2a10:3781:19df:3::2"; prefixLength = 64; }];
+        ipv6.addresses = [
+          { address = "2a10:3781:19df:3::2"; prefixLength = 64; }
+        ];
+      };
+      "eno1.10" = {
+        ipv4.addresses = [
+          { address = "192.168.179.201"; prefixLength = 24; }
+        ];
       };
       eno2 = {
         proxyARP = true;
