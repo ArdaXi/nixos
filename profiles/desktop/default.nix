@@ -30,11 +30,22 @@
     allowAnyUser = true;
   };
 
-  services.udev.packages = [ pkgs.qflipper ];
+  services.udev = {
+    packages = [ pkgs.qflipper ];
+    extraRules = ''
+      SUBSYSTEM=="tty", ATTRS{manufacturer}=="Espressif", MODE="0666"
+      KERNEL=="ttyACM0", MODE="0777"
+    '';
+  };
 
-  virtualisation.podman = {
-    enable = true;
-    dockerCompat = true;
+  virtualisation =
+  {
+    podman = {
+      enable = true;
+      dockerCompat = true;
+    };
+    waydroid.enable = true;
+    lxd.enable = true;
   };
 
   location = {
@@ -70,7 +81,7 @@
   environment.systemPackages = with pkgs; [
     # Development
     direnv gitAndTools.pass-git-helper gist rustup gcc exercism nodejs terraform-lsp
-    qflipper
+    qflipper rnix-lsp
     # 3D
     solvespace prusa-slicer
     # LaTeX

@@ -5,8 +5,6 @@
     pkgs.virt-manager
   ];
 
-  virtualisation.virtualbox.host.enable = true;
-
   virtualisation.libvirtd = {
     enable = true;
 #    qemuPackage = pkgs.qemu-patched;

@@ -18,6 +18,8 @@
   };
 
   networking = {
+    useDHCP = false;
+    wireless.iwd.enable = true;
     firewall = {
       logRefusedConnections = false;
       extraCommands = ''
@@ -32,14 +34,30 @@
         22000 # Syncthing
       ];
     };
+  };
 
-    networkmanager = {
-      enable = true;
-      unmanaged = [ "street" ];
+  systemd.network = {
+    enable = true;
+
+    wait-online.anyInterface = true;
+
+    networks."20-dock" = {
+      name = "enp0s20f0u4u1";
+      address = [ "192.168.178.14/24" "2a10:3781:19df:3::3/64" ];
+      gateway = [ "192.168.178.1" ];
+      dns = [ "192.168.178.1" ];
+    };
+
+    networks."25-wifi" = {
+      name = "wlan0";
+      networkConfig = {
+        DHCP = "yes";
+        IgnoreCarrierLoss = "3s";
+      };
     };
   };
 
   environment.systemPackages = with pkgs; [
-    google-chrome firefox-bin networkmanagerapplet whois mtr
+    google-chrome firefox-bin networkmanagerapplet whois mtr iwgtk
   ];
 }
