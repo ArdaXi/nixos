@@ -5,7 +5,7 @@
     ./firewall.nix
 #    ./synapse.nix
     ./mosquitto.nix
-    ./nextcloud.nix
+#    ./nextcloud.nix
     ./nfs.nix
     ./bind.nix
     ./nginx.nix
