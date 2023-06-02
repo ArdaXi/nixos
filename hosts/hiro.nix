@@ -48,6 +48,7 @@
     printing = {
       enable = true;
       drivers = [ pkgs.hplip pkgs.epson-escpr ];
+#      logLevel = "debug";
     };
 
     xserver = lib.mkIf (!config.programs.sway.enable) {

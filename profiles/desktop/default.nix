@@ -91,10 +91,10 @@
       comment; })
     # Misc CLI
     taskwarrior fortune ledger usbutils pciutils acpi slock scrot xdotool nethack
-    mosquitto xorg.xf86inputsynaptics
+    mosquitto xorg.xf86inputsynaptics gammastep
     # Misc graphical
     alacritty arandr dmenu fahclient calibre gnome-firmware-updater
-    winbox
+    winbox logseq
     (writeShellScriptBin "anki" ''
       export ANKI_WAYLAND=1
       exec ${pkgs.anki-bin}/bin/anki
