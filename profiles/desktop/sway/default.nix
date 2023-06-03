@@ -55,11 +55,10 @@ rec {
 
     displayManager.defaultSession = "sway";
 
-    synaptics = {
-      enable = true;
-      tapButtons = false;
-      twoFingerScroll = true;
-      accelFactor = "0.03";
+    libinput.touchpad = {
+      tapping = false;
+      scrollMethod = "twofinger";
+      accelSpeed = "0.03";
     };
   };
 
