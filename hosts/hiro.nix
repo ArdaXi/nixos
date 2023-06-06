@@ -11,6 +11,8 @@
     opengl.enable = true;
   };
 
+  powerManagement.cpuFreqGovernor = "powersave";
+
   environment = {
     systemPackages = [ pkgs.cryptsetup ];
     variables = {
@@ -37,9 +39,11 @@
 #    throttled.enable = true;
     thermald.enable = true;
     tlp = {
-      enable = true;
+      enable = false;
       settings = {
+        CPU_SCALING_GOVERNOR_ON_AC = "powersave";
         CPU_ENERGY_PERF_POLICY_ON_AC = "balance_performance";
+        CPU_HWP_ON_AC = "balance_performance";
       };
     };
 

@@ -6,7 +6,7 @@
     ./sway
     ./alacritty.nix
     ./encryption.nix
-    ./wireguard-systemd.nix
+#    ./wireguard-systemd.nix
     ./chromium.nix
     ./multimedia.nix
     ./bluetooth.nix
@@ -44,8 +44,8 @@
       enable = true;
       dockerCompat = true;
     };
-    waydroid.enable = true;
-    lxd.enable = true;
+#    waydroid.enable = true;
+#    lxd.enable = true;
   };
 
   location = {
@@ -81,7 +81,7 @@
   environment.systemPackages = with pkgs; [
     # Development
     direnv gitAndTools.pass-git-helper gist rustup gcc exercism nodejs terraform-lsp
-    qflipper rnix-lsp
+    qflipper rnix-lsp nil
     # 3D
     solvespace prusa-slicer
     # LaTeX
