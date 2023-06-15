@@ -91,7 +91,7 @@
       comment; })
     # Misc CLI
     taskwarrior fortune ledger usbutils pciutils acpi slock scrot xdotool nethack
-    mosquitto xorg.xf86inputsynaptics gammastep
+    mosquitto xorg.xf86inputsynaptics gammastep restic yt-dlp
     # Misc graphical
     alacritty arandr dmenu fahclient calibre gnome-firmware-updater
     winbox logseq
