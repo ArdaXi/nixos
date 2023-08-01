@@ -48,7 +48,7 @@
       overalljails = true;
     };
 
-    jails.sshd = ''
+    jails.sshd = lib.mkForce ''
       enabled = true
       port    = ${lib.concatMapStringsSep "," (p: toString p) config.services.openssh.ports}
       mode    = aggressive
