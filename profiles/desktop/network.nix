@@ -41,6 +41,13 @@
 
     wait-online.anyInterface = true;
 
+    networks."15-phone" = {
+      name = "enp0s20f0u1";
+      networkConfig = {
+        DHCP = "yes";
+      };
+    };
+
     networks."20-dock" = {
       name = "enp0s20f0u4u1";
       address = [ "192.168.178.14/24" "2a10:3781:19df:3::3/64" ];
