@@ -97,6 +97,9 @@ in {
         SuppressPrefixLength = 0;
         Priority = 10;
       };}];
+      networkConfig = {
+        KeepConfiguration = "yes";
+      };
     };
   };
 }
