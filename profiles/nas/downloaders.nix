@@ -1,7 +1,5 @@
 { pkgs, lib, ... }:
 {
-  nixpkgs.config.permittedInsecurePackages = [ "p7zip-16.02" ]; # needed for sabnzbd
-
   services = {
     transmission = {
       enable = true;

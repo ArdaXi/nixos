@@ -40,17 +40,17 @@
     };
   };
 
-  nixpkgs.config = {
-    allowUnfree = true;
-    allowBroken = true;
-    android_sdk.accept_license = true;
-    permittedInsecurePackages = [
-      "openssl-1.0.2u"
-      "python2.7-Pillow-6.2.2"
-    ];
-  };
+#  nixpkgs.config = {
+#    allowUnfree = true;
+#    allowBroken = true;
+#    android_sdk.accept_license = true;
+#    permittedInsecurePackages = [
+#      "openssl-1.0.2u"
+#      "python2.7-Pillow-6.2.2"
+#    ];
+#  };
 
-  hardware.enableAllFirmware = true;
+  hardware.enableRedistributableFirmware = true;
   time.timeZone = "Europe/Amsterdam";
 
   console = {
