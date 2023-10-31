@@ -94,7 +94,8 @@
     mosquitto xorg.xf86inputsynaptics gammastep restic yt-dlp
     # Misc graphical
     alacritty arandr dmenu fahclient calibre gnome-firmware-updater
-    winbox logseq
+    winbox
+    # logseq
     (writeShellScriptBin "anki" ''
       export ANKI_WAYLAND=1
       exec ${pkgs.anki-bin}/bin/anki
