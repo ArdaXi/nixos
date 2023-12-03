@@ -97,7 +97,7 @@
             proxyPass = config.services.oauth2_proxy.httpAddress;
             extraConfig = proxyConfig + ''
               proxy_set_header X-Scheme $scheme;
-              proxy_set_header X-Auth-Request-Redirect $scheme://$host$requesturi;
+              proxy_set_header X-Auth-Request-Redirect $scheme://$host$request_uri;
             '';
           };
           "/oauth2/auth" = lib.mkIf config.services.oauth2_proxy.enable {
