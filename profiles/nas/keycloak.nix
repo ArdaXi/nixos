@@ -10,7 +10,7 @@
       type = "postgresql";
       username = "keycloak";
       host = "127.0.0.1";
-      passwordFile = "/run/keys/keycloak_password";
+      passwordFile = "/var/secrets/keycloak";
       createLocally = false;
       useSSL = false;
     };

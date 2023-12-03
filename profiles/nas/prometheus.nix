@@ -90,6 +90,15 @@ in
     enable = true;
     protocol = "socket";
     socket = "/run/grafana/grafana.sock";
+    settings = {
+      "auth.proxy" = {
+        enabled = true;
+        header_name = "X-Email";
+        header_property = "email";
+        auto_sign_up = false;
+        enable_login_token = true;
+      };
+    };
   };
 
   systemd.services.grafana.serviceConfig = {

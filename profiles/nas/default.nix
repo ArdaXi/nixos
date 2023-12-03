@@ -18,7 +18,7 @@
 #    ./ipfs.nix
     ./innernet.nix
     ./iscsi.nix
-#    ./keycloak.nix
+    ./keycloak.nix
     ./zfs.nix
 #    ./upgrade-postgres.nix
 # Error in eval (2022-09-07)
@@ -34,6 +34,7 @@
   };
 
   environment.systemPackages = [
+    pkgs.rustup
     pkgs.tmux
     (pkgs.writeShellScriptBin "irc" ''
       T3=$(pidof weechat)
@@ -83,6 +84,32 @@
     };
 
     jellyfin.enable = true;
+
+    oauth2_proxy = {
+      enable = true;
+      reverseProxy = true;
+      provider = "oidc";
+      redirectURL = "https://auth.street.ardaxi.com/oauth2/callback";
+      email.domains = [ "*" ];
+      keyFile = "/var/secrets/oauth2_proxy";
+
+      extraConfig = {
+        "oidc-issuer-url" = "https://keycloak.ardaxi.com/auth/realms/master";
+        "code-challenge-method" = "S256";
+        "whitelist-domain" = "*.ardaxi.com";
+        "skip-provider-button" = true;
+        "cookie-domain" = ".ardaxi.com";
+        "cookie-refresh" = "1h";
+        "cookie-expire" = "12h";
+        "pass-access-token" = true;
+        "set-xauthrequest" = true;
+        "scope" = "openid email profile";
+        "session-store-type" = "redis";
+        "redis-connection-url" = "redis://127.0.0.1";
+      };
+    };
+
+    redis.servers."".enable = true;
   };
 
   programs.msmtp = {
@@ -102,4 +129,8 @@
   users.users.unifi.group = "unifi";
   users.groups.unifi = {};
 
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = true;
+  };
 }

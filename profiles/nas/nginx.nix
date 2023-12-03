@@ -4,6 +4,12 @@
   services.nginx = {
     enable = true;
     statusPage = true;
+    recommendedProxySettings = lib.mkForce false;
+    commonHttpConfig = ''
+      proxy_cache_path /var/cache/nginx/authentication keys_zone=authentication:10m levels=1:2 inactive=3s;
+      proxy_buffers 4 256k;
+      proxy_buffer_size 128k;
+    '';
     virtualHosts = let
       proxyConfig = ''
         proxy_ssl_verify   off;
@@ -18,6 +24,8 @@
         proxy_http_version 1.1;
       '';
       allow = ''
+        allow 127.0.0.1;
+        allow ::1;
         allow 192.168.178.0/24;
         allow 45.80.170.80/29;
         allow 2a10:3781:19df::/48;
@@ -46,7 +54,9 @@
         forceSSL = true;
         locations."/" = {
           proxyPass = "http://127.0.0.1:${toString config.services.home-assistant.config.http.server_port}/";
-          extraConfig = proxyConfig;
+          extraConfig = proxyConfig + ''
+            proxy_set_header Connection "upgrade";
+          '';
         };
       };
       "hydra.street.ardaxi.com" = lib.mkIf config.services.hydra.enable {
@@ -82,10 +92,74 @@
       "grafana.street.ardaxi.com" = lib.mkIf config.services.grafana.enable {
         enableACME = true;
         forceSSL = true;
-        locations."/" = {
-          proxyPass = "http://unix:${config.services.grafana.socket}:/";
-          extraConfig = proxyConfig;
-#          proxyPass = "http://127.0.0.1:${toString config.services.grafana.port}";
+        locations = {
+          "/oauth2/" = lib.mkIf config.services.oauth2_proxy.enable {
+            proxyPass = config.services.oauth2_proxy.httpAddress;
+            extraConfig = proxyConfig + ''
+              proxy_set_header X-Scheme $scheme;
+              proxy_set_header X-Auth-Request-Redirect $scheme://$host$requesturi;
+            '';
+          };
+          "/oauth2/auth" = lib.mkIf config.services.oauth2_proxy.enable {
+            proxyPass = config.services.oauth2_proxy.httpAddress;
+            extraConfig = proxyConfig + ''
+              proxy_set_header X-Scheme       $scheme;
+              proxy_set_header Content-Length "";
+              proxy_pass_request_body         off;
+
+              proxy_cache          authentication;
+              proxy_cache_valid    202 401 3s;
+              proxy_cache_lock     on;
+              proxy_ignore_headers Set-Cookie;
+
+              proxy_cache_key $cookie__oauth2_proxy$cookie__oauth2_proxy_0$cookie__oauth2_proxy_1;
+            '';
+          };
+          "/" = {
+            proxyPass = "http://unix:${config.services.grafana.socket}:/";
+            extraConfig = proxyConfig + ''
+              auth_request /oauth2/auth;
+              error_page 401 = /oauth2/sign_in;
+
+              auth_request_set $email $upstream_http_x_auth_request_email;
+              proxy_set_header X-Email $email;
+
+              auth_request_set $auth_cookie $upstream_http_set_cookie;
+              add_header Set-Cookie $auth_cookie;
+            '';
+          };
+        };
+      };
+      "auth.street.ardaxi.com" = lib.mkIf config.services.oauth2_proxy.enable {
+        enableACME = true;
+        forceSSL = true;
+        locations = {
+          "/oauth2/" = {
+            proxyPass = config.services.oauth2_proxy.httpAddress;
+            extraConfig = proxyConfig + ''
+              proxy_set_header X-Scheme $scheme;
+              proxy_set_header X-Auth-Request-Redirect $scheme://$host$request_uri;
+
+              proxy_buffer_size       128k;
+              proxy_buffers           4 256k;
+              proxy_busy_buffers_size 256k;
+            '';
+          };
+          "/oauth2/auth" = {
+            proxyPass = config.services.oauth2_proxy.httpAddress;
+            extraConfig = proxyConfig + ''
+              proxy_set_header        X-Scheme $scheme;
+              proxy_set_header        Content-Length "";
+              proxy_pass_request_body off;
+
+              proxy_cache          authentication;
+              proxy_cache_valid    202 401 3s;
+              proxy_cache_lock     on;
+              proxy_ignore_headers Set-Cookie;
+
+              proxy_cache_key $cookie__oauth2_proxy$cookie__oauth2_proxy_0$cookie__oauth2_proxy_1;
+             '';
+          };
         };
       };
       ${config.services.tt-rss.virtualHost} = lib.mkIf config.services.tt-rss.enable {
@@ -139,7 +213,10 @@
         forceSSL = true;
         locations."/" = {
           proxyPass = "http://127.0.0.1:${config.services.keycloak.httpPort}";
-          extraConfig = proxyConfig + allow;
+          extraConfig = proxyConfig + ''
+            proxy_buffers     4 256k;
+            proxy_buffer_size 128k;
+          '' + allow;
         };
       };
       "local.street.ardaxi.com" = {

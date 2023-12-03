@@ -129,7 +129,7 @@
   };
 
   nix = {
-    maxJobs = 6;
+    maxJobs = 20;
     buildMachines = [{
       hostName = "localhost";
       systems = [
@@ -137,7 +137,7 @@
         "armv6l-linux" "armv7l-linux" "aarch64-linux"
       ];
       supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" "local" ];
-      maxJobs = 6;
+      maxJobs = 20;
     }];
     extraOptions = ''
       min-free = ${toString ( 10 * 1024 * 1024 * 1024)}

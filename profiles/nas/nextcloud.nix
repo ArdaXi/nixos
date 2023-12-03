@@ -4,7 +4,8 @@
   services = {
     nextcloud = {
       enable = true;
-      package = pkgs.nextcloud24;
+      enableBrokenCiphersForSSE = false;
+      package = pkgs.nextcloud25;
       hostName = "cloud.ardaxi.com";
       https = true;
       config = {
