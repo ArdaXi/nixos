@@ -116,7 +116,7 @@
             '';
           };
           "/" = {
-            proxyPass = "http://unix:${config.services.grafana.socket}:/";
+            proxyPass = "http://unix:${config.services.grafana.settings.server.socket}:/";
             extraConfig = proxyConfig + ''
               auth_request /oauth2/auth;
               error_page 401 = /oauth2/sign_in;
@@ -212,7 +212,7 @@
         enableACME = true;
         forceSSL = true;
         locations."/" = {
-          proxyPass = "http://127.0.0.1:${config.services.keycloak.httpPort}";
+          proxyPass = "http://127.0.0.1:${toString config.services.keycloak.settings.http-port}";
           extraConfig = proxyConfig + ''
             proxy_buffers     4 256k;
             proxy_buffer_size 128k;

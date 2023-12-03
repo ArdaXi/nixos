@@ -38,7 +38,7 @@
 
     users.groups.nixbuild = {};
 
-    nix.allowedUsers = [ "hydra" "hydra-www" "@hydra" "nix-serve" ];
+    nix.settings.allowed-users = [ "hydra" "hydra-www" "@hydra" "nix-serve" ];
     nix.package = pkgs.nix-hydra;
   };
 }

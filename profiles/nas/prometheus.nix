@@ -88,9 +88,11 @@ in
 
   services.grafana = {
     enable = true;
-    protocol = "socket";
-    socket = "/run/grafana/grafana.sock";
     settings = {
+      server = {
+        socket = "/run/grafana/grafana.sock";
+        protocol = "socket";
+      };
       "auth.proxy" = {
         enabled = true;
         header_name = "X-Email";

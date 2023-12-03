@@ -35,12 +35,14 @@ in
     dataDir = "/home/ardaxi/syncthing";
     configDir = "/home/ardaxi/.config/syncthing";
 
-    devices = lib.filterAttrs (n: _: n != hostname) devices;
-    folders = lib.mapAttrs
-      (_: v: v // { devices = lib.remove hostname v.devices; })
-      (lib.filterAttrs
-        (_: v: builtins.elem hostname v.devices)
-        folders);
+    settings = {
+      devices = lib.filterAttrs (n: _: n != hostname) devices;
+      folders = lib.mapAttrs
+        (_: v: v // { devices = lib.remove hostname v.devices; })
+        (lib.filterAttrs
+          (_: v: builtins.elem hostname v.devices)
+          folders);
+    };
 
     enable = lib.mkIf
       (builtins.elem hostname (builtins.attrNames devices))

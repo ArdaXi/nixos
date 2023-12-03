@@ -3,8 +3,6 @@
 {
   services.keycloak = {
     enable = true;
-    httpPort = "8086";
-    bindAddress = "127.0.0.1";
 
     database = {
       type = "postgresql";
@@ -16,8 +14,10 @@
     };
 
     settings = {
-      hostname = "keycloak.ardaxi.com";
+      http-host = "127.0.0.1";
+      http-port = 8086;
       http-relative-path = "/auth";
+      hostname = "keycloak.ardaxi.com";
       hostname-strict-backchannel = true;
       proxy = "edge";
     };

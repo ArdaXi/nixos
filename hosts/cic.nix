@@ -23,11 +23,14 @@
     ];
     kernelModules = [ "kvm-intel" ];
     supportedFilesystems = [ "zfs" ];
-    tmpOnTmpfs = true;
-    tmpOnTmpfsSize = "75%";
     binfmt.emulatedSystems = [ "armv6l-linux" "armv7l-linux" "aarch64-linux" ];
 
     zfs.extraPools = [ "scratch" ];
+
+    tmp = {
+      useTmpfs = true;
+      tmpfsSize = "75%";
+    };
   };
 
   fileSystems = {
