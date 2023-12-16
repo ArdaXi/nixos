@@ -16,7 +16,10 @@ let
   pkgs = import nixpkgs {
     inherit system;
     overlays = attrValues (pathsToImportedAttrs [ ./overlays/pkgs.nix ]);
-    config = { allowUnfree = true; };
+    config = {
+      allowUnfree = true;
+      permittedInsecurePackages = [ "openssl-1.1.1w" ];
+    };
   };
 
   config = hostName: (hydraJob
