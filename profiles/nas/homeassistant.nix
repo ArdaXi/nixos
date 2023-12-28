@@ -62,6 +62,8 @@ in
         time_zone = "Europe/Amsterdam";
       };
 
+      zha_toolkit = {};
+
       automation = "!include automations.yaml";
       sensor = "!include sensor.yaml";
 

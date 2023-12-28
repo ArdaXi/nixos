@@ -54,9 +54,9 @@
         forceSSL = true;
         locations."/" = {
           proxyPass = "http://127.0.0.1:${toString config.services.home-assistant.config.http.server_port}/";
-          extraConfig = proxyConfig + ''
-            proxy_set_header Connection "upgrade";
-          '';
+          extraConfig = proxyConfig; # + ''
+          #  proxy_set_header Connection "upgrade";
+          #'';
         };
       };
       "hydra.street.ardaxi.com" = lib.mkIf config.services.hydra.enable {
