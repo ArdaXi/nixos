@@ -28,6 +28,19 @@
 #    ./zoneminder.nix
   ];
 
+  # Massive dirty hack because the version check seems to fail to remove --add-opens
+  systemd.services.unifi.serviceConfig = let
+    cmd = ''
+      @${config.services.unifi.jrePackage}/bin/java java \
+        "-Xms1024m" \
+        "-Xmx1024m" \
+        -jar /var/lib/unifi/lib/ace.jar
+    '';
+  in {
+    ExecStart = lib.mkForce "${(lib.removeSuffix "\n" cmd)} start";
+    ExecStop = lib.mkForce "${(lib.removeSuffix "\n" cmd)} stop";
+  };
+
   security.acme = {
     acceptTerms = true;
     defaults.email = "acme@ardaxi.com";
