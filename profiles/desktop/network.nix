@@ -19,7 +19,10 @@
 
   networking = {
     useDHCP = false;
-    wireless.iwd.enable = true;
+    wireless.iwd = {
+      enable = true;
+      settings.General.EnableNetworkConfiguration = true;
+    };
     firewall = {
       logRefusedConnections = false;
       extraCommands = ''
