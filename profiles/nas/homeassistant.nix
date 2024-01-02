@@ -55,7 +55,7 @@ in
       };
       frontend = {
         host = "/run/zigbee2mqtt/zigbee2mqtt.sock";
-        url = "https://z2m.street.ardaxi.com/";
+        url = "https://z2m.street.ardaxi.com";
       };
       homeassistant = {
         legacy_entity_attributes = false;
