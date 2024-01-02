@@ -219,6 +219,14 @@
           '' + allow;
         };
       };
+      "z2m.street.ardaxi.com" = lib.mkIf config.services.zigbee2mqtt.enable {
+        enableACME = true;
+        forceSSL = true;
+        locations."/" = {
+          proxyPass = "http://unix:${config.services.zigbee2mqtt.settings.frontend.host}:/";
+          extraConfig = proxyConfig + extraAllow;
+        };
+      };
       "local.street.ardaxi.com" = {
         enableACME = true;
         addSSL = true;
@@ -270,6 +278,10 @@
             proxyPass = "http://127.0.0.1:7878";
             extraConfig = allow;
           };
+          "/z2m/" = {
+            proxyPass = "http://unix:${config.services.zigbee2mqtt.settings.frontend.host}:/";
+            extraConfig = proxyConfig + extraAllow;
+          };
         };
       };
     };
@@ -278,5 +290,6 @@
   users.users."${config.services.nginx.user}".extraGroups = [
     # I know this will probably never change, but it's still hardcoded
     config.users.users."${config.systemd.services.grafana.serviceConfig.User}".group
+    config.users.users."${config.systemd.services.zigbee2mqtt.serviceConfig.User}".group
   ];
 }
