@@ -278,7 +278,7 @@
             proxyPass = "http://127.0.0.1:7878";
             extraConfig = allow;
           };
-          "/z2m/" = {
+          "/z2m/" = lib.mkIf config.services.zigbee2mqtt.enable {
             proxyPass = "http://unix:${config.services.zigbee2mqtt.settings.frontend.host}:/";
             extraConfig = proxyConfig + extraAllow;
           };

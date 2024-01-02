@@ -73,7 +73,7 @@ in
   systemd.services.zigbee2mqtt.serviceConfig = {
     # Necessary for frontend to listen on socket
     RuntimeDirectory = "zigbee2mqtt";
-    RestrictedAddressFamilies = lib.mkForce [
+    RestrictAddressFamilies = lib.mkForce [
       "AF_INET"
       "AF_INET6"
       "AF_UNIX"
