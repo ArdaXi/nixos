@@ -25,7 +25,7 @@ in
         port = nginxPort;
       };
       snmp = {
-        enable = true;
+        enable = false;
         configurationPath = "/etc/snmp.yml";
       };
       mikrotik = {
@@ -66,6 +66,7 @@ in
         job_name = "mikrotik";
         static_configs = [{ targets = ["127.0.0.1:${toString mktkPort}"]; }];
       }
+      /*
       {
         job_name = "snmp";
         scrape_interval = "10s";
@@ -83,6 +84,7 @@ in
           ];
         }];
       }
+      */
     ];
   };
 
