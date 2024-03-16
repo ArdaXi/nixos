@@ -81,7 +81,7 @@
   environment.systemPackages = with pkgs; [
     # Development
     direnv gitAndTools.pass-git-helper gist rustup gcc exercism nodejs terraform-lsp
-    qflipper rnix-lsp nil
+    qflipper nil
     # 3D
     solvespace prusa-slicer
     # LaTeX
