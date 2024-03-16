@@ -120,4 +120,7 @@
 
   programs.dconf.enable = true;
   programs.nix-ld.enable = true;
+
+  # For some reason enabling Sway also adds a default pinentry...
+  programs.gnupg.agent.pinentryPackage = pkgs.pinentry-qt;
 }
