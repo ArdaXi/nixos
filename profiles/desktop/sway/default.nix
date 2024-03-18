@@ -4,7 +4,8 @@ rec {
   environment.etc."sway/config".source = (pkgs.substituteAll {
     name = "sway-config";
     src = ./config;
-    inherit (pkgs) alacritty zsh tmux dmenu fzf findutils sway waybar;
+    inherit (pkgs) alacritty zsh tmux dmenu fzf findutils sway;
+    waybar = pkgs.waybar.override { wireplumberSupport = false; };
     i3statusRust = pkgs.i3status-rust;
     i3statusConfig = ./i3status.toml;
   }).outPath;
