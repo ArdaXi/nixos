@@ -18,8 +18,15 @@
           sendOptions = "L";
           recvOptions = "o compression=zstd-4 o recordsize=1M";
         };
-        "tank/system/pg14" = {
-          target = "scratch/pg14";
+        "switch/system/pg14" = {
+          target = "tank/system/pg14";
+          recursive = true;
+        };
+        "switch/local/nix" = {
+          target = "tank/local/nix";
+        };
+        "switch/system/var" = {
+          target = "tank/system/var";
           recursive = true;
         };
       };

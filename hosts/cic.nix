@@ -39,7 +39,7 @@
       fsType = "zfs";
     };
     "/nix" = {
-      device = "tank/local/nix";
+      device = "switch/local/nix";
       fsType = "zfs";
     };
     "/boot" = {
@@ -59,11 +59,11 @@
       fsType = "zfs";
     };
     "/var/lib/postgresql/14" = {
-      device = "tank/system/pg14";
+      device = "switch/system/pg14";
       fsType = "zfs";
     };
     "/var/lib/postgresql/14/pg_wal" = {
-      device = "tank/system/pg14/wal";
+      device = "switch/system/pg14/wal";
       fsType = "zfs";
     };
     "/var/lib/paperless" = {
@@ -72,6 +72,22 @@
     };
     "/var/lib/zoneminder" = {
       device = "tank/data/zoneminder";
+      fsType = "zfs";
+    };
+    "/mnt/var" = {
+      device = "switch/system/var";
+      fsType = "zfs";
+    };
+    "/mnt/var/lib" = {
+      device = "switch/system/var/lib";
+      fsType = "zfs";
+    };
+    "/mnt/var/cache" = {
+      device = "switch/system/var/cache";
+      fsType = "zfs";
+    };
+    "/scratch/restic" = {
+      device = "scratch/restic";
       fsType = "zfs";
     };
   };
