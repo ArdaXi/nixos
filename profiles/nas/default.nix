@@ -16,7 +16,7 @@
     ./hardening.nix
     ./homeassistant.nix
 #    ./ipfs.nix
-    ./innernet.nix
+#    ./innernet.nix
     ./iscsi.nix
     ./keycloak.nix
     ./zfs.nix
@@ -37,6 +37,7 @@
         -jar /var/lib/unifi/lib/ace.jar
     '';
   in {
+    TimeoutSec = lib.mkForce "1min";
     ExecStart = lib.mkForce "${(lib.removeSuffix "\n" cmd)} start";
     ExecStop = lib.mkForce "${(lib.removeSuffix "\n" cmd)} stop";
   };
@@ -124,6 +125,10 @@
 
     redis.servers."".enable = true;
   };
+
+  systemd.services.oauth2-proxy.after = [
+    "nginx.service" "keycloak.service"
+  ];
 
   programs.msmtp = {
     enable = true;
