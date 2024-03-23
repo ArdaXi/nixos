@@ -1,6 +1,25 @@
 { config, lib, ... }:
 
 {
+  assertions = [
+    (lib.mkIf config.services.tt-rss.enable {
+      assertion = lib.hasSuffix ".street.ardaxi.com" config.services.tt-rss.virtualHost;
+      message = "tt-rss hostname should end with street.ardaxi.com for wildcard cert to work";
+    })
+  ];
+
+  security.acme.certs."street.ardaxi.com" = {
+    extraDomainNames = [ "*.street.ardaxi.com" ];
+    dnsProvider = "porkbun";
+    dnsPropagationCheck = true;
+    dnsResolver = "1.1.1.1:53";
+    group = "nginx";
+    credentialFiles = {
+      "PORKBUN_API_KEY_FILE" = "/var/secrets/acme/porkbun_api";
+      "PORKBUN_SECRET_API_KEY_FILE" = "/var/secrets/acme/porkbun_secret";
+    };
+  };
+  
   services.nginx = {
     enable = true;
     statusPage = true;
@@ -42,7 +61,7 @@
         '';
       };
       "anki.street.ardaxi.com" = lib.mkIf config.services.ankisyncd.enable {
-        enableACME = true;
+        useACMEHost = "street.ardaxi.com";
         forceSSL = true;
         locations."/" = {
           proxyPass = "http://unix:/run/ankisyncd/ankisyncd.sock:/";
@@ -50,7 +69,7 @@
         };
       };
       "home.street.ardaxi.com" = lib.mkIf config.services.home-assistant.enable {
-        enableACME = true;
+        useACMEHost = "street.ardaxi.com";
         forceSSL = true;
         locations."/" = {
           proxyPass = "http://127.0.0.1:${toString config.services.home-assistant.config.http.server_port}/";
@@ -60,7 +79,7 @@
         };
       };
       "hydra.street.ardaxi.com" = lib.mkIf config.services.hydra.enable {
-        enableACME = true;
+        useACMEHost = "street.ardaxi.com";
         addSSL = true;
         locations."/" = {
           proxyPass = "http://127.0.0.1:${toString config.services.hydra.port}";
@@ -76,13 +95,13 @@
         };
       };
       "nix-cache.street.ardaxi.com" = lib.mkIf config.services.nix-serve.enable {
-        enableACME = true;
+        useACMEHost = "street.ardaxi.com";
         locations."/" = {
           proxyPass = "http://127.0.0.1:${toString config.services.nix-serve.port}";
         };
       };
       "unifi.street.ardaxi.com" = lib.mkIf config.services.unifi.enable {
-        enableACME = true;
+        useACMEHost = "street.ardaxi.com";
         forceSSL = true;
         locations."/" = {
           proxyPass = "https://127.0.0.1:8443"; # seems hardcoded
@@ -90,7 +109,7 @@
         };
       };
       "grafana.street.ardaxi.com" = lib.mkIf config.services.grafana.enable {
-        enableACME = true;
+        useACMEHost = "street.ardaxi.com";
         forceSSL = true;
         locations = {
           "/oauth2/" = lib.mkIf config.services.oauth2_proxy.enable {
@@ -131,7 +150,7 @@
         };
       };
       "auth.street.ardaxi.com" = lib.mkIf config.services.oauth2_proxy.enable {
-        enableACME = true;
+        useACMEHost = "street.ardaxi.com";
         forceSSL = true;
         locations = {
           "/oauth2/" = {
@@ -163,7 +182,7 @@
         };
       };
       ${config.services.tt-rss.virtualHost} = lib.mkIf config.services.tt-rss.enable {
-        enableACME = true;
+        useACMEHost = "street.ardaxi.com";
         forceSSL = true;
         extraConfig = proxyConfig;
       };
@@ -197,11 +216,11 @@
         };
       };
       "street.ardaxi.com" = {
-        enableACME = true;
+        useACMEHost = "street.ardaxi.com";
         forceSSL = true;
       };
       "ipfs.street.ardaxi.com" = lib.mkIf config.services.ipfs.enable {
-        enableACME = true;
+        useACMEHost = "street.ardaxi.com";
         addSSL = true;
         locations."/" = {
           proxyPass = "http://127.0.0.1:8181";
@@ -220,15 +239,29 @@
         };
       };
       "z2m.street.ardaxi.com" = lib.mkIf config.services.zigbee2mqtt.enable {
-        enableACME = true;
+        useACMEHost = "street.ardaxi.com";
         forceSSL = true;
         locations."/" = {
           proxyPass = "http://unix:${config.services.zigbee2mqtt.settings.frontend.host}:/";
           extraConfig = proxyConfig + extraAllow;
         };
       };
+      "tv.street.ardaxi.com" = lib.mkIf config.services.jellyfin.enable {
+        useACMEHost = "street.ardaxi.com";
+        forceSSL = true;
+        locations = {
+          "/" = {
+            proxyPass = "http://127.0.0.1:8096";
+            extraConfig = proxyConfig + extraAllow;
+          };
+          "= /web/" = {
+            proxyPass = "http://127.0.0.1:8096/web/index.html";
+            extraConfig = proxyConfig + extraAllow;
+          };
+        };
+      };
       "local.street.ardaxi.com" = {
-        enableACME = true;
+        useACMEHost = "street.ardaxi.com";
         addSSL = true;
         locations = {
           "/" = {
@@ -276,7 +309,11 @@
           };
           "/radarr/" = lib.mkIf config.services.radarr.enable {
             proxyPass = "http://127.0.0.1:7878";
-            extraConfig = allow;
+            extraConfig = allow + ''
+              proxy_http_version 1.1;
+              proxy_set_header Upgrade $http_upgrade;
+              proxy_set_header Connection $http_connection;
+            '';
           };
           "/z2m/" = lib.mkIf config.services.zigbee2mqtt.enable {
             proxyPass = "http://unix:${config.services.zigbee2mqtt.settings.frontend.host}:/";
