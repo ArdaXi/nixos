@@ -84,6 +84,7 @@
       heap = 1024;
     in {
       enable = true;
+      unifiPackage = pkgs.unifi;
       initialJavaHeapSize = heap;
       maximumJavaHeapSize = heap;
     };
