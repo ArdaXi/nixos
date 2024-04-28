@@ -106,6 +106,7 @@
       redirectURL = "https://auth.street.ardaxi.com/oauth2/callback";
       email.domains = [ "*" ];
       keyFile = "/var/secrets/oauth2_proxy";
+      nginx.virtualHosts = [];
 
       extraConfig = {
         "oidc-issuer-url" = "https://keycloak.ardaxi.com/auth/realms/master";
