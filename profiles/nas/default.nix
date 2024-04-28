@@ -100,7 +100,7 @@
     jellyfin.enable = true;
 
     oauth2_proxy = {
-      enable = true;
+      enable = false;
       reverseProxy = true;
       provider = "oidc";
       redirectURL = "https://auth.street.ardaxi.com/oauth2/callback";
