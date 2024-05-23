@@ -37,7 +37,7 @@ rec {
 #  });
 
   python3 = prev.python3.override pythonOverrides;
-  python38 = prev.python38.override pythonOverrides;
+  # python38 = prev.python38.override pythonOverrides;
 
   inverter-exporter = final.callPackage ./inverter {};
 
