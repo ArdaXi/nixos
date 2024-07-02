@@ -23,6 +23,7 @@
         "/var/lib/nzbget"
       ];
       BindReadOnlyPaths = [ "/etc/resolv.conf" ];
+      RuntimeDirectory = "nzbget";
     };
   };
 }

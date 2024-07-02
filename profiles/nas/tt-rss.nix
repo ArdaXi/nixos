@@ -13,4 +13,5 @@ in
   };
 
   services.phpfpm.phpPackage = pkgs.php80;
+  services.phpfpm.pools.tt-rss.settings."listen.mode" = "0660";
 }

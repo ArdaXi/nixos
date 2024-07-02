@@ -9,6 +9,7 @@
   ];
 
   security.acme.certs."street.ardaxi.com" = {
+    domain = "*.ardaxi.com";
     extraDomainNames = [ "*.street.ardaxi.com" ];
     dnsProvider = "porkbun";
     dnsPropagationCheck = true;
@@ -22,12 +23,17 @@
   
   services.nginx = {
     enable = true;
+    enableReload = true;
     statusPage = true;
     recommendedProxySettings = lib.mkForce false;
     commonHttpConfig = ''
       proxy_cache_path /var/cache/nginx/authentication keys_zone=authentication:10m levels=1:2 inactive=3s;
       proxy_buffers 4 256k;
       proxy_buffer_size 128k;
+
+      set_real_ip_from  127.0.0.0/8;
+      real_ip_header    X-Forwarded-For;
+      real_ip_recursive on;
     '';
     virtualHosts = let
       proxyConfig = ''
@@ -87,7 +93,7 @@
         };
       };
       "matrix.ardaxi.com" = lib.mkIf config.services.matrix-synapse.enable {
-        enableACME = true;
+        useACMEHost = "street.ardaxi.com";
         forceSSL = true;
         locations."/_matrix" = {
           proxyPass = "http://127.0.0.1:8008";
@@ -188,7 +194,7 @@
       };
       ${config.services.zoneminder.hostname} =
       lib.mkIf config.services.zoneminder.enable {
-        enableACME = true;
+        useACMEHost = "street.ardaxi.com";
         forceSSL = true;
         extraConfig = proxyConfig + extraAllow;
         default = lib.mkForce false;
@@ -198,7 +204,7 @@
         ];
       };
       "paper.ardaxi.com" = lib.mkIf config.services.paperless-ng.enable {
-        enableACME = true;
+        useACMEHost = "street.ardaxi.com";
         forceSSL = true;
         locations."/" = {
           proxyPass = "http://127.0.0.1:${toString config.services.paperless-ng.port}/";
@@ -206,7 +212,7 @@
         };
       };
       "lang.ardaxi.com" = {
-        enableACME = true;
+        useACMEHost = "street.ardaxi.com";
         forceSSL = true;
         locations."/" = {
           proxyPass = "http://127.0.0.1:9111";
@@ -228,7 +234,7 @@
         };
       };
       "keycloak.ardaxi.com" = lib.mkIf config.services.keycloak.enable {
-        enableACME = true;
+        useACMEHost = "street.ardaxi.com";
         forceSSL = true;
         locations."/" = {
           proxyPass = "http://127.0.0.1:${toString config.services.keycloak.settings.http-port}";
@@ -251,11 +257,11 @@
         forceSSL = true;
         locations = {
           "/" = {
-            proxyPass = "http://127.0.0.1:8096";
+            proxyPass = "http://unix:${config.systemd.services.jellyfin.environment."JELLYFIN_kestrel__socketPath"}:/";
             extraConfig = proxyConfig + extraAllow;
           };
           "= /web/" = {
-            proxyPass = "http://127.0.0.1:8096/web/index.html";
+            proxyPass = "http://unix:${config.systemd.services.jellyfin.environment."JELLYFIN_kestrel__socketPath"}:/web/index.html";
             extraConfig = proxyConfig + extraAllow;
           };
         };
@@ -300,16 +306,16 @@
             extraConfig = allow;
           };
           "/nzbget/" = lib.mkIf config.services.nzbget.enable {
-            proxyPass = "http://127.0.0.1:8083";
+            proxyPass = "http://unix:/run/nzbget/nzbget.sock:/";
             extraConfig = allow;
           };
           "/sonarr/" = lib.mkIf config.services.sonarr.enable {
             proxyPass = "http://127.0.0.1:8989";
-            extraConfig = allow;
+            extraConfig = extraAllow;
           };
           "/radarr/" = lib.mkIf config.services.radarr.enable {
             proxyPass = "http://127.0.0.1:7878";
-            extraConfig = allow + ''
+            extraConfig = extraAllow + ''
               proxy_http_version 1.1;
               proxy_set_header Upgrade $http_upgrade;
               proxy_set_header Connection $http_connection;
@@ -328,5 +334,7 @@
     # I know this will probably never change, but it's still hardcoded
     config.users.users."${config.systemd.services.grafana.serviceConfig.User}".group
     config.users.users."${config.systemd.services.zigbee2mqtt.serviceConfig.User}".group
+    config.services.jellyfin.group
+    "nzbget"
   ];
 }

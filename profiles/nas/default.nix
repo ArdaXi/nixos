@@ -7,7 +7,7 @@
     ./mosquitto.nix
 #    ./nextcloud.nix
     ./nfs.nix
-    ./bind.nix
+#    ./bind.nix
     ./nginx.nix
     ./prometheus.nix
     ./hydra.nix
@@ -27,6 +27,8 @@
     ./tt-rss.nix
 #    ./zoneminder.nix
   ];
+
+  virtualisation.libvirtd.enable = true;
 
   # Massive dirty hack because the version check seems to fail to remove --add-opens
   systemd.services.unifi.serviceConfig = let
@@ -132,6 +134,15 @@
     "nginx.service" "keycloak.service"
   ];
 
+  systemd.services.jellyfin = {
+    environment = {
+      "JELLYFIN_kestrel__socketPermissions" = "0660";
+      "JELLYFIN_kestrel__socketPath" = "/run/jellyfin/jellyfin.sock";
+      "JELLYFIN_kestrel__socket" = "true";
+    };
+    serviceConfig.RuntimeDirectory = "jellyfin";
+  };
+
   programs.msmtp = {
     enable = true;
     setSendmail = true;
@@ -148,9 +159,4 @@
 
   users.users.unifi.group = "unifi";
   users.groups.unifi = {};
-
-  virtualisation.podman = {
-    enable = true;
-    dockerCompat = true;
-  };
 }
