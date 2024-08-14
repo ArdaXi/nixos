@@ -55,7 +55,6 @@
 
   services = {
     #redshift.enable = true;
-    lorri.enable = true;
     chrony = {
       enable = true;
       servers = [];
