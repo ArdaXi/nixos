@@ -35,6 +35,7 @@ rec {
 #    doCheck = false;
 #    checkPhase = "";
 #  });
+  hydra-unstable = prev.hydra_unstable or prev.hydra-unstable;
 
   python3 = prev.python3.override pythonOverrides;
   # python38 = prev.python38.override pythonOverrides;
