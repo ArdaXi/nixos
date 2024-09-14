@@ -19,15 +19,9 @@ in
       isSystemUser = true;
       group = nginxUser;
     };
-    ankisyncd = {
-      description = "ankisyncd user";
-      isSystemUser = true;
-      group = "ankisyncd";
-    };
   };
 
   users.groups = {
     "${nginxUser}" = {};
-    ankisyncd = {};
   };
 }

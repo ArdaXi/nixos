@@ -66,14 +66,6 @@
           return 444;
         '';
       };
-      "anki.street.ardaxi.com" = lib.mkIf config.services.ankisyncd.enable {
-        useACMEHost = "street.ardaxi.com";
-        forceSSL = true;
-        locations."/" = {
-          proxyPass = "http://unix:/run/ankisyncd/ankisyncd.sock:/";
-          extraConfig = proxyConfig;
-        };
-      };
       "home.street.ardaxi.com" = lib.mkIf config.services.home-assistant.enable {
         useACMEHost = "street.ardaxi.com";
         forceSSL = true;
