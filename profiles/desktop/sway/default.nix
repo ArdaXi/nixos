@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 rec {
   environment.etc."sway/config".source = (pkgs.substituteAll {
@@ -65,7 +65,7 @@ rec {
 
   fonts.fonts = [ pkgs.font-awesome_5 pkgs.powerline-fonts ];
 
-  systemd.user.targets.sway-session = {
+  systemd.user.targets.sway-session = lib.mkDefault {
     description = "Sway compositor session";
     documentation = [ "man:systemd.special(7)" ];
     bindsTo = [ "graphical-session.target" ];
