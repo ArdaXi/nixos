@@ -16,8 +16,6 @@
     ./dunst.nix
   ];
 
-  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages or pkgs.linuxPackages_5_12;
-
   time.timeZone = lib.mkForce null;
 
   services.syncthing = {
