@@ -18,7 +18,7 @@ pkgs.mkShell {
   nativeBuildInputs = with pkgs; [
     git
     git-crypt
-    nixFlakes
+    nixVersions.stable
     rebuild
   ];
 

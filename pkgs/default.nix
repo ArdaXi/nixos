@@ -40,11 +40,11 @@ rec {
   python3 = prev.python3.override pythonOverrides;
   # python38 = prev.python38.override pythonOverrides;
 
-  inverter-exporter = final.callPackage ./inverter {};
+  #inverter-exporter = final.callPackage ./inverter {};
 
-  pg_prometheus = final.callPackage ./pg-prometheus.nix {};
+  #pg_prometheus = final.callPackage ./pg-prometheus.nix {};
 
-  prometheus-postgresql = final.callPackage ./prometheus-postgresql-adapter/default.nix {};
+  #prometheus-postgresql = final.callPackage ./prometheus-postgresql-adapter/default.nix {};
 
 #  darcs = prev.darcs.overrideScope (final: prev: { Cabal = final.Cabal_2_2_0_1; });
 

@@ -93,7 +93,7 @@
     };
 
     supportedFilesystems = [ "zfs" ];
-    tmpOnTmpfs = true;
+    tmp.useTmpfs = true;
     blacklistedKernelModules = [ "nouveau" ];
 
     binfmt.emulatedSystems = [
