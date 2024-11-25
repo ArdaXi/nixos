@@ -83,6 +83,12 @@
     kernelModules = [ "kvm-intel" "thunderbolt" ];
     kernelParams = [ "i915.enable_psr=0" ];
 
+    # Check ZFS support before upgrading
+    # Once ZFS supports the latest LTS, pin to that
+    # ZFS does not necessarily support the next kernel version
+    # before the last supported becomes EOL
+    kernelPackages = pkgs.linuxKernel.packages.linux_6_10;
+
     loader = {
       grub.enable = false;
       systemd-boot = {
