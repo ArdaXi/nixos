@@ -21,7 +21,7 @@
     useDHCP = false;
     wireless.iwd = {
       enable = true;
-      settings.General.EnableNetworkConfiguration = true;
+      settings.General.EnableNetworkConfiguration = false;
     };
     firewall = {
       logRefusedConnections = false;

@@ -99,6 +99,7 @@ in {
       };}];
       networkConfig = {
         KeepConfiguration = "yes";
+        DNS = "192.168.177.1";
       };
     };
   };
