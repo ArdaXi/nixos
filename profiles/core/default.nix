@@ -35,7 +35,10 @@
       sandbox = true;
       allowed-users = [ "@wheel" ];
       trusted-users = [ "root" "@wheel" ];
-      system-features = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
+      system-features = [
+        "nixos-test" "benchmark" "big-parallel" "kvm"
+        "gccarch-skylake"
+      ];
       auto-optimise-store = true;
     };
   };

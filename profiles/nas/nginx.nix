@@ -299,7 +299,7 @@
           };
           "/nzbget/" = lib.mkIf config.services.nzbget.enable {
             proxyPass = "http://unix:/run/nzbget/nzbget.sock:/";
-            extraConfig = allow;
+            extraConfig = "client_max_body_size 100M;" + allow;
           };
           "/sonarr/" = lib.mkIf config.services.sonarr.enable {
             proxyPass = "http://127.0.0.1:8989";

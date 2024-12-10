@@ -90,7 +90,7 @@ in
       extraComponents = [
         "buienradar" "backup" "met" "zeroconf" "ssdp" "mqtt" "mobile_app"
         "tado" "brother" "ipp" "overkiz" "tasmota" "nest" "homekit_controller"
-        "shelly" "tibber" "zha"
+        "shelly" "tibber" "zha" "open_meteo"
       ];
     };
 

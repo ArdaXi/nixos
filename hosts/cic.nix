@@ -151,11 +151,15 @@
     maxJobs = 20;
     buildMachines = [{
       hostName = "localhost";
+      protocol = null;
       systems = [
         "builtin" "x86_64-linux" "i686-linux"
         "armv6l-linux" "armv7l-linux" "aarch64-linux"
       ];
-      supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" "local" ];
+      supportedFeatures = [
+        "kvm" "nixos-test" "big-parallel" "benchmark" "local"
+        "gccarch-skylake"
+      ];
       maxJobs = 20;
     }];
     extraOptions = ''

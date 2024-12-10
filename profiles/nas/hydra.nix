@@ -38,7 +38,13 @@
 
     users.groups.nixbuild = {};
 
-    nix.settings.allowed-users = [ "hydra" "hydra-www" "@hydra" "nix-serve" ];
+    nix.settings = {
+      allowed-users = [ "hydra" "hydra-www" "@hydra" "nix-serve" ];
+      allowed-uris = [
+        "github:NixOS/"
+        "github:nix-community/"
+      ];
+    };
     nix.package = pkgs.nix-hydra;
   };
 }
