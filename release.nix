@@ -3,6 +3,14 @@ let
   nixos = import nixpkgs { overlays = []; };
   master = nixos;
 
+  nixpkgsConfig = {
+    allowUnfree = true;
+    permittedInsecurePackages = [ 
+       "aspnetcore-runtime-wrapped-6.0.36"
+       "dotnet-sdk-6.0.428"
+    ];
+  };
+
   inherit (builtins) attrValues removeAttrs;
   inherit (nixos) lib;
   inherit (lib) recursiveUpdate hydraJob;
@@ -16,13 +24,7 @@ let
   pkgs = import nixpkgs {
     inherit system;
     overlays = attrValues (pathsToImportedAttrs [ ./overlays/pkgs.nix ]);
-    config = {
-      allowUnfree = true;
-      permittedInsecurePackages = [ 
-         "aspnetcore-runtime-wrapped-6.0.36"
-         "dotnet-sdk-6.0.428"
-      ];
-    };
+    config = nixpkgsConfig;
   };
 
   config = hostName: (hydraJob
@@ -35,7 +37,7 @@ let
           global = {
             networking.hostName = hostName;
 
-            nixpkgs = { pkgs = pkgs; };
+            nixpkgs = { pkgs = pkgs; config = nixpkgsConfig };
           };
           local = import "${toString ./.}/hosts/${hostName}.nix";
           flakeModules = attrValues (pathsToImportedAttrs (import ./modules/list.nix));
