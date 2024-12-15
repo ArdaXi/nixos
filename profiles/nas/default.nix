@@ -103,7 +103,7 @@
 
     jellyfin.enable = true;
 
-    oauth2_proxy = {
+    oauth2-proxy = {
       enable = false;
       reverseProxy = true;
       provider = "oidc";

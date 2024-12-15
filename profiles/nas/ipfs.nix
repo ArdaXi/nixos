@@ -1,7 +1,7 @@
 { ... }:
 
 {
-  services.ipfs = {
+  services.kubo = {
     enable = true;
     gatewayAddress = "/ip4/0.0.0.0/tcp/8181";
     apiAddress = "/ip4/0.0.0.0/tcp/5001";

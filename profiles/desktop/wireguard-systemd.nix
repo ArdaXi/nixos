@@ -57,12 +57,12 @@ in {
         FirewallMark = magicno;
       };
 
-      wireguardPeers = [{ wireguardPeerConfig = {
+      wireguardPeers = [{
         Endpoint = endpoint;
         PublicKey = peer;
         AllowedIPs = [ "0.0.0.0/0" "::/0"];
         PersistentKeepalive = 25;
-      };}];
+      }];
     };
 
     networks."40-wg" = {
@@ -70,33 +70,33 @@ in {
       address = [ "${publicIP}/32" "${localIP}/24" "${sixIP}/128" ];
       routes = [
       # Set up a routing table that routes all traffic through WG
-        { routeConfig = {
+        {
           # With the public IP as a source
           PreferredSource = publicIP;
 #          PreferredSource = localIP;
           Table = magicno;
           Scope = "link";
-        };}
-        { routeConfig = {
+        }
+        {
           # Unless the destination is local
           Destination = "192.168.0.0/16";
           PreferredSource = localIP;
           Table = magicno;
           Scope = "link";
-        };}
-        { routeConfig = {
+        }
+        {
           # For IPv6, only one IP is used.
           PreferredSource = sixIP;
           Table = magicno;
           Scope = "link";
-        };}
+        }
       ];
-      routingPolicyRules = [ { "routingPolicyRuleConfig" = {
+      routingPolicyRules = [ {
         # If there is a specific (not default) route in the main table, use it.
         Family = "both";
         SuppressPrefixLength = 0;
         Priority = 10;
-      };}];
+      }];
       networkConfig = {
         KeepConfiguration = "yes";
         DNS = "192.168.177.1";

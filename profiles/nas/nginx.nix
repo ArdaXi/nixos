@@ -195,7 +195,7 @@
           { addr = "[::0]"; port = 443; ssl = true; }
         ];
       };
-      "paper.ardaxi.com" = lib.mkIf config.services.paperless-ng.enable {
+      "paper.ardaxi.com" = lib.mkIf config.services.paperless.enable {
         useACMEHost = "street.ardaxi.com";
         forceSSL = true;
         locations."/" = {
@@ -217,7 +217,7 @@
         useACMEHost = "street.ardaxi.com";
         forceSSL = true;
       };
-      "ipfs.street.ardaxi.com" = lib.mkIf config.services.ipfs.enable {
+      "ipfs.street.ardaxi.com" = lib.mkIf config.services.kubo.enable {
         useACMEHost = "street.ardaxi.com";
         addSSL = true;
         locations."/" = {

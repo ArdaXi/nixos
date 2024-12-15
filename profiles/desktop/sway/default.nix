@@ -40,8 +40,10 @@ rec {
 
   services.xserver = {
     enable = true;
-    layout = "us";
-    xkbOptions = "compose:caps";
+    xkb = {
+      layout = "us";
+      options = "compose:caps";
+    };
     displayManager = {
       autoLogin = {
         enable = true;
@@ -63,7 +65,7 @@ rec {
     };
   };
 
-  fonts.fonts = [ pkgs.font-awesome_5 pkgs.powerline-fonts ];
+  fonts.packages = [ pkgs.font-awesome_5 pkgs.powerline-fonts ];
 
   systemd.user.targets.sway-session = lib.mkDefault {
     description = "Sway compositor session";

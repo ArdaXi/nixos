@@ -60,11 +60,11 @@
         inherit pkgs;
       };
 
-      sdFlasher = import ./sd-flasher.nix {
-        inherit pkgs;
-        crossPkgs = (pkgsetFor "aarch64-linux").pkgs;
-        config = self.nixosConfigurations.librarian.config;
-      };
+#      sdFlasher = import ./sd-flasher.nix {
+#        inherit pkgs;
+#        crossPkgs = (pkgsetFor "aarch64-linux").pkgs;
+#        config = self.nixosConfigurations.librarian.config;
+#      };
 
       overlay = import ./pkgs;
 

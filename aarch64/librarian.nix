@@ -54,7 +54,7 @@ in
       '';
       kernelModules = [ "zram" "zstd" "zstd_compress" "crypto_zstd" ];
     };
-    tmpOnTmpfs = true;
+    tmp.useTmpfs = true;
     kernelModules = [ "zram" "zstd" "zstd_compress" "crypto_zstd" ];
     kernelPackages = pkgs.linuxPackages_latest;
   };

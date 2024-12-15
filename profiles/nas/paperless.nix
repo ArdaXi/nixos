@@ -30,7 +30,7 @@ let
     '';
 in
 {
-  services.paperless-ng = {
+  services.paperless = {
     enable = true;
     address = "127.0.0.1";
     extraConfig = {

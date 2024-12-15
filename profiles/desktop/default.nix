@@ -87,7 +87,7 @@
       relsize collection-fontsrecommended draftwatermark everypage qrcode geometry tex4ht ec
       comment; })
     # Misc CLI
-    taskwarrior fortune ledger usbutils pciutils acpi slock scrot xdotool nethack
+    fortune usbutils pciutils acpi slock scrot xdotool nethack
     mosquitto xorg.xf86inputsynaptics gammastep restic yt-dlp
     # Misc graphical
     alacritty arandr dmenu fahclient calibre gnome-firmware-updater
@@ -108,8 +108,8 @@
   fonts = {
     fontDir.enable = true;
     enableGhostscriptFonts = true;
-    enableDefaultFonts = true;
-    fonts = with pkgs; [
+    enableDefaultPackages = true;
+    packages = with pkgs; [
       source-code-pro vistafonts corefonts nerdfonts
       cantarell-fonts
     ];

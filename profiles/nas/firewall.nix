@@ -22,7 +22,7 @@
     ];
     allowedUDPPorts = [
 #      (lib.mkIf config.services.bind.enable 53)
-      (lib.mkIf config.services.ipfs.enable 4001)
+      (lib.mkIf config.services.kubo.enable 4001)
       (lib.mkIf config.services.transmission.enable 51413)
       (lib.mkIf config.services.syncthing.enable 21027)
       (lib.mkIf config.services.syncthing.enable 22000)

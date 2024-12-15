@@ -148,7 +148,10 @@
   };
 
   nix = {
-    maxJobs = 20;
+    settings = {
+      max-jobs = 20;
+      auto-optimise-store = true;
+    };
     buildMachines = [{
       hostName = "localhost";
       protocol = null;
@@ -166,6 +169,5 @@
       min-free = ${toString ( 10 * 1024 * 1024 * 1024)}
       max-free = ${toString (100 * 1024 * 1024 * 1024)}
     '';
-    autoOptimiseStore = true;
   };
 }
