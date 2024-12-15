@@ -37,7 +37,7 @@ let
           global = {
             networking.hostName = hostName;
 
-            nixpkgs = { pkgs = pkgs; config = nixpkgsConfig };
+            nixpkgs = { pkgs = pkgs; config = nixpkgsConfig; };
           };
           local = import "${toString ./.}/hosts/${hostName}.nix";
           flakeModules = attrValues (pathsToImportedAttrs (import ./modules/list.nix));
