@@ -2,7 +2,8 @@
 let
   nixpkgsConfig = {
     allowUnfree = true;
-    permittedInsecurePackages = [ 
+    permittedInsecurePackages = [
+       "aspnetcore-runtime-6.0.36"
        "aspnetcore-runtime-wrapped-6.0.36"
        "dotnet-sdk-6.0.428"
     ];
