@@ -112,8 +112,8 @@
     packages = with pkgs; [
       source-code-pro vistafonts corefonts
       cantarell-fonts
-    ] ++ (if pkgs ? nerdfonts then [ pkgs.nerdfonts ] else
-      builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts));
+    ] ++ (if pkgs ? nerd-fonts then
+      builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts) else [ pkgs.nerdfonts ]);
   };
 
   programs.dconf.enable = true;
