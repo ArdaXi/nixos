@@ -110,9 +110,10 @@
     enableGhostscriptFonts = true;
     enableDefaultPackages = true;
     packages = with pkgs; [
-      source-code-pro vistafonts corefonts nerdfonts
+      source-code-pro vistafonts corefonts
       cantarell-fonts
-    ];
+    ] ++ (if pkgs ? nerdfonts then [ pkgs.nerdfonts ] else
+      builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts));
   };
 
   programs.dconf.enable = true;
