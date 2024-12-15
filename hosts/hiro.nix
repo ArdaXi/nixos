@@ -87,7 +87,7 @@
     # Once ZFS supports the latest LTS, pin to that
     # ZFS does not necessarily support the next kernel version
     # before the last supported becomes EOL
-    kernelPackages = pkgs.linuxKernel.packages.linux_6_12;
+    kernelPackages = pkgs.linuxKernel.packages.linux_6_12 or pkgs.linuxKernel.packages.linux_6_10;
 
     loader = {
       grub.enable = false;
