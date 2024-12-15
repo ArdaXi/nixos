@@ -26,7 +26,7 @@
           overlays = attrValues self.overlays;
           config = {
             allowUnfree = true;
-            permittedInsecurePackages = [ "openssl-1.1.1w" "dotnet-sdk-6.0.428" ];
+            permittedInsecurePackages = [ "openssl-1.1.1w" "dotnet-sdk-6.0.428" "aspnetcore-runtime-6.0.36" ];
           };
         };
 
