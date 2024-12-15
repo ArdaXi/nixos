@@ -1,8 +1,5 @@
 { nixpkgs ? <nixpkgs> }:
 let
-  nixos = import nixpkgs { overlays = []; };
-  master = nixos;
-
   nixpkgsConfig = {
     allowUnfree = true;
     permittedInsecurePackages = [ 
@@ -10,6 +7,10 @@ let
        "dotnet-sdk-6.0.428"
     ];
   };
+
+  nixos = import nixpkgs { overlays = []; config = nixpkgsConfig; };
+  master = nixos;
+
 
   inherit (builtins) attrValues removeAttrs;
   inherit (nixos) lib;
@@ -37,7 +38,7 @@ let
           global = {
             networking.hostName = hostName;
 
-            nixpkgs = { pkgs = pkgs; config = nixpkgsConfig; };
+            nixpkgs = { pkgs = pkgs; };
           };
           local = import "${toString ./.}/hosts/${hostName}.nix";
           flakeModules = attrValues (pathsToImportedAttrs (import ./modules/list.nix));
