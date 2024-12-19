@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ lib, config, pkgs, ... }:
 
 {
   imports = [
@@ -22,6 +22,10 @@
       "ahci" "xhci_pci" "ehci_pci" "nvme" "usbhid" "sd_mod" "usb_storage"
     ];
     kernelModules = [ "kvm-intel" ];
+
+    # Keep on latest LTS!
+    kernelPackages = pkgs.linuxKernel.packages.linux_6_12 or pkgs.linuxKernel.packages.linux_6_6;
+    
     supportedFilesystems = [ "zfs" ];
     binfmt.emulatedSystems = [ "armv6l-linux" "armv7l-linux" "aarch64-linux" ];
 
