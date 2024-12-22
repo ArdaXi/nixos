@@ -9,7 +9,7 @@
 
   environment = {
     systemPackages = with pkgs; [
-      wget unzip file vim neovim mosh psmisc binutils git screen fzf lsof htop ripgrep
+      wget unzip file vim mosh psmisc binutils git screen fzf lsof htop ripgrep
       aspellDicts.en aspellDicts.nl kakoune jq tarsnap bat htop nox dnsutils starship
       pv innernet waypipe
     ];
