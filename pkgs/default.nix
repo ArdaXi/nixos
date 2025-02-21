@@ -20,6 +20,18 @@ let
         doCheck = false;
         checkPhase = "";
       });
+
+      configshell = if python-prev.configshell.version != "2.0.0"
+        then python-prev.configshell
+        else (python-prev.configshell.overridePythonAttrs (_: {
+          format = null;
+          pyproject = true;
+
+          build-system = [
+            python-final.hatchling
+            python-final.hatch-vcs
+          ];
+        }));
     };
   };
 in
