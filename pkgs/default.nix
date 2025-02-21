@@ -32,6 +32,18 @@ let
             python-final.hatch-vcs
           ];
         }));
+
+      rtslib = if python-prev.rtslib.version != "2.2.0"
+        then python-prev.rtslib
+        else (python-prev.rtslib.overridePythonAttrs (_: {
+          format = null;
+          pyproject = true;
+
+          build-system = [
+            python-final.hatchling
+            python-final.hatch-vcs
+          ];
+        }));
     };
   };
 in
