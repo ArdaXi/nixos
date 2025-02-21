@@ -12,6 +12,7 @@
       wget unzip file vim mosh psmisc binutils git screen fzf lsof htop ripgrep
       aspellDicts.en aspellDicts.nl kakoune jq tarsnap bat htop nox dnsutils starship
       pv innernet waypipe
+      (pkgs.hiPrio uutils-coreutils-noprefix)
     ];
     extraInit = "export XDG_CONFIG_DIRS=/etc/xdg:$XDG_CONFIG_DIRS";
   };
