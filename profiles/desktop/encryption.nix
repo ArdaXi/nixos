@@ -2,7 +2,7 @@
 
 {
   environment.systemPackages = with pkgs; [
-    libu2f-host yubikey-manager yubikey-manager-qt
+    libu2f-host yubikey-manager
     gnupg pass-wayland browserpass pinentry-qt tomb
   ];
 
