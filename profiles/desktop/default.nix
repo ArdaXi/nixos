@@ -32,6 +32,7 @@
     packages = [ pkgs.qflipper ];
     extraRules = ''
       SUBSYSTEM=="tty", ATTRS{manufacturer}=="Espressif", MODE="0666"
+      SUBSYSTEM=="tty", ATTRS{manufacturer}=="Silicon Labs", MODE="0666"
       KERNEL=="ttyACM0", MODE="0777"
     '';
   };
