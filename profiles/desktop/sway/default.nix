@@ -1,9 +1,7 @@
 { config, lib, pkgs, ... }:
 
 rec {
-  environment.etc."sway/config".source = (pkgs.substituteAll {
-    name = "sway-config";
-    src = ./config;
+  environment.etc."sway/config".source = (pkgs.replaceVars ./config {
     inherit (pkgs) alacritty zsh tmux dmenu fzf findutils sway;
     waybar = pkgs.waybar.override { wireplumberSupport = false; };
     i3statusRust = pkgs.i3status-rust;
