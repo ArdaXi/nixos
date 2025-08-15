@@ -8,6 +8,8 @@ let
       inherit pname version;
       sha256 = "sha256-6KB/YAckwRERj7jHrNT3qtoy6JABxMNek5sZhkSBWiM=";
     };
+    pyproject = true;
+    build-system = [ ps.setuptools ];
     propagatedBuildInputs = [ ps.requests_oauthlib ];
   };
   nordpool = ps: ps.buildPythonPackage rec {
