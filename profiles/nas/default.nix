@@ -87,7 +87,7 @@
     in {
       enable = true;
       unifiPackage = pkgs.unifi;
-      mongodbPackage = pkgs.mongodb-6_0;
+      mongodbPackage = pkgs.mongodb-7_0;
       initialJavaHeapSize = heap;
       maximumJavaHeapSize = heap;
     };
