@@ -1,17 +1,17 @@
 { config, lib, pkgs, ... }:
 
 let
-  pymfy = ps: ps.buildPythonPackage rec {
-    pname = "pymfy";
-    version = "0.9.0";
-    src = ps.fetchPypi {
-      inherit pname version;
-      sha256 = "sha256-6KB/YAckwRERj7jHrNT3qtoy6JABxMNek5sZhkSBWiM=";
-    };
-    pyproject = true;
-    build-system = [ ps.setuptools ];
-    propagatedBuildInputs = [ ps.requests_oauthlib ];
-  };
+#  pymfy = ps: ps.buildPythonPackage rec {
+#    pname = "pymfy";
+#    version = "0.9.0";
+#    src = ps.fetchPypi {
+#      inherit pname version;
+ #     sha256 = "sha256-6KB/YAckwRERj7jHrNT3qtoy6JABxMNek5sZhkSBWiM=";
+ #   };
+#    pyproject = true;
+#    build-system = [ ps.setuptools ];
+#    propagatedBuildInputs = [ ps.requests_oauthlib ];
+#  };
   nordpool = ps: ps.buildPythonPackage rec {
     pname = "nordpool";
     version = "0.3.3";
@@ -87,7 +87,7 @@ in
     enable = true;
     package = pkgs.home-assistant.override {
       extraPackages = ps: [
-        (pymfy ps) (nordpool ps) (pymiele ps) ps.flatdict
+        (nordpool ps) (pymiele ps) ps.flatdict ps.pymfy
       ];
       extraComponents = [
         "buienradar" "backup" "met" "zeroconf" "ssdp" "mqtt" "mobile_app"
