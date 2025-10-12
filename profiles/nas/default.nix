@@ -24,7 +24,7 @@
 # Error in eval (2022-09-07)
 #    ./paperless.nix
     ./languagetool.nix
-    ./tt-rss.nix
+#    ./tt-rss.nix
 #    ./zoneminder.nix
   ];
 
