@@ -2,10 +2,10 @@
 
 {
   assertions = [
-    (lib.mkIf config.services.tt-rss.enable {
-      assertion = lib.hasSuffix ".street.ardaxi.com" config.services.tt-rss.virtualHost;
-      message = "tt-rss hostname should end with street.ardaxi.com for wildcard cert to work";
-    })
+    #(lib.mkIf config.services.tt-rss.enable {
+    #  assertion = lib.hasSuffix ".street.ardaxi.com" config.services.tt-rss.virtualHost;
+    #  message = "tt-rss hostname should end with street.ardaxi.com for wildcard cert to work";
+    #})
   ];
 
   security.acme.certs."street.ardaxi.com" = {
@@ -179,11 +179,11 @@
           };
         };
       };
-      ${config.services.tt-rss.virtualHost} = lib.mkIf config.services.tt-rss.enable {
-        useACMEHost = "street.ardaxi.com";
-        forceSSL = true;
-        extraConfig = proxyConfig;
-      };
+      #${config.services.tt-rss.virtualHost} = lib.mkIf config.services.tt-rss.enable {
+      #  useACMEHost = "street.ardaxi.com";
+      #  forceSSL = true;
+      #  extraConfig = proxyConfig;
+      #};
       ${config.services.zoneminder.hostname} =
       lib.mkIf config.services.zoneminder.enable {
         useACMEHost = "street.ardaxi.com";
