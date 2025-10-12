@@ -81,7 +81,7 @@
     direnv gitAndTools.pass-git-helper gist rustup gcc exercism nodejs terraform-lsp
     qflipper nil
     # 3D
-    solvespace prusa-slicer
+    prusa-slicer
     # LaTeX
     evince lyx (texlive.combine { inherit (texlive)
       scheme-basic babel-dutch hyphen-dutch invoice fp collection-latexrecommended xetex
