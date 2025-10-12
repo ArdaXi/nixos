@@ -10,7 +10,7 @@
 
   hardware.enableRedistributableFirmware = true;
 
-  services.logind.extraConfig = "HandlePowerKey=ignore";
+  services.logind.settings.Login.HandlePowerKey = "ignore";
 
   boot = {
     loader = {
