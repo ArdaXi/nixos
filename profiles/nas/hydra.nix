@@ -16,7 +16,7 @@
         notificationSender = "hydra@localhost";
         useSubstitutes = true;
         extraConfig = "max_output_size = 4294967296";
-        package = pkgs.hydra-unstable;
+        package = pkgs.hydra;
       };
 
       nix-serve = {
