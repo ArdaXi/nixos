@@ -29,7 +29,7 @@
   };
 
   services.udev = {
-    packages = [ pkgs.qflipper ];
+    packages = [ pkgs.qFlipper ];
     extraRules = ''
       SUBSYSTEM=="tty", ATTRS{manufacturer}=="Espressif", MODE="0666"
       SUBSYSTEM=="tty", ATTRS{manufacturer}=="Silicon Labs", MODE="0666"
@@ -79,7 +79,7 @@
   environment.systemPackages = with pkgs; [
     # Development
     direnv pass-git-helper gist rustup gcc exercism nodejs terraform-lsp
-    qflipper nil
+    qFlipper nil
     # 3D
     prusa-slicer
     # LaTeX
