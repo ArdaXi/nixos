@@ -111,7 +111,7 @@
     enableGhostscriptFonts = true;
     enableDefaultPackages = true;
     packages = with pkgs; [
-      source-code-pro vistafonts corefonts
+      source-code-pro vista-fonts corefonts
       cantarell-fonts
     ] ++ (if pkgs ? nerd-fonts then
       builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts) else [ pkgs.nerdfonts ]);
