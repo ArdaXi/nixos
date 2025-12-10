@@ -91,7 +91,7 @@
     fortune usbutils pciutils acpi slock scrot xdotool nethack
     mosquitto xorg.xf86inputsynaptics gammastep restic yt-dlp
     # Misc graphical
-    alacritty arandr dmenu fahclient calibre gnome-firmware-updater
+    alacritty arandr dmenu fahclient calibre gnome-firmware
     winbox
     # logseq
     (writeShellScriptBin "anki" ''
