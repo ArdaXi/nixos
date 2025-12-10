@@ -17,7 +17,7 @@
     ./homeassistant.nix
 #    ./ipfs.nix
 #    ./innernet.nix
-    ./iscsi.nix
+#    ./iscsi.nix
     ./keycloak.nix
     ./zfs.nix
 #    ./upgrade-postgres.nix

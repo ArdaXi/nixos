@@ -6,7 +6,7 @@
   environment.systemPackages = [ pkgs.targetcli ];
 
   systemd.services.iscsi-target = {
-    enable = false;
+    enable = true;
     after = [ "network.target" "local-fs.target" ];
     requires = [ "sys-kernel-config.mount" ];
     wantedBy = [ "multi-user.target" ];
