@@ -5,6 +5,7 @@
       enable = true;
       settings.rpc-port = 9091;
       webHome = pkgs.flood-for-transmission;
+      package = pkgs.transmission_4;
     };
     nzbget.enable = true;
     sonarr.enable = true;
