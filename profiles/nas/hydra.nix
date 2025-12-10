@@ -45,6 +45,6 @@
         "github:nix-community/"
       ];
     };
-    nix.package = pkgs.nix-hydra;
+    nix.package = pkgs.hydra.nix;
   };
 }
