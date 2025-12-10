@@ -78,6 +78,10 @@
       device = "tank/data/zoneminder";
       fsType = "zfs";
     };
+    "/var/log" = {
+      device = "switch/system/var/log";
+      fsType = "zfs";
+    };
     "/mnt/var" = {
       device = "switch/system/var";
       fsType = "zfs";
@@ -109,13 +113,13 @@
     ];
     useDHCP = false;
     vlans = {
-      "eno1.10" = {
+      "eno1np0.10" = {
         id = 10;
-        interface = "eno1";
+        interface = "eno1np0";
       };
     };
     interfaces = {
-      eno1 = {
+      eno1np0 = {
         proxyARP = true;
         ipv4.addresses = [
           { address = "192.168.178.2"; prefixLength = 24; }
@@ -125,12 +129,12 @@
           { address = "2a10:3781:19df:3::2"; prefixLength = 64; }
         ];
       };
-      "eno1.10" = {
+      "eno1np0.10" = {
         ipv4.addresses = [
           { address = "192.168.179.201"; prefixLength = 24; }
         ];
       };
-      eno2 = {
+      eno2np1 = {
         proxyARP = true;
         mtu = 9710;
         ipv4.addresses = [
@@ -143,17 +147,17 @@
     };
     defaultGateway = {
       address = "192.168.178.1";
-      interface = "eno1";
+      interface = "eno1np0";
     };
     defaultGateway6 = {
       address = "2a10:3781:19df:3::1";
-      interface = "eno1";
+      interface = "eno1np0";
     };
   };
 
   nix = {
     settings = {
-      max-jobs = 20;
+      max-jobs = 15;
       auto-optimise-store = true;
     };
     buildMachines = [{
@@ -167,7 +171,7 @@
         "kvm" "nixos-test" "big-parallel" "benchmark" "local"
         "gccarch-skylake"
       ];
-      maxJobs = 20;
+      maxJobs = 15;
     }];
     extraOptions = ''
       min-free = ${toString ( 10 * 1024 * 1024 * 1024)}

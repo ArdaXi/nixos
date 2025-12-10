@@ -27,6 +27,10 @@ let
         "tcp://street.ardaxi.com"
       ];
     };
+    "Fair Marvin" = {
+      id = "WZZC75O-7WM4BWR-OK3K7PP-E5ACZBI-N7Y3QDR-7AY7GQT-6WAAKHP-AHICNA3";
+      addresses = [ "dynamic" ];
+    };
   };
 in
 {

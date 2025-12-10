@@ -6,6 +6,10 @@
     #  assertion = lib.hasSuffix ".street.ardaxi.com" config.services.tt-rss.virtualHost;
     #  message = "tt-rss hostname should end with street.ardaxi.com for wildcard cert to work";
     #})
+    (lib.mkIf config.services.freshrss.enable {
+      assertion = lib.hasSuffix ".street.ardaxi.com" config.services.freshrss.virtualHost;
+      message = "freshrss hostname should end with street.ardaxi.com for wildcart cert to work";
+    })
   ];
 
   security.acme.certs."street.ardaxi.com" = {
@@ -135,14 +139,14 @@
           "/" = {
             proxyPass = "http://unix:${config.services.grafana.settings.server.socket}:/";
             extraConfig = proxyConfig + ''
-              auth_request /oauth2/auth;
-              error_page 401 = /oauth2/sign_in;
+              #auth_request /oauth2/auth;
+              #error_page 401 = /oauth2/sign_in;
 
-              auth_request_set $email $upstream_http_x_auth_request_email;
-              proxy_set_header X-Email $email;
+              #auth_request_set $email $upstream_http_x_auth_request_email;
+              #proxy_set_header X-Email $email;
 
-              auth_request_set $auth_cookie $upstream_http_set_cookie;
-              add_header Set-Cookie $auth_cookie;
+              #auth_request_set $auth_cookie $upstream_http_set_cookie;
+              #add_header Set-Cookie $auth_cookie;
             '';
           };
         };
@@ -184,6 +188,11 @@
       #  forceSSL = true;
       #  extraConfig = proxyConfig;
       #};
+      ${config.services.freshrss.virtualHost} = lib.mkIf config.services.freshrss.enable {
+        useACMEHost = "street.ardaxi.com";
+        forceSSL = true;
+        extraConfig = proxyConfig;
+      };
       ${config.services.zoneminder.hostname} =
       lib.mkIf config.services.zoneminder.enable {
         useACMEHost = "street.ardaxi.com";
