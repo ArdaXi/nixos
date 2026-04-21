@@ -14,5 +14,6 @@
   fileSystems."/export/media" = {
     device = "/media";
     options = ["rbind"];
+    fsType = "none";
   };
 }
