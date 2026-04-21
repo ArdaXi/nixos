@@ -102,6 +102,7 @@ in
         auto_sign_up = false;
         enable_login_token = true;
       };
+      security.secret_key = "SW2YcwTIb9zpOOhoPsMm";
     };
   };
 
