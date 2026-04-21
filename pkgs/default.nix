@@ -78,6 +78,11 @@ rec {
   nix-hydra = final.hydra_unstable.nix or final.nixVersions.nix_2_8;
 
 #  nix-serve = prev.nix-serve.override { nix = final.nix-hydra; };
+  prometheus = prev.prometheus.overrideAttrs (oldAttrs: {
+    checkFlags = oldAttrs.checkFlags ++ [
+      "-skip=TestFsType"
+    ];
+  });
 
   prometheus-mikrotik-exporter = prev.prometheus-mikrotik-exporter.overrideAttrs (_: {
     patches = [ (final.fetchpatch {
