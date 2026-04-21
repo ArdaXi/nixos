@@ -59,7 +59,7 @@ rec {
 #    doCheck = false;
 #    checkPhase = "";
 #  });
-  hydra-unstable = prev.hydra_unstable or prev.hydra-unstable;
+#  hydra-unstable = prev.hydra_unstable or prev.hydra-unstable;
 
   python3 = prev.python3.override pythonOverrides;
   # python38 = prev.python38.override pythonOverrides;
@@ -75,7 +75,7 @@ rec {
   mudlet = final.libsForQt5.callPackage ./mudlet.nix { lua = final.lua5_1; };
 
 #  nix-hydra = final.nixVersions.nix_2_6 or final.nix;
-  nix-hydra = final.hydra_unstable.nix or final.nixVersions.nix_2_8;
+#  nix-hydra = final.hydra_unstable.nix or final.nixVersions.nix_2_8;
 
 #  nix-serve = prev.nix-serve.override { nix = final.nix-hydra; };
   prometheus = prev.prometheus.overrideAttrs (oldAttrs: {

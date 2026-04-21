@@ -44,13 +44,13 @@
         recursiveUpdate inputs {
           inherit lib pkgset system utils;
         }
-      ) // import ./aarch64 (
-        recursiveUpdate inputs {
-          inherit lib utils;
-          system = "aarch64-linux";
-          pkgset = pkgsetFor "aarch64-linux";
-        }
-      );
+      );# // import ./aarch64 (
+      #  recursiveUpdate inputs {
+      #    inherit lib utils;
+      #    system = "aarch64-linux";
+      #    pkgset = pkgsetFor "aarch64-linux";
+      #  }
+      #);
 
       hydraJobs = {
         hosts = mapAttrs (n: v: hydraJob v.config.system.build.toplevel) self.nixosConfigurations;
