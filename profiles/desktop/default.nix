@@ -99,7 +99,7 @@
       exec ${pkgs.anki-bin}/bin/anki
     '')
     # Big stuff
-    libreoffice-fresh signal-desktop steam
+    libreoffice-fresh signal-desktop
   ];
 
   environment.sessionVariables = {
@@ -119,6 +119,16 @@
 
   programs.dconf.enable = true;
   programs.nix-ld.enable = true;
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    localNetworkGameTransfers.openFirewall = true;
+    protontricks.enable = true;
+  };
+  programs.gamescope = {
+    enable = true;
+    capSysNice = false;
+  };
 
   # For some reason enabling Sway also adds a default pinentry...
   programs.gnupg.agent.pinentryPackage = pkgs.pinentry-qt;
