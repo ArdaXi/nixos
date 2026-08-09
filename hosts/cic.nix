@@ -82,6 +82,10 @@
       device = "switch/system/var/log";
       fsType = "zfs";
     };
+    "/var/lib" = {
+      device = "switch/system/var/lib";
+      fsType = "zfs";
+    };
     "/mnt/var" = {
       device = "switch/system/var";
       fsType = "zfs";

@@ -46,7 +46,10 @@ in
   services.zigbee2mqtt = {
     enable = true;
     settings = {
-      serial.port = "/dev/serial/by-id/usb-ITEAD_SONOFF_Zigbee_3.0_USB_Dongle_Plus_V2_20230525082956-if00";
+      serial = {
+        adapter = "ember";
+        port = "/dev/serial/by-id/usb-ITEAD_SONOFF_Zigbee_3.0_USB_Dongle_Plus_V2_20230525082956-if00";
+      };
       availability = true;
       mqtt = {
         server = "mqtt://127.0.0.1:1883";
@@ -82,6 +85,22 @@ in
     ];
     UMask = lib.mkForce "0007";
   };
+
+  services.openthread-border-router = {
+    enable = true;
+    backboneInterfaces = [ "eno1np0.10" ];
+    radio = {
+      device = "/dev/serial/by-id/usb-ITEAD_SONOFF_Zigbee_3.0_USB_Dongle_Plus_V2_20230807133941-if00";
+      baudRate = 460800;
+    };
+    rest.listenAddress = "::";
+    web = {
+      enable = true;
+      listenAddress = "::";
+    };
+  };
+
+  services.matter-server.enable = true;
 
   services.home-assistant = {
     enable = true;

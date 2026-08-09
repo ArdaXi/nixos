@@ -34,6 +34,10 @@
       iptables -A nixos-fw -s 192.168.179.22/32 -j nixos-fw-accept
       iptables -A nixos-fw -s 192.168.179.0/24 -p tcp --dport 1883 -j nixos-fw-accept
       iptables -A nixos-fw -s 192.168.179.0/24 -p tcp --dport 9001 -j nixos-fw-accept
+      iptables -A nixos-fw -s 192.168.179.0/24 -p tcp --dport 8096 -j nixos-fw-accept
+      iptables -A nixos-fw -s 192.168.179.0/24 -p tcp -m multiport --dports 5540,5580,8081 -j nixos-fw-accept
+      iptables -A nixos-fw -s 192.168.179.0/24 -p udp -m multiport --dports 5540,5580,8081 -j nixos-fw-accept
+      ip6tables -A nixos-fw -s 2a10:3781:19df:10::/64 -p tcp -m multiport --dports 5540,5580,8081 -j nixos-fw-accept            ip6tables -A nixos-fw -s 2a10:3781:19df:10::/64 -p udp -m multiport --dports 5540,5580,8081 -j nixos-fw-accept
       iptables -A nixos-fw -s 10.145.22.0/24 -j nixos-fw-accept
       ip6tables -A nixos-fw -s fd1b:48cd:e05e:100::/56 -i street -j nixos-fw-accept
     '';

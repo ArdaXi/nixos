@@ -31,20 +31,6 @@
 
   virtualisation.libvirtd.enable = true;
 
-  # Massive dirty hack because the version check seems to fail to remove --add-opens
-  systemd.services.unifi.serviceConfig = let
-    cmd = ''
-      @${config.services.unifi.jrePackage}/bin/java java \
-        "-Xms1024m" \
-        "-Xmx1024m" \
-        -jar /var/lib/unifi/lib/ace.jar
-    '';
-  in {
-    TimeoutSec = lib.mkForce "1min";
-    ExecStart = lib.mkForce "${(lib.removeSuffix "\n" cmd)} start";
-    ExecStop = lib.mkForce "${(lib.removeSuffix "\n" cmd)} stop";
-  };
-
   security.acme = {
     acceptTerms = true;
     defaults.email = "acme@ardaxi.com";
@@ -66,6 +52,13 @@
   ];
 
   services = {
+    journald.extraConfig = ''
+      Compress=false
+      SystemMaxFileSize=1G
+    '';
+
+    resolved.settings.Resolve.MulticastDNS = false;
+
     postgresql = {
       enable = true;
       package = pkgs.postgresql_14;

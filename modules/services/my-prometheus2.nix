@@ -46,7 +46,6 @@ let
     "--storage.tsdb.path=${cfg.dataDir}/metrics"
     "--config.file=${prometheusYml}"
     "--web.listen-address=${cfg.listenAddress}"
-    "--alertmanager.timeout=${toString cfg.alertmanagerTimeout}s"
     (optionalString (cfg.alertmanagerURL != []) "--alertmanager.url=${concatStringsSep "," cfg.alertmanagerURL}")
     (optionalString (cfg.webExternalUrl != null) "--web.external-url=${cfg.webExternalUrl}")
   ];

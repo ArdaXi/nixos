@@ -80,6 +80,14 @@
           #'';
         };
       };
+      "thread.street.ardaxi.com" = lib.mkIf config.services.openthread-border-router.enable {
+        useACMEHost = "street.ardaxi.com";
+        addSSL = false;
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:${toString config.services.openthread-border-router.web.listenPort}/";
+          extraConfig = proxyConfig + allow;
+        };
+      };
       "hydra.street.ardaxi.com" = lib.mkIf config.services.hydra.enable {
         useACMEHost = "street.ardaxi.com";
         addSSL = true;

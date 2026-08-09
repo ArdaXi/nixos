@@ -17,6 +17,7 @@
       http-host = "127.0.0.1";
       http-port = 8086;
       http-relative-path = "/auth";
+      http-enabled = true;
       hostname = "keycloak.ardaxi.com";
 #      hostname-strict-backchannel = true;
       # proxy = "edge"

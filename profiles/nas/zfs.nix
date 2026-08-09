@@ -19,14 +19,20 @@
           recvOptions = "o compression=zstd-4 o recordsize=1M";
         };
         "switch/system/pg14" = {
-          target = "tank/system/pg14";
+          target = "tank/backup/system/pg14";
           recursive = true;
+          sendOptions = "L";
+          recvOptions = "o compression=zstd-4 o recordsize=1M";
         };
         "switch/local/nix" = {
-          target = "tank/local/nix";
+          target = "scratch/nix";
+          sendOptions = "L";
+          recvOptions = "o compression=zstd-4 o recordsize=1M";
         };
         "switch/system/var" = {
-          target = "tank/system/var";
+          target = "tank/backup/system/var";
+          sendOptions = "L";
+          recvOptions = "o compression=zstd-4 o recordsize=1M";
           recursive = true;
         };
       };
